@@ -206,7 +206,7 @@ module FIFO #(parameter DW=8, AW=4)(
   
 endmodule
 
-module i2s (
+module EF_I2S (
     input   wire        clk,
     input   wire        rst_n,
     

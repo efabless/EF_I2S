@@ -21,7 +21,7 @@
 
 `timescale  1ns/1ps
 
-module i2s_tb;
+module EF_I2S_tb;
     reg             clk = 0;
     reg             rst_n;
     wire            sd, sdo;
@@ -75,7 +75,7 @@ module i2s_tb;
     `RSTn(rst_n, clk, 1000)
 
     initial begin
-        $dumpfile("i2s_tb.vcd");
+        $dumpfile("EF_I2S_tb.vcd");
         $dumpvars;
         #1_000_000 $finish;
     end

@@ -27,6 +27,7 @@ module i2s_rx (
     input   wire        ws,
     input   wire        sck,
 
+    input   wire        left_justified,
     input   wire [4:0]  sample_size,
     output  reg  [31:0] lsample,
     output  reg  [31:0] rsample
@@ -50,13 +51,20 @@ module i2s_rx (
             lw_state <= lw_state_next;
 
     always_comb 
-        case (lw_state)
-            RIGHT       :   if(lw_pulse)    lw_state_next = RIGHT_LSB; else lw_state_next = RIGHT;
-            RIGHT_LSB   :   if(sck_pulse)   lw_state_next = LEFT; else lw_state_next = RIGHT_LSB;
-            LEFT        :   if(rw_pulse)    lw_state_next = LEFT_LSB; else lw_state_next = LEFT;
-            LEFT_LSB    :   if(sck_pulse)   lw_state_next = RIGHT; else lw_state_next = LEFT_LSB;
-            default     :   lw_state_next = RIGHT;
-        endcase
+        if(left_justified)
+            case (lw_state)
+                RIGHT       :   if(lw_pulse)    lw_state_next = LEFT; else lw_state_next = RIGHT;
+                LEFT        :   if(rw_pulse)    lw_state_next = RIGHT; else lw_state_next = LEFT;
+                default     :   lw_state_next = RIGHT;
+            endcase
+        else
+            case (lw_state)
+                RIGHT       :   if(lw_pulse)    lw_state_next = RIGHT_LSB; else lw_state_next = RIGHT;
+                RIGHT_LSB   :   if(sck_pulse)   lw_state_next = LEFT; else lw_state_next = RIGHT_LSB;
+                LEFT        :   if(rw_pulse)    lw_state_next = LEFT_LSB; else lw_state_next = LEFT;
+                LEFT_LSB    :   if(sck_pulse)   lw_state_next = RIGHT; else lw_state_next = LEFT_LSB;
+                default     :   lw_state_next = RIGHT;
+            endcase
 
 /*
     always @(posedge clk or negedge rst_n)
@@ -223,6 +231,8 @@ module EF_I2S (
     output  wire        fifo_level_above,
     output  wire [31:0] fifo_rdata,
 
+    input   wire        sign_extend,
+    input   wire        left_justified,
     input   wire [4:0]  sample_size,
     input   wire [7:0]  sck_prescaler,
     input   wire [1:0]  channels,
@@ -279,7 +289,10 @@ module EF_I2S (
 */
     wire        fifo_wr = (en == 1'b1 && bit_ctr == 5'b0 && prescaler == 8'b0 && sck_reg == 1'b1) && ((ws_reg & channels[0]) || (~ws_reg & channels[1]));
 
-    wire [31:0] fifo_wdata = ws_reg ?  (rsample >> (32-sample_size)) : (lsample >> (32-sample_size));
+    wire [31:0] rsample_sign = sign_extend ? {32{rsample[31]}} << sample_size : 32'b0;
+    wire [31:0] lsample_sign = sign_extend ? {32{lsample[31]}} << sample_size : 32'b0;
+
+    wire [31:0] fifo_wdata = ws_reg ?  (rsample >> (32-sample_size)) | rsample_sign : (lsample >> (32-sample_size)) | lsample_sign;
 
     assign      fifo_level_above = fifo_level > fifo_level_threshold;
 
@@ -289,6 +302,7 @@ module EF_I2S (
         .sd(sdi),
         .ws(ws),
         .sck(sck),
+        .left_justified(left_justified),
         .sample_size(sample_size),
         .lsample(lsample),
         .rsample(rsample)

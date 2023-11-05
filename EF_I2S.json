@@ -87,7 +87,7 @@
         },
         {
             "name": "control",
-            "size": "3",
+            "size": "5",
             "mode": "rw",
             "init": "0",
             "fields": [
@@ -102,7 +102,20 @@
                     "from": "1",
                     "size": "2",
                     "port": "channels"
+                },
+                {
+                    "name": "sign_extend",
+                    "from": "3",
+                    "size": "1",
+                    "port": "sign_extend"
+                },
+                {
+                    "name": "left_justified",
+                    "from": "4",
+                    "size": "1",
+                    "port": "left_justified"
                 }
+
             ]
         }
     ],
@@ -159,6 +172,8 @@
       {"name": "fifo_level_above", "size": "1"},
       {"name": "fifo_rdata", "size": "32"},
 
+      {"name": "sign_extend", "size": "1"},
+      {"name": "left_justified", "size": "1"},
       {"name": "sample_size", "size": "5"},
       {"name": "sck_prescaler", "size": "8"},
       {"name": "channels", "size": "2"},

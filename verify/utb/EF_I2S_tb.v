@@ -20,7 +20,6 @@
 
 */
 
-
 `timescale			1ns/1ns
 
 `default_nettype        none
@@ -53,7 +52,7 @@ module EF_I2S_tb;
 
     localparam      FREQDIV = 10;
 
-    i2s MUV (
+    EF_I2S MUV (
         .clk(clk),
         .rst_n(rst_n),
         .sdi(sd),
@@ -68,6 +67,8 @@ module EF_I2S_tb;
         .fifo_level_above(fifo_level_above),
         .fifo_rdata(fifo_rdata),
 
+        .sign_extend(1'b1),
+        .left_justified(1'b1),
         .sample_size(sample_size),
         .sck_prescaler(sck_prescaler),
         .channels(2'b01),

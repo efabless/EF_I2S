@@ -1,0 +1,178 @@
+{
+    "info": {
+        "name": "EF_I2S",
+        "description": "I2S receiver with a FIFO",
+        "repo": "github.com/efabless/EF_I2S",
+        "owner": "Efabless Corp.",
+        "license": "APACHE 2.0",
+        "author": "Mohamed Shalan",
+        "email": "mshalan@efabless.com",
+        "version": "v1.0.0",
+        "date": "11-05-2023",
+        "category": "digital",
+        "tags": [
+            "peripheral",
+            "audio",
+            "serial"
+        ],
+        "bus": [
+            "generic"
+        ],
+        "type": "soft",
+        "status": "verified",
+        "cell_count": "2661",
+        "width": "0.0",
+        "height": "0.0",
+        "technology": "n/a",
+        "clock_freq_mhz": "10",
+        "supply_voltage": [
+            "n/a"
+        ]
+    },
+    "regs": [
+        {
+            "name": "rxdata",
+            "size": "32",
+            "mode": "fr",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "fifo_rdata",
+                    "from": "0",
+                    "size": "32",
+                    "port": "fifo_rdata"
+                }
+            ]
+        },
+        {
+            "name": "prescale",
+            "size": "8",
+            "mode": "rw",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "prescale",
+                    "from": "0",
+                    "size": "8",
+                    "port": "sck_prescaler"
+                }
+            ]
+        },
+        {
+            "name": "FIFOLEVEL",
+            "size": "5",
+            "mode": "ro",
+            "fields": [
+                {
+                    "name": "fifo_level",
+                    "from": "0",
+                    "size": "4",
+                    "port": "fifo_level"
+                }
+            ]
+        },
+        {
+            "name": "RXFIFOT",
+            "size": "5",
+            "mode": "rw",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "fifo_level_threshold",
+                    "from": "0",
+                    "size": "5",
+                    "port": "fifo_level_threshold"
+                }
+            ]
+        },
+        {
+            "name": "control",
+            "size": "3",
+            "mode": "rw",
+            "init": "0",
+            "fields": [
+                {
+                    "name": "en",
+                    "from": "0",
+                    "size": "1",
+                    "port": "en"
+                },
+                {
+                    "name": "channels",
+                    "from": "1",
+                    "size": "2",
+                    "port": "channels"
+                }
+            ]
+        }
+    ],
+    "interface": [
+        {
+            "name": "ws",
+            "port": "ws",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "sck",
+            "port": "sck",
+            "dir": "output",
+            "size": "1"
+        },
+        {
+            "name": "sdi",
+            "port": "sdi",
+            "dir": "input",
+            "size": "1"
+        }
+    ],
+    "flags": [
+        {
+            "name": "empty_flag",
+            "port": "fifo_empty"
+        },
+        {
+            "name": "above_flag",
+            "port": "fifo_level_above"
+        },
+        {
+            "name": "full_flag",
+            "port": "fifo_full"
+        }
+    ],
+    "clock": "clk",
+    "reset": {
+        "name": "rst_n",
+        "pol": "0"
+    },
+    "ports":[
+      {"name": "ws", "size": "1"},
+      {"name": "sck", "size": "1"},
+      {"name": "sdi", "size": "1"},
+      {"name": "sdo", "size": "1"},
+
+      {"name": "fifo_rd", "size": "1"},
+      {"name": "fifo_level_threshold", "size": "5"},
+      {"name": "fifo_full", "size": "1"},
+      {"name": "fifo_empty", "size": "1"},
+      {"name": "fifo_level", "size": "5"},
+      {"name": "fifo_level_above", "size": "1"},
+      {"name": "fifo_rdata", "size": "32"},
+
+      {"name": "sample_size", "size": "5"},
+      {"name": "sck_prescaler", "size": "8"},
+      {"name": "channels", "size": "2"},
+      {"name": "en", "size": "1"}
+    ],
+
+    "fifos": [
+        {
+            "depth": "32",
+            "width": 8,
+            "reg": "rxdata",
+            "type": "r",
+            "control_port": "fifo_rd",
+            "data_port":"fifo_rdata"
+        }
+    ]    
+}

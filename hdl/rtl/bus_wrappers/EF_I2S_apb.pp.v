@@ -24,26 +24,20 @@
 `timescale			1ns/1ns
 `default_nettype	none
 
-`define		AHB_BLOCK(name, init)		always @(posedge HCLK or negedge HRESETn) if(~HRESETn) name <= init;
-`define		AHB_REG(name, init, size)	`AHB_BLOCK(name, init) else if(ahbl_we & (last_HADDR[15:0]==``name``_ADDR)) name <= HWDATA[``size``-1:0];
-`define		AHB_ICR(size)				`AHB_BLOCK(ICR_REG, size'b0) else if(ahbl_we & (last_HADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= HWDATA[``size``-1:0]; else ICR_REG <= ``size``'d0;
-
-module EF_I2S_ahbl (
+module EF_I2S_apb (
 	output	wire 		ws,
 	output	wire 		sck,
 	input	wire 		sdi,
 	output	wire 		sdo,
-	input	wire 		HCLK,
-	input	wire 		HRESETn,
-	input	wire [31:0]	HADDR,
-	input	wire 		HWRITE,
-	input	wire [1:0]	HTRANS,
-	input	wire 		HREADY,
-	input	wire 		HSEL,
-	input	wire [2:0]	HSIZE,
-	input	wire [31:0]	HWDATA,
-	output	wire [31:0]	HRDATA,
-	output	wire 		HREADYOUT,
+	input	wire 		PCLK,
+	input	wire 		PRESETn,
+	input	wire [31:0]	PADDR,
+	input	wire 		PWRITE,
+	input	wire 		PSEL,
+	input	wire 		PENABLE,
+	input	wire [31:0]	PWDATA,
+	output	wire [31:0]	PRDATA,
+	output	wire 		PREADY,
 	output	wire 		irq
 );
 	localparam[15:0] RXDATA_REG_ADDR = 16'h0000;
@@ -57,25 +51,6 @@ module EF_I2S_ahbl (
 	localparam[15:0] IM_REG_ADDR = 16'h0f08;
 	localparam[15:0] MIS_REG_ADDR = 16'h0f0c;
 	localparam[15:0] CG_REG_ADDR = 16'h0f80;
-
-	reg             last_HSEL;
-	reg [31:0]      last_HADDR;
-	reg             last_HWRITE;
-	reg [1:0]       last_HTRANS;
-
-	always@ (posedge HCLK or negedge HRESETn) begin
-		if (!HRESETn) begin
-			last_HSEL       <= 0;
-			last_HADDR      <= 0;
-			last_HWRITE     <= 0;
-			last_HTRANS     <= 0;
-		end else if (HREADY) begin
-			last_HSEL       <= HSEL;
-			last_HADDR      <= HADDR;
-			last_HWRITE     <= HWRITE;
-			last_HTRANS     <= HTRANS;
-		end
-	end
 
 	reg	[7:0]	PRESCALE_REG;
 	reg	[4:0]	RXFIFOT_REG;
@@ -104,13 +79,13 @@ module EF_I2S_ahbl (
 	wire		fifo_full;
 	wire		_FULL_FLAG_FLAG_	= fifo_full;
 	wire[2:0]	MIS_REG	= RIS_REG & IM_REG;
-	wire		ahbl_valid	= last_HSEL & last_HTRANS[1];
-	wire		ahbl_we	= last_HWRITE & ahbl_valid;
-	wire		ahbl_re	= ~last_HWRITE & ahbl_valid;
+	wire		apb_valid	= PSEL & PENABLE;
+	wire		apb_we	= PWRITE & apb_valid;
+	wire		apb_re	= ~PWRITE & apb_valid;
+	wire		_clk_	= PCLK;
 	wire		_gclk_;
-	wire		_clk_	= HCLK;
-	wire		_rst_	= ~HRESETn;
-	wire		rd	= (ahbl_re & (last_HADDR[15:0]==RXDATA_REG_ADDR));
+	wire		_rst_	= ~PRESETn;
+	wire		fifo_rd	= (apb_re & (PADDR[15:0]==RXDATA_REG_ADDR));
 
 	assign _gclk_ = _clk_;
 
@@ -136,17 +111,17 @@ module EF_I2S_ahbl (
 		.en(en)
 	);
 
-	`AHB_REG(PRESCALE_REG, 0, 8)
-	`AHB_REG(RXFIFOT_REG, 0, 5)
-	`AHB_REG(CONTROL_REG, 0, 1)
-	`AHB_REG(CONFIG_REG, 0, 5)
-	`AHB_REG(IM_REG, 0, 3)
-	`AHB_REG(CG_REG, 0, 1)
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) PRESCALE_REG <= 0; else if(apb_we & (PADDR[15:0]==PRESCALE_REG_ADDR)) PRESCALE_REG <= PWDATA[8-1:0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RXFIFOT_REG <= 0; else if(apb_we & (PADDR[15:0]==RXFIFOT_REG_ADDR)) RXFIFOT_REG <= PWDATA[5-1:0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CONTROL_REG <= 0; else if(apb_we & (PADDR[15:0]==CONTROL_REG_ADDR)) CONTROL_REG <= PWDATA[1-1:0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CONFIG_REG <= 0; else if(apb_we & (PADDR[15:0]==CONFIG_REG_ADDR)) CONFIG_REG <= PWDATA[5-1:0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) IM_REG <= 0; else if(apb_we & (PADDR[15:0]==IM_REG_ADDR)) IM_REG <= PWDATA[3-1:0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CG_REG <= 0; else if(apb_we & (PADDR[15:0]==CG_REG_ADDR)) CG_REG <= PWDATA[1-1:0];
 
-	`AHB_ICR(3)
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) ICR_REG <= 3'b0; else if(apb_we & (PADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= PWDATA[3-1:0]; else ICR_REG <= 3'd0;
 
-	always @(posedge HCLK or negedge HRESETn)
-		if(~HRESETn) RIS_REG <= 32'd0;
+	always @(posedge PCLK or negedge PRESETn)
+		if(~PRESETn) RIS_REG <= 3'd0;
 		else begin
 			if(_EMPTY_FLAG_FLAG_) RIS_REG[0] <= 1'b1; else if(ICR_REG[0]) RIS_REG[0] <= 1'b0;
 			if(_ABOVE_FLAG_FLAG_) RIS_REG[1] <= 1'b1; else if(ICR_REG[1]) RIS_REG[1] <= 1'b0;
@@ -156,21 +131,21 @@ module EF_I2S_ahbl (
 
 	assign irq = |MIS_REG;
 
-	assign	HRDATA = 
-			(last_HADDR[15:0] == PRESCALE_REG_ADDR) ? PRESCALE_REG :
-			(last_HADDR[15:0] == RXFIFOT_REG_ADDR) ? RXFIFOT_REG :
-			(last_HADDR[15:0] == CONTROL_REG_ADDR) ? CONTROL_REG :
-			(last_HADDR[15:0] == CONFIG_REG_ADDR) ? CONFIG_REG :
-			(last_HADDR[15:0] == RIS_REG_ADDR) ? RIS_REG :
-			(last_HADDR[15:0] == ICR_REG_ADDR) ? ICR_REG :
-			(last_HADDR[15:0] == IM_REG_ADDR) ? IM_REG :
-			(last_HADDR[15:0] == CG_REG_ADDR) ? CG_REG :
-			(last_HADDR[15:0] == RXDATA_REG_ADDR) ? RXDATA_REG :
-			(last_HADDR[15:0] == FIFOLEVEL_REG_ADDR) ? FIFOLEVEL_REG :
-			(last_HADDR[15:0] == MIS_REG_ADDR) ? MIS_REG :
+	assign	PRDATA = 
+			(PADDR[15:0] == PRESCALE_REG_ADDR) ? PRESCALE_REG :
+			(PADDR[15:0] == RXFIFOT_REG_ADDR) ? RXFIFOT_REG :
+			(PADDR[15:0] == CONTROL_REG_ADDR) ? CONTROL_REG :
+			(PADDR[15:0] == CONFIG_REG_ADDR) ? CONFIG_REG :
+			(PADDR[15:0] == RIS_REG_ADDR) ? RIS_REG :
+			(PADDR[15:0] == ICR_REG_ADDR) ? ICR_REG :
+			(PADDR[15:0] == IM_REG_ADDR) ? IM_REG :
+			(PADDR[15:0] == CG_REG_ADDR) ? CG_REG :
+			(PADDR[15:0] == RXDATA_REG_ADDR) ? RXDATA_REG :
+			(PADDR[15:0] == FIFOLEVEL_REG_ADDR) ? FIFOLEVEL_REG :
+			(PADDR[15:0] == MIS_REG_ADDR) ? MIS_REG :
 			32'hDEADBEEF;
 
 
-	assign HREADYOUT = 1'b1;
+	assign PREADY = 1'b1;
 
 endmodule

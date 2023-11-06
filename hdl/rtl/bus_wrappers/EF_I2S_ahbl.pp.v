@@ -24,10 +24,6 @@
 `timescale			1ns/1ns
 `default_nettype	none
 
-`define		AHB_BLOCK(name, init)		always @(posedge HCLK or negedge HRESETn) if(~HRESETn) name <= init;
-`define		AHB_REG(name, init, size)	`AHB_BLOCK(name, init) else if(ahbl_we & (last_HADDR[15:0]==``name``_ADDR)) name <= HWDATA[``size``-1:0];
-`define		AHB_ICR(size)				`AHB_BLOCK(ICR_REG, size'b0) else if(ahbl_we & (last_HADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= HWDATA[``size``-1:0]; else ICR_REG <= ``size``'d0;
-
 module EF_I2S_ahbl (
 	output	wire 		ws,
 	output	wire 		sck,
@@ -136,14 +132,14 @@ module EF_I2S_ahbl (
 		.en(en)
 	);
 
-	`AHB_REG(PRESCALE_REG, 0, 8)
-	`AHB_REG(RXFIFOT_REG, 0, 5)
-	`AHB_REG(CONTROL_REG, 0, 1)
-	`AHB_REG(CONFIG_REG, 0, 5)
-	`AHB_REG(IM_REG, 0, 3)
-	`AHB_REG(CG_REG, 0, 1)
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) PRESCALE_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==PRESCALE_REG_ADDR)) PRESCALE_REG <= HWDATA[8-1:0];
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) RXFIFOT_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==RXFIFOT_REG_ADDR)) RXFIFOT_REG <= HWDATA[5-1:0];
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CONTROL_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==CONTROL_REG_ADDR)) CONTROL_REG <= HWDATA[1-1:0];
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CONFIG_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==CONFIG_REG_ADDR)) CONFIG_REG <= HWDATA[5-1:0];
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) IM_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==IM_REG_ADDR)) IM_REG <= HWDATA[3-1:0];
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CG_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==CG_REG_ADDR)) CG_REG <= HWDATA[1-1:0];
 
-	`AHB_ICR(3)
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) ICR_REG <= 3'b0; else if(ahbl_we & (last_HADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= HWDATA[3-1:0]; else ICR_REG <= 3'd0;
 
 	always @(posedge HCLK or negedge HRESETn)
 		if(~HRESETn) RIS_REG <= 32'd0;

@@ -52,7 +52,6 @@ module EF_I2S_ahbl (
 	localparam[15:0] RIS_REG_ADDR = 16'h0f04;
 	localparam[15:0] IM_REG_ADDR = 16'h0f08;
 	localparam[15:0] MIS_REG_ADDR = 16'h0f0c;
-	localparam[15:0] CG_REG_ADDR = 16'h0f80;
 
 	reg             last_HSEL;
 	reg [31:0]      last_HADDR;
@@ -80,7 +79,6 @@ module EF_I2S_ahbl (
 	reg	[2:0]	RIS_REG;
 	reg	[2:0]	ICR_REG;
 	reg	[2:0]	IM_REG;
-	reg	[0:0]	CG_REG;
 
 	wire[31:0]	fifo_rdata;
 	wire[31:0]	RXDATA_REG	= fifo_rdata;
@@ -103,15 +101,12 @@ module EF_I2S_ahbl (
 	wire		ahbl_valid	= last_HSEL & last_HTRANS[1];
 	wire		ahbl_we	= last_HWRITE & ahbl_valid;
 	wire		ahbl_re	= ~last_HWRITE & ahbl_valid;
-	wire		_gclk_;
 	wire		_clk_	= HCLK;
 	wire		_rst_	= ~HRESETn;
 	wire		rd	= (ahbl_re & (last_HADDR[15:0]==RXDATA_REG_ADDR));
 
-	assign _gclk_ = _clk_;
-
 	EF_I2S inst_to_wrap (
-		.clk(_gclk_),
+		.clk(_clk_),
 		.rst_n(~_rst_),
 		.ws(ws),
 		.sck(sck),
@@ -137,7 +132,6 @@ module EF_I2S_ahbl (
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CONTROL_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==CONTROL_REG_ADDR)) CONTROL_REG <= HWDATA[1-1:0];
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CONFIG_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==CONFIG_REG_ADDR)) CONFIG_REG <= HWDATA[5-1:0];
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) IM_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==IM_REG_ADDR)) IM_REG <= HWDATA[3-1:0];
-	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CG_REG <= 0; else if(ahbl_we & (last_HADDR[15:0]==CG_REG_ADDR)) CG_REG <= HWDATA[1-1:0];
 
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) ICR_REG <= 3'b0; else if(ahbl_we & (last_HADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= HWDATA[3-1:0]; else ICR_REG <= 3'd0;
 
@@ -160,7 +154,6 @@ module EF_I2S_ahbl (
 			(last_HADDR[15:0] == RIS_REG_ADDR) ? RIS_REG :
 			(last_HADDR[15:0] == ICR_REG_ADDR) ? ICR_REG :
 			(last_HADDR[15:0] == IM_REG_ADDR) ? IM_REG :
-			(last_HADDR[15:0] == CG_REG_ADDR) ? CG_REG :
 			(last_HADDR[15:0] == RXDATA_REG_ADDR) ? RXDATA_REG :
 			(last_HADDR[15:0] == FIFOLEVEL_REG_ADDR) ? FIFOLEVEL_REG :
 			(last_HADDR[15:0] == MIS_REG_ADDR) ? MIS_REG :

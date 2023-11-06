@@ -56,7 +56,6 @@ module EF_I2S_ahbl (
 	localparam[15:0] RIS_REG_ADDR = 16'h0f04;
 	localparam[15:0] IM_REG_ADDR = 16'h0f08;
 	localparam[15:0] MIS_REG_ADDR = 16'h0f0c;
-	localparam[15:0] CG_REG_ADDR = 16'h0f80;
 
 	reg             last_HSEL;
 	reg [31:0]      last_HADDR;
@@ -84,7 +83,6 @@ module EF_I2S_ahbl (
 	reg	[2:0]	RIS_REG;
 	reg	[2:0]	ICR_REG;
 	reg	[2:0]	IM_REG;
-	reg	[0:0]	CG_REG;
 
 	wire[31:0]	fifo_rdata;
 	wire[31:0]	RXDATA_REG	= fifo_rdata;
@@ -107,15 +105,14 @@ module EF_I2S_ahbl (
 	wire		ahbl_valid	= last_HSEL & last_HTRANS[1];
 	wire		ahbl_we	= last_HWRITE & ahbl_valid;
 	wire		ahbl_re	= ~last_HWRITE & ahbl_valid;
-	wire		_gclk_;
 	wire		_clk_	= HCLK;
 	wire		_rst_	= ~HRESETn;
 	wire		rd	= (ahbl_re & (last_HADDR[15:0]==RXDATA_REG_ADDR));
 
-	assign _gclk_ = _clk_;
+
 
 	EF_I2S inst_to_wrap (
-		.clk(_gclk_),
+		.clk(_clk_),
 		.rst_n(~_rst_),
 		.ws(ws),
 		.sck(sck),
@@ -141,7 +138,6 @@ module EF_I2S_ahbl (
 	`AHB_REG(CONTROL_REG, 0, 1)
 	`AHB_REG(CONFIG_REG, 0, 5)
 	`AHB_REG(IM_REG, 0, 3)
-	`AHB_REG(CG_REG, 0, 1)
 
 	`AHB_ICR(3)
 
@@ -164,7 +160,6 @@ module EF_I2S_ahbl (
 			(last_HADDR[15:0] == RIS_REG_ADDR) ? RIS_REG :
 			(last_HADDR[15:0] == ICR_REG_ADDR) ? ICR_REG :
 			(last_HADDR[15:0] == IM_REG_ADDR) ? IM_REG :
-			(last_HADDR[15:0] == CG_REG_ADDR) ? CG_REG :
 			(last_HADDR[15:0] == RXDATA_REG_ADDR) ? RXDATA_REG :
 			(last_HADDR[15:0] == FIFOLEVEL_REG_ADDR) ? FIFOLEVEL_REG :
 			(last_HADDR[15:0] == MIS_REG_ADDR) ? MIS_REG :

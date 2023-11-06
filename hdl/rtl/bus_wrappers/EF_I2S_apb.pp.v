@@ -50,7 +50,6 @@ module EF_I2S_apb (
 	localparam[15:0] RIS_REG_ADDR = 16'h0f04;
 	localparam[15:0] IM_REG_ADDR = 16'h0f08;
 	localparam[15:0] MIS_REG_ADDR = 16'h0f0c;
-	localparam[15:0] CG_REG_ADDR = 16'h0f80;
 
 	reg	[7:0]	PRESCALE_REG;
 	reg	[4:0]	RXFIFOT_REG;
@@ -59,7 +58,6 @@ module EF_I2S_apb (
 	reg	[2:0]	RIS_REG;
 	reg	[2:0]	ICR_REG;
 	reg	[2:0]	IM_REG;
-	reg	[0:0]	CG_REG;
 
 	wire[31:0]	fifo_rdata;
 	wire[31:0]	RXDATA_REG	= fifo_rdata;
@@ -83,14 +81,11 @@ module EF_I2S_apb (
 	wire		apb_we	= PWRITE & apb_valid;
 	wire		apb_re	= ~PWRITE & apb_valid;
 	wire		_clk_	= PCLK;
-	wire		_gclk_;
 	wire		_rst_	= ~PRESETn;
 	wire		fifo_rd	= (apb_re & (PADDR[15:0]==RXDATA_REG_ADDR));
 
-	assign _gclk_ = _clk_;
-
 	EF_I2S inst_to_wrap (
-		.clk(_gclk_),
+		.clk(_clk_),
 		.rst_n(~_rst_),
 		.ws(ws),
 		.sck(sck),
@@ -116,7 +111,6 @@ module EF_I2S_apb (
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CONTROL_REG <= 0; else if(apb_we & (PADDR[15:0]==CONTROL_REG_ADDR)) CONTROL_REG <= PWDATA[1-1:0];
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CONFIG_REG <= 0; else if(apb_we & (PADDR[15:0]==CONFIG_REG_ADDR)) CONFIG_REG <= PWDATA[5-1:0];
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) IM_REG <= 0; else if(apb_we & (PADDR[15:0]==IM_REG_ADDR)) IM_REG <= PWDATA[3-1:0];
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CG_REG <= 0; else if(apb_we & (PADDR[15:0]==CG_REG_ADDR)) CG_REG <= PWDATA[1-1:0];
 
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) ICR_REG <= 3'b0; else if(apb_we & (PADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= PWDATA[3-1:0]; else ICR_REG <= 3'd0;
 
@@ -139,7 +133,6 @@ module EF_I2S_apb (
 			(PADDR[15:0] == RIS_REG_ADDR) ? RIS_REG :
 			(PADDR[15:0] == ICR_REG_ADDR) ? ICR_REG :
 			(PADDR[15:0] == IM_REG_ADDR) ? IM_REG :
-			(PADDR[15:0] == CG_REG_ADDR) ? CG_REG :
 			(PADDR[15:0] == RXDATA_REG_ADDR) ? RXDATA_REG :
 			(PADDR[15:0] == FIFOLEVEL_REG_ADDR) ? FIFOLEVEL_REG :
 			(PADDR[15:0] == MIS_REG_ADDR) ? MIS_REG :

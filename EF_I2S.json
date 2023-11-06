@@ -66,7 +66,7 @@
                 {
                     "name": "fifo_level",
                     "from": "0",
-                    "size": "4",
+                    "size": "5",
                     "port": "fifo_level"
                 }
             ]
@@ -87,7 +87,7 @@
         },
         {
             "name": "control",
-            "size": "5",
+            "size": "1",
             "mode": "rw",
             "init": "0",
             "fields": [
@@ -96,24 +96,38 @@
                     "from": "0",
                     "size": "1",
                     "port": "en"
-                },
+                }
+            ]
+        },
+        {
+            "name": "config",
+            "size": "5",
+            "mode": "rw",
+            "init": "0",
+            "fields": [
                 {
                     "name": "channels",
-                    "from": "1",
+                    "from": "0",
                     "size": "2",
                     "port": "channels"
                 },
                 {
                     "name": "sign_extend",
-                    "from": "3",
+                    "from": "2",
                     "size": "1",
                     "port": "sign_extend"
                 },
                 {
                     "name": "left_justified",
-                    "from": "4",
+                    "from": "3",
                     "size": "1",
                     "port": "left_justified"
+                },
+                {
+                    "name": "sample_size",
+                    "from": "4",
+                    "size": "5",
+                    "port": "sample_size"
                 }
 
             ]
@@ -136,6 +150,12 @@
             "name": "sdi",
             "port": "sdi",
             "dir": "input",
+            "size": "1"
+        },
+        {
+            "name": "sdo",
+            "port": "sdo",
+            "dir": "output",
             "size": "1"
         }
     ],

@@ -50,7 +50,7 @@ module i2s_rx (
         else
             lw_state <= lw_state_next;
 
-    always_comb 
+    always @* 
         if(left_justified)
             case (lw_state)
                 RIGHT       :   if(lw_pulse)    lw_state_next = LEFT; else lw_state_next = RIGHT;
@@ -251,7 +251,7 @@ module EF_I2S (
 
     reg [31:0]  sample;
 
-    always_ff @ (posedge clk, negedge rst_n)
+    always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             prescaler <= sck_prescaler;
         else if(en)
@@ -260,26 +260,26 @@ module EF_I2S (
             else 
                 prescaler <= prescaler - 1'b1;
 
-    always_ff @ (posedge clk, negedge rst_n)
+    always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             sck_reg <= 1'b0;
         else if(en==1'b1 && prescaler == 8'b0)
             sck_reg <= !sck_reg;
     
-    always_ff @ (posedge clk, negedge rst_n)
+    always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             bit_ctr <= 5'b0;
         else if(en == 1'b1 && prescaler == 8'b0 && sck_reg == 1'b1)
             bit_ctr <= bit_ctr + 1'b1;
     
-    always_ff @ (posedge clk, negedge rst_n)
+    always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             ws_reg <= 1'b1;
         else
             if(en == 1'b1 && bit_ctr == 5'b0 && prescaler == 8'b0 && sck_reg == 1'b1)
                 ws_reg <= !ws_reg;
 /*
-    always_ff @ (posedge clk, negedge rst_n)
+    always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             sample <= 32'b0;
         else

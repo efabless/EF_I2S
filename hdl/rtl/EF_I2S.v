@@ -99,7 +99,7 @@ module i2s_rx (
 
 endmodule
 
-module FIFO #(parameter DW=8, AW=4)(
+module I2SFIFO #(parameter DW=8, AW=4)(
     input     wire            clk,
     input     wire            rst_n,
     input     wire            rd,
@@ -308,7 +308,7 @@ module EF_I2S (
         .rsample(rsample)
     );
 
-    FIFO #(.DW(32), .AW(5)) I2SFIFO (
+    I2SFIFO #(.DW(32), .AW(5)) I2SFIFO (
         .clk(clk),
         .rst_n(rst_n),
         .rd(fifo_rd),

@@ -24,6 +24,10 @@
 `timescale			1ns/1ns
 `default_nettype	none
 
+
+
+
+
 module EF_I2S_apb (
 	output	wire 		ws,
 	output	wire 		sck,
@@ -54,7 +58,7 @@ module EF_I2S_apb (
 	reg	[7:0]	PRESCALE_REG;
 	reg	[4:0]	RXFIFOT_REG;
 	reg	[0:0]	CONTROL_REG;
-	reg	[4:0]	CONFIG_REG;
+	reg	[8:0]	CONFIG_REG;
 	reg	[2:0]	RIS_REG;
 	reg	[2:0]	ICR_REG;
 	reg	[2:0]	IM_REG;
@@ -109,7 +113,7 @@ module EF_I2S_apb (
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) PRESCALE_REG <= 0; else if(apb_we & (PADDR[15:0]==PRESCALE_REG_ADDR)) PRESCALE_REG <= PWDATA[8-1:0];
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RXFIFOT_REG <= 0; else if(apb_we & (PADDR[15:0]==RXFIFOT_REG_ADDR)) RXFIFOT_REG <= PWDATA[5-1:0];
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CONTROL_REG <= 0; else if(apb_we & (PADDR[15:0]==CONTROL_REG_ADDR)) CONTROL_REG <= PWDATA[1-1:0];
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CONFIG_REG <= 0; else if(apb_we & (PADDR[15:0]==CONFIG_REG_ADDR)) CONFIG_REG <= PWDATA[5-1:0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CONFIG_REG <= 0; else if(apb_we & (PADDR[15:0]==CONFIG_REG_ADDR)) CONFIG_REG <= PWDATA[9-1:0];
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) IM_REG <= 0; else if(apb_we & (PADDR[15:0]==IM_REG_ADDR)) IM_REG <= PWDATA[3-1:0];
 
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) ICR_REG <= 3'b0; else if(apb_we & (PADDR[15:0]==ICR_REG_ADDR)) ICR_REG <= PWDATA[3-1:0]; else ICR_REG <= 3'd0;

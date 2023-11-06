@@ -7,7 +7,7 @@
         "license": "APACHE 2.0",
         "author": "Mohamed Shalan",
         "email": "mshalan@efabless.com",
-        "version": "v1.0.0",
+        "version": "v1.0.1",
         "date": "11-05-2023",
         "category": "digital",
         "tags": [
@@ -101,7 +101,7 @@
         },
         {
             "name": "config",
-            "size": "5",
+            "size": "9",
             "mode": "rw",
             "init": "0",
             "fields": [

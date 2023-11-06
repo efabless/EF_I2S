@@ -79,7 +79,7 @@ module EF_I2S_ahbl (
 	reg	[7:0]	PRESCALE_REG;
 	reg	[4:0]	RXFIFOT_REG;
 	reg	[0:0]	CONTROL_REG;
-	reg	[4:0]	CONFIG_REG;
+	reg	[8:0]	CONFIG_REG;
 	reg	[2:0]	RIS_REG;
 	reg	[2:0]	ICR_REG;
 	reg	[2:0]	IM_REG;
@@ -109,8 +109,6 @@ module EF_I2S_ahbl (
 	wire		_rst_	= ~HRESETn;
 	wire		rd	= (ahbl_re & (last_HADDR[15:0]==RXDATA_REG_ADDR));
 
-
-
 	EF_I2S inst_to_wrap (
 		.clk(_clk_),
 		.rst_n(~_rst_),
@@ -136,7 +134,7 @@ module EF_I2S_ahbl (
 	`AHB_REG(PRESCALE_REG, 0, 8)
 	`AHB_REG(RXFIFOT_REG, 0, 5)
 	`AHB_REG(CONTROL_REG, 0, 1)
-	`AHB_REG(CONFIG_REG, 0, 5)
+	`AHB_REG(CONFIG_REG, 0, 9)
 	`AHB_REG(IM_REG, 0, 3)
 
 	`AHB_ICR(3)

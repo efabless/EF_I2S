@@ -58,7 +58,7 @@ module EF_I2S_apb (
 	reg	[7:0]	PRESCALE_REG;
 	reg	[4:0]	RXFIFOT_REG;
 	reg	[0:0]	CONTROL_REG;
-	reg	[4:0]	CONFIG_REG;
+	reg	[8:0]	CONFIG_REG;
 	reg	[2:0]	RIS_REG;
 	reg	[2:0]	ICR_REG;
 	reg	[2:0]	IM_REG;
@@ -113,7 +113,7 @@ module EF_I2S_apb (
 	`APB_REG(PRESCALE_REG, 0, 8)
 	`APB_REG(RXFIFOT_REG, 0, 5)
 	`APB_REG(CONTROL_REG, 0, 1)
-	`APB_REG(CONFIG_REG, 0, 5)
+	`APB_REG(CONFIG_REG, 0, 9)
 	`APB_REG(IM_REG, 0, 3)
 
 	`APB_ICR(3)

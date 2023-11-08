@@ -253,7 +253,7 @@ module EF_I2S (
 
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
-            prescaler <= 'b0;
+            prescaler <= 8'b0;
         else if(en)
             if(prescaler == 8'b0)
                 prescaler <= sck_prescaler;

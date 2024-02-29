@@ -62,6 +62,7 @@ The received sample
 ### PR Register [Offset: 0x8, mode: w]
 
 The Prescaler register; used to determine the sck signal frequency . $Prescaler = clk_freq/(2 x sck_freq) - 1$.
+
 <img src="https://svg.wavedrom.com/{reg:[{name:'PR', bits:8},{bits: 24}], config: {lanes: 2, hflip: true}} "/>
 
 

@@ -122,7 +122,7 @@ The following are the bit definitions for the interrupt registers:
 |2|FIFOF|1|Receive FIFO is Full.|
 
 ### The Interface 
-
+<img src="docs/EF_I2S.svg" width="600"/>
 
 #### Ports 
 

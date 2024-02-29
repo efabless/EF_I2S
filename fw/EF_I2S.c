@@ -114,13 +114,22 @@ void EF_I2S_clearIrqRxLevel(uint32_t i2s_base){
     i2s->icr = 0x2;
 }
 
+void EF_I2S_clearIrqRxempty(uint32_t i2s_base){
+    
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+
+    i2s->icr = 0x1;
+}
+
 int EF_I2S_readData(uint32_t i2s_base){
     
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
-    while((EF_I2S_getRIS(i2s_base) & 0x2) == 0x0); // wait over RX fifo is empty Flag to unset  
+    while((EF_I2S_getRIS(i2s_base) & 0x2) == 0x0); // wait over RX fifo is above Flag to unset  
+    //while (EF_I2S_getRIS(i2s_base) & 0x1);
     int data = i2s->rxdata;
     EF_I2S_clearIrqRxLevel(i2s_base);
+    //EF_I2S_clearIrqRxLevel(i2s_base);
     return data;
 }
 

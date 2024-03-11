@@ -141,7 +141,7 @@ registers:
     size: 8
     mode: w
     fifo: no
-    offset: 8
+    offset: 4
     bit_access: no
     write_port: sck_prescaler
     description: The Prescaler register; used to determine the sck signal frequency . $Prescaler = clk_freq/(2 x sck_freq) - 1$.
@@ -151,13 +151,13 @@ registers:
     fifo: yes
     offset: 8
     bit_access: no
-    write_port: fifo_level
+    read_port: fifo_level
     description: The current receive FIFO level
   - name: RXFIFOT
     size: 5
     mode: w
     fifo: yes
-    offset: 8
+    offset: 12
     bit_access: no
     write_port: fifo_level_threshold
     description: The FIFO threshold
@@ -165,7 +165,7 @@ registers:
     size: 1
     mode: w
     fifo: no
-    offset: 12
+    offset: 16
     bit_access: no
     write_port: en
     description: Enable 
@@ -173,7 +173,7 @@ registers:
     size: 9
     mode: w
     fifo: no
-    offset: 16
+    offset: 20
     bit_access: no
     init: "'h3F08"
     description: "0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)"
@@ -192,12 +192,12 @@ registers:
         bit_offset: 3
         bit_width: 1
         write_port: left_justified
-        description: ""
+        description: "Left justified flag"
       - name: sample_size
         bit_offset: 4
         bit_width: 5
         write_port: sample_size
-        description: ""
+        description: "Sample size"
 
 flags:
   - name: FIFOE

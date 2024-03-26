@@ -51,10 +51,6 @@ module EF_I2S_APB (
 
 	`APB_CTRL_SIGNALS
 
-	wire [1-1:0]	ws;
-	wire [1-1:0]	sck;
-	wire [1-1:0]	sdi;
-	wire [1-1:0]	sdo;
 	wire [1-1:0]	fifo_rd;
 	wire [5-1:0]	fifo_level_threshold;
 	wire [1-1:0]	fifo_full;
@@ -70,8 +66,7 @@ module EF_I2S_APB (
 	wire [1-1:0]	en;
 
 
-	wire [32-1:0]	RXDATA_WIRE;
-	assign	RXDATA_WIRE = fifo_rdata;
+	wire	[32-1:0]	RXDATA_WIRE;
 
 	reg [8-1:0]	PR_REG;
 	assign	sck_prescaler = PR_REG;
@@ -126,10 +121,6 @@ module EF_I2S_APB (
 	EF_I2S instance_to_wrap (
 		.clk(clk),
 		.rst_n(rst_n),
-		.ws(ws),
-		.sck(sck),
-		.sdi(sdi),
-		.sdo(sdo),
 		.fifo_rd(fifo_rd),
 		.fifo_level_threshold(fifo_level_threshold),
 		.fifo_full(fifo_full),

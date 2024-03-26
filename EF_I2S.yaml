@@ -27,22 +27,6 @@ info:
   analog_supply_voltage: n/a
 
 ports:
-  - name: ws
-    width: 1
-    direction: output
-    description: Word select (logic high on WS indicates right-channel audio)
-  - name: sck
-    width: 1
-    direction: output
-    description: The data clock 
-  - name: sdi
-    width: 1
-    direction: input
-    description: The input serial data 
-  - name: sdo
-    width: 1
-    direction: output
-    description: The output serial data 
   - name: fifo_rd
     width: 1
     direction: input
@@ -148,7 +132,7 @@ registers:
   - name: FIFOLEVEL
     size: 5
     mode: r
-    fifo: yes
+    fifo: no
     offset: 8
     bit_access: no
     read_port: fifo_level
@@ -156,7 +140,7 @@ registers:
   - name: RXFIFOT
     size: 5
     mode: w
-    fifo: yes
+    fifo: no
     offset: 12
     bit_access: no
     write_port: fifo_level_threshold

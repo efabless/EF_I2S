@@ -69,10 +69,6 @@ module EF_I2S_AHBL (
 	                                    wire	ahbl_we	= last_HWRITE & ahbl_valid;
 	                                    wire	ahbl_re	= ~last_HWRITE & ahbl_valid;
 
-	wire [1-1:0]	ws;
-	wire [1-1:0]	sck;
-	wire [1-1:0]	sdi;
-	wire [1-1:0]	sdo;
 	wire [1-1:0]	fifo_rd;
 	wire [5-1:0]	fifo_level_threshold;
 	wire [1-1:0]	fifo_full;
@@ -96,9 +92,14 @@ module EF_I2S_AHBL (
                                         else if(ahbl_we & (last_HADDR[16-1:0]==PR_REG_OFFSET))
                                             PR_REG <= HWDATA[8-1:0];
 
-	wire	[5-1:0]	FIFOLEVEL_WIRE;
+	wire [5-1:0]	FIFOLEVEL_WIRE;
+	assign	FIFOLEVEL_WIRE = fifo_level;
 
-	wire	[5-1:0]	RXFIFOT_WIRE;
+	reg [5-1:0]	RXFIFOT_REG;
+	assign	fifo_level_threshold = RXFIFOT_REG;
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) RXFIFOT_REG <= 0;
+                                        else if(ahbl_we & (last_HADDR[16-1:0]==RXFIFOT_REG_OFFSET))
+                                            RXFIFOT_REG <= HWDATA[5-1:0];
 
 	reg [1-1:0]	CTRL_REG;
 	assign	en = CTRL_REG;
@@ -151,10 +152,6 @@ module EF_I2S_AHBL (
 	EF_I2S instance_to_wrap (
 		.clk(clk),
 		.rst_n(rst_n),
-		.ws(ws),
-		.sck(sck),
-		.sdi(sdi),
-		.sdo(sdo),
 		.fifo_rd(fifo_rd),
 		.fifo_level_threshold(fifo_level_threshold),
 		.fifo_full(fifo_full),
@@ -178,7 +175,7 @@ module EF_I2S_AHBL (
 			(last_HADDR[16-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
 			(last_HADDR[16-1:0] == PR_REG_OFFSET)	? PR_REG :
 			(last_HADDR[16-1:0] == FIFOLEVEL_REG_OFFSET)	? FIFOLEVEL_WIRE :
-			(last_HADDR[16-1:0] == RXFIFOT_REG_OFFSET)	? RXFIFOT_WIRE :
+			(last_HADDR[16-1:0] == RXFIFOT_REG_OFFSET)	? RXFIFOT_REG :
 			(last_HADDR[16-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
 			(last_HADDR[16-1:0] == CFG_REG_OFFSET)	? CFG_REG :
 			(last_HADDR[16-1:0] == IM_REG_OFFSET)	? IM_REG :

@@ -34,7 +34,8 @@ module i2s_rx (
     
 );
 
-    `PNED(clk, ws,  rw_pulse, lw_pulse)
+    wire word_select = left_justified ? ~ws : ws;
+    `PNED(clk, word_select,  rw_pulse, lw_pulse)
     `PED(clk, sck, sck_pulse)
     
     reg [1:0]   lw_state;
@@ -50,6 +51,9 @@ module i2s_rx (
         else
             lw_state <= lw_state_next;
 
+    /*
+            In the left justify mode, ws levels are inverted.
+    */
     always @* 
         if(left_justified)
             case (lw_state)

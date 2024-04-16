@@ -17,8 +17,9 @@
 `default_nettype        none
 
 `define     PED(clk, sig, pulse)    reg last_``sig``; wire pulse; always @(posedge clk) last_``sig`` <= sig; assign pulse = sig & ~last_``sig``;
-`define     NED(clk, sig, pulse)    reg last_``sig``; wire pulse; always @(posedge clk) last_``sig`` <= sig; assign pulse = ~sig & last_``sig``;
+`define     NED(clk, sig, pulse)    reg last_n``sig``; wire pulse; always @(posedge clk) last_n``sig`` <= sig; assign pulse = ~sig & last_n``sig``;
 `define     PNED(clk, sig, ppulse, npulse)    reg last_``sig``; wire npulse, ppulse; always @(posedge clk) last_``sig`` <= sig; assign npulse = ~sig & last_``sig``; assign ppulse = sig & ~last_``sig``;
+
 
 module i2s_rx (
     input   wire        clk,
@@ -28,78 +29,56 @@ module i2s_rx (
     input   wire        sck,
 
     input   wire        left_justified,
-    input   wire [4:0]  sample_size,
-    output  reg  [31:0] lsample,
-    output  reg  [31:0] rsample
-    
+    output  reg         rdy,
+    output  reg  [31:0] sample
 );
 
-    wire word_select = left_justified ? ~ws : ws;
-    `PNED(clk, word_select,  rw_pulse, lw_pulse)
+    reg [31:0] sr;
+
+    reg ws_dly0, ws_dly;
+
+    `PNED(clk, ws,  ws_ppulse, ws_npulse)
     `PED(clk, sck, sck_pulse)
+
+    `NED(clk, sck, sck_npulse)
+    `PNED(clk, ws_dly,  ws_dly_ppulse, ws_dly_npulse)
     
-    reg [1:0]   lw_state;
-    reg [1:0]   lw_state_next;
+    always @(posedge clk or negedge rst_n)
+        if(!rst_n) begin
+            ws_dly <= 0;
+            ws_dly0 <= 0;
+        end
+        else if(sck_npulse) begin
+            ws_dly0 <= ws;
+            ws_dly <= ws_dly0;
+        end
 
-    reg [4:0]   bit_cnt;
-
-    localparam [1:0] LEFT = 2'b00, RIGHT = 2'b10, LEFT_LSB = 2'b01, RIGHT_LSB = 2'b11; 
+    wire ws_pulse = ws_ppulse | ws_npulse;
+    wire ws_dly_pulse = ws_dly_ppulse | ws_dly_npulse;
+    
+    always @(posedge clk or negedge rst_n)
+        if(!rst_n)
+            sr <= 32'b0;
+        else
+            if(sck_pulse) 
+                sr <= {sr[30:0], sd};
 
     always @(posedge clk or negedge rst_n)
         if(!rst_n)
-            lw_state <= RIGHT;
+            sample <= 32'b0;
         else
-            lw_state <= lw_state_next;
-
-    /*
-            In the left justify mode, ws levels are inverted.
-    */
-    always @* 
-        if(left_justified)
-            case (lw_state)
-                RIGHT       :   if(lw_pulse)    lw_state_next = LEFT; else lw_state_next = RIGHT;
-                LEFT        :   if(rw_pulse)    lw_state_next = RIGHT; else lw_state_next = LEFT;
-                default     :   lw_state_next = RIGHT;
-            endcase
-        else
-            case (lw_state)
-                RIGHT       :   if(lw_pulse)    lw_state_next = RIGHT_LSB; else lw_state_next = RIGHT;
-                RIGHT_LSB   :   if(sck_pulse)   lw_state_next = LEFT; else lw_state_next = RIGHT_LSB;
-                LEFT        :   if(rw_pulse)    lw_state_next = LEFT_LSB; else lw_state_next = LEFT;
-                LEFT_LSB    :   if(sck_pulse)   lw_state_next = RIGHT; else lw_state_next = LEFT_LSB;
-                default     :   lw_state_next = RIGHT;
-            endcase
-
-/*
+            if(left_justified & ws_pulse)
+                sample <= sr;
+            else if(~left_justified & ws_dly_pulse)
+                sample <= sr;
+    
     always @(posedge clk or negedge rst_n)
         if(!rst_n)
-            bit_cnt <= 5'b0;
+            rdy <= 1'b0;
+        else if(left_justified)
+            rdy <= ws_pulse;
         else
-            if(sck_pulse)
-                if(lw_state == RIGHT_LSB || lw_state == LEFT_LSB)
-                    bit_cnt <= sample_size;
-                else
-                    bit_cnt <= bit_cnt - 1;
-*/
-    always @(posedge clk or negedge rst_n)
-        if(!rst_n)
-            lsample <= 32'b0;
-        else
-            if(sck_pulse)
-                if(lw_state == RIGHT_LSB)
-                    lsample <= 32'b0;
-                else if((lw_state == LEFT) || (lw_state == LEFT_LSB))
-                    lsample <= {lsample[30:0], sd};
-
-    always @(posedge clk or negedge rst_n)
-        if(!rst_n)
-            rsample <= 32'b0;
-        else
-            if(sck_pulse)
-                if(lw_state == LEFT_LSB)
-                    rsample <= 32'b0;
-                else if((lw_state == RIGHT) || (lw_state == RIGHT_LSB))
-                    rsample <= {rsample[30:0], sd};
+            rdy <= ws_dly_pulse;
 
 endmodule
 
@@ -222,8 +201,8 @@ module EF_I2S (
     input   wire        clk,
     input   wire        rst_n,
     
-    output   wire        ws,
-    output   wire        sck,
+    output  wire        ws,
+    output  wire        sck,
     input   wire        sdi,
     output  wire        sdo,
 
@@ -237,10 +216,10 @@ module EF_I2S (
 
     input   wire        sign_extend,
     input   wire        left_justified,
-    input   wire [4:0]  sample_size,
+    input   wire [5:0]  sample_size,
     input   wire [7:0]  sck_prescaler,
-    input   wire [1:0]  channels,
-    input   wire        en         // 10: left, 01: right, 11: both (stereo)
+    input   wire [1:0]  channels,       // 10: left, 01: right, 11: both (stereo)
+    input   wire        en         
 ); 
 
     reg         sck_reg;
@@ -248,13 +227,16 @@ module EF_I2S (
     reg [7:0]   prescaler;
     reg [4:0]   bit_ctr;
 
+    wire        sample_rdy;
+
     assign      sck = sck_reg;
     assign      ws = ws_reg;
 
-    wire [31:0] rsample, lsample;
+    //wire [31:0] rsample, lsample;
 
-    reg [31:0]  sample;
+    wire [31:0]  sample;
 
+    // The prescaler
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             prescaler <= 8'b0;
@@ -264,39 +246,38 @@ module EF_I2S (
             else 
                 prescaler <= prescaler - 1'b1;
 
+    // The Serial Clock (SCK)
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             sck_reg <= 1'b0;
         else if(en==1'b1 && prescaler == 8'b0)
             sck_reg <= !sck_reg;
     
+    // The Bit Counter
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
-            bit_ctr <= 5'b0;
+            bit_ctr <= 6'b0;
         else if(en == 1'b1 && prescaler == 8'b0 && sck_reg == 1'b1)
             bit_ctr <= bit_ctr + 1'b1;
     
+    // Word Select Line Register
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             ws_reg <= 1'b1;
         else
-            if(en == 1'b1 && bit_ctr == 5'b0 && prescaler == 8'b0 && sck_reg == 1'b1)
+            if(en==1'b1 && bit_ctr==5'b0 && prescaler==8'b0 && sck_reg==1'b1)
                 ws_reg <= !ws_reg;
-/*
-    always @ (posedge clk, negedge rst_n)
-        if(!rst_n)
-            sample <= 32'b0;
-        else
-            if(en == 1'b1 && bit_ctr == 5'b0 && prescaler == 8'b0 && sck_reg == 1'b1)
-                if(ws_reg & channels[0]) sample <= (rsample >> (32-sample_size));
-                else if(~ws_reg & channels[1]) sample <= (lsample >> (32-sample_size));
-*/
-    wire        fifo_wr = (en == 1'b1 && bit_ctr == 5'b0 && prescaler == 8'b0 && sck_reg == 1'b1) && ((ws_reg & channels[0]) || (~ws_reg & channels[1]));
 
-    wire [31:0] rsample_sign = sign_extend ? {32{rsample[31]}} << sample_size : 32'b0;
-    wire [31:0] lsample_sign = sign_extend ? {32{lsample[31]}} << sample_size : 32'b0;
+    wire [1:0]  current_channel = 1 << (left_justified == ~ws);
 
-    wire [31:0] fifo_wdata = ws_reg ?  (rsample >> (32-sample_size)) | rsample_sign : (lsample >> (32-sample_size)) | lsample_sign;
+    wire        fifo_wr = sample_rdy & (current_channel == channels);
+    //(en == 1'b1 && bit_ctr == 5'b0 && prescaler == 8'b0 && sck_reg == 1'b1) && ((ws_reg & channels[0]) || (~ws_reg & channels[1]));
+
+    wire [31:0] sample_sign = sign_extend ? {32{sample[31]}} << sample_size : 32'b0;
+    //wire [31:0] lsample_sign = sign_extend ? {32{sample[31]}} << sample_size : 32'b0;
+
+    wire [31:0] fifo_wdata = (sample >> (32-sample_size)) | sample_sign;
+    //ws_reg ?  (rsample >> (32-sample_size)) | rsample_sign : (lsample >> (32-sample_size)) | lsample_sign;
 
     assign      fifo_level_above = fifo_level > fifo_level_threshold;
 
@@ -307,9 +288,8 @@ module EF_I2S (
         .ws(ws),
         .sck(sck),
         .left_justified(left_justified),
-        .sample_size(sample_size),
-        .lsample(lsample),
-        .rsample(rsample)
+        .sample(sample),
+        .rdy(sample_rdy)
     );
 
     I2SFIFO #(.DW(32), .AW(5)) I2SFIFO (

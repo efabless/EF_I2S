@@ -44,7 +44,7 @@ module EF_I2S_tb;
     wire            fifo_level_above;
     wire [31:0]     fifo_rdata;
 
-    reg  [4:0]      sample_size = 18;    
+    reg [5:0]       sample_size = 18;    
     reg [7:0]       sck_prescaler = (10/2)-1;
 
 

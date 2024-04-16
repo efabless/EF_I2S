@@ -197,7 +197,7 @@ module I2SFIFO #(parameter DW=8, AW=4)(
   
 endmodule
 
-module EF_I2S (
+module EF_I2S #(parameter DW=32, AW=4) (
     input   wire        clk,
     input   wire        rst_n,
     
@@ -256,7 +256,7 @@ module EF_I2S (
     // The Bit Counter
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
-            bit_ctr <= 6'b0;
+            bit_ctr <= 5'b0;
         else if(en == 1'b1 && prescaler == 8'b0 && sck_reg == 1'b1)
             bit_ctr <= bit_ctr + 1'b1;
     
@@ -269,16 +269,10 @@ module EF_I2S (
                 ws_reg <= !ws_reg;
 
     wire [1:0]  current_channel = 1 << (left_justified == ~ws);
-
-    wire        fifo_wr = sample_rdy & (current_channel == channels);
-    //(en == 1'b1 && bit_ctr == 5'b0 && prescaler == 8'b0 && sck_reg == 1'b1) && ((ws_reg & channels[0]) || (~ws_reg & channels[1]));
-
+    wire        fifo_wr = sample_rdy & |(current_channel & channels);
     wire [31:0] sample_sign = sign_extend ? {32{sample[31]}} << sample_size : 32'b0;
-    //wire [31:0] lsample_sign = sign_extend ? {32{sample[31]}} << sample_size : 32'b0;
-
     wire [31:0] fifo_wdata = (sample >> (32-sample_size)) | sample_sign;
-    //ws_reg ?  (rsample >> (32-sample_size)) | rsample_sign : (lsample >> (32-sample_size)) | lsample_sign;
-
+    
     assign      fifo_level_above = fifo_level > fifo_level_threshold;
 
     i2s_rx RX (
@@ -292,7 +286,7 @@ module EF_I2S (
         .rdy(sample_rdy)
     );
 
-    I2SFIFO #(.DW(32), .AW(5)) I2SFIFO (
+    I2SFIFO #(.DW(DW), .AW(AW)) I2SFIFO (
         .clk(clk),
         .rst_n(rst_n),
         .rd(fifo_rd),

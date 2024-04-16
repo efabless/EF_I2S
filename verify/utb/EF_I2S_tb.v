@@ -71,7 +71,7 @@ module EF_I2S_tb;
         .left_justified(1'b1),
         .sample_size(sample_size),
         .sck_prescaler(sck_prescaler),
-        .channels(2'b01),
+        .channels(2'b11),
         .en(1'b1)
     );
 

@@ -83,15 +83,16 @@ module i2s_rx (
 endmodule
 
 module I2SFIFO #(parameter DW=8, AW=4)(
-    input     wire            clk,
-    input     wire            rst_n,
-    input     wire            rd,
-    input     wire            wr,
-    input     wire [DW-1:0]   w_data,
-    output    wire            empty,
-    output    wire            full,
-    output    wire [DW-1:0]   r_data,
-    output    wire [AW-1:0]   level    
+    input       wire            clk,
+    input       wire            rst_n,
+    input       wire            rd,
+    input       wire            wr,
+    input       wire            clr,
+    input       wire [DW-1:0]   w_data,
+    output      wire            empty,
+    output      wire            full,
+    output      wire [DW-1:0]   r_data,
+    output      wire [AW-1:0]   level    
 );
 
     localparam  DEPTH = 2**AW;
@@ -129,21 +130,26 @@ module I2SFIFO #(parameter DW=8, AW=4)(
 //State Machine
   always @ (posedge clk, negedge rst_n)
   begin
-    if(!rst_n)
-      begin
-        w_ptr_reg <= 0;
-        r_ptr_reg <= 0;
-        full_reg <= 1'b0;
-        empty_reg <= 1'b1;
-        level_reg <= 4'd0;
-      end
-    else
-      begin
-        w_ptr_reg <= w_ptr_next;
-        r_ptr_reg <= r_ptr_next;
-        full_reg <= full_next;
-        empty_reg <= empty_next;
-        level_reg <= level_next;
+    if(!rst_n) begin
+        w_ptr_reg   <= 0;
+        r_ptr_reg   <= 0;
+        full_reg    <= 1'b0;
+        empty_reg   <= 1'b1;
+        level_reg   <= 4'd0;
+    end
+    else if(clr) begin
+        w_ptr_reg   <= 0;
+        r_ptr_reg   <= 0;
+        full_reg    <= 1'b0;
+        empty_reg   <= 1'b1;
+        level_reg   <= 4'd0;
+    end
+    else begin
+        w_ptr_reg   <= w_ptr_next;
+        r_ptr_reg   <= r_ptr_next;
+        full_reg    <= full_next;
+        empty_reg   <= empty_next;
+        level_reg   <= level_next;
       end
   end
 
@@ -198,28 +204,32 @@ module I2SFIFO #(parameter DW=8, AW=4)(
 endmodule
 
 module EF_I2S #(parameter DW=32, AW=4) (
-    input   wire        clk,
-    input   wire        rst_n,
-    
-    output  wire        ws,
-    output  wire        sck,
-    input   wire        sdi,
-    output  wire        sdo,
+    input   wire            clk,
+    input   wire            rst_n,
 
-    input   wire        fifo_rd,
-    input   wire [4:0]  fifo_level_threshold,
-    output  wire        fifo_full,
-    output  wire        fifo_empty,
-    output  wire [4:0]  fifo_level,
-    output  wire        fifo_level_above,
-    output  wire [31:0] fifo_rdata,
+    output  wire            ws,
+    output  wire            sck,
+    input   wire            sdi,
+    //output  wire        sdo,
 
-    input   wire        sign_extend,
-    input   wire        left_justified,
-    input   wire [5:0]  sample_size,
-    input   wire [7:0]  sck_prescaler,
-    input   wire [1:0]  channels,       // 10: left, 01: right, 11: both (stereo)
-    input   wire        en         
+    input   wire            fifo_en,
+    input   wire            fifo_rd,
+    input   wire            fifo_clr,
+    input   wire [AW-1:0]   fifo_level_threshold,
+    output  wire            fifo_full,
+    output  wire            fifo_empty,
+    output  wire [AW-1:0]   fifo_level,
+    output  wire            fifo_level_above,
+    output  wire [31:0]     fifo_rdata,
+
+    input   wire            sign_extend,
+    input   wire            left_justified,
+    input   wire [5:0]      sample_size,
+    input   wire [7:0]      sck_prescaler,
+    input   wire [31:0]     avg_threshold,
+    output  wire            avg_flag,
+    input   wire [1:0]      channels,       // 10: left, 01: right, 11: both (stereo)
+    input   wire            en         
 ); 
 
     reg         sck_reg;
@@ -269,11 +279,33 @@ module EF_I2S #(parameter DW=32, AW=4) (
                 ws_reg <= !ws_reg;
 
     wire [1:0]  current_channel = 1 << (left_justified == ~ws);
-    wire        fifo_wr = sample_rdy & |(current_channel & channels);
+    wire        fifo_wr = fifo_en & sample_rdy & |(current_channel & channels);
     wire [31:0] sample_sign = sign_extend ? {32{sample[31]}} << sample_size : 32'b0;
     wire [31:0] fifo_wdata = (sample >> (32-sample_size)) | sample_sign;
     
     assign      fifo_level_above = fifo_level > fifo_level_threshold;
+
+    // Averaging Logic
+    reg  [31:0] sum;
+    reg  [4:0]  sum_ctr;
+    wire [31:0] sample_value = (fifo_wdata[31]) ? ~fifo_wdata : fifo_wdata;
+    always @ (posedge clk, negedge rst_n)
+        if(!rst_n)
+            sum_ctr <= 'b0;
+        else
+            if(sample_rdy)
+                sum_ctr <= sum_ctr + 1'b1;
+    
+    always @ (posedge clk, negedge rst_n)
+        if(!rst_n)
+            sum <= 'b0;
+        else if(sample_rdy)
+            if(sum_ctr == 5'b0)
+                sum = sample_value;
+            else
+                sum = sum + sample_value;
+
+    assign avg_flag = (sum[31:5] > avg_threshold);
 
     i2s_rx RX (
         .clk(clk),
@@ -289,6 +321,7 @@ module EF_I2S #(parameter DW=32, AW=4) (
     I2SFIFO #(.DW(DW), .AW(AW)) I2SFIFO (
         .clk(clk),
         .rst_n(rst_n),
+        .clr(fifo_clr),
         .rd(fifo_rd),
         .wr(fifo_wr),
         .w_data(fifo_wdata),

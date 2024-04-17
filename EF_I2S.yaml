@@ -80,8 +80,6 @@ ports:
     direction: input
     description: Enable signal
 
-
- 
 external_interface:
   - name: ws
     port: ws
@@ -96,14 +94,9 @@ external_interface:
   - name: sdi
     port: sdi
     direction: input
+    sync: True
     width: 1
     description: The input serial data 
-  - name: sdo
-    port: sdo
-    direction: output
-    width: 1
-    description: The output serial data 
-
 
 clock:
   name: clk

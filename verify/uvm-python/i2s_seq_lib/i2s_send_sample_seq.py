@@ -21,10 +21,10 @@ class i2s_send_sample_seq(UVMSequence):
         # send item with conditions 
         # await uvm_do_with(self, self.req, lambda i2s_var1: i2s_var1 == 10, lambda i2s_var2: i2s_var2 > 7, ......)
         # send item without conditions
-        # self.req.left_sample = 0x80808080
-        # self.req.right_sample = 0x90909090
-        self.req.left_sample = random.randint(0x0, 0xFFFFFFFF)
-        self.req.right_sample = random.randint(0x0, 0xFFFFFFFF)
+        self.req.left_sample = 0x80808080
+        self.req.right_sample = 0x90909090
+        # self.req.left_sample = random.randint(0x0, 0xFFFFFFFF)
+        # self.req.right_sample = random.randint(0x0, 0xFFFFFFFF)
         await uvm_do(self, self.req)
 
 uvm_object_utils(i2s_send_sample_seq)

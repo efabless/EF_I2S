@@ -35,32 +35,32 @@ class i2s_monitor(ip_monitor):
             right_sample = 0
             tr = i2s_item.type_id.create("tr", self)
             await FallingEdge(self.vif.ws)    # At word select falling edge, left channel 
+            left_justified = self.is_left_justified() 
             # sample_size = self.get_sample_size()
             sample_size = 32
             for i in range (sample_size-1, -1, -1):
                 await RisingEdge(self.vif.sck)
                 await Timer(1 , "ns")           # small delay to capture changes made by driver 
-                left_sample |= (self.vif.sdi.value << i )
+                if left_justified:
+                    right_sample |= (self.vif.sdi.value << i )   
+                else:
+                    left_sample |= (self.vif.sdi.value << i )
                 # uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
-            tr.left_sample = left_sample
-            # tr.sample = left_sample
-            # tr.channel = "left"
-
-            # uvm_info(self.tag, "Sampled transaction " + tr.convert2string(), UVM_LOW)
-            # # await FallingEdge(self.vif.ws) # just to sync the refrence model with the monitor
-            # self.monitor_port.write(tr)
+            
 
             await RisingEdge(self.vif.ws)    # At word select rising edge, right channel 
             for i in range (sample_size-1, -1, -1):
                 await RisingEdge(self.vif.sck)
                 await Timer(1 , "ns")           # small delay to capture changes made by driver 
-                right_sample |= (self.vif.sdi.value << i )
+                if left_justified:
+                    left_sample |= (self.vif.sdi.value << i )
+                else:
+                    right_sample |= (self.vif.sdi.value << i ) 
+            
+        
+            tr.left_sample = left_sample
             tr.right_sample = right_sample
-            # tr.sample = right_sample
-            # tr.channel = "right"
-
             uvm_info(self.tag, "Sampled transaction " + tr.convert2string(), UVM_LOW)
-            # await FallingEdge(self.vif.ws) # just to sync the refrence model with the monitor
             self.monitor_port.write(tr)
 
     async def get_clk_freq(self):
@@ -117,4 +117,10 @@ class i2s_monitor(ip_monitor):
         uvm_info(self.tag, "Prescaler = " + str(prescaler), UVM_LOW)
         return prescaler
 
+    def is_left_justified(self):
+        cfg_reg = self.regs.read_reg_value("CFG")
+        uvm_info(self.tag, "Config Reg = " + str(cfg_reg), UVM_HIGH)
+        left_justify = True if (cfg_reg >> 3) &0b1 else False            # get left justify bit
+        uvm_info(self.tag, "Left justify = " + str(left_justify), UVM_HIGH)
+        return left_justify
 uvm_component_utils(i2s_monitor)

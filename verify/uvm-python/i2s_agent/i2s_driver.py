@@ -30,7 +30,7 @@ class i2s_driver(ip_driver):
                 # await FallingEdge(self.vif.ws)                    # drive sdi from left sample
                 for i in range (sample_size-1, -1, -1):             # get MSB first 
                     await FallingEdge(self.vif.sck)
-                    self.vif.sdi.value = (left_sample >> i ) & 0b1
+                    self.vif.sdi.value = (right_sample >> i ) & 0b1
                     uvm_info(self.tag, f" left: falling edge sck {i}", UVM_LOW)
                 # await RisingEdge(self.vif.sck)
                 
@@ -38,7 +38,7 @@ class i2s_driver(ip_driver):
                 # await RisingEdge(self.vif.ws)                     # drive sdi from right sample
                 for i in range (sample_size-1, -1, -1):             # get MSB first 
                     await FallingEdge(self.vif.sck)
-                    self.vif.sdi.value = (right_sample >> i ) & 0b1
+                    self.vif.sdi.value = (left_sample >> i ) & 0b1
                     uvm_info(self.tag, f" right: falling edge sck {i}", UVM_LOW)
 
                 # await RisingEdge(self.vif.sck)

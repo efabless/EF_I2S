@@ -24,11 +24,18 @@ class i2s_read_rxdata_seq(bus_seq_base):
     async def body(self):
         await super().body()
         while True:
-            ris_reg=self.regs.read_reg_value("ris")
-            uvm_info(self.tag, f"RIS value = {ris_reg}", UVM_LOW) 
-            if ris_reg & 0b010 == 0b010:
+            rsp = []
+            await self.send_req(is_write=False, reg="ris")
+            await self.get_response(rsp)
+            ris_reg = rsp[0]
+            uvm_info(self.tag, f"RIS value = {ris_reg}", UVM_LOW)
+            if (
+                ris_reg.data & 0b010 == 0b010
+                and ris_reg.addr == self.regs.reg_name_to_address["ris"]
+            ):
                 break
-            await self.send_nop()
+        uvm_info(self.tag, f"RSP value = {self.rsp.convert2string()}", UVM_LOW)
         await self.send_req(is_write=False, reg="RXDATA")
+
 
 uvm_object_utils(i2s_read_rxdata_seq)

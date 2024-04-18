@@ -51,6 +51,7 @@ module EF_I2S_AHBL (
 
 	`AHBL_CTRL_SIGNALS
 
+	wire [1-1:0]	fifo_en;
 	wire [1-1:0]	fifo_rd;
 	wire [5-1:0]	fifo_level_threshold;
 	wire [1-1:0]	fifo_full;
@@ -62,6 +63,7 @@ module EF_I2S_AHBL (
 	wire [1-1:0]	left_justified;
 	wire [5-1:0]	sample_size;
 	wire [8-1:0]	sck_prescaler;
+	wire [32-1:0]	avg_threshold;
 	wire [1-1:0]	avg_flag;
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
@@ -130,6 +132,7 @@ module EF_I2S_AHBL (
 	EF_I2S instance_to_wrap (
 		.clk(clk),
 		.rst_n(rst_n),
+		.fifo_en(fifo_en),
 		.fifo_rd(fifo_rd),
 		.fifo_level_threshold(fifo_level_threshold),
 		.fifo_full(fifo_full),
@@ -141,6 +144,7 @@ module EF_I2S_AHBL (
 		.left_justified(left_justified),
 		.sample_size(sample_size),
 		.sck_prescaler(sck_prescaler),
+		.avg_threshold(avg_threshold),
 		.avg_flag(avg_flag),
 		.channels(channels),
 		.en(en),

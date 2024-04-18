@@ -27,6 +27,10 @@ info:
   analog_supply_voltage: n/a
 
 ports:
+  - name: fifo_en
+    width: 1
+    direction: input
+    description: FIFO enable
   - name: fifo_rd
     width: 1
     direction: input
@@ -71,6 +75,10 @@ ports:
     width: 8
     direction: input
     description: The clock prescaler
+  - name: avg_threshold
+    width: 32
+    direction: input
+    description: The samples average threshold
   - name: avg_flag
     width: 1
     direction: output

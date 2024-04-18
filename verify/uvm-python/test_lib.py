@@ -14,8 +14,6 @@ from EF_UVM.base_test import base_test
 # seqences import
 from i2s_seq_lib.i2s_config_seq import i2s_config_seq
 from i2s_seq_lib.i2s_send_sample_seq import i2s_send_sample_seq
-from i2s_seq_lib.i2s_send_left_sample_seq import i2s_send_left_sample_seq
-from i2s_seq_lib.i2s_send_right_sample_seq import i2s_send_right_sample_seq
 from i2s_seq_lib.i2s_read_rxdata_seq import i2s_read_rxdata_seq
 from i2s_seq_lib.i2s_read_ris_seq import i2s_read_ris_seq
 
@@ -115,11 +113,11 @@ class i2s_left_channel_test(i2s_base_test):
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
         bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
 
-        config_reg = self.get_config_reg_val(channel = "left", sign_extend = False, left_justify = False, sample_size = 24)
+        config_reg = self.get_config_reg_val(channel = "left", sign_extend = False, left_justify = True, sample_size = 24)
         bus_i2s_config_seq.set_config_reg(config_reg)
         await bus_i2s_config_seq.start(self.bus_sqr)
 
-        for i in range (1):
+        for i in range (17):
             await ip_i2s_send_sample_seq.start(self.ip_sqr)
             # await bus_i2s_read_ris_seq.start(self.bus_sqr)
 
@@ -148,11 +146,11 @@ class i2s_right_channel_test(i2s_base_test):
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
         bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
 
-        config_reg = self.get_config_reg_val(channel = "right", sign_extend = False, left_justify = False, sample_size = 24)
+        config_reg = self.get_config_reg_val(channel = "right", sign_extend = False, left_justify = True, sample_size = 24)
         bus_i2s_config_seq.set_config_reg(config_reg)
         await bus_i2s_config_seq.start(self.bus_sqr)
 
-        for i in range (1):
+        for i in range (2):
             await ip_i2s_send_sample_seq.start(self.ip_sqr)
             # await bus_i2s_read_ris_seq.start(self.bus_sqr)
 
@@ -182,11 +180,11 @@ class i2s_stereo_test(i2s_base_test):
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
         bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
 
-        config_reg = self.get_config_reg_val(channel = "stereo", sign_extend = False, left_justify = False, sample_size = 24)
+        config_reg = self.get_config_reg_val(channel = "stereo", sign_extend = False, left_justify = True, sample_size = 24)
         bus_i2s_config_seq.set_config_reg(config_reg)
         await bus_i2s_config_seq.start(self.bus_sqr)
 
-        for i in range (1):
+        for i in range (2):
             await ip_i2s_send_sample_seq.start(self.ip_sqr)
             # await bus_i2s_read_ris_seq.start(self.bus_sqr)
 

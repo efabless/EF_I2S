@@ -22,6 +22,56 @@
 `timescale			1ns/1ps
 `default_nettype	none
 
+
+
+/*
+	Copyright 2020 AUCOHL
+
+    Author: Mohamed Shalan (mshalan@aucegypt.edu)
+	
+	Licensed under the Apache License, Version 2.0 (the "License"); 
+	you may not use this file except in compliance with the License. 
+	You may obtain a copy of the License at:
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software 
+	distributed under the License is distributed on an "AS IS" BASIS, 
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+	See the License for the specific language governing permissions and 
+	limitations under the License.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                        
+
+
 module EF_I2S_WB (
 	input   wire            ext_clk,
                                         input   wire            clk_i,
@@ -61,6 +111,7 @@ module EF_I2S_WB (
                                         wire            wb_re       = ~we_i & wb_valid;
                                         wire[3:0]       wb_byte_sel = sel_i & {4{wb_we}};
 
+	wire [1-1:0]	fifo_en;
 	wire [1-1:0]	fifo_rd;
 	wire [5-1:0]	fifo_level_threshold;
 	wire [1-1:0]	fifo_full;
@@ -72,6 +123,7 @@ module EF_I2S_WB (
 	wire [1-1:0]	left_justified;
 	wire [5-1:0]	sample_size;
 	wire [8-1:0]	sck_prescaler;
+	wire [32-1:0]	avg_threshold;
 	wire [1-1:0]	avg_flag;
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
@@ -144,6 +196,7 @@ module EF_I2S_WB (
 	EF_I2S instance_to_wrap (
 		.clk(clk),
 		.rst_n(rst_n),
+		.fifo_en(fifo_en),
 		.fifo_rd(fifo_rd),
 		.fifo_level_threshold(fifo_level_threshold),
 		.fifo_full(fifo_full),
@@ -155,6 +208,7 @@ module EF_I2S_WB (
 		.left_justified(left_justified),
 		.sample_size(sample_size),
 		.sck_prescaler(sck_prescaler),
+		.avg_threshold(avg_threshold),
 		.avg_flag(avg_flag),
 		.channels(channels),
 		.en(en),

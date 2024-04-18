@@ -30,6 +30,8 @@
 `timescale  1ns/1ps
 
 module EF_I2S_tb;
+    localparam      AW = 4;
+    localparam      DW = 32;
     reg             clk = 0;
     reg             rst_n;
     wire            sd, sdo;
@@ -37,30 +39,37 @@ module EF_I2S_tb;
     wire            sck;
 
     reg             fifo_rd = 1'b0;
-    reg [4:0]       fifo_level_threshold = 5;
+    reg             fifo_clr = 1'b0;
+    reg             fifo_en = 1'b1;
+    
+    reg [AW-1:0]    fifo_level_threshold = 5;
 
     wire            fifo_full;
-    wire [4:0]      fifo_level;
+    wire [AW-1:0]   fifo_level;
     wire            fifo_level_above;
     wire [31:0]     fifo_rdata;
 
     reg [5:0]       sample_size = 18;    
     reg [7:0]       sck_prescaler = (10/2)-1;
 
+    reg [31:0]      avg_threshold = 32'h00_01_00_00;
+    wire            avg_flag;
 
     reg [7:0]       clkdiv;
 
     localparam      FREQDIV = 10;
 
-    EF_I2S MUV (
+    EF_I2S #(.DW(DW), .AW(AW)) MUV (
         .clk(clk),
         .rst_n(rst_n),
         .sdi(sd),
-        .sdo(sdo),
+        //.sdo(sdo),
         .ws(ws),
         .sck(sck),
 
+        .fifo_en(fifo_en),
         .fifo_rd(fifo_rd),
+        .fifo_clr(fifo_clr),
         .fifo_level_threshold(fifo_level_threshold),
         .fifo_full(fifo_full),
         .fifo_level(fifo_level),
@@ -71,6 +80,8 @@ module EF_I2S_tb;
         .left_justified(1'b1),
         .sample_size(sample_size),
         .sck_prescaler(sck_prescaler),
+        .avg_threshold(avg_threshold),
+        .avg_flag(avg_flag),
         .channels(2'b11),
         .en(1'b1)
     );
@@ -87,7 +98,7 @@ module EF_I2S_tb;
     initial begin
         $dumpfile("EF_I2S_tb.vcd");
         $dumpvars;
-        #1_000_000 $finish;
+        #1_500_000 $finish;
     end
 
     initial begin

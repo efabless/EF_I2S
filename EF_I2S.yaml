@@ -80,8 +80,6 @@ ports:
     direction: input
     description: Enable signal
 
-
- 
 external_interface:
   - name: ws
     port: ws
@@ -96,14 +94,9 @@ external_interface:
   - name: sdi
     port: sdi
     direction: input
+    sync: True
     width: 1
     description: The input serial data 
-  - name: sdo
-    port: sdo
-    direction: output
-    width: 1
-    description: The output serial data 
-
 
 clock:
   name: clk
@@ -145,22 +138,41 @@ registers:
     bit_access: no
     write_port: fifo_level_threshold
     description: The FIFO threshold
-  - name: CTRL
-    size: 1
+  - name: AVGT
+    size: 32
     mode: w
     fifo: no
     offset: 16
     bit_access: no
-    write_port: en
-    description: Enable 
-  - name: CFG
-    size: 9
+    write_port: avg_threshold
+    description: The Average threshold
+  - name: CTRL
+    size: 2
     mode: w
     fifo: no
     offset: 20
     bit_access: no
+    init: "'h0"
+    description: "Control Register; 0:Enable, 1:FIFO Enable."
+    fields:
+      - name: en
+        bit_offset: 0
+        bit_width: 1
+        write_port: en
+        description: "Enable"
+      - name: fifo_en
+        bit_offset: 1
+        bit_width: 1
+        write_port: fifo_en
+        description: "Fifo Enable"
+  - name: CFG
+    size: 9
+    mode: w
+    fifo: no
+    offset: 24
+    bit_access: no
     init: "'h3F08"
-    description: "0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)"
+    description: "Configuration Register, 0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)"
     fields:
       - name: channels
         bit_offset: 0
@@ -179,7 +191,7 @@ registers:
         description: "Left justified flag"
       - name: sample_size
         bit_offset: 4
-        bit_width: 5
+        bit_width: 6
         write_port: sample_size
         description: "Sample size"
 
@@ -193,6 +205,9 @@ flags:
   - name: FIFOF
     port: fifo_full
     description: Receive FIFO is Full.
+  - name: AVGF
+    port: avg_flag
+    description: The avg is above the threshold.
 
 fifos:
   - type: read  

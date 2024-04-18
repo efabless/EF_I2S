@@ -26,7 +26,8 @@ class i2s_ref_model(ref_model):
     def __init__(self, name="i2s_ref_model", parent=None):
         super().__init__(name, parent)
         self.tag = name
-        self.stereo_channel="left"
+        self.stereo_channel=""
+        self.first = True
         self.fifo_rx = Queue(maxsize=16)
         self.ris_reg = 0b001            # FIFO is always empty at first so set ris flag 0 = 1
         self.mis_reg = 0
@@ -64,7 +65,7 @@ class i2s_ref_model(ref_model):
 
     def write_ip(self, tr):
         # Called when new transaction is received from the ip monitor
-        uvm_info(self.tag, "Ref model recieved from ip monitor: " + tr.convert2string(), UVM_HIGH)  
+        uvm_info(self.tag, "Ref model received from ip monitor: " + tr.convert2string(), UVM_HIGH)  
         self.update_registers(tr)
         self.set_ris_reg()
         self.update_interrupt_regs()
@@ -100,19 +101,32 @@ class i2s_ref_model(ref_model):
                 left_sample = left_sample | sign_extension
                 right_sample = right_sample | sign_extension
 
-
+        if self.first:
+            if left_justify:
+                self.stereo_channel = "right"
+            else:
+                self.stereo_channel= "left"
+            self.first = False
         if enable:
             if channels == 0b01 :         # right
                 self.write_to_FIFO(right_sample)
             elif channels == 0b10:      # left 
                 self.write_to_FIFO(left_sample)
             elif channels == 0b11:      # stereo
-                if self.stereo_channel == "left":
-                    self.write_to_FIFO(left_sample)
-                    self.stereo_channel = "right"
+                if left_justify:
+                    if self.stereo_channel == "right":
+                        self.write_to_FIFO(right_sample)
+                        self.stereo_channel = "left"
+                    else:
+                        self.write_to_FIFO(left_sample)
+                        self.stereo_channel = "right"
                 else:
-                    self.write_to_FIFO(right_sample)
-                    self.stereo_channel = "left"
+                    if self.stereo_channel == "left":
+                        self.write_to_FIFO(left_sample)
+                        self.stereo_channel = "right"
+                    else:
+                        self.write_to_FIFO(right_sample)
+                        self.stereo_channel = "left"
         else:
             uvm_warning(self.tag, "received transaction while i2s is disabled")
 

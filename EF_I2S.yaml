@@ -71,6 +71,10 @@ ports:
     width: 8
     direction: input
     description: The clock prescaler
+  - name: avg_flag
+    width: 1
+    direction: output
+    description: Flag raised when the samples average is above a threshold 
   - name: channels
     width: 2
     direction: input

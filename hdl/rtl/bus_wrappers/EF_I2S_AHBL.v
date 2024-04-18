@@ -22,7 +22,7 @@
 `timescale			1ns/1ps
 `default_nettype	none
 
-`define				AHBL_AW			16
+`define				AHBL_AW		16
 
 `include			"ahbl_wrapper.vh"
 
@@ -30,16 +30,16 @@ module EF_I2S_AHBL (
 	`AHBL_SLAVE_PORTS,
 	output	[0:0]	ws,
 	output	[0:0]	sck,
-	input	[0:0]	sdi,
-	output	[0:0]	sdo
+	input	[0:0]	sdi
 );
 
 	localparam	RXDATA_REG_OFFSET = `AHBL_AW'd0;
 	localparam	PR_REG_OFFSET = `AHBL_AW'd4;
 	localparam	FIFOLEVEL_REG_OFFSET = `AHBL_AW'd8;
 	localparam	RXFIFOT_REG_OFFSET = `AHBL_AW'd12;
-	localparam	CTRL_REG_OFFSET = `AHBL_AW'd16;
-	localparam	CFG_REG_OFFSET = `AHBL_AW'd20;
+	localparam	AVGT_REG_OFFSET = `AHBL_AW'd16;
+	localparam	CTRL_REG_OFFSET = `AHBL_AW'd20;
+	localparam	CFG_REG_OFFSET = `AHBL_AW'd24;
 	localparam	IM_REG_OFFSET = `AHBL_AW'd3840;
 	localparam	MIS_REG_OFFSET = `AHBL_AW'd3844;
 	localparam	RIS_REG_OFFSET = `AHBL_AW'd3848;
@@ -62,9 +62,9 @@ module EF_I2S_AHBL (
 	wire [1-1:0]	left_justified;
 	wire [5-1:0]	sample_size;
 	wire [8-1:0]	sck_prescaler;
+	wire [1-1:0]	avg_flag;
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
-
 
 	wire	[32-1:0]	RXDATA_WIRE;
 
@@ -79,28 +79,34 @@ module EF_I2S_AHBL (
 	assign	fifo_level_threshold = RXFIFOT_REG;
 	`AHBL_REG(RXFIFOT_REG, 0, 5)
 
-	reg [1-1:0]	CTRL_REG;
-	assign	en = CTRL_REG;
-	`AHBL_REG(CTRL_REG, 0, 1)
+	reg [32-1:0]	AVGT_REG;
+	assign	avg_threshold = AVGT_REG;
+	`AHBL_REG(AVGT_REG, 0, 32)
+
+	reg [2-1:0]	CTRL_REG;
+	assign	en	=	CTRL_REG[0 : 0];
+	assign	fifo_en	=	CTRL_REG[1 : 1];
+	`AHBL_REG(CTRL_REG, 'h0, 2)
 
 	reg [9-1:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
-	assign	sample_size	=	CFG_REG[8 : 4];
+	assign	sample_size	=	CFG_REG[9 : 4];
 	`AHBL_REG(CFG_REG, 'h3F08, 9)
 
-	reg [2:0] IM_REG;
-	reg [2:0] IC_REG;
-	reg [2:0] RIS_REG;
+	reg [3:0] IM_REG;
+	reg [3:0] IC_REG;
+	reg [3:0] RIS_REG;
 
-	`AHBL_MIS_REG(3)
-	`AHBL_REG(IM_REG, 0, 3)
-	`AHBL_IC_REG(3)
+	`AHBL_MIS_REG(4)
+	`AHBL_REG(IM_REG, 0, 4)
+	`AHBL_IC_REG(4)
 
 	wire [0:0] FIFOE = fifo_empty;
 	wire [0:0] FIFOA = fifo_level_above;
 	wire [0:0] FIFOF = fifo_full;
+	wire [0:0] AVGF = avg_flag;
 
 
 	integer _i_;
@@ -113,6 +119,9 @@ module EF_I2S_AHBL (
 		end
 		for(_i_ = 2; _i_ < 3; _i_ = _i_ + 1) begin
 			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(FIFOF[_i_ - 2] == 1'b1) RIS_REG[_i_] <= 1'b1;
+		end
+		for(_i_ = 3; _i_ < 4; _i_ = _i_ + 1) begin
+			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(AVGF[_i_ - 3] == 1'b1) RIS_REG[_i_] <= 1'b1;
 		end
 	end
 
@@ -132,12 +141,12 @@ module EF_I2S_AHBL (
 		.left_justified(left_justified),
 		.sample_size(sample_size),
 		.sck_prescaler(sck_prescaler),
+		.avg_flag(avg_flag),
 		.channels(channels),
 		.en(en),
 		.ws(ws),
 		.sck(sck),
-		.sdi(sdi),
-		.sdo(sdo)
+		.sdi(sdi)
 	);
 
 	assign	HRDATA = 
@@ -145,6 +154,7 @@ module EF_I2S_AHBL (
 			(last_HADDR[`AHBL_AW-1:0] == PR_REG_OFFSET)	? PR_REG :
 			(last_HADDR[`AHBL_AW-1:0] == FIFOLEVEL_REG_OFFSET)	? FIFOLEVEL_WIRE :
 			(last_HADDR[`AHBL_AW-1:0] == RXFIFOT_REG_OFFSET)	? RXFIFOT_REG :
+			(last_HADDR[`AHBL_AW-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
 			(last_HADDR[`AHBL_AW-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
 			(last_HADDR[`AHBL_AW-1:0] == CFG_REG_OFFSET)	? CFG_REG :
 			(last_HADDR[`AHBL_AW-1:0] == IM_REG_OFFSET)	? IM_REG :

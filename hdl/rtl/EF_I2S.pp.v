@@ -72,13 +72,21 @@ module i2s_rx (
             else if(~left_justified & ws_dly_pulse)
                 sample <= sr;
     
+    // adding a flag to prevent the initial ready assertion 
+    reg first; 
+    always @(posedge clk or negedge rst_n)
+        if(!rst_n)
+          first <= 1'b0;
+        else if (ws_pulse | ws_dly_pulse)
+          first <= 1'b1;
+
     always @(posedge clk or negedge rst_n)
         if(!rst_n)
             rdy <= 1'b0;
         else if(left_justified)
-            rdy <= ws_pulse;
+            rdy <= ws_pulse & first;
         else
-            rdy <= ws_dly_pulse;
+            rdy <= ws_dly_pulse & first;
 
 endmodule
 

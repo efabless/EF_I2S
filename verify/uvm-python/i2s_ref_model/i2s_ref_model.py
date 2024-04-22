@@ -29,7 +29,10 @@ class i2s_ref_model(ref_model):
         self.stereo_channel=""
         self.first = True
         self.fifo_rx = Queue(maxsize=16)
-        self.ris_reg = 0b001            # FIFO is always empty at first so set ris flag 0 = 1
+        self.channels = 0b00
+        self.left_justified = True
+        self.samples_average = 0
+        self.ris_reg = 0b0001            # FIFO is always empty at first so set ris flag 0 = 1
         self.mis_reg = 0
         self.irq = 0
         self.mis_changed = Event()
@@ -52,9 +55,13 @@ class i2s_ref_model(ref_model):
         if tr.kind == bus_item.RESET:
             self.bus_bus_export.write(tr)
             uvm_info("Ref model", "reset from ref model", UVM_HIGH)
+            self.reset_ref_model()
             return
         if tr.kind == bus_item.WRITE:
             self.regs.write_reg_value(tr.addr, tr.data)
+            if tr.addr == self.regs.reg_name_to_address["CFG"]:
+                self.channels = self.regs.read_reg_value("CFG") & 0b11
+                self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
             self.bus_bus_export.write(tr)
         elif tr.kind == bus_item.READ:
             data = self.read_register(tr.addr)
@@ -71,61 +78,77 @@ class i2s_ref_model(ref_model):
         self.update_interrupt_regs()
         self.ip_export.write(tr)  # Write the same ip transaction just for scoreboard purpose (verification is done through reading registers)
 
-    
+    def reset_ref_model(self):
+        uvm_info(self.tag, "ref model is resetting", UVM_LOW)
+        self.first = True
+        self.channels = 0b00
+        self.left_justified = True
+        self.ris_reg = 0b0001            # FIFO is always empty at first so set ris flag 0 = 1
+        self.mis_reg = 0
+        self.irq = 0
+        while not self.fifo_rx.empty():
+            _ = self.fifo_rx.get_nowait()  # Discard the retrieved value
+        
+        self.regs.write_reg_value("RXDATA", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("PR", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("FIFOLEVEL", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("AVGT", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("CTRL", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("CFG", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("ris", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("mis", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("icr", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("im", 0, force_write=True)  # clear icr register
+
+
     def update_registers(self, tr):
         td = i2s_item.type_id.create("td", self)
         enable =  True if self.regs.read_reg_value("CTRL") else False
         prescaler = self.regs.read_reg_value("PR")
-        channels = self.regs.read_reg_value("CFG") & 0b11
+        self.channels = self.regs.read_reg_value("CFG") & 0b11
         sign_extend = True if (self.regs.read_reg_value("CFG") >> 2) & 0b1 else False
-        left_justify = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
+        self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
         sample_size = (self.regs.read_reg_value("CFG") >> 4) & 0b11111
 
-        left_sample = tr.left_sample
-        right_sample = tr.right_sample
+        sample = tr.sample
 
-        if not left_justify:
-            left_sample = left_sample << 1
-            right_sample = right_sample << 1
+        # if not self.left_justified:
+        #     left_sample = left_sample << 1
+        #     right_sample = right_sample << 1
 
-        left_sample = left_sample >> (32 - sample_size)
-        right_sample = right_sample >> (32 - sample_size)
+        sample = sample >> (32 - sample_size)
 
         if sign_extend:
-            if channels == 0b01 or (channels==0b11 and self.stereo_channel == "right"):
-                sign_bit = (right_sample >> (sample_size-1)) & 0b1
-            elif channels == 0b10 or (channels==0b11 and self.stereo_channel == "left"):
-                sign_bit = (left_sample >> (sample_size-1)) & 0b1
+            sign_bit = (sample >> (sample_size-1)) & 0b1
             if (sign_bit):
-                sign_extension = (-1 << sample_size)
-                left_sample = left_sample | sign_extension
-                right_sample = right_sample | sign_extension
+                sign_extension = (((1 << sample_size) - 1) << sample_size) & 0xFFFFFFFF
+                sample = sample | sign_extension
 
         if self.first:
-            if left_justify:
+            if self.left_justified:
                 self.stereo_channel = "right"
             else:
                 self.stereo_channel= "left"
             self.first = False
         if enable:
-            if channels == 0b01 :         # right
-                self.write_to_FIFO(right_sample)
-            elif channels == 0b10:      # left 
-                self.write_to_FIFO(left_sample)
-            elif channels == 0b11:      # stereo
-                if left_justify:
+            if self.channels == 0b01 and tr.channel == "right":         # right
+                self.write_to_FIFO(sample)
+            elif self.channels == 0b10 and tr.channel == "left":      # left 
+                self.write_to_FIFO(sample)
+            elif self.channels == 0b11:      # stereo
+                if self.left_justified:
                     if self.stereo_channel == "right":
-                        self.write_to_FIFO(right_sample)
+                        self.write_to_FIFO(sample)
                         self.stereo_channel = "left"
                     else:
-                        self.write_to_FIFO(left_sample)
+                        self.write_to_FIFO(sample)
                         self.stereo_channel = "right"
                 else:
                     if self.stereo_channel == "left":
-                        self.write_to_FIFO(left_sample)
+                        self.write_to_FIFO(sample)
                         self.stereo_channel = "right"
                     else:
-                        self.write_to_FIFO(right_sample)
+                        self.write_to_FIFO(sample)
                         self.stereo_channel = "left"
         else:
             uvm_warning(self.tag, "received transaction while i2s is disabled")
@@ -157,12 +180,26 @@ class i2s_ref_model(ref_model):
 
     def set_ris_reg(self):                  
         rx_fifo_threshold = self.regs.read_reg_value("RXFIFOT")
+        avg_threshold = self.regs.read_reg_value("AVGT")
+
+        uvm_info (self.tag, f"FIFO size = {self.fifo_rx.qsize()}", UVM_LOW)
+
         if self.fifo_rx.qsize() > rx_fifo_threshold:
             self.ris_reg |= 0x2
 
-        if self.fifo_rx.full(): 
+        if self.fifo_rx.qsize() >= 16: 
             self.ris_reg |= 0x4
+            uvm_info (self.tag, f"RX FIFO is full", UVM_LOW)
 
+        # samples_sum = 0
+        # for sample in self.fifo_rx:
+        #     samples_sum += sample
+        
+        # self.samples_average = samples_sum / self.fifo_rx.qsize()
+
+        if self.fifo_rx.qsize() >= 1: # needs to add calculating average 
+        # if self.samples_average >= avg_threshold:
+            self.ris_reg |= 0x9
     
     async def clear_ris_reg (self):
         while (True):
@@ -175,7 +212,12 @@ class i2s_ref_model(ref_model):
             self.icr_changed.clear()
     
     def update_interrupt_regs(self):
-        self.regs.write_reg_value("ris", self.ris_reg, force_write=True)
+        old_ris = self.regs.read_reg_value("ris")
+        if old_ris & 0b010 != self.ris_reg & 0b010 or old_ris & 0b100 != self.ris_reg & 0b100:
+            self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=2)
+            uvm_info (self.tag, "write ris with delay two cycles", UVM_LOW)
+        else:
+            self.regs.write_reg_value("ris", self.ris_reg, force_write=True)
         im_reg = self.regs.read_reg_value("im")
         mis_reg_new = self.ris_reg & im_reg
         uvm_info(self.tag, f" Update interrupts :  im =  {im_reg:X}, ris =  {self.ris_reg:X}, mis = {mis_reg_new:X}", UVM_LOW)
@@ -203,3 +245,19 @@ class i2s_ref_model(ref_model):
 
 
 uvm_component_utils(i2s_ref_model)
+
+
+class RX_QUEUE(Queue):
+    """same queue provided by cocotb but with 2 new functions to get the tx value send it and then pop it from the queue after sending
+    """
+    def __init__(self, maxsize: int = 0):
+        super().__init__(maxsize)
+
+    async def get_no_pop(self):
+        """same as get but without popping it from the queue
+        """
+        while self.empty():
+            event = Event("{} get".format(type(self).__name__))
+            self._getters.append((event, cocotb.scheduler._current_task))
+            await event.wait()
+        return self._queue[0]

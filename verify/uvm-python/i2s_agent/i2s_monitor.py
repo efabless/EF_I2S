@@ -16,52 +16,94 @@ class i2s_monitor(ip_monitor):
         self.sck_freq = 0.0
         self.ws_freq = 0.0
         self.done_calculating_freq = Event()
+        self.reset = False
+        self.first = True
         
 
     async def run_phase(self, phase):
         uvm_info(self.tag, "run_phase started", UVM_LOW)
         # await self.get_i2s_sample()
-        await cocotb.start(self.get_i2s_sample())
-        await cocotb.start(self.get_clk_freq())
-        await cocotb.start(self.get_sck_freq())
-        await cocotb.start(self.get_ws_freq())
-        await cocotb.start(self.check_sample_rate())
-        
+        while True:
+            u = await cocotb.start(self.get_i2s_sample())
+            x = await cocotb.start(self.get_clk_freq())
+            z = await cocotb.start(self.get_sck_freq())
+            k = await cocotb.start(self.get_ws_freq())
+            l = await cocotb.start(self.check_sample_rate())
+            await self.capture_reset()
+            u.kill()
+            x.kill()
+            z.kill()
+            k.kill()
+            l.kill()
+
+
 
     async def get_i2s_sample(self):
         await RisingEdge (self.vif.RESETn)
+        await FallingEdge(self.vif.ws) 
+        self.first = True
         while(True):
             left_sample = 0
             right_sample = 0
+            sample_size = 32
             tr = i2s_item.type_id.create("tr", self)
-            await FallingEdge(self.vif.ws)    # At word select falling edge, left channel 
             left_justified = self.is_left_justified() 
             # sample_size = self.get_sample_size()
-            sample_size = 32
-            for i in range (sample_size-1, -1, -1):
-                await RisingEdge(self.vif.sck)
-                await Timer(1 , "ns")           # small delay to capture changes made by driver 
-                if left_justified:
-                    right_sample |= (self.vif.sdi.value << i )   
-                else:
-                    left_sample |= (self.vif.sdi.value << i )
-                # uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
-            
 
-            await RisingEdge(self.vif.ws)    # At word select rising edge, right channel 
-            for i in range (sample_size-1, -1, -1):
-                await RisingEdge(self.vif.sck)
-                await Timer(1 , "ns")           # small delay to capture changes made by driver 
-                if left_justified:
+            if left_justified:
+                # await FallingEdge(self.vif.ws) 
+                for i in range (sample_size-1, -1, -1):
+                    await RisingEdge(self.vif.sck)
+                    right_sample |= (self.vif.sdi.value << i )
+                    uvm_info(self.tag, f"right channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                await FallingEdge(self.vif.sck)  # delay to sync with ref model
+                # await RisingEdge(self.vif.ws) 
+                tr.sample = right_sample
+                tr.channel = "right"
+                uvm_info(self.tag, "Sampled transaction " + tr.convert2string(), UVM_LOW)
+                self.monitor_port.write(tr)   
+                
+                
+                for i in range (sample_size-1, -1, -1):
+                    await RisingEdge(self.vif.sck)
                     left_sample |= (self.vif.sdi.value << i )
-                else:
-                    right_sample |= (self.vif.sdi.value << i ) 
+                    uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                await FallingEdge(self.vif.sck)  # delay to sync with ref model
+                tr.sample = left_sample
+                tr.channel = "left"
+                uvm_info(self.tag, "Sampled transaction " + tr.convert2string(), UVM_LOW)
+                self.monitor_port.write(tr)
             
-        
-            tr.left_sample = left_sample
-            tr.right_sample = right_sample
-            uvm_info(self.tag, "Sampled transaction " + tr.convert2string(), UVM_LOW)
-            self.monitor_port.write(tr)
+            else: # i2s mode
+                if (self.first): 
+                    await RisingEdge(self.vif.sck) # ignore the first positive edge because not left justified (i2s mode)
+                    self.first = False
+                for i in range (sample_size-1, -1, -1):
+                    await RisingEdge(self.vif.sck)
+                    # await Timer(1 , "ns")           # small delay to capture changes made by driver 
+                    left_sample |= (self.vif.sdi.value << i )
+                    uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                await FallingEdge(self.vif.sck)  # wait for the dut to write to fifo before sending transaction (syncing with ref model)
+                for i in range (2):
+                    await RisingEdge(self.vif.CLK)
+                tr.sample = left_sample
+                tr.channel = "left"
+                uvm_info(self.tag, "Sampled transaction " + tr.convert2string(), UVM_LOW)
+                self.monitor_port.write(tr)
+
+                
+                for i in range (sample_size-1, -1, -1):
+                    await RisingEdge(self.vif.sck)
+                    # await Timer(1 , "ns")           # small delay to capture changes made by driver 
+                    right_sample |= (self.vif.sdi.value << i )
+                    uvm_info(self.tag, f"right channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                await FallingEdge(self.vif.sck)  # wait for the dut to write to fifo before sending transaction (syncing with ref model)
+                for i in range (2):
+                    await RisingEdge(self.vif.CLK)
+                tr.sample = right_sample
+                tr.channel = "right"
+                uvm_info(self.tag, "Sampled transaction " + tr.convert2string(), UVM_LOW)
+                self.monitor_port.write(tr)
 
     async def get_clk_freq(self):
         await RisingEdge(self.vif.CLK)
@@ -105,6 +147,11 @@ class i2s_monitor(ip_monitor):
 
         self.done_calculating_freq.clear()
     
+    async def capture_reset(self):
+        await FallingEdge(self.vif.RESETn)
+        uvm_info(self.tag, "captured reset falling edge", UVM_LOW)
+
+
     # def get_sample_size(self):
     #     cfg_reg = self.regs.read_reg_value("CFG")
     #     uvm_info(self.tag, "Config Reg = " + str(cfg_reg), UVM_LOW)

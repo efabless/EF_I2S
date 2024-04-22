@@ -10,10 +10,13 @@ from cocotb.triggers import Event, First, Timer
 from EF_UVM.bus_env.bus_regs import bus_regs
 from uvm.base import UVMRoot
 from EF_UVM.base_test import base_test
+import random
 
 # seqences import
 from i2s_seq_lib.i2s_config_seq import i2s_config_seq
 from i2s_seq_lib.i2s_send_sample_seq import i2s_send_sample_seq
+from i2s_seq_lib.i2s_send_right_sample_seq import i2s_send_right_sample_seq
+from i2s_seq_lib.i2s_send_left_sample_seq import i2s_send_left_sample_seq
 from i2s_seq_lib.i2s_read_rxdata_seq import i2s_read_rxdata_seq
 from i2s_seq_lib.i2s_read_ris_seq import i2s_read_ris_seq
 
@@ -71,6 +74,7 @@ class i2s_base_test(base_test):
         BUS_TYPE = cocotb.plusargs['BUS_TYPE']
         super().__init__(name, bus_type=BUS_TYPE, parent=parent)
         self.tag = name
+        self.config_reg = 0
 
     def build_phase(self, phase):
         super().build_phase(phase)
@@ -80,9 +84,23 @@ class i2s_base_test(base_test):
         self.set_type_override_by_type(ref_model.get_type(), i2s_ref_model.get_type())
         self.set_type_override_by_type(ip_coverage.get_type(), i2s_coverage.get_type())
         self.set_type_override_by_type(ip_logger.get_type(), i2s_logger.get_type())
+        # self.config_reg = self.get_config_reg_val()
 
-    def get_config_reg_val(self, channel, sign_extend, left_justify, sample_size ):
-        if channel == "right":
+    # async def pre_configure_phase(self, phase):
+    #     # add background sequences
+    #     await super().pre_configure_phase(phase)
+    #     phase.raise_objection(self, f"{self.__class__.__name__} pre_configure_phase phase OBJECTED ")
+    #     bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
+    #     bus_i2s_config_seq.set_config_reg(self.config_reg)
+    #     await bus_i2s_config_seq.start(self.bus_sqr)
+    #     phase.drop_objection(
+    #         self, f"{self.__class__.__name__} pre_configure_phase phase drop objection"
+    #     )
+
+    def get_config_reg_val(self, channel=None, sign_extend= None, left_justify=None, sample_size=None ):
+        if channel is None:
+            channel_bits = random.choice([0b01, 0b10, 0b11])
+        elif channel == "right":
             channel_bits = 0b01
         elif channel == "left":
             channel_bits = 0b10
@@ -91,9 +109,10 @@ class i2s_base_test(base_test):
         else:
             uvm_fatal(self.tag, "Please enter a valid channel config ('left', 'right' or 'stereo')")
 
-        sign_extend_bit = 0b1 if sign_extend else 0b0
-        left_justify_bit = 0b1 if left_justify else 0b0
-
+        sign_extend_bit = random.choice([0,1]) if sign_extend is None else 0b1 if sign_extend else 0b0
+        left_justify_bit = random.choice([0,1]) if left_justify is None else 0b1 if left_justify else 0b0
+        if sample_size is None:
+            sample_size = random.randint(1,33)
         config_reg =  (sample_size & 0b11111) << 4 | (left_justify_bit & 0b1) << 3 | (sign_extend_bit & 0b1) << 2 | (channel_bits & 0b11)
         return  config_reg
 
@@ -101,30 +120,40 @@ uvm_component_utils(i2s_base_test)
 
 
 class i2s_left_channel_test(i2s_base_test):
-    def __init__(self, name="i2s__first_test", parent=None):
+    def __init__(self, name="i2s_left_channel_test", parent=None):
         super().__init__(name, parent=parent)
         self.tag = name
-    
+
+    # def build_phase(self, phase):
+    #     super().build_phase(phase)
+    #     self.config_reg = self.get_config_reg_val(channel="left", sign_extend= False, left_justify=True, sample_size=24)
+
     async def main_phase(self, phase):
         uvm_info(self.tag, f"Starting test {self.__class__.__name__}", UVM_LOW)
         phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
+
         bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
-        ip_i2s_send_sample_seq = i2s_send_sample_seq("i2s_send_sample_seq")
+        ip_i2s_send_left_sample_seq = i2s_send_left_sample_seq("i2s_send_left_sample_seq")
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
         bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
 
-        config_reg = self.get_config_reg_val(channel = "left", sign_extend = False, left_justify = True, sample_size = 24)
-        bus_i2s_config_seq.set_config_reg(config_reg)
-        await bus_i2s_config_seq.start(self.bus_sqr)
+        for _ in range (2):
 
-        for i in range (17):
-            await ip_i2s_send_sample_seq.start(self.ip_sqr)
-            # await bus_i2s_read_ris_seq.start(self.bus_sqr)
+            self.config_reg = self.get_config_reg_val(channel="left", sign_extend= False, left_justify=False, sample_size=24)
+            bus_i2s_config_seq.set_config_reg(self.config_reg)
+            await bus_i2s_config_seq.start(self.bus_sqr)
 
-        for i in range (1):
-            await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
+            for i in range (16):
+                await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
 
-        await Timer(10000 , "ns")
+
+            for i in range (random.randint(1, 16)):
+                await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
+
+            
+            await Timer(10000 , "ns")
+            
+            
 
         phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
 
@@ -132,33 +161,37 @@ class i2s_left_channel_test(i2s_base_test):
 uvm_component_utils(i2s_left_channel_test)
 
 
+
 class i2s_right_channel_test(i2s_base_test):
-    def __init__(self, name="i2s__first_test", parent=None):
+    def __init__(self, name="i2s_right_channel_test", parent=None):
         super().__init__(name, parent=parent)
         self.tag = name
+
+    # def build_phase(self, phase):
+    #     super().build_phase(phase)
+    #     self.config_reg = self.get_config_reg_val(channel="right", sign_extend= False, left_justify=True, sample_size=24)
 
     async def main_phase(self, phase):
         uvm_info(self.tag, f"Starting test {self.__class__.__name__}", UVM_LOW)
         phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
 
         bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
-        ip_i2s_send_sample_seq = i2s_send_sample_seq("i2s_send_sample_seq")
+        ip_i2s_send_right_sample_seq = i2s_send_right_sample_seq("i2s_send_right_sample_seq")
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
         bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
 
-        config_reg = self.get_config_reg_val(channel = "right", sign_extend = False, left_justify = True, sample_size = 24)
-        bus_i2s_config_seq.set_config_reg(config_reg)
-        await bus_i2s_config_seq.start(self.bus_sqr)
+        for _ in range (2):
+            self.config_reg = self.get_config_reg_val(channel="left", sign_extend= True, left_justify=True, sample_size=24)
+            bus_i2s_config_seq.set_config_reg(self.config_reg)
+            await bus_i2s_config_seq.start(self.bus_sqr)
 
-        for i in range (2):
-            await ip_i2s_send_sample_seq.start(self.ip_sqr)
-            # await bus_i2s_read_ris_seq.start(self.bus_sqr)
+            for i in range (16):
+                await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
+                
+            for i in range (random.randint(1, 16)):
+                await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
 
-
-        for i in range (1):
-            await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
-
-        await Timer(10000 , "ns")
+            await Timer(10000 , "ns")
 
         phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
 
@@ -171,25 +204,27 @@ class i2s_stereo_test(i2s_base_test):
         super().__init__(name, parent=parent)
         self.tag = name
 
+    def build_phase(self, phase):
+        super().build_phase(phase)
+        self.config_reg = self.get_config_reg_val(channel="stereo", sign_extend= False, left_justify=False, sample_size=24)
+        
+
     async def main_phase(self, phase):
         uvm_info(self.tag, f"Starting test {self.__class__.__name__}", UVM_LOW)
         phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
 
-        bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
-        ip_i2s_send_sample_seq = i2s_send_sample_seq("i2s_send_sample_seq")
+        ip_i2s_send_left_sample_seq = i2s_send_left_sample_seq("i2s_send_left_sample_seq")
+        ip_i2s_send_right_sample_seq = i2s_send_right_sample_seq("i2s_send_right_sample_seq")
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
         bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
 
-        config_reg = self.get_config_reg_val(channel = "stereo", sign_extend = False, left_justify = True, sample_size = 24)
-        bus_i2s_config_seq.set_config_reg(config_reg)
-        await bus_i2s_config_seq.start(self.bus_sqr)
 
-        for i in range (2):
-            await ip_i2s_send_sample_seq.start(self.ip_sqr)
-            # await bus_i2s_read_ris_seq.start(self.bus_sqr)
+        for i in range (8):
+            await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
+            await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
 
 
-        for i in range (1):
+        for i in range (random.randint(1, 16)):
             await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
 
         await Timer(10000 , "ns")

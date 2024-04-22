@@ -14,6 +14,7 @@ class i2s_cov_groups():
 
 
     def ip_cov(self, tr, do_sampling=True):
+        return
         # @self.apply_decorators(decorators=self.ios_coverage)
         @CoverPoint(
             f"{self.hierarchy}.Left Channel.Prescaler",

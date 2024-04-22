@@ -20,50 +20,48 @@ class i2s_driver(ip_driver):
             tr = []
             await self.seq_item_port.get_next_item(tr)
             tr = tr[0]
-            uvm_info(self.tag, f"Recieved transaction {tr.convert2string()}" , UVM_LOW)
-            left_sample = tr.left_sample
-            right_sample = tr.right_sample
+            uvm_info(self.tag, f"Received transaction {tr.convert2string()}" , UVM_LOW)
             sample_size = 32
             left_justified = self.is_left_justified() 
-
             if left_justified:
-                # await FallingEdge(self.vif.ws)                    # drive sdi from left sample
-                for i in range (sample_size-1, -1, -1):             # get MSB first 
-                    await FallingEdge(self.vif.sck)
-                    self.vif.sdi.value = (right_sample >> i ) & 0b1
-                    uvm_info(self.tag, f" left: falling edge sck {i}", UVM_LOW)
-                # await RisingEdge(self.vif.sck)
+                if (tr.channel == "right"):
+                    right_sample = tr.sample 
+                    await FallingEdge(self.vif.ws)    
+                    await Timer(1 , "ns") # delay to avoid shifting of bits after reset 
+                    for i in range (sample_size-1, -1, -1):             # get MSB first 
+                        self.vif.sdi.value = (right_sample >> i ) & 0b1
+                        await FallingEdge(self.vif.sck)
+                        uvm_info(self.tag, f" right: falling edge sck {i}= {(right_sample >> i ) & 0b1}", UVM_LOW)
                 
-  
-                # await RisingEdge(self.vif.ws)                     # drive sdi from right sample
-                for i in range (sample_size-1, -1, -1):             # get MSB first 
-                    await FallingEdge(self.vif.sck)
-                    self.vif.sdi.value = (left_sample >> i ) & 0b1
-                    uvm_info(self.tag, f" right: falling edge sck {i}", UVM_LOW)
+                if (tr.channel == "left"): 
+                    left_sample = tr.sample
+                    await RisingEdge(self.vif.ws)   
+                    await Timer(1 , "ns") # delay to avoid shifting of bits after reset 
+                    for i in range (sample_size-1, -1, -1):             # get MSB first 
+                        self.vif.sdi.value = (left_sample >> i ) & 0b1
+                        await FallingEdge(self.vif.sck)
+                        uvm_info(self.tag, f" left: falling edge sck {i} = {(left_sample >> i ) & 0b1}", UVM_LOW)
+                        
 
-                # await RisingEdge(self.vif.sck)
-
-            else: 
-                # await FallingEdge(self.vif.ws)                    # drive sdi from left sample
-                await FallingEdge(self.vif.sck)                     # wait another sck cycle if not left justified 
-                for i in range (sample_size-1, -1, -1):             # get MSB first 
-                    # if (i==sample_size-1):                          
-                    #   await FallingEdge(self.vif.sck)
-                    await FallingEdge(self.vif.sck)
-                    self.vif.sdi.value = (left_sample >> i ) & 0b1
-                    if (i==1):
-                        break
-
-                # await RisingEdge(self.vif.ws)                     # drive sdi from right sample
-                await FallingEdge(self.vif.sck)                     # wait another sck cycle if not left justified 
-                for i in range (sample_size-1, -1, -1):             # get MSB first 
-                    # if (i==sample_size-1):                          
-                    #   await FallingEdge(self.vif.sck)
-                    await FallingEdge(self.vif.sck)
-                    self.vif.sdi.value = (right_sample >> i ) & 0b1
-                    if (i==1):
-                        break
-
+            else: # i2s mode 
+                if (tr.channel == "left"):
+                    left_sample = tr.sample
+                    await FallingEdge(self.vif.ws)                     # left sample driven in ws falling edge in i2s mode
+                    await Timer(1 , "ns") # delay to avoid capturing sck with ws 
+                    for i in range (sample_size-1, -1, -1):             # get MSB first 
+                        await FallingEdge(self.vif.sck)
+                        self.vif.sdi.value = (left_sample >> i ) & 0b1
+                        uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                    
+                elif (tr.channel == "right"):
+                    right_sample = tr.sample
+                    await RisingEdge(self.vif.ws)                     # right sample driven in ws rising edge in i2s mode 
+                    await Timer(1 , "ns") # delay to avoid capturing sck with ws  
+                    for i in range (sample_size-1, -1, -1):             # get MSB first 
+                        await FallingEdge(self.vif.sck)
+                        self.vif.sdi.value = (right_sample >> i ) & 0b1
+                        uvm_info(self.tag, f"right channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                    
             self.seq_item_port.item_done()
     
     def get_sample_size(self):

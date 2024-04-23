@@ -228,6 +228,7 @@ module EF_I2S #(parameter DW=32, AW=4) (
     input   wire [7:0]      sck_prescaler,
     input   wire [31:0]     avg_threshold,
     output  wire            avg_flag,
+    input   wire            avg_en,
     input   wire [1:0]      channels,       // 10: left, 01: right, 11: both (stereo)
     input   wire            en         
 ); 
@@ -303,9 +304,9 @@ module EF_I2S #(parameter DW=32, AW=4) (
             if(sum_ctr == 5'b0)
                 sum = sample_value;
             else
-                sum = sum + sample_value;
+               if(avg_en) sum = sum + sample_value;
 
-    assign avg_flag = (sum[31:5] > avg_threshold);
+    assign avg_flag = avg_en & (sum[31:5] > avg_threshold);
 
     i2s_rx RX (
         .clk(clk),

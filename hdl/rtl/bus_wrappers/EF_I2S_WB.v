@@ -69,6 +69,7 @@ module EF_I2S_WB #(
 	wire [8-1:0]	sck_prescaler;
 	wire [32-1:0]	avg_threshold;
 	wire [1-1:0]	avg_flag;
+	wire [1-1:0]	avg_en;
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
 
@@ -89,10 +90,11 @@ module EF_I2S_WB #(
 	assign	avg_threshold = AVGT_REG;
 	`WB_REG(AVGT_REG, 0, 32)
 
-	reg [2-1:0]	CTRL_REG;
+	reg [3-1:0]	CTRL_REG;
 	assign	en	=	CTRL_REG[0 : 0];
 	assign	fifo_en	=	CTRL_REG[1 : 1];
-	`WB_REG(CTRL_REG, 'h0, 2)
+	assign	avg_en	=	CTRL_REG[2 : 2];
+	`WB_REG(CTRL_REG, 'h0, 3)
 
 	reg [10-1:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
@@ -164,6 +166,7 @@ module EF_I2S_WB #(
 		.sck_prescaler(sck_prescaler),
 		.avg_threshold(avg_threshold),
 		.avg_flag(avg_flag),
+		.avg_en(avg_en),
 		.channels(channels),
 		.en(en),
 		.ws(ws),

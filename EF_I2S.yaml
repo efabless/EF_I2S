@@ -90,6 +90,10 @@ ports:
     width: 1
     direction: output
     description: Flag raised when the samples average is above a threshold 
+  - name: avg_en
+    width: 1
+    direction: input
+    description: Enable average feature 
   - name: channels
     width: 2
     direction: input
@@ -166,7 +170,7 @@ registers:
     write_port: avg_threshold
     description: The Average threshold
   - name: CTRL
-    size: 2
+    size: 3
     mode: w
     fifo: no
     offset: 20
@@ -184,6 +188,11 @@ registers:
         bit_width: 1
         write_port: fifo_en
         description: "Fifo Enable"
+      - name: avg_en
+        bit_offset: 2
+        bit_width: 1
+        write_port: avg_en
+        description: "Averaging enable"
   - name: CFG
     size: 10
     mode: w

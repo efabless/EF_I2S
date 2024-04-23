@@ -23,6 +23,63 @@
 `default_nettype	none
 
 
+
+/*
+	Copyright 2020 AUCOHL
+
+    Author: Mohamed Shalan (mshalan@aucegypt.edu)
+	
+	Licensed under the Apache License, Version 2.0 (the "License"); 
+	you may not use this file except in compliance with the License. 
+	You may obtain a copy of the License at:
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software 
+	distributed under the License is distributed on an "AS IS" BASIS, 
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+	See the License for the specific language governing permissions and 
+	limitations under the License.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module EF_I2S_AHBL #( 
 	parameter	
 		DW = 32,
@@ -88,6 +145,7 @@ module EF_I2S_AHBL #(
 	wire [8-1:0]	sck_prescaler;
 	wire [32-1:0]	avg_threshold;
 	wire [1-1:0]	avg_flag;
+	wire [1-1:0]	avg_en;
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
 
@@ -114,12 +172,13 @@ module EF_I2S_AHBL #(
                                         else if(ahbl_we & (last_HADDR[16-1:0]==AVGT_REG_OFFSET))
                                             AVGT_REG <= HWDATA[32-1:0];
 
-	reg [2-1:0]	CTRL_REG;
+	reg [3-1:0]	CTRL_REG;
 	assign	en	=	CTRL_REG[0 : 0];
 	assign	fifo_en	=	CTRL_REG[1 : 1];
+	assign	avg_en	=	CTRL_REG[2 : 2];
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CTRL_REG <= 'h0;
                                         else if(ahbl_we & (last_HADDR[16-1:0]==CTRL_REG_OFFSET))
-                                            CTRL_REG <= HWDATA[2-1:0];
+                                            CTRL_REG <= HWDATA[3-1:0];
 
 	reg [10-1:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
@@ -198,6 +257,7 @@ module EF_I2S_AHBL #(
 		.sck_prescaler(sck_prescaler),
 		.avg_threshold(avg_threshold),
 		.avg_flag(avg_flag),
+		.avg_en(avg_en),
 		.channels(channels),
 		.en(en),
 		.ws(ws),

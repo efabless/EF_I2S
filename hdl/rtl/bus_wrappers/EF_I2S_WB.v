@@ -26,7 +26,11 @@
 
 `include			"wb_wrapper.vh"
 
-module EF_I2S_WB (
+module EF_I2S_WB #( 
+	parameter	
+		DW = 32,
+		AW = 4
+) (
 	`WB_SLAVE_PORTS,
 	output	[0:0]	ws,
 	output	[0:0]	sck,
@@ -53,15 +57,15 @@ module EF_I2S_WB (
 
 	wire [1-1:0]	fifo_en;
 	wire [1-1:0]	fifo_rd;
-	wire [5-1:0]	fifo_level_threshold;
+	wire [AW-1:0]	fifo_level_threshold;
 	wire [1-1:0]	fifo_full;
 	wire [1-1:0]	fifo_empty;
-	wire [5-1:0]	fifo_level;
+	wire [AW-1:0]	fifo_level;
 	wire [1-1:0]	fifo_level_above;
 	wire [32-1:0]	fifo_rdata;
 	wire [1-1:0]	sign_extend;
 	wire [1-1:0]	left_justified;
-	wire [5-1:0]	sample_size;
+	wire [6-1:0]	sample_size;
 	wire [8-1:0]	sck_prescaler;
 	wire [32-1:0]	avg_threshold;
 	wire [1-1:0]	avg_flag;
@@ -74,12 +78,12 @@ module EF_I2S_WB (
 	assign	sck_prescaler = PR_REG;
 	`WB_REG(PR_REG, 0, 8)
 
-	wire [5-1:0]	FIFOLEVEL_WIRE;
+	wire [AW-1:0]	FIFOLEVEL_WIRE;
 	assign	FIFOLEVEL_WIRE = fifo_level;
 
-	reg [5-1:0]	RXFIFOT_REG;
+	reg [AW-1:0]	RXFIFOT_REG;
 	assign	fifo_level_threshold = RXFIFOT_REG;
-	`WB_REG(RXFIFOT_REG, 0, 5)
+	`WB_REG(RXFIFOT_REG, 0, AW)
 
 	reg [32-1:0]	AVGT_REG;
 	assign	avg_threshold = AVGT_REG;
@@ -90,12 +94,12 @@ module EF_I2S_WB (
 	assign	fifo_en	=	CTRL_REG[1 : 1];
 	`WB_REG(CTRL_REG, 'h0, 2)
 
-	reg [9-1:0]	CFG_REG;
+	reg [10-1:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
-	`WB_REG(CFG_REG, 'h3F08, 9)
+	`WB_REG(CFG_REG, 'h3F08, 10)
 
 	reg [3:0] IM_REG;
 	reg [3:0] IC_REG;
@@ -129,7 +133,21 @@ module EF_I2S_WB (
 
 	assign IRQ = |MIS_REG;
 
-	EF_I2S instance_to_wrap (
+	reg [0:0]	_sdi_reg_[1:0];
+	wire		_sdi_w_ = _sdi_reg_[1];
+	always@(posedge clk_i or posedge rst_i)
+		if(rst_i == 1) begin
+			_sdi_reg_[0] <= 'b0;
+			_sdi_reg_[1] <= 'b0;
+		end
+		else begin
+			_sdi_reg_[0] <= sdi;
+			_sdi_reg_[1] <= _sdi_reg_[0];
+		end
+	EF_I2S #(
+		.DW(DW),
+		.AW(AW)
+	) instance_to_wrap (
 		.clk(clk),
 		.rst_n(rst_n),
 		.fifo_en(fifo_en),
@@ -150,7 +168,7 @@ module EF_I2S_WB (
 		.en(en),
 		.ws(ws),
 		.sck(sck),
-		.sdi(sdi)
+		.sdi(_sdi_w_)
 	);
 
 	assign	dat_o = 

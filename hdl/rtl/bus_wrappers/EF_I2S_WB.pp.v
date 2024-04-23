@@ -22,57 +22,11 @@
 `timescale			1ns/1ps
 `default_nettype	none
 
-
-
-/*
-	Copyright 2020 AUCOHL
-
-    Author: Mohamed Shalan (mshalan@aucegypt.edu)
-	
-	Licensed under the Apache License, Version 2.0 (the "License"); 
-	you may not use this file except in compliance with the License. 
-	You may obtain a copy of the License at:
-
-	http://www.apache.org/licenses/LICENSE-2.0
-
-	Unless required by applicable law or agreed to in writing, software 
-	distributed under the License is distributed on an "AS IS" BASIS, 
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-	See the License for the specific language governing permissions and 
-	limitations under the License.
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                        
-
-
-module EF_I2S_WB (
+module EF_I2S_WB #( 
+	parameter	
+		DW = 32,
+		AW = 4
+) (
 	input   wire            ext_clk,
                                         input   wire            clk_i,
                                         input   wire            rst_i,
@@ -113,15 +67,15 @@ module EF_I2S_WB (
 
 	wire [1-1:0]	fifo_en;
 	wire [1-1:0]	fifo_rd;
-	wire [5-1:0]	fifo_level_threshold;
+	wire [AW-1:0]	fifo_level_threshold;
 	wire [1-1:0]	fifo_full;
 	wire [1-1:0]	fifo_empty;
-	wire [5-1:0]	fifo_level;
+	wire [AW-1:0]	fifo_level;
 	wire [1-1:0]	fifo_level_above;
 	wire [32-1:0]	fifo_rdata;
 	wire [1-1:0]	sign_extend;
 	wire [1-1:0]	left_justified;
-	wire [5-1:0]	sample_size;
+	wire [6-1:0]	sample_size;
 	wire [8-1:0]	sck_prescaler;
 	wire [32-1:0]	avg_threshold;
 	wire [1-1:0]	avg_flag;
@@ -134,12 +88,12 @@ module EF_I2S_WB (
 	assign	sck_prescaler = PR_REG;
 	always @(posedge clk_i or posedge rst_i) if(rst_i) PR_REG <= 0; else if(wb_we & (adr_i[16-1:0]==PR_REG_OFFSET)) PR_REG <= dat_i[8-1:0];
 
-	wire [5-1:0]	FIFOLEVEL_WIRE;
+	wire [AW-1:0]	FIFOLEVEL_WIRE;
 	assign	FIFOLEVEL_WIRE = fifo_level;
 
-	reg [5-1:0]	RXFIFOT_REG;
+	reg [AW-1:0]	RXFIFOT_REG;
 	assign	fifo_level_threshold = RXFIFOT_REG;
-	always @(posedge clk_i or posedge rst_i) if(rst_i) RXFIFOT_REG <= 0; else if(wb_we & (adr_i[16-1:0]==RXFIFOT_REG_OFFSET)) RXFIFOT_REG <= dat_i[5-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) RXFIFOT_REG <= 0; else if(wb_we & (adr_i[16-1:0]==RXFIFOT_REG_OFFSET)) RXFIFOT_REG <= dat_i[AW-1:0];
 
 	reg [32-1:0]	AVGT_REG;
 	assign	avg_threshold = AVGT_REG;
@@ -150,12 +104,12 @@ module EF_I2S_WB (
 	assign	fifo_en	=	CTRL_REG[1 : 1];
 	always @(posedge clk_i or posedge rst_i) if(rst_i) CTRL_REG <= 'h0; else if(wb_we & (adr_i[16-1:0]==CTRL_REG_OFFSET)) CTRL_REG <= dat_i[2-1:0];
 
-	reg [9-1:0]	CFG_REG;
+	reg [10-1:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
-	always @(posedge clk_i or posedge rst_i) if(rst_i) CFG_REG <= 'h3F08; else if(wb_we & (adr_i[16-1:0]==CFG_REG_OFFSET)) CFG_REG <= dat_i[9-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) CFG_REG <= 'h3F08; else if(wb_we & (adr_i[16-1:0]==CFG_REG_OFFSET)) CFG_REG <= dat_i[10-1:0];
 
 	reg [3:0] IM_REG;
 	reg [3:0] IC_REG;
@@ -193,7 +147,21 @@ module EF_I2S_WB (
 
 	assign IRQ = |MIS_REG;
 
-	EF_I2S instance_to_wrap (
+	reg [0:0]	_sdi_reg_[1:0];
+	wire		_sdi_w_ = _sdi_reg_[1];
+	always@(posedge clk_i or posedge rst_i)
+		if(rst_i == 1) begin
+			_sdi_reg_[0] <= 'b0;
+			_sdi_reg_[1] <= 'b0;
+		end
+		else begin
+			_sdi_reg_[0] <= sdi;
+			_sdi_reg_[1] <= _sdi_reg_[0];
+		end
+	EF_I2S #(
+		.DW(DW),
+		.AW(AW)
+	) instance_to_wrap (
 		.clk(clk),
 		.rst_n(rst_n),
 		.fifo_en(fifo_en),
@@ -214,7 +182,7 @@ module EF_I2S_WB (
 		.en(en),
 		.ws(ws),
 		.sck(sck),
-		.sdi(sdi)
+		.sdi(_sdi_w_)
 	);
 
 	assign	dat_o = 

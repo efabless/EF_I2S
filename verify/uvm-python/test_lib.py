@@ -112,8 +112,8 @@ class i2s_base_test(base_test):
         sign_extend_bit = random.choice([0,1]) if sign_extend is None else 0b1 if sign_extend else 0b0
         left_justify_bit = random.choice([0,1]) if left_justify is None else 0b1 if left_justify else 0b0
         if sample_size is None:
-            sample_size = random.randint(1,33)
-        config_reg =  (sample_size & 0b11111) << 4 | (left_justify_bit & 0b1) << 3 | (sign_extend_bit & 0b1) << 2 | (channel_bits & 0b11)
+            sample_size = random.randint(1,32)
+        config_reg =  (sample_size & 0b111111) << 4 | (left_justify_bit & 0b1) << 3 | (sign_extend_bit & 0b1) << 2 | (channel_bits & 0b11)
         return  config_reg
 
 uvm_component_utils(i2s_base_test)
@@ -135,11 +135,11 @@ class i2s_left_channel_test(i2s_base_test):
         bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
         ip_i2s_send_left_sample_seq = i2s_send_left_sample_seq("i2s_send_left_sample_seq")
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
-        bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
 
-        for _ in range (2):
 
-            self.config_reg = self.get_config_reg_val(channel="left", sign_extend= False, left_justify=False, sample_size=24)
+        for _ in range (10):
+
+            self.config_reg = self.get_config_reg_val(channel="left")
             bus_i2s_config_seq.set_config_reg(self.config_reg)
             await bus_i2s_config_seq.start(self.bus_sqr)
 
@@ -178,10 +178,10 @@ class i2s_right_channel_test(i2s_base_test):
         bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
         ip_i2s_send_right_sample_seq = i2s_send_right_sample_seq("i2s_send_right_sample_seq")
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
-        bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
 
-        for _ in range (2):
-            self.config_reg = self.get_config_reg_val(channel="left", sign_extend= True, left_justify=True, sample_size=24)
+
+        for _ in range (10):
+            self.config_reg = self.get_config_reg_val(channel="right")
             bus_i2s_config_seq.set_config_reg(self.config_reg)
             await bus_i2s_config_seq.start(self.bus_sqr)
 
@@ -206,28 +206,33 @@ class i2s_stereo_test(i2s_base_test):
 
     def build_phase(self, phase):
         super().build_phase(phase)
-        self.config_reg = self.get_config_reg_val(channel="stereo", sign_extend= False, left_justify=False, sample_size=24)
+        
         
 
     async def main_phase(self, phase):
         uvm_info(self.tag, f"Starting test {self.__class__.__name__}", UVM_LOW)
         phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
 
+        bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
         ip_i2s_send_left_sample_seq = i2s_send_left_sample_seq("i2s_send_left_sample_seq")
         ip_i2s_send_right_sample_seq = i2s_send_right_sample_seq("i2s_send_right_sample_seq")
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
-        bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
+        
+
+        for _ in range(10):
+            self.config_reg = self.get_config_reg_val(channel="stereo")
+            bus_i2s_config_seq.set_config_reg(self.config_reg)
+            await bus_i2s_config_seq.start(self.bus_sqr)
+
+            for i in range (16):
+                await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
+                await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
 
 
-        for i in range (8):
-            await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
-            await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
+            for i in range (random.randint(1, 16)):
+                await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
 
-
-        for i in range (random.randint(1, 16)):
-            await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
-
-        await Timer(10000 , "ns")
+            await Timer(10000 , "ns")
 
         phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
 

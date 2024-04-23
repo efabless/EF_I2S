@@ -4,6 +4,7 @@ from uvm.base import sv, UVM_HIGH, UVM_LOW
 from uvm.macros.uvm_message_defines import uvm_info, uvm_fatal
 from i2s_item.i2s_item import i2s_item
 from uvm.seq import UVMSequence
+import random
 
 
 class i2s_send_right_sample_seq(UVMSequence):
@@ -22,7 +23,8 @@ class i2s_send_right_sample_seq(UVMSequence):
         # await uvm_do_with(self, self.req, lambda i2s_var1: i2s_var1 == 10, lambda i2s_var2: i2s_var2 > 7, ......)
         # send item without conditions
         self.req.channel = "right"
-        self.req.sample = 0x90909090
+        # self.req.sample = 0x90909090
+        self.req.sample = random.randint(0x0, 0xFFFFFFFF)
         await uvm_do(self, self.req)
 
 uvm_object_utils(i2s_send_right_sample_seq)

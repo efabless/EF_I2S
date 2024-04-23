@@ -55,7 +55,7 @@ class i2s_monitor(ip_monitor):
                 for i in range (sample_size-1, -1, -1):
                     await RisingEdge(self.vif.sck)
                     right_sample |= (self.vif.sdi.value << i )
-                    uvm_info(self.tag, f"right channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                    uvm_info(self.tag, f"right channel i = {i} , sdi = {self.vif.sdi.value}", UVM_HIGH)
                 await FallingEdge(self.vif.sck)  # delay to sync with ref model
                 # await RisingEdge(self.vif.ws) 
                 tr.sample = right_sample
@@ -67,7 +67,7 @@ class i2s_monitor(ip_monitor):
                 for i in range (sample_size-1, -1, -1):
                     await RisingEdge(self.vif.sck)
                     left_sample |= (self.vif.sdi.value << i )
-                    uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                    uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_HIGH)
                 await FallingEdge(self.vif.sck)  # delay to sync with ref model
                 tr.sample = left_sample
                 tr.channel = "left"
@@ -82,7 +82,7 @@ class i2s_monitor(ip_monitor):
                     await RisingEdge(self.vif.sck)
                     # await Timer(1 , "ns")           # small delay to capture changes made by driver 
                     left_sample |= (self.vif.sdi.value << i )
-                    uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                    uvm_info(self.tag, f"left channel i = {i} , sdi = {self.vif.sdi.value}", UVM_HIGH)
                 await FallingEdge(self.vif.sck)  # wait for the dut to write to fifo before sending transaction (syncing with ref model)
                 for i in range (2):
                     await RisingEdge(self.vif.CLK)
@@ -96,7 +96,7 @@ class i2s_monitor(ip_monitor):
                     await RisingEdge(self.vif.sck)
                     # await Timer(1 , "ns")           # small delay to capture changes made by driver 
                     right_sample |= (self.vif.sdi.value << i )
-                    uvm_info(self.tag, f"right channel i = {i} , sdi = {self.vif.sdi.value}", UVM_LOW)
+                    uvm_info(self.tag, f"right channel i = {i} , sdi = {self.vif.sdi.value}", UVM_HIGH)
                 await FallingEdge(self.vif.sck)  # wait for the dut to write to fifo before sending transaction (syncing with ref model)
                 for i in range (2):
                     await RisingEdge(self.vif.CLK)

@@ -51,7 +51,7 @@ class i2s_ref_model(ref_model):
 
     def write_bus(self, tr):
         # Called when new transaction is received from the bus monitor
-        uvm_info(self.tag, " Ref model recieved from bus monitor: " + tr.convert2string(), UVM_HIGH)
+        uvm_info(self.tag, " Ref model received from bus monitor: " + tr.convert2string(), UVM_HIGH)
         if tr.kind == bus_item.RESET:
             self.bus_bus_export.write(tr)
             uvm_info("Ref model", "reset from ref model", UVM_HIGH)
@@ -108,7 +108,7 @@ class i2s_ref_model(ref_model):
         self.channels = self.regs.read_reg_value("CFG") & 0b11
         sign_extend = True if (self.regs.read_reg_value("CFG") >> 2) & 0b1 else False
         self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
-        sample_size = (self.regs.read_reg_value("CFG") >> 4) & 0b11111
+        sample_size = (self.regs.read_reg_value("CFG") >> 4) & 0b111111
 
         sample = tr.sample
 
@@ -118,11 +118,16 @@ class i2s_ref_model(ref_model):
 
         sample = sample >> (32 - sample_size)
 
+        uvm_info(self.tag, f"sample after adjusting size = 0x{sample:X}", UVM_HIGH)
+
         if sign_extend:
             sign_bit = (sample >> (sample_size-1)) & 0b1
             if (sign_bit):
-                sign_extension = (((1 << sample_size) - 1) << sample_size) & 0xFFFFFFFF
+                # sign_extension = (((1 << sample_size) - 1) << sample_size) & 0xFFFFFFFF
+                # sign_extension = (1 << (32 - sample_size)) - 1
+                sign_extension = (0xFFFFFFFF << sample_size) & 0xFFFFFFFF
                 sample = sample | sign_extension
+
 
         if self.first:
             if self.left_justified:
@@ -173,33 +178,40 @@ class i2s_ref_model(ref_model):
     def write_to_FIFO(self, data):
         try:
             self.fifo_rx.put_nowait(data)
-            uvm_info(self.tag, f"Writing to rx fifo size = {self.fifo_rx.qsize()}", UVM_MEDIUM)
+            uvm_info(self.tag, f"Writing to fifo 0x{data:X} , fifo size = {self.fifo_rx.qsize()}", UVM_MEDIUM)
         except asyncio.QueueFull:
             uvm_warning(self.tag, "writing to rx while fifo is full so ignore the value")
 
 
     def set_ris_reg(self):                  
         rx_fifo_threshold = self.regs.read_reg_value("RXFIFOT")
+        avg_enable = (self.regs.read_reg_value("CTRL") & 0b100) >> 2
         avg_threshold = self.regs.read_reg_value("AVGT")
-
-        uvm_info (self.tag, f"FIFO size = {self.fifo_rx.qsize()}", UVM_LOW)
 
         if self.fifo_rx.qsize() > rx_fifo_threshold:
             self.ris_reg |= 0x2
 
         if self.fifo_rx.qsize() >= 16: 
             self.ris_reg |= 0x4
-            uvm_info (self.tag, f"RX FIFO is full", UVM_LOW)
+            uvm_info (self.tag, f"RX FIFO is full", UVM_MEDIUM)
 
-        # samples_sum = 0
-        # for sample in self.fifo_rx:
-        #     samples_sum += sample
-        
-        # self.samples_average = samples_sum / self.fifo_rx.qsize()
+        if avg_enable:
+            samples_sum = 0
+            temp_list = []
+            while not self.fifo_rx.empty():                 # get all the items in the queue and calculate their average 
+                fifo_sample = self.fifo_rx.get_nowait()
+                temp_list.append(fifo_sample)
+                samples_sum = samples_sum + fifo_sample
+                uvm_info(self.tag, f"fifo sample = {fifo_sample}, samples_sum = {samples_sum}", UVM_HIGH)
+            
+            for item in temp_list:                          # put the items again in the queue 
+                self.fifo_rx.put_nowait(item)
 
-        if self.fifo_rx.qsize() >= 1: # needs to add calculating average 
-        # if self.samples_average >= avg_threshold:
-            self.ris_reg |= 0x9
+            self.samples_average = int (samples_sum / 16)
+            uvm_info(self.tag, f"samples average = {self.samples_average}", UVM_LOW)
+
+            if self.samples_average > avg_threshold:
+                self.ris_reg |= 0x9
     
     async def clear_ris_reg (self):
         while (True):
@@ -245,19 +257,3 @@ class i2s_ref_model(ref_model):
 
 
 uvm_component_utils(i2s_ref_model)
-
-
-class RX_QUEUE(Queue):
-    """same queue provided by cocotb but with 2 new functions to get the tx value send it and then pop it from the queue after sending
-    """
-    def __init__(self, maxsize: int = 0):
-        super().__init__(maxsize)
-
-    async def get_no_pop(self):
-        """same as get but without popping it from the queue
-        """
-        while self.empty():
-            event = Event("{} get".format(type(self).__name__))
-            self._getters.append((event, cocotb.scheduler._current_task))
-            await event.wait()
-        return self._queue[0]

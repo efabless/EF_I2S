@@ -4,6 +4,7 @@ from uvm.base import sv, UVM_HIGH, UVM_LOW
 from uvm.macros.uvm_message_defines import uvm_info, uvm_fatal	
 from i2s_item.i2s_item import i2s_item	
 from uvm.seq import UVMSequence	
+import random
 
 
 class i2s_send_left_sample_seq(UVMSequence):	
@@ -17,7 +18,8 @@ class i2s_send_left_sample_seq(UVMSequence):
 
     async def body(self):	
         self.req.channel = "left"	
-        self.req.sample = 0x80808080	
+        # self.req.sample = 0x80808080	
+        self.req.sample = random.randint(0x0, 0xFFFFFFFF)
         await uvm_do(self, self.req)	
 
 

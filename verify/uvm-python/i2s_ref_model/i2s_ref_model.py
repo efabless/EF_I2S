@@ -12,6 +12,7 @@ import asyncio
 from EF_UVM.ref_model.ref_model import ref_model
 from EF_UVM.bus_env.bus_item import bus_item
 from i2s_item.i2s_item import i2s_item
+from EF_UVM.bus_env.bus_item import bus_item, bus_irq_item
 
 
 class i2s_ref_model(ref_model):
@@ -31,7 +32,8 @@ class i2s_ref_model(ref_model):
         self.fifo_rx = Queue(maxsize=16)
         self.channels = 0b00
         self.left_justified = True
-        self.samples_average = 0
+        self.samples_count = 0
+        self.samples_sum = 0
         self.ris_reg = 0b0001            # FIFO is always empty at first so set ris flag 0 = 1
         self.mis_reg = 0
         self.irq = 0
@@ -50,8 +52,9 @@ class i2s_ref_model(ref_model):
         await cocotb.start (self.clear_ris_reg())
 
     def write_bus(self, tr):
+        self.update_interrupt_regs()
         # Called when new transaction is received from the bus monitor
-        uvm_info(self.tag, " Ref model received from bus monitor: " + tr.convert2string(), UVM_HIGH)
+        uvm_info(self.tag, " Ref model received from bus monitor: " + tr.convert2string(), UVM_LOW)
         if tr.kind == bus_item.RESET:
             self.bus_bus_export.write(tr)
             uvm_info("Ref model", "reset from ref model", UVM_HIGH)
@@ -62,13 +65,14 @@ class i2s_ref_model(ref_model):
             if tr.addr == self.regs.reg_name_to_address["CFG"]:
                 self.channels = self.regs.read_reg_value("CFG") & 0b11
                 self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
+            if tr.addr == self.regs.reg_name_to_address["icr"] and tr.data != 0:
+                self.icr_changed.set()
             self.bus_bus_export.write(tr)
         elif tr.kind == bus_item.READ:
             data = self.read_register(tr.addr)
             td = tr.do_clone()
             td.data = data
             self.bus_bus_export.write(td)
-        self.update_interrupt_regs()
 
     def write_ip(self, tr):
         # Called when new transaction is received from the ip monitor
@@ -83,6 +87,8 @@ class i2s_ref_model(ref_model):
         self.first = True
         self.channels = 0b00
         self.left_justified = True
+        self.samples_count = 0
+        self.samples_sum = 0
         self.ris_reg = 0b0001            # FIFO is always empty at first so set ris flag 0 = 1
         self.mis_reg = 0
         self.irq = 0
@@ -103,7 +109,9 @@ class i2s_ref_model(ref_model):
 
     def update_registers(self, tr):
         td = i2s_item.type_id.create("td", self)
-        enable =  True if self.regs.read_reg_value("CTRL") else False
+        enable =  True if self.regs.read_reg_value("CTRL") & 0b1 else False
+        fifo_enable =  True if (self.regs.read_reg_value("CTRL") >> 1)&0b1 else False
+        averaging_enable =  True if (self.regs.read_reg_value("CTRL") >> 2)&0b1 else False
         prescaler = self.regs.read_reg_value("PR")
         self.channels = self.regs.read_reg_value("CFG") & 0b11
         sign_extend = True if (self.regs.read_reg_value("CFG") >> 2) & 0b1 else False
@@ -118,16 +126,28 @@ class i2s_ref_model(ref_model):
 
         sample = sample >> (32 - sample_size)
 
-        uvm_info(self.tag, f"sample after adjusting size = 0x{sample:X}", UVM_HIGH)
+        uvm_info(self.tag, f"sample after adjusting size = 0x{sample:X}", UVM_LOW)
 
+        sign_bit = (sample >> (sample_size-1)) & 0b1
         if sign_extend:
-            sign_bit = (sample >> (sample_size-1)) & 0b1
             if (sign_bit):
                 # sign_extension = (((1 << sample_size) - 1) << sample_size) & 0xFFFFFFFF
                 # sign_extension = (1 << (32 - sample_size)) - 1
                 sign_extension = (0xFFFFFFFF << sample_size) & 0xFFFFFFFF
+                uvm_info(self.tag, f"sign extension = 0x{sign_extension:X}", UVM_LOW)  
                 sample = sample | sign_extension
-
+        uvm_info(self.tag, f"sample after sign extension = 0x{sample:X}", UVM_LOW)
+        sample_absolute = sample if not sign_bit else (~sample  & 0xFFFFFFFF)  #one's complement to get the absolute value of the samples
+        uvm_info (self.tag, f"sample after absolute value = 0x{sample_absolute:X}", UVM_MEDIUM)
+        if self.samples_count == 32:   # reset counter and samples sum when 32 samples are read 
+            self.samples_count = 0
+            self.samples_sum = sample_absolute 
+        else:
+            if (self.channels == 0b01 and tr.channel == "right") or (self.channels == 0b10 and tr.channel == "left") or (self.channels == 0b11):
+                self.samples_sum += sample_absolute # otherwise, calculate sum and increment counter 
+                self.samples_sum &= 0xFFFFFFFF # make sure it's 32 bits
+                uvm_info(self.tag, f"sample number {self.samples_count} samples sum = 0x{self.samples_sum:X}", UVM_LOW)
+                self.samples_count += 1
 
         if self.first:
             if self.left_justified:
@@ -135,7 +155,7 @@ class i2s_ref_model(ref_model):
             else:
                 self.stereo_channel= "left"
             self.first = False
-        if enable:
+        if enable and fifo_enable:
             if self.channels == 0b01 and tr.channel == "right":         # right
                 self.write_to_FIFO(sample)
             elif self.channels == 0b10 and tr.channel == "left":      # left 
@@ -155,7 +175,7 @@ class i2s_ref_model(ref_model):
                     else:
                         self.write_to_FIFO(sample)
                         self.stereo_channel = "left"
-        else:
+        elif not enable:
             uvm_warning(self.tag, "received transaction while i2s is disabled")
 
 
@@ -165,7 +185,7 @@ class i2s_ref_model(ref_model):
         uvm_info(self.tag, "Reading register " + hex(addr), UVM_MEDIUM)
         if addr == self.regs.reg_name_to_address["RXDATA"]:  # reading from rx data
             try:
-                uvm_info(self.tag, f"Reading from rx fifo size = {self.fifo_rx.qsize()}", UVM_MEDIUM)
+                uvm_info(self.tag, f"Reading from rx fifo size = {self.fifo_rx.qsize()} {self.fifo_rx._queue}", UVM_LOW)
                 data = self.fifo_rx.get_nowait()
                 if self.fifo_rx.empty():               # set empty flag if fifo is empty
                     self.ris_reg |= 0x1
@@ -188,29 +208,22 @@ class i2s_ref_model(ref_model):
         avg_enable = (self.regs.read_reg_value("CTRL") & 0b100) >> 2
         avg_threshold = self.regs.read_reg_value("AVGT")
 
+        if self.fifo_rx.empty():
+            self.ris_reg |= 0x1
+
         if self.fifo_rx.qsize() > rx_fifo_threshold:
             self.ris_reg |= 0x2
+            uvm_info (self.tag, f"RX FIFO level is above threshold", UVM_MEDIUM)
 
         if self.fifo_rx.qsize() >= 16: 
             self.ris_reg |= 0x4
             uvm_info (self.tag, f"RX FIFO is full", UVM_MEDIUM)
 
         if avg_enable:
-            samples_sum = 0
-            temp_list = []
-            while not self.fifo_rx.empty():                 # get all the items in the queue and calculate their average 
-                fifo_sample = self.fifo_rx.get_nowait()
-                temp_list.append(fifo_sample)
-                samples_sum = samples_sum + fifo_sample
-                uvm_info(self.tag, f"fifo sample = {fifo_sample}, samples_sum = {samples_sum}", UVM_HIGH)
-            
-            for item in temp_list:                          # put the items again in the queue 
-                self.fifo_rx.put_nowait(item)
+            samples_average = int (self.samples_sum / 32)
+            uvm_info(self.tag, f"samples average = 0x{samples_average:X}", UVM_LOW)
 
-            self.samples_average = int (samples_sum / 16)
-            uvm_info(self.tag, f"samples average = {self.samples_average}", UVM_LOW)
-
-            if self.samples_average > avg_threshold:
+            if samples_average > avg_threshold:
                 self.ris_reg |= 0x9
     
     async def clear_ris_reg (self):
@@ -224,12 +237,20 @@ class i2s_ref_model(ref_model):
             self.icr_changed.clear()
     
     def update_interrupt_regs(self):
-        old_ris = self.regs.read_reg_value("ris")
-        if old_ris & 0b010 != self.ris_reg & 0b010 or old_ris & 0b100 != self.ris_reg & 0b100:
-            self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=2)
-            uvm_info (self.tag, "write ris with delay two cycles", UVM_LOW)
-        else:
-            self.regs.write_reg_value("ris", self.ris_reg, force_write=True)
+        # old_ris = self.regs.read_reg_value("ris")
+        # if old_ris & 0b010 != self.ris_reg & 0b010 or old_ris & 0b100 != self.ris_reg & 0b100:
+        #     self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=2)
+        #     uvm_info (self.tag, "write ris with delay two cycles", UVM_LOW)
+        # else:
+        #     self.regs.write_reg_value("ris", self.ris_reg, force_write=True)
+        # old_ris = self.regs.read_reg_value("ris")
+        # if old_ris & 0b100 != self.ris_reg & 0b100:
+        #     self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=3)
+        #     uvm_info (self.tag, "write ris with delay two cycles", UVM_LOW)
+        # else:
+        self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=2)
+        # self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=2)
+        # self.regs.write_reg_value("ris", self.ris_reg, force_write=True)
         im_reg = self.regs.read_reg_value("im")
         mis_reg_new = self.ris_reg & im_reg
         uvm_info(self.tag, f" Update interrupts :  im =  {im_reg:X}, ris =  {self.ris_reg:X}, mis = {mis_reg_new:X}", UVM_LOW)
@@ -241,16 +262,19 @@ class i2s_ref_model(ref_model):
     async def send_irq_tr(self):
         while (True):
             await self.mis_changed.wait()
+            uvm_info (self.tag, "mis changed event", UVM_LOW)
             irq_new = 1 if self.mis_reg else 0                                        
             if irq_new and not self.irq: # irq changed from low to high 
                 self.irq = 1 
                 tr = bus_irq_item.type_id.create("tr", self)
-                tr.trg_irq = 1                      
+                tr.trg_irq = 1     
+                uvm_info (self.tag, f"sending irq tr {tr}", UVM_LOW)   
                 self.bus_irq_export.write(tr)
             elif not irq_new and self.irq: # irq changed from high to low 
                 self.irq = 0
                 tr = bus_irq_item.type_id.create("tr", self)
                 tr.trg_irq = 0
+                uvm_info (self.tag, f"sending irq tr {tr}", UVM_LOW)   
                 self.bus_irq_export.write(tr)
             
             self.mis_changed.clear()

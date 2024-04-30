@@ -17,6 +17,7 @@ class i2s_send_right_sample_seq(UVMSequence):
         self.req = i2s_item()
         self.rsp = i2s_item()
         self.tag = name
+        self.sample = None
 
     async def body(self):
         # send item with conditions 
@@ -24,7 +25,13 @@ class i2s_send_right_sample_seq(UVMSequence):
         # send item without conditions
         self.req.channel = "right"
         # self.req.sample = 0x90909090
-        self.req.sample = random.randint(0x0, 0xFFFFFFFF)
+        if self.sample is None:
+            self.req.sample = random.randint(0x0, 0xFFFFFFFF)
+        else:
+             self.req.sample = self.sample
         await uvm_do(self, self.req)
+
+    def set_sample(self, sample):
+        self.sample = sample
 
 uvm_object_utils(i2s_send_right_sample_seq)

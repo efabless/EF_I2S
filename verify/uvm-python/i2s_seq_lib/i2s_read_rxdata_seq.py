@@ -15,6 +15,7 @@ class i2s_read_rxdata_seq(bus_seq_base):
     # you should create as many sequences as you need not only this one
     def __init__(self, name="i2s_read_rxdata_seq"):
         super().__init__(name)
+        self.check_on_threshold = False
         regs_arr = []
         if not UVMConfigDb.get(self, "", "bus_regs", regs_arr):
             uvm_fatal(self.tag, "No json file wrapper regs")
@@ -23,19 +24,24 @@ class i2s_read_rxdata_seq(bus_seq_base):
 
     async def body(self):
         await super().body()
-        while True:
-            rsp = []
-            await self.send_req(is_write=False, reg="ris")
-            await self.get_response(rsp)
-            ris_reg = rsp[0]
-            uvm_info(self.tag, f"RIS value = {ris_reg}", UVM_LOW)
-            if (
-                ris_reg.data & 0b010 == 0b010
-                and ris_reg.addr == self.regs.reg_name_to_address["ris"]
-            ):
-                break
-        uvm_info(self.tag, f"RSP value = {self.rsp.convert2string()}", UVM_LOW)
+        if self.check_on_threshold:
+            while True:
+                rsp = []
+                await self.send_req(is_write=False, reg="ris")
+                await self.get_response(rsp)
+                ris_reg = rsp[0]
+                uvm_info(self.tag, f"RIS value = {ris_reg}", UVM_LOW)
+                if (
+                    ris_reg.data & 0b010 == 0b010
+                    and ris_reg.addr == self.regs.reg_name_to_address["ris"]
+                ):
+                    break
+        # uvm_info(self.tag, f"RSP value = {self.rsp.convert2string()}", UVM_LOW)
+        uvm_info(self.tag, "before sending read rxdata sequence", UVM_LOW)
         await self.send_req(is_write=False, reg="RXDATA")
+
+    def set_check_on_threshold(self, flag):
+        self.check_on_threshold = flag
 
 
 uvm_object_utils(i2s_read_rxdata_seq)

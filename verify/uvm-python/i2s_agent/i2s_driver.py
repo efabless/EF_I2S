@@ -31,7 +31,7 @@ class i2s_driver(ip_driver):
                     right_sample = tr.sample
                     if not is_stereo: 
                         await FallingEdge(self.vif.ws)    
-                    await Timer(1 , "ns") # delay to avoid shifting of bits after reset 
+                    # await Timer(1 , "ns") # delay to avoid shifting of bits after reset 
                     for i in range (sample_size-1, -1, -1):             # get MSB first 
                         self.vif.sdi.value = (right_sample >> i ) & 0b1
                         await FallingEdge(self.vif.sck)
@@ -45,7 +45,7 @@ class i2s_driver(ip_driver):
                         if first:
                             await RisingEdge(self.vif.ws)
                             first = False      
-                    await Timer(1 , "ns") # delay to avoid shifting of bits after reset 
+                    # await Timer(1 , "ns") # delay to avoid shifting of bits after reset 
                     for i in range (sample_size-1, -1, -1):             # get MSB first 
                         self.vif.sdi.value = (left_sample >> i ) & 0b1
                         await FallingEdge(self.vif.sck)

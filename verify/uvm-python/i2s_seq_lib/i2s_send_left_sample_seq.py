@@ -15,12 +15,30 @@ class i2s_send_left_sample_seq(UVMSequence):
         self.req = i2s_item()	
         self.rsp = i2s_item()	
         self.tag = name	
+        self.sample = None
+
 
     async def body(self):	
         self.req.channel = "left"	
         # self.req.sample = 0x80808080	
-        self.req.sample = random.randint(0x0, 0xFFFFFFFF)
-        await uvm_do(self, self.req)	
+        # self.req.sample = self.get_random_sample()
+        if self.sample is None:
+            self.req.sample = random.randint(0x0, 0xFFFFFFFF)
+            if (random.choice([0,1])):
+                self.req.sample = 0xFFFFFFFF
+        else:
+             self.req.sample = self.sample
+        await uvm_do(self, self.req)
+
+    def set_sample(self, sample):
+        self.sample = sample	
+    
+    # def get_random_sample(self):
+    #     sample = 0
+    #     for i in range(32):
+    #         bit = random.choice([0,1])
+    #         sample |= bit << i
+    #     return(sample)
 
 
 uvm_object_utils(i2s_send_left_sample_seq)	

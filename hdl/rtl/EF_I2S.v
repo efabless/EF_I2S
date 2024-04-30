@@ -302,7 +302,7 @@ module EF_I2S #(parameter DW=32, AW=4) (
         if(!rst_n)
             sum_ctr <= 'b0;
         else
-            if(sample_rdy)
+            if(sample_rdy & |(current_channel & channels))
                 sum_ctr <= sum_ctr + 1'b1;
     
     always @ (posedge clk, negedge rst_n)

@@ -9,12 +9,12 @@ class i2s_cov_groups():
     def __init__(self, hierarchy, regs) -> None:
         self.hierarchy = hierarchy
         self.regs = regs
-        # self.ios_coverage = self.ios_cov()
+        self.samples_coverage = self.samples_cov()
         self.ip_cov(None, do_sampling=False)
 
 
     def ip_cov(self, tr, do_sampling=True):
-        # @self.apply_decorators(decorators=self.ios_coverage)
+        @self.apply_decorators(decorators=self.samples_coverage)
         @CoverPoint(
             f"{self.hierarchy}.Left Channel.Prescaler",
             xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b10, self.regs.read_reg_value("PR")),
@@ -50,13 +50,13 @@ class i2s_cov_groups():
         #     bins_labels=[f"from {hex(1 << i)} to {hex((1 << i + 1) - 1)}" if i != 0 else f"from {hex(0)} to {hex(1)}" for i in range(32)],
         #     rel=lambda val, b:  (val[0] == b[0]) and  (b[1] <= val[1] <= b[2])
         # )
-        @CoverPoint(
-            f"{self.hierarchy}.Left Channel.Received Data",
-            xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b10 , tr.sample),
-            bins=[(True, i)  for i in range(32)],
-            bins_labels=[f"bit {i} = 1" for i in range(32)],
-            rel=lambda val, b:  (val[0] == b[0]) and  ((val[1]>>b[1])&0b1) == 1  
-        )
+        # @CoverPoint(
+        #     f"{self.hierarchy}.Left Channel.Received Data",
+        #     xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b10 , tr.sample),
+        #     bins=[(True, i)  for i in range(32)],
+        #     bins_labels=[f"bit {i} = 1" for i in range(32)],
+        #     rel=lambda val, b:  (val[0] == b[0]) and  ((val[1]>>b[1])&0b1) == 1  
+        # )
 
         @CoverPoint(
             f"{self.hierarchy}.Right Channel.Prescaler",
@@ -93,13 +93,13 @@ class i2s_cov_groups():
         #     bins_labels=[f"from {hex(1 << i)} to {hex((1 << i + 1) - 1)}" if i != 0 else f"from {hex(0)} to {hex(1)}" for i in range(32)],
         #     rel=lambda val, b:  (val[0] == b[0]) and  (b[1] == val[1] <= b[2])
         # )
-        @CoverPoint(
-            f"{self.hierarchy}.Right Channel.Received Data",
-            xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b01 , tr.sample),
-            bins=[(True, i)  for i in range(32)],
-            bins_labels=[f"bit {i} = 1" for i in range(32)],
-            rel=lambda val, b:  (val[0] == b[0]) and  ((val[1]>>b[1])&0b1) == 1  
-        )
+        # @CoverPoint(
+        #     f"{self.hierarchy}.Right Channel.Received Data",
+        #     xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b01 , tr.sample),
+        #     bins=[(True, i)  for i in range(32)],
+        #     bins_labels=[f"bit {i} = 1" for i in range(32)],
+        #     rel=lambda val, b:  (val[0] == b[0]) and  ((val[1]>>b[1])&0b1) == 1  
+        # )
         @CoverPoint(
             f"{self.hierarchy}.Stereo.Prescaler",
             xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b11, self.regs.read_reg_value("PR")),
@@ -142,20 +142,20 @@ class i2s_cov_groups():
         #     bins_labels=[f"from {hex(1 << i)} to {hex((1 << i + 1) - 1)}" if i != 0 else f"from {hex(0)} to {hex(1)}" for i in range(32)],
         #     rel=lambda val, b:  (val[0] == b[0]) and  (b[1] <= val[1] <= b[2])
         # )
-        @CoverPoint(
-            f"{self.hierarchy}.Stereo.Received Data (left)",
-            xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b11 , tr.channel == "left" ,tr.sample),
-            bins=[(True, True,i)  for i in range(32)],
-            bins_labels=[f"bit {i} = 1" for i in range(32)],
-            rel=lambda val, b:  (val[0] == b[0]) and  (val[1] == b[1]) and ((val[2]>>b[2])&0b1) == 1  
-        )
-        @CoverPoint(
-            f"{self.hierarchy}.Stereo.Received Data (right)",
-            xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b11 , tr.channel == "right" ,tr.sample),
-            bins=[(True, True,i)  for i in range(32)],
-            bins_labels=[f"bit {i} = 1" for i in range(32)],
-            rel=lambda val, b:  (val[0] == b[0]) and  (val[1] == b[1]) and ((val[2]>>b[2])&0b1) == 1  
-        )
+        # @CoverPoint(
+        #     f"{self.hierarchy}.Stereo.Received Data (left)",
+        #     xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b11 , tr.channel == "left" ,tr.sample),
+        #     bins=[(True, True,i)  for i in range(32)],
+        #     bins_labels=[f"bit {i} = 1" for i in range(32)],
+        #     rel=lambda val, b:  (val[0] == b[0]) and  (val[1] == b[1]) and ((val[2]>>b[2])&0b1) == 1  
+        # )
+        # @CoverPoint(
+        #     f"{self.hierarchy}.Stereo.Received Data (right)",
+        #     xf=lambda tr: (self.regs.read_reg_value("CFG") & 0b11 == 0b11 , tr.channel == "right" ,tr.sample),
+        #     bins=[(True, True,i)  for i in range(32)],
+        #     bins_labels=[f"bit {i} = 1" for i in range(32)],
+        #     rel=lambda val, b:  (val[0] == b[0]) and  (val[1] == b[1]) and ((val[2]>>b[2])&0b1) == 1  
+        # )
 
 
         def sample(tr):
@@ -163,35 +163,33 @@ class i2s_cov_groups():
         if do_sampling:
             sample(tr)
 
-    
+    def samples_cov(self):
+        cov_points = []
+        for i in range(32):
+            cov_points.append(CoverPoint(
+                f"{self.hierarchy}.Left Channel.Received Data.bit{i}",
+                xf=lambda tr, i=i: (self.regs.read_reg_value("CFG") & 0b11 == 0b10 , (tr.sample >> i )&0b1),
+                bins=[(True, 1), (True, 0)],
+                bins_labels=[f"bit {i} = 1", f"bit {i} = 0"],
+                # at_least=3,
+            ))
+            cov_points.append(CoverPoint(
+                f"{self.hierarchy}.Right Channel.Received Data.bit{i}",
+                xf=lambda tr, i=i: (self.regs.read_reg_value("CFG") & 0b11 == 0b01 , (tr.sample >> i )&0b1),
+                bins=[(True, 1), (True, 0)],
+                bins_labels=[f"bit {i} = 1", f"bit {i} = 0"],
+                # at_least=3,
+            ))
+            cov_points.append(CoverPoint(
+                f"{self.hierarchy}.Stereo.Received Data.bit{i}",
+                xf=lambda tr, i=i: (self.regs.read_reg_value("CFG") & 0b11 == 0b11 , (tr.sample >> i )&0b1),
+                bins=[(True, 1), (True, 0)],
+                bins_labels=[f"bit {i} = 1", f"bit {i} = 0"],
+                # at_least=3,
+            ))
 
-    # def ios_cov(self):
-    #     cov_points = []
-    #     for i in range(8):
-    #         cov_points.append(CoverPoint(
-    #             f"{self.hierarchy}. GPIO {i}.Input",
-    #             xf=lambda tr, ii=i: (tr.gpios[f"gpio{ii}"].dir == "input", tr.gpios[f"gpio{ii}"].val),
-    #             bins=[ (True, 1), (True, 0) ],
-    #             bins_labels=[("Input", "High") , ("Input", "Low")],
-    #             # at_least=3,
-    #         ))
-    #         cov_points.append(CoverPoint(
-    #             f"{self.hierarchy}. GPIO {i}.Output",
-    #             xf=lambda tr, ii=i: (tr.gpios[f"gpio{ii}"].dir == "output", tr.gpios[f"gpio{ii}"].val),
-    #             bins=[ (True, 1), (True, 0) ],
-    #             bins_labels=[("Output", "High") , ("Output", "Low")],
-    #             # at_least=3,
-    #         ))
-    #     for i in range (8):
-    #         cov_points.append(CoverPoint(
-    #             f"{self.hierarchy}.GPIOs.Direction 0x{(i*32):X} : 0x{(((i+1)*32)-1):X}",
-    #             xf=lambda tr, i=i: ( (i*32) <= self.regs.read_reg_value("DIR") <= ((i+1)*32)-1 , self.get_gpios_value(tr)),
-    #             bins=[ (True , i*32 , ((i+1)*32)-1 ) for i in range(8)],
-    #             bins_labels=[(f"GPIOs Values 0x{(i*32):X} : 0x{(((i+1)*32)-1):X}") for i in range(8)],
-    #             rel=lambda val, b:  (val[0] == b[0]) and (b[1] <= val[1] <= b[2])
-    #         ))
+        return cov_points
 
-    #     return cov_points
     
     def get_gpios_value(self, tr):
         gpios_value = 0 

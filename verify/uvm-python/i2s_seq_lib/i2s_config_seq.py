@@ -23,9 +23,12 @@ class i2s_config_seq(bus_seq_base):
         # example for writing register by value == 5
         await self.send_reset()
         await self.send_req(is_write=True, reg="PR", data_condition=lambda data: 2 <= data <= 50)
+        await self.send_req(is_write=False, reg="PR")
         # config_reg = self.get_config_reg_val(channel="left", sign_extend=False, left_justify=True, sample_size=24)
         await self.send_req(is_write=True, reg="CFG", data_value=self.config_reg)
+        await self.send_req(is_write=False, reg="CFG")
         await self.send_req(is_write=True, reg="CTRL", data_value=self.ctrl_reg) 
+        await self.send_req(is_write=False, reg="CTRL")
 
     def set_config_reg(self, config_reg):
         self.config_reg = config_reg

@@ -61,7 +61,8 @@ class i2s_ref_model(ref_model):
             self.reset_ref_model()
             return
         if tr.kind == bus_item.WRITE:
-            self.regs.write_reg_value(tr.addr, tr.data)
+            self.regs.write_reg_value(tr.addr, tr.data, force_write=True)
+            uvm_info(self.tag, f"Writing to {tr.addr} {tr.data}", UVM_LOW)
             if tr.addr == self.regs.reg_name_to_address["CFG"]:
                 self.channels = self.regs.read_reg_value("CFG") & 0b11
                 self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
@@ -187,6 +188,8 @@ class i2s_ref_model(ref_model):
             try:
                 uvm_info(self.tag, f"Reading from rx fifo size = {self.fifo_rx.qsize()} {self.fifo_rx._queue}", UVM_LOW)
                 data = self.fifo_rx.get_nowait()
+                fifo_level = 0 if self.fifo_rx.qsize() == 16 else self.fifo_rx.qsize()
+                self.regs.write_reg_value("FIFOLEVEL", fifo_level, force_write=True)
                 if self.fifo_rx.empty():               # set empty flag if fifo is empty
                     self.ris_reg |= 0x1
                 return data
@@ -199,6 +202,8 @@ class i2s_ref_model(ref_model):
         try:
             self.fifo_rx.put_nowait(data)
             uvm_info(self.tag, f"Writing to fifo 0x{data:X} , fifo size = {self.fifo_rx.qsize()}", UVM_MEDIUM)
+            fifo_level = 0 if self.fifo_rx.qsize() == 16 else self.fifo_rx.qsize()
+            self.regs.write_reg_value("FIFOLEVEL", fifo_level, force_write=True)
         except asyncio.QueueFull:
             uvm_warning(self.tag, "writing to rx while fifo is full so ignore the value")
 

@@ -13,6 +13,7 @@ from EF_UVM.base_test import base_test
 import random
 
 # seqences import
+from EF_UVM.bus_env.bus_seq_lib.write_read_regs import write_read_regs
 from i2s_seq_lib.i2s_config_seq import i2s_config_seq
 from i2s_seq_lib.i2s_send_right_sample_seq import i2s_send_right_sample_seq
 from i2s_seq_lib.i2s_send_left_sample_seq import i2s_send_left_sample_seq
@@ -24,6 +25,7 @@ from i2s_seq_lib.i2s_write_im_seq import i2s_write_im_seq
 from i2s_seq_lib.i2s_write_ic_seq import i2s_write_ic_seq
 from i2s_seq_lib.i2s_read_mis_seq import i2s_read_mis_seq
 from i2s_seq_lib.i2s_send_nop_seq import i2s_send_nop_seq
+from i2s_seq_lib.i2s_read_fifo_level_seq import i2s_read_fifo_level_seq
 
 # override classes
 from EF_UVM.ip_env.ip_agent.ip_driver import ip_driver
@@ -128,10 +130,6 @@ class i2s_left_channel_test(i2s_base_test):
         super().__init__(name, parent=parent)
         self.tag = name
 
-    # def build_phase(self, phase):
-    #     super().build_phase(phase)
-    #     self.config_reg = self.get_config_reg_val(channel="left", sign_extend= False, left_justify=True, sample_size=24)
-
     async def main_phase(self, phase):
         uvm_info(self.tag, f"Starting test {self.__class__.__name__}", UVM_LOW)
         phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
@@ -140,6 +138,7 @@ class i2s_left_channel_test(i2s_base_test):
         bus_i2s_config_seq.set_ctrl_reg(0b011)          # enable i2s and enable fifo 
         ip_i2s_send_left_sample_seq = i2s_send_left_sample_seq("i2s_send_left_sample_seq")
         bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
+        bus_i2s_read_fifo_level_seq = i2s_read_fifo_level_seq("i2s_read_fifo_level_seq")
         # bus_i2s_read_rxdata_seq.set_check_on_threshold(True)
 
         for _ in range (20):
@@ -155,6 +154,7 @@ class i2s_left_channel_test(i2s_base_test):
 
             for i in range (random.randint(1, 16)):
                 await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
+                # await bus_i2s_read_fifo_level_seq.start(self.bus_sqr)
 
             
             await Timer(10000 , "ns")
@@ -308,7 +308,9 @@ class i2s_fifo_interrupts_test(i2s_base_test):
             for _ in range(10):
                 await bus_i2s_send_nop_seq.start(self.bus_sqr)
 
-            await bus_i2s_read_ris_seq.start(self.bus_sqr)  
+            await bus_i2s_read_ris_seq.start(self.bus_sqr) 
+            for _ in range(10):
+                await bus_i2s_send_nop_seq.start(self.bus_sqr) 
             bus_i2s_write_im_seq.set_im(0b10)                # read ris to check that it has the correct value  
             await bus_i2s_write_im_seq.start(self.bus_sqr)  # mask the interrupt
 
@@ -327,7 +329,7 @@ class i2s_fifo_interrupts_test(i2s_base_test):
             await bus_i2s_write_ic_seq.start(self.bus_sqr)  # clear the interrupt
             await bus_i2s_read_mis_seq.start(self.bus_sqr)  # reread mis to check that it was cleared 
 
-            await Timer(10000 , "ns")
+            # await Timer(1000 , "ns")
 
             ##### FIFO is full
             for _ in range (16 - threshold + 2):                                
@@ -337,6 +339,8 @@ class i2s_fifo_interrupts_test(i2s_base_test):
                 await bus_i2s_send_nop_seq.start(self.bus_sqr)
 
             await bus_i2s_read_ris_seq.start(self.bus_sqr)  # fifo should be empty at first so irq 1 should be fired
+            for _ in range(10):
+                await bus_i2s_send_nop_seq.start(self.bus_sqr)
             bus_i2s_write_im_seq.set_im(0b100)               # read ris to check that it has the correct value  
             await bus_i2s_write_im_seq.start(self.bus_sqr)  # mask the interrupt
             for _ in range(10):
@@ -352,9 +356,7 @@ class i2s_fifo_interrupts_test(i2s_base_test):
             bus_i2s_write_ic_seq.set_ic(0b100)
             await bus_i2s_write_ic_seq.start(self.bus_sqr)  # clear the interrupt
             await bus_i2s_read_mis_seq.start(self.bus_sqr)  # reread mis to check that it was cleared 
-
-
-            await Timer(10000 , "ns")
+            # await Timer(10000 , "ns")
 
         phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
 
@@ -400,13 +402,10 @@ class i2s_averaging_test(i2s_base_test):
 
         samples_expected_average = self.get_expected_avg_threshold(samples_list, 24)
         
-
-        # threshold = random.randint(0x0, 0xFFFFFFFF)                       # set a random value for the average threshold 
         bus_i2s_write_avgth_seq.set_average_threshold(samples_expected_average-1)
         await bus_i2s_write_avgth_seq.start(self.bus_sqr)      # write the fifo threshold register 
 
         
-        #### FIFO level above threshold 
         for i in range (32):
             ip_i2s_send_right_sample_seq.set_sample(samples_list[i])
             await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
@@ -443,7 +442,6 @@ class i2s_averaging_test(i2s_base_test):
         samples_expected_average = self.get_expected_avg_threshold(samples_list, 16)
         
 
-        # threshold = random.randint(0x0, 0xFFFFFFFF)                       # set a random value for the average threshold 
         bus_i2s_write_avgth_seq.set_average_threshold(samples_expected_average-1)
         await bus_i2s_write_avgth_seq.start(self.bus_sqr)      # write the fifo threshold register 
 
@@ -533,3 +531,19 @@ class i2s_averaging_test(i2s_base_test):
 
 
 uvm_component_utils(i2s_averaging_test)
+
+
+class WriteReadRegsTest(i2s_base_test):
+    def __init__(self, name="WriteReadRegsTest", parent=None):
+        super().__init__(name, parent)
+        self.tag = name
+
+    async def main_phase(self, phase):
+        uvm_info(self.tag, f"Starting test {self.__class__.__name__}", UVM_LOW)
+        phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
+        bus_seq = write_read_regs()
+        await bus_seq.start(self.bus_sqr)
+        phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
+
+
+uvm_component_utils(WriteReadRegsTest)

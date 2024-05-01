@@ -21,6 +21,7 @@ class i2s_write_fifoth_seq(bus_seq_base):
         await super().body()
         # await self.send_req(is_write=True, reg="icr", data_condition=lambda data: data == self.ic ) # set interrupt mask
         await self.send_req(is_write=True, reg="RXFIFOT"  ,data_value = self.threshold ) # set interrupt mask
+        await self.send_req(is_write=False, reg="RXFIFOT") # set interrupt mask
 
 
     def set_fifo_threshold (self, threshold):

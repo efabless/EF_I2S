@@ -24,8 +24,6 @@ class i2s_send_left_sample_seq(UVMSequence):
         # self.req.sample = self.get_random_sample()
         if self.sample is None:
             self.req.sample = random.randint(0x0, 0xFFFFFFFF)
-            if (random.choice([0,1])):
-                self.req.sample = 0xFFFFFFFF
         else:
              self.req.sample = self.sample
         await uvm_do(self, self.req)

@@ -1,1 +1,0 @@
-print (f"0x{(~0xC621F6B8  & 0xFFFFFFFF):X}")

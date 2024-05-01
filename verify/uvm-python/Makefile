@@ -1,9 +1,9 @@
 PLUSARGS += "+UVM_VERBOSITY=UVM_MEDUIM"
 TOPLEVEL := top
 MODULE   ?= top_module
-AHB_FILES ?= $(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_AHBL.pp.v
+AHB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_AHBL.pp.v
 APB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_APB.pp.v
-WB_FILES ?= ""
+WB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_WB.pp.v 
 HDL_FILES ?= $(PWD)/../../hdl/rtl/EF_I2S.pp.v
 VERILOG_SOURCES ?=  $(PWD)/top.v $(AHB_FILES) $(APB_FILES) $(WB_FILES) $(HDL_FILES)
 RTL_MACROS += "" # Add macros needed

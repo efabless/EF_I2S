@@ -46,6 +46,10 @@ ports:
     width: AW
     direction: input
     description: FIFO Threshold
+  - name: fifo_flush
+    width: 1
+    direction: input
+    description: FIFO Flush
   - name: fifo_full
     width: 1
     direction: output
@@ -145,27 +149,11 @@ registers:
     bit_access: no
     write_port: sck_prescaler
     description: The Prescaler register; used to determine the sck signal frequency . $Prescaler = clk_freq/(2 x sck_freq) - 1$.
-  - name: FIFOLEVEL
-    size: AW
-    mode: r
-    fifo: no
-    offset: 8
-    bit_access: no
-    read_port: fifo_level
-    description: The current receive FIFO level
-  - name: RXFIFOT
-    size: AW
-    mode: w
-    fifo: no
-    offset: 12
-    bit_access: no
-    write_port: fifo_level_threshold
-    description: The FIFO threshold
   - name: AVGT
     size: 32
     mode: w
     fifo: no
-    offset: 16
+    offset: 8
     bit_access: no
     write_port: avg_threshold
     description: The Average threshold
@@ -173,7 +161,7 @@ registers:
     size: 3
     mode: w
     fifo: no
-    offset: 20
+    offset: 12
     bit_access: no
     init: "'h0"
     description: "Control Register; 0:Enable, 1:FIFO Enable."
@@ -197,7 +185,7 @@ registers:
     size: 10
     mode: w
     fifo: no
-    offset: 24
+    offset: 16
     bit_access: no
     init: "'h3F08"
     description: "Configuration Register, 0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)"
@@ -238,9 +226,14 @@ flags:
     description: The avg is above the threshold.
 
 fifos:
-  - type: read  
-    width: 8
-    depth: 32 
+  - name: RX_FIFO
+    type: read  
+    width: DW
+    address_width: AW 
     register: RXDATA
     data_port: fifo_rdata
     control_port: fifo_rd
+    flush_enable: True
+    flush_port: fifo_flush
+    threshold_port: fifo_level_threshold
+    level_port: fifo_level

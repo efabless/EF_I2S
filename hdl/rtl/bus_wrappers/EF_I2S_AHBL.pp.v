@@ -22,64 +22,6 @@
 `timescale			1ns/1ps
 `default_nettype	none
 
-
-
-/*
-	Copyright 2020 AUCOHL
-
-    Author: Mohamed Shalan (mshalan@aucegypt.edu)
-	
-	Licensed under the Apache License, Version 2.0 (the "License"); 
-	you may not use this file except in compliance with the License. 
-	You may obtain a copy of the License at:
-
-	http://www.apache.org/licenses/LICENSE-2.0
-
-	Unless required by applicable law or agreed to in writing, software 
-	distributed under the License is distributed on an "AS IS" BASIS, 
-	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
-	See the License for the specific language governing permissions and 
-	limitations under the License.
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module EF_I2S_AHBL #( 
 	parameter	
 		DW = 32,
@@ -97,30 +39,36 @@ module EF_I2S_AHBL #(
                                         output wire [31:0]  HRDATA,
                                         output wire         IRQ
 ,
-	output	[0:0]	ws,
-	output	[0:0]	sck,
-	input	[0:0]	sdi
+	output	[1-1:0]	ws,
+	output	[1-1:0]	sck,
+	input	[1-1:0]	sdi
 );
 
 	localparam	RXDATA_REG_OFFSET = 16'd0;
 	localparam	PR_REG_OFFSET = 16'd4;
-	localparam	FIFOLEVEL_REG_OFFSET = 16'd8;
-	localparam	RXFIFOT_REG_OFFSET = 16'd12;
-	localparam	AVGT_REG_OFFSET = 16'd16;
-	localparam	CTRL_REG_OFFSET = 16'd20;
-	localparam	CFG_REG_OFFSET = 16'd24;
+	localparam	AVGT_REG_OFFSET = 16'd8;
+	localparam	CTRL_REG_OFFSET = 16'd12;
+	localparam	CFG_REG_OFFSET = 16'd16;
 	localparam	IM_REG_OFFSET = 16'd3840;
 	localparam	MIS_REG_OFFSET = 16'd3844;
 	localparam	RIS_REG_OFFSET = 16'd3848;
 	localparam	IC_REG_OFFSET = 16'd3852;
+	localparam	RX_FIFO_FLUSH_REG_OFFSET = 16'd4096;
+	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = 16'd4100;
+	localparam	RX_FIFO_LEVEL_REG_OFFSET = 16'd4104;
 
 	wire		clk = HCLK;
 	wire		rst_n = HRESETn;
 
 
 	reg  last_HSEL, last_HWRITE; reg [31:0] last_HADDR; reg [1:0] last_HTRANS;
-                                        always@ (posedge HCLK) begin
-                                            if(HREADY) begin
+                                        always@ (posedge HCLK or negedge HRESETn) begin
+					   if(~HRESETn) begin
+					       last_HSEL       <= 1'b0;
+					       last_HADDR      <= 1'b0;
+					       last_HWRITE     <= 1'b0;
+					       last_HTRANS     <= 1'b0;
+				            end else if(HREADY) begin
                                                 last_HSEL       <= HSEL;
                                                 last_HADDR      <= HADDR;
                                                 last_HWRITE     <= HWRITE;
@@ -134,6 +82,7 @@ module EF_I2S_AHBL #(
 	wire [1-1:0]	fifo_en;
 	wire [1-1:0]	fifo_rd;
 	wire [AW-1:0]	fifo_level_threshold;
+	wire [1-1:0]	fifo_flush;
 	wire [1-1:0]	fifo_full;
 	wire [1-1:0]	fifo_empty;
 	wire [AW-1:0]	fifo_level;
@@ -149,30 +98,40 @@ module EF_I2S_AHBL #(
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
 
+	// FIFO Registers
+	// RX_FIFO Registers
+	reg	[AW-1:0]	RX_FIFO_THRESHOLD_REG;
+	assign		fifo_level_threshold = RX_FIFO_THRESHOLD_REG;
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) RX_FIFO_THRESHOLD_REG <= 0;
+                                        else if(ahbl_we & (last_HADDR[16-1:0]==RX_FIFO_THRESHOLD_REG_OFFSET))
+                                            RX_FIFO_THRESHOLD_REG <= HWDATA[AW-1:0];
+	wire	[AW-1:0]	RX_FIFO_LEVEL_REG;
+	assign		RX_FIFO_LEVEL_REG = fifo_level;
+	reg		RX_FIFO_FLUSH_REG;
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) RX_FIFO_FLUSH_REG <= 0;
+                                                else if(ahbl_we & (last_HADDR[16-1:0]==RX_FIFO_FLUSH_REG_OFFSET))
+                                                    RX_FIFO_FLUSH_REG <= HWDATA[1-1:0];
+                                                else
+                                                    RX_FIFO_FLUSH_REG <= 'd0;
+	assign		fifo_flush = RX_FIFO_FLUSH_REG;
+
+
+	// Register Definitions
 	wire	[32-1:0]	RXDATA_WIRE;
 
-	reg [8-1:0]	PR_REG;
+	reg [7:0]	PR_REG;
 	assign	sck_prescaler = PR_REG;
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) PR_REG <= 0;
                                         else if(ahbl_we & (last_HADDR[16-1:0]==PR_REG_OFFSET))
                                             PR_REG <= HWDATA[8-1:0];
 
-	wire [AW-1:0]	FIFOLEVEL_WIRE;
-	assign	FIFOLEVEL_WIRE = fifo_level;
-
-	reg [AW-1:0]	RXFIFOT_REG;
-	assign	fifo_level_threshold = RXFIFOT_REG;
-	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) RXFIFOT_REG <= 0;
-                                        else if(ahbl_we & (last_HADDR[16-1:0]==RXFIFOT_REG_OFFSET))
-                                            RXFIFOT_REG <= HWDATA[AW-1:0];
-
-	reg [32-1:0]	AVGT_REG;
+	reg [31:0]	AVGT_REG;
 	assign	avg_threshold = AVGT_REG;
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) AVGT_REG <= 0;
                                         else if(ahbl_we & (last_HADDR[16-1:0]==AVGT_REG_OFFSET))
                                             AVGT_REG <= HWDATA[32-1:0];
 
-	reg [3-1:0]	CTRL_REG;
+	reg [2:0]	CTRL_REG;
 	assign	en	=	CTRL_REG[0 : 0];
 	assign	fifo_en	=	CTRL_REG[1 : 1];
 	assign	avg_en	=	CTRL_REG[2 : 2];
@@ -180,7 +139,7 @@ module EF_I2S_AHBL #(
                                         else if(ahbl_we & (last_HADDR[16-1:0]==CTRL_REG_OFFSET))
                                             CTRL_REG <= HWDATA[3-1:0];
 
-	reg [10-1:0]	CFG_REG;
+	reg [9:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
@@ -246,6 +205,7 @@ module EF_I2S_AHBL #(
 		.fifo_en(fifo_en),
 		.fifo_rd(fifo_rd),
 		.fifo_level_threshold(fifo_level_threshold),
+		.fifo_flush(fifo_flush),
 		.fifo_full(fifo_full),
 		.fifo_empty(fifo_empty),
 		.fifo_level(fifo_level),
@@ -268,8 +228,6 @@ module EF_I2S_AHBL #(
 	assign	HRDATA = 
 			(last_HADDR[16-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
 			(last_HADDR[16-1:0] == PR_REG_OFFSET)	? PR_REG :
-			(last_HADDR[16-1:0] == FIFOLEVEL_REG_OFFSET)	? FIFOLEVEL_WIRE :
-			(last_HADDR[16-1:0] == RXFIFOT_REG_OFFSET)	? RXFIFOT_REG :
 			(last_HADDR[16-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
 			(last_HADDR[16-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
 			(last_HADDR[16-1:0] == CFG_REG_OFFSET)	? CFG_REG :
@@ -277,6 +235,9 @@ module EF_I2S_AHBL #(
 			(last_HADDR[16-1:0] == MIS_REG_OFFSET)	? MIS_REG :
 			(last_HADDR[16-1:0] == RIS_REG_OFFSET)	? RIS_REG :
 			(last_HADDR[16-1:0] == IC_REG_OFFSET)	? IC_REG :
+			(last_HADDR[16-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_REG :
+			(last_HADDR[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
+			(last_HADDR[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
 			32'hDEADBEEF;
 
 	assign	HREADYOUT = 1'b1;

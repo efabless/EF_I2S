@@ -32,22 +32,23 @@ module EF_I2S_AHBL #(
 		AW = 4
 ) (
 	`AHBL_SLAVE_PORTS,
-	output	[0:0]	ws,
-	output	[0:0]	sck,
-	input	[0:0]	sdi
+	output	[1-1:0]	ws,
+	output	[1-1:0]	sck,
+	input	[1-1:0]	sdi
 );
 
 	localparam	RXDATA_REG_OFFSET = `AHBL_AW'd0;
 	localparam	PR_REG_OFFSET = `AHBL_AW'd4;
-	localparam	FIFOLEVEL_REG_OFFSET = `AHBL_AW'd8;
-	localparam	RXFIFOT_REG_OFFSET = `AHBL_AW'd12;
-	localparam	AVGT_REG_OFFSET = `AHBL_AW'd16;
-	localparam	CTRL_REG_OFFSET = `AHBL_AW'd20;
-	localparam	CFG_REG_OFFSET = `AHBL_AW'd24;
+	localparam	AVGT_REG_OFFSET = `AHBL_AW'd8;
+	localparam	CTRL_REG_OFFSET = `AHBL_AW'd12;
+	localparam	CFG_REG_OFFSET = `AHBL_AW'd16;
 	localparam	IM_REG_OFFSET = `AHBL_AW'd3840;
 	localparam	MIS_REG_OFFSET = `AHBL_AW'd3844;
 	localparam	RIS_REG_OFFSET = `AHBL_AW'd3848;
 	localparam	IC_REG_OFFSET = `AHBL_AW'd3852;
+	localparam	RX_FIFO_FLUSH_REG_OFFSET = `AHBL_AW'd4096;
+	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = `AHBL_AW'd4100;
+	localparam	RX_FIFO_LEVEL_REG_OFFSET = `AHBL_AW'd4104;
 
 	wire		clk = HCLK;
 	wire		rst_n = HRESETn;
@@ -58,6 +59,7 @@ module EF_I2S_AHBL #(
 	wire [1-1:0]	fifo_en;
 	wire [1-1:0]	fifo_rd;
 	wire [AW-1:0]	fifo_level_threshold;
+	wire [1-1:0]	fifo_flush;
 	wire [1-1:0]	fifo_full;
 	wire [1-1:0]	fifo_empty;
 	wire [AW-1:0]	fifo_level;
@@ -73,30 +75,36 @@ module EF_I2S_AHBL #(
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
 
+	// FIFO Registers
+	// RX_FIFO Registers
+	reg	[AW-1:0]	RX_FIFO_THRESHOLD_REG;
+	assign		fifo_level_threshold = RX_FIFO_THRESHOLD_REG;
+	`AHBL_REG(RX_FIFO_THRESHOLD_REG, 0, AW)
+	wire	[AW-1:0]	RX_FIFO_LEVEL_REG;
+	assign		RX_FIFO_LEVEL_REG = fifo_level;
+	reg		RX_FIFO_FLUSH_REG;
+	`AHBL_AUTO_CLR_REG(RX_FIFO_FLUSH_REG, 0, 1)
+	assign		fifo_flush = RX_FIFO_FLUSH_REG;
+
+
+	// Register Definitions
 	wire	[32-1:0]	RXDATA_WIRE;
 
-	reg [8-1:0]	PR_REG;
+	reg [7:0]	PR_REG;
 	assign	sck_prescaler = PR_REG;
 	`AHBL_REG(PR_REG, 0, 8)
 
-	wire [AW-1:0]	FIFOLEVEL_WIRE;
-	assign	FIFOLEVEL_WIRE = fifo_level;
-
-	reg [AW-1:0]	RXFIFOT_REG;
-	assign	fifo_level_threshold = RXFIFOT_REG;
-	`AHBL_REG(RXFIFOT_REG, 0, AW)
-
-	reg [32-1:0]	AVGT_REG;
+	reg [31:0]	AVGT_REG;
 	assign	avg_threshold = AVGT_REG;
 	`AHBL_REG(AVGT_REG, 0, 32)
 
-	reg [3-1:0]	CTRL_REG;
+	reg [2:0]	CTRL_REG;
 	assign	en	=	CTRL_REG[0 : 0];
 	assign	fifo_en	=	CTRL_REG[1 : 1];
 	assign	avg_en	=	CTRL_REG[2 : 2];
 	`AHBL_REG(CTRL_REG, 'h0, 3)
 
-	reg [10-1:0]	CFG_REG;
+	reg [9:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
@@ -155,6 +163,7 @@ module EF_I2S_AHBL #(
 		.fifo_en(fifo_en),
 		.fifo_rd(fifo_rd),
 		.fifo_level_threshold(fifo_level_threshold),
+		.fifo_flush(fifo_flush),
 		.fifo_full(fifo_full),
 		.fifo_empty(fifo_empty),
 		.fifo_level(fifo_level),
@@ -177,8 +186,6 @@ module EF_I2S_AHBL #(
 	assign	HRDATA = 
 			(last_HADDR[`AHBL_AW-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
 			(last_HADDR[`AHBL_AW-1:0] == PR_REG_OFFSET)	? PR_REG :
-			(last_HADDR[`AHBL_AW-1:0] == FIFOLEVEL_REG_OFFSET)	? FIFOLEVEL_WIRE :
-			(last_HADDR[`AHBL_AW-1:0] == RXFIFOT_REG_OFFSET)	? RXFIFOT_REG :
 			(last_HADDR[`AHBL_AW-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
 			(last_HADDR[`AHBL_AW-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
 			(last_HADDR[`AHBL_AW-1:0] == CFG_REG_OFFSET)	? CFG_REG :
@@ -186,6 +193,9 @@ module EF_I2S_AHBL #(
 			(last_HADDR[`AHBL_AW-1:0] == MIS_REG_OFFSET)	? MIS_REG :
 			(last_HADDR[`AHBL_AW-1:0] == RIS_REG_OFFSET)	? RIS_REG :
 			(last_HADDR[`AHBL_AW-1:0] == IC_REG_OFFSET)	? IC_REG :
+			(last_HADDR[`AHBL_AW-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_REG :
+			(last_HADDR[`AHBL_AW-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
+			(last_HADDR[`AHBL_AW-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
 			32'hDEADBEEF;
 
 	assign	HREADYOUT = 1'b1;

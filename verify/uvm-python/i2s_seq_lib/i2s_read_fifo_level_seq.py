@@ -18,7 +18,7 @@ class i2s_read_fifo_level_seq(bus_seq_base):
 
     async def body(self):
         await super().body()
-        await self.send_req(is_write=False, reg="FIFOLEVEL") # set interrupt mask
+        await self.send_req(is_write=False, reg="RX_FIFO_LEVEL") # set interrupt mask
 
 
 uvm_object_utils(i2s_read_fifo_level_seq)

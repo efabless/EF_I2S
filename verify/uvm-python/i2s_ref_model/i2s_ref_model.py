@@ -39,6 +39,7 @@ class i2s_ref_model(ref_model):
         self.irq = 0
         self.mis_changed = Event()
         self.icr_changed = Event()
+        
 
     def build_phase(self, phase):
         super().build_phase(phase)
@@ -98,10 +99,10 @@ class i2s_ref_model(ref_model):
         
         self.regs.write_reg_value("RXDATA", 0, force_write=True)  # clear icr register
         self.regs.write_reg_value("PR", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("FIFOLEVEL", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("RX_FIFO_LEVEL", 0, force_write=True)  # clear icr register
         self.regs.write_reg_value("AVGT", 0, force_write=True)  # clear icr register
         self.regs.write_reg_value("CTRL", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("CFG", 0, force_write=True)  # clear icr register
+        self.regs.write_reg_value("CFG", 0x308, force_write=True)  # clear icr register
         self.regs.write_reg_value("ris", 0, force_write=True)  # clear icr register
         self.regs.write_reg_value("mis", 0, force_write=True)  # clear icr register
         self.regs.write_reg_value("icr", 0, force_write=True)  # clear icr register
@@ -124,8 +125,8 @@ class i2s_ref_model(ref_model):
         # if not self.left_justified:
         #     left_sample = left_sample << 1
         #     right_sample = right_sample << 1
-
-        sample = sample >> (32 - sample_size)
+        if sample_size <= 32:
+            sample = sample >> (32 - sample_size)
 
         uvm_info(self.tag, f"sample after adjusting size = 0x{sample:X}", UVM_LOW)
 
@@ -189,7 +190,7 @@ class i2s_ref_model(ref_model):
                 uvm_info(self.tag, f"Reading from rx fifo size = {self.fifo_rx.qsize()} {self.fifo_rx._queue}", UVM_LOW)
                 data = self.fifo_rx.get_nowait()
                 fifo_level = 0 if self.fifo_rx.qsize() == 16 else self.fifo_rx.qsize()
-                self.regs.write_reg_value("FIFOLEVEL", fifo_level, force_write=True)
+                self.regs.write_reg_value("RX_FIFO_LEVEL", fifo_level, force_write=True)
                 if self.fifo_rx.empty():               # set empty flag if fifo is empty
                     self.ris_reg |= 0x1
                 return data
@@ -203,13 +204,13 @@ class i2s_ref_model(ref_model):
             self.fifo_rx.put_nowait(data)
             uvm_info(self.tag, f"Writing to fifo 0x{data:X} , fifo size = {self.fifo_rx.qsize()}", UVM_MEDIUM)
             fifo_level = 0 if self.fifo_rx.qsize() == 16 else self.fifo_rx.qsize()
-            self.regs.write_reg_value("FIFOLEVEL", fifo_level, force_write=True)
+            self.regs.write_reg_value("RX_FIFO_LEVEL", fifo_level, force_write=True)
         except asyncio.QueueFull:
             uvm_warning(self.tag, "writing to rx while fifo is full so ignore the value")
 
 
     def set_ris_reg(self):                  
-        rx_fifo_threshold = self.regs.read_reg_value("RXFIFOT")
+        rx_fifo_threshold = self.regs.read_reg_value("RX_FIFO_THRESHOLD")
         avg_enable = (self.regs.read_reg_value("CTRL") & 0b100) >> 2
         avg_threshold = self.regs.read_reg_value("AVGT")
 

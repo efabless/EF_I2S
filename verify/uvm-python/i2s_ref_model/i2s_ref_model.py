@@ -69,6 +69,10 @@ class i2s_ref_model(ref_model):
                 self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
             if tr.addr == self.regs.reg_name_to_address["icr"] and tr.data != 0:
                 self.icr_changed.set()
+            if tr.addr == self.regs.reg_name_to_address["RX_FIFO_FLUSH"] and tr.data != 0:
+                while not self.fifo_rx.empty():    # flush the fifo 
+                    _ = self.fifo_rx.get_nowait()  
+                # self.regs.write_reg_value("RX_FIFO_FLUSH", 0 ,force_write=True)
             self.bus_bus_export.write(tr)
         elif tr.kind == bus_item.READ:
             data = self.read_register(tr.addr)
@@ -129,8 +133,11 @@ class i2s_ref_model(ref_model):
             sample = sample >> (32 - sample_size)
 
         uvm_info(self.tag, f"sample after adjusting size = 0x{sample:X}", UVM_LOW)
-
-        sign_bit = (sample >> (sample_size-1)) & 0b1
+        
+        if sample_size >= 1:
+            sign_bit = (sample >> (sample_size-1)) & 0b1
+        else:
+            sign_bit = 0
         if sign_extend:
             if (sign_bit):
                 # sign_extension = (((1 << sample_size) - 1) << sample_size) & 0xFFFFFFFF
@@ -243,20 +250,7 @@ class i2s_ref_model(ref_model):
             self.icr_changed.clear()
     
     def update_interrupt_regs(self):
-        # old_ris = self.regs.read_reg_value("ris")
-        # if old_ris & 0b010 != self.ris_reg & 0b010 or old_ris & 0b100 != self.ris_reg & 0b100:
-        #     self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=2)
-        #     uvm_info (self.tag, "write ris with delay two cycles", UVM_LOW)
-        # else:
-        #     self.regs.write_reg_value("ris", self.ris_reg, force_write=True)
-        # old_ris = self.regs.read_reg_value("ris")
-        # if old_ris & 0b100 != self.ris_reg & 0b100:
-        #     self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=3)
-        #     uvm_info (self.tag, "write ris with delay two cycles", UVM_LOW)
-        # else:
         self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=2)
-        # self.regs.write_reg_value_after("ris", self.ris_reg, force_write=True, cycles=2)
-        # self.regs.write_reg_value("ris", self.ris_reg, force_write=True)
         im_reg = self.regs.read_reg_value("im")
         mis_reg_new = self.ris_reg & im_reg
         uvm_info(self.tag, f" Update interrupts :  im =  {im_reg:X}, ris =  {self.ris_reg:X}, mis = {mis_reg_new:X}", UVM_LOW)

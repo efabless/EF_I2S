@@ -22,22 +22,23 @@
 `timescale			1ns/1ps
 `default_nettype	none
 
-module EF_I2S_APB #( 
+module EF_I2S_WB #( 
 	parameter	
 		DW = 32,
 		AW = 4
 ) (
-	input wire          PCLK,
-                                        input wire          PRESETn,
-                                        input wire          PWRITE,
-                                        input wire [31:0]   PWDATA,
-                                        input wire [31:0]   PADDR,
-                                        input wire          PENABLE,
-                                        input wire          PSEL,
-                                        output wire         PREADY,
-                                        output wire [31:0]  PRDATA,
-                                        output wire         IRQ
-,
+	input   wire            ext_clk,
+                                        input   wire            clk_i,
+                                        input   wire            rst_i,
+                                        input   wire [31:0]     adr_i,
+                                        input   wire [31:0]     dat_i,
+                                        output  wire [31:0]     dat_o,
+                                        input   wire [3:0]      sel_i,
+                                        input   wire            cyc_i,
+                                        input   wire            stb_i,
+                                        output  reg             ack_o,
+                                        input   wire            we_i,
+                                        output  wire            IRQ,
 	output	[1-1:0]	ws,
 	output	[1-1:0]	sck,
 	input	[1-1:0]	sdi
@@ -56,13 +57,14 @@ module EF_I2S_APB #(
 	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = 16'd4100;
 	localparam	RX_FIFO_LEVEL_REG_OFFSET = 16'd4104;
 
-	wire		clk = PCLK;
-	wire		rst_n = PRESETn;
+	wire		clk = clk_i;
+	wire		rst_n = (~rst_i);
 
 
-	wire		apb_valid   = PSEL & PENABLE;
-                                        wire		apb_we	    = PWRITE & apb_valid;
-                                        wire		apb_re	    = ~PWRITE & apb_valid;
+	wire            wb_valid    = cyc_i & stb_i;
+                                        wire            wb_we       = we_i & wb_valid;
+                                        wire            wb_re       = ~we_i & wb_valid;
+                                        wire[3:0]       wb_byte_sel = sel_i & {4{wb_we}};
 
 	wire [1-1:0]	fifo_en;
 	wire [1-1:0]	fifo_rd;
@@ -87,17 +89,11 @@ module EF_I2S_APB #(
 	// RX_FIFO Registers
 	reg	[AW-1:0]	RX_FIFO_THRESHOLD_REG;
 	assign		fifo_level_threshold = RX_FIFO_THRESHOLD_REG;
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RX_FIFO_THRESHOLD_REG <= 0;
-                                        else if(apb_we & (PADDR[16-1:0]==RX_FIFO_THRESHOLD_REG_OFFSET))
-                                            RX_FIFO_THRESHOLD_REG <= PWDATA[AW-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) RX_FIFO_THRESHOLD_REG <= 0; else if(wb_we & (adr_i[16-1:0]==RX_FIFO_THRESHOLD_REG_OFFSET)) RX_FIFO_THRESHOLD_REG <= dat_i[AW-1:0];
 	wire	[AW-1:0]	RX_FIFO_LEVEL_REG;
 	assign		RX_FIFO_LEVEL_REG = fifo_level;
 	reg		RX_FIFO_FLUSH_REG;
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RX_FIFO_FLUSH_REG <= 0;
-                                                else if(apb_we & (PADDR[16-1:0]==RX_FIFO_FLUSH_REG_OFFSET))
-                                                    RX_FIFO_FLUSH_REG <= PWDATA[1-1:0];
-                                                else
-                                                    RX_FIFO_FLUSH_REG <= 'b0;
+	always @(posedge clk_i or posedge rst_i) if(rst_i) RX_FIFO_FLUSH_REG <= 0; else if(wb_we & (adr_i[16-1:0]==RX_FIFO_FLUSH_REG_OFFSET)) RX_FIFO_FLUSH_REG <= dat_i[1-1:0]; else RX_FIFO_FLUSH_REG <= 'b0;
 	assign		fifo_flush = RX_FIFO_FLUSH_REG;
 
 
@@ -106,44 +102,34 @@ module EF_I2S_APB #(
 
 	reg [7:0]	PR_REG;
 	assign	sck_prescaler = PR_REG;
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) PR_REG <= 0;
-                                        else if(apb_we & (PADDR[16-1:0]==PR_REG_OFFSET))
-                                            PR_REG <= PWDATA[8-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) PR_REG <= 0; else if(wb_we & (adr_i[16-1:0]==PR_REG_OFFSET)) PR_REG <= dat_i[8-1:0];
 
 	reg [31:0]	AVGT_REG;
 	assign	avg_threshold = AVGT_REG;
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) AVGT_REG <= 0;
-                                        else if(apb_we & (PADDR[16-1:0]==AVGT_REG_OFFSET))
-                                            AVGT_REG <= PWDATA[32-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) AVGT_REG <= 0; else if(wb_we & (adr_i[16-1:0]==AVGT_REG_OFFSET)) AVGT_REG <= dat_i[32-1:0];
 
 	reg [2:0]	CTRL_REG;
 	assign	en	=	CTRL_REG[0 : 0];
 	assign	fifo_en	=	CTRL_REG[1 : 1];
 	assign	avg_en	=	CTRL_REG[2 : 2];
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CTRL_REG <= 'h0;
-                                        else if(apb_we & (PADDR[16-1:0]==CTRL_REG_OFFSET))
-                                            CTRL_REG <= PWDATA[3-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) CTRL_REG <= 'h0; else if(wb_we & (adr_i[16-1:0]==CTRL_REG_OFFSET)) CTRL_REG <= dat_i[3-1:0];
 
 	reg [9:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CFG_REG <= 'h3F08;
-                                        else if(apb_we & (PADDR[16-1:0]==CFG_REG_OFFSET))
-                                            CFG_REG <= PWDATA[10-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) CFG_REG <= 'h3F08; else if(wb_we & (adr_i[16-1:0]==CFG_REG_OFFSET)) CFG_REG <= dat_i[10-1:0];
 
 	reg [3:0] IM_REG;
 	reg [3:0] IC_REG;
 	reg [3:0] RIS_REG;
 
 	wire[4-1:0]      MIS_REG	= RIS_REG & IM_REG;
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) IM_REG <= 0;
-                                        else if(apb_we & (PADDR[16-1:0]==IM_REG_OFFSET))
-                                            IM_REG <= PWDATA[4-1:0];
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) IC_REG <= 4'b0;
-                                        else if(apb_we & (PADDR[16-1:0]==IC_REG_OFFSET))
-                                            IC_REG <= PWDATA[4-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) IM_REG <= 0; else if(wb_we & (adr_i[16-1:0]==IM_REG_OFFSET)) IM_REG <= dat_i[4-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) IC_REG <= 4'b0;
+                                        else if(wb_we & (adr_i[16-1:0]==IC_REG_OFFSET))
+                                            IC_REG <= dat_i[4-1:0];
                                         else
                                             IC_REG <= 4'd0;
 
@@ -154,7 +140,7 @@ module EF_I2S_APB #(
 
 
 	integer _i_;
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RIS_REG <= 0; else begin
+	always @(posedge clk_i or posedge rst_i) if(rst_i) RIS_REG <= 0; else begin
 		for(_i_ = 0; _i_ < 1; _i_ = _i_ + 1) begin
 			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(FIFOE[_i_ - 0] == 1'b1) RIS_REG[_i_] <= 1'b1;
 		end
@@ -173,8 +159,8 @@ module EF_I2S_APB #(
 
 	reg [0:0]	_sdi_reg_[1:0];
 	wire		_sdi_w_ = _sdi_reg_[1];
-	always@(posedge PCLK or negedge PRESETn)
-		if(PRESETn == 0) begin
+	always@(posedge clk_i or posedge rst_i)
+		if(rst_i == 1) begin
 			_sdi_reg_[0] <= 'b0;
 			_sdi_reg_[1] <= 'b0;
 		end
@@ -211,23 +197,28 @@ module EF_I2S_APB #(
 		.sdi(_sdi_w_)
 	);
 
-	assign	PRDATA = 
-			(PADDR[16-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
-			(PADDR[16-1:0] == PR_REG_OFFSET)	? PR_REG :
-			(PADDR[16-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
-			(PADDR[16-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
-			(PADDR[16-1:0] == CFG_REG_OFFSET)	? CFG_REG :
-			(PADDR[16-1:0] == IM_REG_OFFSET)	? IM_REG :
-			(PADDR[16-1:0] == MIS_REG_OFFSET)	? MIS_REG :
-			(PADDR[16-1:0] == RIS_REG_OFFSET)	? RIS_REG :
-			(PADDR[16-1:0] == IC_REG_OFFSET)	? IC_REG :
-			(PADDR[16-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_REG :
-			(PADDR[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
-			(PADDR[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
+	assign	dat_o = 
+			(adr_i[16-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
+			(adr_i[16-1:0] == PR_REG_OFFSET)	? PR_REG :
+			(adr_i[16-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
+			(adr_i[16-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
+			(adr_i[16-1:0] == CFG_REG_OFFSET)	? CFG_REG :
+			(adr_i[16-1:0] == IM_REG_OFFSET)	? IM_REG :
+			(adr_i[16-1:0] == MIS_REG_OFFSET)	? MIS_REG :
+			(adr_i[16-1:0] == RIS_REG_OFFSET)	? RIS_REG :
+			(adr_i[16-1:0] == IC_REG_OFFSET)	? IC_REG :
+			(adr_i[16-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_REG :
+			(adr_i[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
+			(adr_i[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
 			32'hDEADBEEF;
 
-	assign	PREADY = 1'b1;
-
+	always @ (posedge clk_i or posedge rst_i)
+		if(rst_i)
+			ack_o <= 1'b0;
+		else if(wb_valid & ~ack_o)
+			ack_o <= 1'b1;
+		else
+			ack_o <= 1'b0;
 	assign	RXDATA_WIRE = fifo_rdata;
-	assign	fifo_rd = (apb_re & (PADDR[16-1:0] == RXDATA_REG_OFFSET));
+	assign	fifo_rd =  ack_o & (wb_re & (adr_i[16-1:0] == RXDATA_REG_OFFSET));
 endmodule

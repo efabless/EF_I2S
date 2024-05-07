@@ -18,11 +18,19 @@ info:
     - generic
   type": soft
   status: verified
-  cell_count: "2661"
+  cell_count:
+    - IP: TBD
+    - APB: TBD
+    - AHBL: TBD
+    - WB: TBD
   width": "0.0"
   height": "0.0"
   technology: n/a
-  clock_freq_mhz: "10"
+  clock_freq_mhz:
+    - IP: TBD
+    - APB: TBD
+    - AHBL: TBD
+    - WB: TBD
   digital_supply_voltage: n/a
   analog_supply_voltage: n/a
 

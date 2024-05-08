@@ -37,19 +37,18 @@ module EF_I2S_WB #(
 	input	[1-1:0]	sdi
 );
 
-	localparam	RXDATA_REG_OFFSET = `WB_AW'd0;
-	localparam	PR_REG_OFFSET = `WB_AW'd4;
-	localparam	AVGT_REG_OFFSET = `WB_AW'd8;
-	localparam	CTRL_REG_OFFSET = `WB_AW'd12;
-	localparam	CFG_REG_OFFSET = `WB_AW'd16;
-	localparam	IM_REG_OFFSET = `WB_AW'd3840;
-	localparam	MIS_REG_OFFSET = `WB_AW'd3844;
-	localparam	RIS_REG_OFFSET = `WB_AW'd3848;
-	localparam	IC_REG_OFFSET = `WB_AW'd3852;
-	localparam	RX_FIFO_FLUSH_REG_OFFSET = `WB_AW'd4096;
-	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = `WB_AW'd4100;
-	localparam	RX_FIFO_LEVEL_REG_OFFSET = `WB_AW'd4104;
-
+	localparam	RXDATA_REG_OFFSET = `WB_AW'h0000;
+	localparam	PR_REG_OFFSET = `WB_AW'h0004;
+	localparam	AVGT_REG_OFFSET = `WB_AW'h0008;
+	localparam	CTRL_REG_OFFSET = `WB_AW'h000C;
+	localparam	CFG_REG_OFFSET = `WB_AW'h0010;
+	localparam	RX_FIFO_LEVEL_REG_OFFSET = `WB_AW'hFE00;
+	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = `WB_AW'hFE04;
+	localparam	RX_FIFO_FLUSH_REG_OFFSET = `WB_AW'hFE08;
+	localparam	IM_REG_OFFSET = `WB_AW'hFF00;
+	localparam	MIS_REG_OFFSET = `WB_AW'hFF04;
+	localparam	RIS_REG_OFFSET = `WB_AW'hFF08;
+	localparam	IC_REG_OFFSET = `WB_AW'hFF0C;
 	wire		clk = clk_i;
 	wire		rst_n = (~rst_i);
 
@@ -75,18 +74,6 @@ module EF_I2S_WB #(
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
 
-	// FIFO Registers
-	// RX_FIFO Registers
-	reg	[AW-1:0]	RX_FIFO_THRESHOLD_REG;
-	assign		fifo_level_threshold = RX_FIFO_THRESHOLD_REG;
-	`WB_REG(RX_FIFO_THRESHOLD_REG, 0, AW)
-	wire	[AW-1:0]	RX_FIFO_LEVEL_REG;
-	assign		RX_FIFO_LEVEL_REG = fifo_level;
-	reg		RX_FIFO_FLUSH_REG;
-	`WB_AUTO_CLR_REG(RX_FIFO_FLUSH_REG, 0, 1)
-	assign		fifo_flush = RX_FIFO_FLUSH_REG;
-
-
 	// Register Definitions
 	wire	[32-1:0]	RXDATA_WIRE;
 
@@ -110,6 +97,17 @@ module EF_I2S_WB #(
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
 	`WB_REG(CFG_REG, 'h3F08, 10)
+
+	wire [AW-1:0]	RX_FIFO_LEVEL_WIRE;
+	assign	RX_FIFO_LEVEL_WIRE[(AW - 1) : 0] = fifo_level;
+
+	reg [0:0]	RX_FIFO_THRESHOLD_REG;
+	assign	fifo_level_threshold	=	RX_FIFO_THRESHOLD_REG[0 : 0];
+	`WB_REG(RX_FIFO_THRESHOLD_REG, 0, 1)
+
+	reg [0:0]	RX_FIFO_FLUSH_REG;
+	assign	fifo_flush	=	RX_FIFO_FLUSH_REG[0 : 0];
+	`WB_REG_AC(RX_FIFO_FLUSH_REG, 0, 1, 1'h0)
 
 	reg [3:0] IM_REG;
 	reg [3:0] IC_REG;
@@ -189,13 +187,13 @@ module EF_I2S_WB #(
 			(adr_i[`WB_AW-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
 			(adr_i[`WB_AW-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
 			(adr_i[`WB_AW-1:0] == CFG_REG_OFFSET)	? CFG_REG :
+			(adr_i[`WB_AW-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_WIRE :
+			(adr_i[`WB_AW-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
+			(adr_i[`WB_AW-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
 			(adr_i[`WB_AW-1:0] == IM_REG_OFFSET)	? IM_REG :
 			(adr_i[`WB_AW-1:0] == MIS_REG_OFFSET)	? MIS_REG :
 			(adr_i[`WB_AW-1:0] == RIS_REG_OFFSET)	? RIS_REG :
 			(adr_i[`WB_AW-1:0] == IC_REG_OFFSET)	? IC_REG :
-			(adr_i[`WB_AW-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_REG :
-			(adr_i[`WB_AW-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
-			(adr_i[`WB_AW-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
 			32'hDEADBEEF;
 
 	always @ (posedge clk_i or posedge rst_i)

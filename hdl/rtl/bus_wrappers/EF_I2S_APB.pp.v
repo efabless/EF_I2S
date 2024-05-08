@@ -22,6 +22,67 @@
 `timescale			1ns/1ps
 `default_nettype	none
 
+
+
+/*
+	Copyright 2020 AUCOHL
+
+    Author: Mohamed Shalan (mshalan@aucegypt.edu)
+	
+	Licensed under the Apache License, Version 2.0 (the "License"); 
+	you may not use this file except in compliance with the License. 
+	You may obtain a copy of the License at:
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software 
+	distributed under the License is distributed on an "AS IS" BASIS, 
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+	See the License for the specific language governing permissions and 
+	limitations under the License.
+*/
+
+
+
+
+
+
+                                        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 module EF_I2S_APB #( 
 	parameter	
 		DW = 32,
@@ -43,19 +104,18 @@ module EF_I2S_APB #(
 	input	[1-1:0]	sdi
 );
 
-	localparam	RXDATA_REG_OFFSET = 16'd0;
-	localparam	PR_REG_OFFSET = 16'd4;
-	localparam	AVGT_REG_OFFSET = 16'd8;
-	localparam	CTRL_REG_OFFSET = 16'd12;
-	localparam	CFG_REG_OFFSET = 16'd16;
-	localparam	IM_REG_OFFSET = 16'd3840;
-	localparam	MIS_REG_OFFSET = 16'd3844;
-	localparam	RIS_REG_OFFSET = 16'd3848;
-	localparam	IC_REG_OFFSET = 16'd3852;
-	localparam	RX_FIFO_FLUSH_REG_OFFSET = 16'd4096;
-	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = 16'd4100;
-	localparam	RX_FIFO_LEVEL_REG_OFFSET = 16'd4104;
-
+	localparam	RXDATA_REG_OFFSET = 16'h0000;
+	localparam	PR_REG_OFFSET = 16'h0004;
+	localparam	AVGT_REG_OFFSET = 16'h0008;
+	localparam	CTRL_REG_OFFSET = 16'h000C;
+	localparam	CFG_REG_OFFSET = 16'h0010;
+	localparam	RX_FIFO_LEVEL_REG_OFFSET = 16'hFE00;
+	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = 16'hFE04;
+	localparam	RX_FIFO_FLUSH_REG_OFFSET = 16'hFE08;
+	localparam	IM_REG_OFFSET = 16'hFF00;
+	localparam	MIS_REG_OFFSET = 16'hFF04;
+	localparam	RIS_REG_OFFSET = 16'hFF08;
+	localparam	IC_REG_OFFSET = 16'hFF0C;
 	wire		clk = PCLK;
 	wire		rst_n = PRESETn;
 
@@ -82,24 +142,6 @@ module EF_I2S_APB #(
 	wire [1-1:0]	avg_en;
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
-
-	// FIFO Registers
-	// RX_FIFO Registers
-	reg	[AW-1:0]	RX_FIFO_THRESHOLD_REG;
-	assign		fifo_level_threshold = RX_FIFO_THRESHOLD_REG;
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RX_FIFO_THRESHOLD_REG <= 0;
-                                        else if(apb_we & (PADDR[16-1:0]==RX_FIFO_THRESHOLD_REG_OFFSET))
-                                            RX_FIFO_THRESHOLD_REG <= PWDATA[AW-1:0];
-	wire	[AW-1:0]	RX_FIFO_LEVEL_REG;
-	assign		RX_FIFO_LEVEL_REG = fifo_level;
-	reg		RX_FIFO_FLUSH_REG;
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RX_FIFO_FLUSH_REG <= 0;
-                                                else if(apb_we & (PADDR[16-1:0]==RX_FIFO_FLUSH_REG_OFFSET))
-                                                    RX_FIFO_FLUSH_REG <= PWDATA[1-1:0];
-                                                else
-                                                    RX_FIFO_FLUSH_REG <= 'b0;
-	assign		fifo_flush = RX_FIFO_FLUSH_REG;
-
 
 	// Register Definitions
 	wire	[32-1:0]	RXDATA_WIRE;
@@ -132,6 +174,23 @@ module EF_I2S_APB #(
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CFG_REG <= 'h3F08;
                                         else if(apb_we & (PADDR[16-1:0]==CFG_REG_OFFSET))
                                             CFG_REG <= PWDATA[10-1:0];
+
+	wire [AW-1:0]	RX_FIFO_LEVEL_WIRE;
+	assign	RX_FIFO_LEVEL_WIRE[(AW - 1) : 0] = fifo_level;
+
+	reg [0:0]	RX_FIFO_THRESHOLD_REG;
+	assign	fifo_level_threshold	=	RX_FIFO_THRESHOLD_REG[0 : 0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RX_FIFO_THRESHOLD_REG <= 0;
+                                        else if(apb_we & (PADDR[16-1:0]==RX_FIFO_THRESHOLD_REG_OFFSET))
+                                            RX_FIFO_THRESHOLD_REG <= PWDATA[1-1:0];
+
+	reg [0:0]	RX_FIFO_FLUSH_REG;
+	assign	fifo_flush	=	RX_FIFO_FLUSH_REG[0 : 0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) RX_FIFO_FLUSH_REG <= 0;
+                                                else if(apb_we & (PADDR[16-1:0]==RX_FIFO_FLUSH_REG_OFFSET))
+                                                    RX_FIFO_FLUSH_REG <= PWDATA[1-1:0];
+                                                else
+                                                    RX_FIFO_FLUSH_REG <= 1'h0 & RX_FIFO_FLUSH_REG;
 
 	reg [3:0] IM_REG;
 	reg [3:0] IC_REG;
@@ -217,13 +276,13 @@ module EF_I2S_APB #(
 			(PADDR[16-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
 			(PADDR[16-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
 			(PADDR[16-1:0] == CFG_REG_OFFSET)	? CFG_REG :
+			(PADDR[16-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_WIRE :
+			(PADDR[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
+			(PADDR[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
 			(PADDR[16-1:0] == IM_REG_OFFSET)	? IM_REG :
 			(PADDR[16-1:0] == MIS_REG_OFFSET)	? MIS_REG :
 			(PADDR[16-1:0] == RIS_REG_OFFSET)	? RIS_REG :
 			(PADDR[16-1:0] == IC_REG_OFFSET)	? IC_REG :
-			(PADDR[16-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_REG :
-			(PADDR[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
-			(PADDR[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
 			32'hDEADBEEF;
 
 	assign	PREADY = 1'b1;

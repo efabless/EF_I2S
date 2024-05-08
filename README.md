@@ -59,13 +59,13 @@ The following table is the result for implementing the EF_I2S IP with different 
 |AVGT|0008|0x00000000|w|The Average threshold|
 |CTRL|000c|0x00000000|w|Control Register; 0:Enable, 1:FIFO Enable.|
 |CFG|0010|0x00003F08|w|Configuration Register, 0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)|
-|RX_FIFO_FLUSH|1000|0x00000000|w|RX_FIFO Flush Register|
-|RX_FIFO_THRESHOLD|1004|0x00000000|w|RX_FIFO Level Threshold Register|
-|RX_FIFO_LEVEL|1008|0x00000000|r|RX_FIFO Level Register|
-|IM|0f00|0x00000000|w|Interrupt Mask Register; write 1/0 to enable/disable interrupts; check the interrupt flags table for more details|
-|RIS|0f08|0x00000000|w|Raw Interrupt Status; reflects the current interrupts status;check the interrupt flags table for more details|
-|MIS|0f04|0x00000000|w|Masked Interrupt Status; On a read, this register gives the current masked status value of the corresponding interrupt. A write has no effect; check the interrupt flags table for more details|
-|IC|0f0c|0x00000000|w|Interrupt Clear Register; On a write of 1, the corresponding interrupt (both raw interrupt and masked interrupt, if enabled) is cleared; check the interrupt flags table for more details|
+|RX_FIFO_LEVEL|fe00|0x00000000|r|RX_FIFO Level Register|
+|RX_FIFO_THRESHOLD|fe04|0x00000000|w|RX_FIFO Level Threshold Register|
+|RX_FIFO_FLUSH|fe08|0x00000000|w|RX_FIFO Flush Register|
+|IM|ff00|0x00000000|w|Interrupt Mask Register; write 1/0 to enable/disable interrupts; check the interrupt flags table for more details|
+|RIS|ff08|0x00000000|w|Raw Interrupt Status; reflects the current interrupts status;check the interrupt flags table for more details|
+|MIS|ff04|0x00000000|w|Masked Interrupt Status; On a read, this register gives the current masked status value of the corresponding interrupt. A write has no effect; check the interrupt flags table for more details|
+|IC|ff0c|0x00000000|w|Interrupt Clear Register; On a write of 1, the corresponding interrupt (both raw interrupt and masked interrupt, if enabled) is cleared; check the interrupt flags table for more details|
 
 ### RXDATA Register [Offset: 0x0, mode: r]
 
@@ -110,17 +110,17 @@ Configuration Register, 0-1: Channels to read, '01': right, '10': left, '11': Bo
 |4|sample_size|6|Sample size|
 
 
-### RX_FIFO_FLUSH Register [Offset: 0x1000, mode: w]
+### RX_FIFO_LEVEL Register [Offset: 0xfe00, mode: r]
 
-RX_FIFO Flush Register
-<img src="https://svg.wavedrom.com/{reg:[{name:'flush', bits:1},{bits: 31}], config: {lanes: 2, hflip: true}} "/>
+RX_FIFO Level Register
+<img src="https://svg.wavedrom.com/{reg:[{name:'level', bits:4},{bits: 28}], config: {lanes: 2, hflip: true}} "/>
 
 |bit|field name|width|description|
 |---|---|---|---|
-|0|flush|1|FIFO flush|
+|0|level|4|FIFO data level|
 
 
-### RX_FIFO_THRESHOLD Register [Offset: 0x1004, mode: w]
+### RX_FIFO_THRESHOLD Register [Offset: 0xfe04, mode: w]
 
 RX_FIFO Level Threshold Register
 <img src="https://svg.wavedrom.com/{reg:[{name:'threshold', bits:1},{bits: 31}], config: {lanes: 2, hflip: true}} "/>
@@ -130,14 +130,14 @@ RX_FIFO Level Threshold Register
 |0|threshold|1|FIFO level threshold value|
 
 
-### RX_FIFO_LEVEL Register [Offset: 0x1008, mode: r]
+### RX_FIFO_FLUSH Register [Offset: 0xfe08, mode: w]
 
-RX_FIFO Level Register
-<img src="https://svg.wavedrom.com/{reg:[{name:'level', bits:4},{bits: 28}], config: {lanes: 2, hflip: true}} "/>
+RX_FIFO Flush Register
+<img src="https://svg.wavedrom.com/{reg:[{name:'flush', bits:1},{bits: 31}], config: {lanes: 2, hflip: true}} "/>
 
 |bit|field name|width|description|
 |---|---|---|---|
-|0|level|4|FIFO data level|
+|0|flush|1|FIFO flush|
 
 
 ### Interrupt Flags

@@ -16,7 +16,7 @@ info:
     - serial
   bus:
     - generic
-  type": soft
+  type: soft
   status: verified
   cell_count:
     - IP: TBD

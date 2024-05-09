@@ -1,5 +1,5 @@
 /*
-	Copyright 2023 Efabless Corp.
+	Copyright 2024 Efabless Corp.
 
 	Author: Mohamed Shalan (mshalan@efabless.com)
 
@@ -165,9 +165,9 @@ module EF_I2S_WB #(
 	wire [AW-1:0]	RX_FIFO_LEVEL_WIRE;
 	assign	RX_FIFO_LEVEL_WIRE[(AW - 1) : 0] = fifo_level;
 
-	reg [0:0]	RX_FIFO_THRESHOLD_REG;
-	assign	fifo_level_threshold	=	RX_FIFO_THRESHOLD_REG[0 : 0];
-	always @(posedge clk_i or posedge rst_i) if(rst_i) RX_FIFO_THRESHOLD_REG <= 0; else if(wb_we & (adr_i[16-1:0]==RX_FIFO_THRESHOLD_REG_OFFSET)) RX_FIFO_THRESHOLD_REG <= dat_i[1-1:0];
+	reg [AW-1:0]	RX_FIFO_THRESHOLD_REG;
+	assign	fifo_level_threshold	=	RX_FIFO_THRESHOLD_REG[(AW - 1) : 0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) RX_FIFO_THRESHOLD_REG <= 0; else if(wb_we & (adr_i[16-1:0]==RX_FIFO_THRESHOLD_REG_OFFSET)) RX_FIFO_THRESHOLD_REG <= dat_i[AW-1:0];
 
 	reg [0:0]	RX_FIFO_FLUSH_REG;
 	assign	fifo_flush	=	RX_FIFO_FLUSH_REG[0 : 0];

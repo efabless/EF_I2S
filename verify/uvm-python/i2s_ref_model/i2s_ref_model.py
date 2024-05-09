@@ -63,7 +63,7 @@ class i2s_ref_model(ref_model):
             return
         if tr.kind == bus_item.WRITE:
             self.regs.write_reg_value(tr.addr, tr.data, force_write=True)
-            uvm_info(self.tag, f"Writing to {tr.addr} {tr.data}", UVM_LOW)
+            uvm_info(self.tag, f"Writing to register 0x{tr.addr:x} {tr.data}", UVM_LOW)
             if tr.addr == self.regs.reg_name_to_address["CFG"]:
                 self.channels = self.regs.read_reg_value("CFG") & 0b11
                 self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False

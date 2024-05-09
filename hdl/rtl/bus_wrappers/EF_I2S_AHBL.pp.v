@@ -1,5 +1,5 @@
 /*
-	Copyright 2023 Efabless Corp.
+	Copyright 2024 Efabless Corp.
 
 	Author: Mohamed Shalan (mshalan@efabless.com)
 
@@ -21,6 +21,83 @@
 
 `timescale			1ns/1ps
 `default_nettype	none
+
+
+
+/*
+	Copyright 2020 AUCOHL
+
+    Author: Mohamed Shalan (mshalan@aucegypt.edu)
+	
+	Licensed under the Apache License, Version 2.0 (the "License"); 
+	you may not use this file except in compliance with the License. 
+	You may obtain a copy of the License at:
+
+	http://www.apache.org/licenses/LICENSE-2.0
+
+	Unless required by applicable law or agreed to in writing, software 
+	distributed under the License is distributed on an "AS IS" BASIS, 
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+	See the License for the specific language governing permissions and 
+	limitations under the License.
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+                                                
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 module EF_I2S_AHBL #( 
 	parameter	
@@ -132,11 +209,11 @@ module EF_I2S_AHBL #(
 	wire [AW-1:0]	RX_FIFO_LEVEL_WIRE;
 	assign	RX_FIFO_LEVEL_WIRE[(AW - 1) : 0] = fifo_level;
 
-	reg [0:0]	RX_FIFO_THRESHOLD_REG;
-	assign	fifo_level_threshold	=	RX_FIFO_THRESHOLD_REG[0 : 0];
+	reg [AW-1:0]	RX_FIFO_THRESHOLD_REG;
+	assign	fifo_level_threshold	=	RX_FIFO_THRESHOLD_REG[(AW - 1) : 0];
 	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) RX_FIFO_THRESHOLD_REG <= 0;
                                         else if(ahbl_we & (last_HADDR[16-1:0]==RX_FIFO_THRESHOLD_REG_OFFSET))
-                                            RX_FIFO_THRESHOLD_REG <= HWDATA[1-1:0];
+                                            RX_FIFO_THRESHOLD_REG <= HWDATA[AW-1:0];
 
 	reg [0:0]	RX_FIFO_FLUSH_REG;
 	assign	fifo_flush	=	RX_FIFO_FLUSH_REG[0 : 0];

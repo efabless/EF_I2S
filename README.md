@@ -123,11 +123,11 @@ RX_FIFO Level Register
 ### RX_FIFO_THRESHOLD Register [Offset: 0xfe04, mode: w]
 
 RX_FIFO Level Threshold Register
-<img src="https://svg.wavedrom.com/{reg:[{name:'threshold', bits:1},{bits: 31}], config: {lanes: 2, hflip: true}} "/>
+<img src="https://svg.wavedrom.com/{reg:[{name:'threshold', bits:4},{bits: 28}], config: {lanes: 2, hflip: true}} "/>
 
 |bit|field name|width|description|
 |---|---|---|---|
-|0|threshold|1|FIFO level threshold value|
+|0|threshold|4|FIFO level threshold value|
 
 
 ### RX_FIFO_FLUSH Register [Offset: 0xfe08, mode: w]

@@ -304,6 +304,7 @@ class i2s_fifo_interrupts_test(i2s_base_test):
             await bus_i2s_write_ic_seq.start(self.bus_sqr)  # clear the interrupt
             await bus_i2s_read_mis_seq.start(self.bus_sqr)  # reread mis to check that it was cleared 
 
+            await Timer(1000 , "ns") # wait some time before reset
 
             #### FIFO level above threshold
             await bus_i2s_config_seq.start(self.bus_sqr)
@@ -330,7 +331,7 @@ class i2s_fifo_interrupts_test(i2s_base_test):
             await bus_i2s_write_ic_seq.start(self.bus_sqr)  # clear the interrupt
             await bus_i2s_read_mis_seq.start(self.bus_sqr)  # reread mis to check that it was cleared 
 
-            # await Timer(1000 , "ns")
+            await Timer(1000 , "ns") # wait some time before reset
 
             ##### FIFO is full
             await bus_i2s_config_seq.start(self.bus_sqr)
@@ -353,7 +354,9 @@ class i2s_fifo_interrupts_test(i2s_base_test):
             bus_i2s_write_ic_seq.set_ic(0b100)
             await bus_i2s_write_ic_seq.start(self.bus_sqr)  # clear the interrupt
             await bus_i2s_read_mis_seq.start(self.bus_sqr)  # reread mis to check that it was cleared 
-            # await Timer(10000 , "ns")
+            
+            await Timer(1000 , "ns") # wait some time before reset
+
 
         phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
 

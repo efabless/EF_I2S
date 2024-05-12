@@ -191,7 +191,7 @@ class i2s_ref_model(ref_model):
     
 
     def read_register(self, addr):
-        uvm_info(self.tag, "Reading register " + hex(addr), UVM_MEDIUM)
+        uvm_info(self.tag, f"Reading register  {hex(addr)} = {hex(self.regs.read_reg_value(addr))}" , UVM_MEDIUM)
         if addr == self.regs.reg_name_to_address["RXDATA"]:  # reading from rx data
             try:
                 uvm_info(self.tag, f"Reading from rx fifo size = {self.fifo_rx.qsize()} {self.fifo_rx._queue}", UVM_LOW)

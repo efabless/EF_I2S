@@ -7,8 +7,8 @@ info:
   license: APACHE 2.0
   author: Mohamed Shalan
   email: mshalan@efabless.com
-  version: v2.0.0
-  date: 07-05-2024
+  version: v1.1.2
+  date: 12-05-2024
   category: digital
   tags:
     - peripheral
@@ -19,18 +19,18 @@ info:
   type: soft
   status: verified
   cell_count:
-    - IP: TBD
-    - APB: TBD
-    - AHBL: TBD
-    - WB: TBD
+    - IP: 2433
+    - APB: 2716
+    - AHBL: 2799
+    - WB: 2941
   width": "0.0"
   height": "0.0"
   technology: n/a
   clock_freq_mhz:
-    - IP: TBD
-    - APB: TBD
-    - AHBL: TBD
-    - WB: TBD
+    - IP: 116
+    - APB: 142
+    - AHBL: 135
+    - WB: 136
   digital_supply_voltage: n/a
   analog_supply_voltage: n/a
   irq_reg_offset: 0xFF00

@@ -41,10 +41,10 @@ EF_I2S_APB INST (
 The following table is the result for implementing the EF_I2S IP with different wrappers using Sky130 PDK and [OpenLane2](https://github.com/efabless/openlane2) flow.
 |Module | Number of cells | Max. freq |
 |---|---|---|
-|EF_I2S|TBD| TBD |
-|EF_I2S_APB|TBD|TBD|
-|EF_I2S_AHBL|TBD|TBD|
-|EF_I2S_WB|TBD|TBD|
+|EF_I2S|2433| 116 |
+|EF_I2S_APB|2716|142|
+|EF_I2S_AHBL|2799|135|
+|EF_I2S_WB|2941|136|
 ## The Programmer's Interface
 
 

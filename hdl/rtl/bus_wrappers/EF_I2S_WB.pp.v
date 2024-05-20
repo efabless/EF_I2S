@@ -93,9 +93,9 @@ module EF_I2S_WB #(
                                         output  reg             ack_o,
                                         input   wire            we_i,
                                         output  wire            IRQ,
-	output	[1-1:0]	ws,
-	output	[1-1:0]	sck,
-	input	[1-1:0]	sdi
+	output	wire	[1-1:0]	ws,
+	output	wire	[1-1:0]	sck,
+	input	wire	[1-1:0]	sdi
 );
 
 	localparam	RXDATA_REG_OFFSET = 16'h0000;
@@ -160,7 +160,7 @@ module EF_I2S_WB #(
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
-	always @(posedge clk_i or posedge rst_i) if(rst_i) CFG_REG <= 'h3F08; else if(wb_we & (adr_i[16-1:0]==CFG_REG_OFFSET)) CFG_REG <= dat_i[10-1:0];
+	always @(posedge clk_i or posedge rst_i) if(rst_i) CFG_REG <= 'h201; else if(wb_we & (adr_i[16-1:0]==CFG_REG_OFFSET)) CFG_REG <= dat_i[10-1:0];
 
 	wire [AW-1:0]	RX_FIFO_LEVEL_WIRE;
 	assign	RX_FIFO_LEVEL_WIRE[(AW - 1) : 0] = fifo_level;

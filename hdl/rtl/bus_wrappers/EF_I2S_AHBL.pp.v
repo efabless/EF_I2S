@@ -116,9 +116,9 @@ module EF_I2S_AHBL #(
                                         output wire [31:0]  HRDATA,
                                         output wire         IRQ
 ,
-	output	[1-1:0]	ws,
-	output	[1-1:0]	sck,
-	input	[1-1:0]	sdi
+	output	wire	[1-1:0]	ws,
+	output	wire	[1-1:0]	sck,
+	input	wire	[1-1:0]	sdi
 );
 
 	localparam	RXDATA_REG_OFFSET = 16'h0000;
@@ -202,7 +202,7 @@ module EF_I2S_AHBL #(
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
-	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CFG_REG <= 'h3F08;
+	always @(posedge HCLK or negedge HRESETn) if(~HRESETn) CFG_REG <= 'h201;
                                         else if(ahbl_we & (last_HADDR[16-1:0]==CFG_REG_OFFSET))
                                             CFG_REG <= HWDATA[10-1:0];
 

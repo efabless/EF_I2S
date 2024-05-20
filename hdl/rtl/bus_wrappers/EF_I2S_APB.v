@@ -32,9 +32,9 @@ module EF_I2S_APB #(
 		AW = 4
 ) (
 	`APB_SLAVE_PORTS,
-	output	[1-1:0]	ws,
-	output	[1-1:0]	sck,
-	input	[1-1:0]	sdi
+	output	wire	[1-1:0]	ws,
+	output	wire	[1-1:0]	sck,
+	input	wire	[1-1:0]	sdi
 );
 
 	localparam	RXDATA_REG_OFFSET = `APB_AW'h0000;
@@ -96,7 +96,7 @@ module EF_I2S_APB #(
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
-	`APB_REG(CFG_REG, 'h3F08, 10)
+	`APB_REG(CFG_REG, 'h201, 10)
 
 	wire [AW-1:0]	RX_FIFO_LEVEL_WIRE;
 	assign	RX_FIFO_LEVEL_WIRE[(AW - 1) : 0] = fifo_level;

@@ -99,9 +99,9 @@ module EF_I2S_APB #(
                                         output wire [31:0]  PRDATA,
                                         output wire         IRQ
 ,
-	output	[1-1:0]	ws,
-	output	[1-1:0]	sck,
-	input	[1-1:0]	sdi
+	output	wire	[1-1:0]	ws,
+	output	wire	[1-1:0]	sck,
+	input	wire	[1-1:0]	sdi
 );
 
 	localparam	RXDATA_REG_OFFSET = 16'h0000;
@@ -171,7 +171,7 @@ module EF_I2S_APB #(
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CFG_REG <= 'h3F08;
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CFG_REG <= 'h201;
                                         else if(apb_we & (PADDR[16-1:0]==CFG_REG_OFFSET))
                                             CFG_REG <= PWDATA[10-1:0];
 

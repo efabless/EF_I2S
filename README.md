@@ -58,7 +58,7 @@ The following table is the result for implementing the EF_I2S IP with different 
 |PR|0004|0x00000000|w|The Prescaler register; used to determine the sck signal frequency . $Prescaler = clk_freq/(2 x sck_freq) - 1$.|
 |AVGT|0008|0x00000000|w|The Average threshold|
 |CTRL|000c|0x00000000|w|Control Register; 0:Enable, 1:FIFO Enable.|
-|CFG|0010|0x00003F08|w|Configuration Register, 0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)|
+|CFG|0010|0x00000201|w|Configuration Register, 0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)|
 |RX_FIFO_LEVEL|fe00|0x00000000|r|RX_FIFO Level Register|
 |RX_FIFO_THRESHOLD|fe04|0x00000000|w|RX_FIFO Level Threshold Register|
 |RX_FIFO_FLUSH|fe08|0x00000000|w|RX_FIFO Flush Register|

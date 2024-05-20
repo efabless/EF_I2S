@@ -16,9 +16,9 @@
 
 `default_nettype        none
 
-`define     __PED__(clk, sig, pulse)    reg last_``sig``; wire pulse; always @(posedge clk) last_``sig`` <= sig; assign pulse = sig & ~last_``sig``;
-`define     __NED__(clk, sig, pulse)    reg last_n``sig``; wire pulse; always @(posedge clk) last_n``sig`` <= sig; assign pulse = ~sig & last_n``sig``;
-`define     __PNED__(clk, sig, ppulse, npulse)    reg last_``sig``; wire npulse, ppulse; always @(posedge clk) last_``sig`` <= sig; assign npulse = ~sig & last_``sig``; assign ppulse = sig & ~last_``sig``;
+`define     PED(clk, sig, pulse)    reg last_``sig``; wire pulse; always @(posedge clk) last_``sig`` <= sig; assign pulse = sig & ~last_``sig``;
+`define     NED(clk, sig, pulse)    reg last_n``sig``; wire pulse; always @(posedge clk) last_n``sig`` <= sig; assign pulse = ~sig & last_n``sig``;
+`define     PNED(clk, sig, ppulse, npulse)    reg last_``sig``; wire npulse, ppulse; always @(posedge clk) last_``sig`` <= sig; assign npulse = ~sig & last_``sig``; assign ppulse = sig & ~last_``sig``;
 
 
 module i2s_rx (
@@ -37,11 +37,11 @@ module i2s_rx (
 
     reg ws_dly0, ws_dly;
 
-    `__PNED__(clk, ws,  ws_ppulse, ws_npulse)
-    `__PED__(clk, sck, sck_pulse)
+    `PNED(clk, ws,  ws_ppulse, ws_npulse)
+    `PED(clk, sck, sck_pulse)
 
-    `__NED__(clk, sck, sck_npulse)
-    `__PNED__(clk, ws_dly,  ws_dly_ppulse, ws_dly_npulse)
+    `NED(clk, sck, sck_npulse)
+    `PNED(clk, ws_dly,  ws_dly_ppulse, ws_dly_npulse)
     
     always @(posedge clk or negedge rst_n)
         if(!rst_n) begin
@@ -173,7 +173,7 @@ module EF_I2S #(parameter DW=32, AW=4) (
     wire [31:0] sample_sign = sign_extend ? {32{sample[31]}} << sample_size : 32'b0;
     wire [31:0] fifo_wdata = (sample >> (32-sample_size)) | sample_sign;
     
-    assign      fifo_level_above = fifo_level > fifo_level_threshold;
+    assign      fifo_level_above = (fifo_level > fifo_level_threshold) | fifo_full;
 
     // Averaging Logic
     reg  [31:0] sum;

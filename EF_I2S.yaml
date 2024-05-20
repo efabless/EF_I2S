@@ -197,7 +197,7 @@ registers:
     fifo: no
     offset: 16
     bit_access: no
-    init: "'h3F08"
+    init: "'h201"
     description: "Configuration Register, 0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)"
     fields:
       - name: channels

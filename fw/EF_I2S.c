@@ -4,18 +4,48 @@
 #include <EF_I2S.h>
 
 void EF_I2S_enable (uint32_t i2s_base){
-
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-
-    i2s->CTRL = 0x1;
+    int control = i2s->CTRL;
+    control |= EF_I2S_CTRL_REG_EN_MASK;
+    i2s->CTRL = control;
 }
 
 void EF_I2S_disable (uint32_t i2s_base){
-
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-
-    i2s->CTRL = 0x0;
+    int control = i2s->CTRL;
+    control &= ~EF_I2S_CTRL_REG_EN_MASK;
+    i2s->CTRL = control;
 }
+
+void EF_I2S_enableFifo(uint32_t i2s_base){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+    int control = i2s->CTRL;
+    control |= EF_I2S_CTRL_REG_FIFO_EN_MASK;
+    i2s->CTRL = control;
+}
+
+void EF_I2S_disableFifo(uint32_t i2s_base){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+    int control = i2s->CTRL;
+    control &= ~EF_I2S_CTRL_REG_FIFO_EN_MASK;
+    i2s->CTRL = control;
+}
+
+void EF_I2S_enableAVG(uint32_t i2s_base){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+    int control = i2s->CTRL;
+    control |= EF_I2S_CTRL_REG_AVG_EN_MASK;
+    i2s->CTRL = control;
+}
+
+void EF_I2S_disableAVG(uint32_t i2s_base){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+    int control = i2s->CTRL;
+    control &= ~EF_I2S_CTRL_REG_AVG_EN_MASK;
+    i2s->CTRL = control;
+}
+
+
 
 void EF_I2S_setConfigReg (uint32_t i2s_base, int config){
 
@@ -47,6 +77,13 @@ int EF_I2S_getPrescaler(uint32_t i2s_base){
 
     return (i2s->PR);
 }
+
+void EF_I2S_setAVGT(uint32_t i2s_base, int average){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+
+    i2s->AVGT = average;
+}
+
 
 
 int EF_I2S_getRxFifoLevel(uint32_t i2s_base){
@@ -97,6 +134,14 @@ void EF_I2S_setIM(uint32_t i2s_base, int mask){
 
     i2s->IM = mask;
 }
+
+void EF_I2S_setIC(uint32_t i2s_base, int mask){
+ 
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+
+    i2s->IC = mask;
+}
+
 
 
 int EF_I2S_getIM(uint32_t i2s_base){

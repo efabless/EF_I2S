@@ -18,7 +18,8 @@
 
 `define     PED(clk, sig, pulse)    reg last_``sig``; wire pulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_``sig`` <= 1'b0; else last_``sig`` <= sig; assign pulse = sig & ~last_``sig``;
 `define     NED(clk, sig, pulse)    reg last_n``sig``; wire pulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_n``sig`` <= 1'b0; else last_n``sig`` <= sig; assign pulse = ~sig & last_n``sig``;
-`define     PNED(clk, sig, ppulse, npulse)    reg last_``sig``, npulse, ppulse; always @(posedge clk, negedge rst_n)  if(!rst_n)begin last_``sig`` <= 1'b0; npulse <= 1'b0; ppulse <= 1'b0; end else begin last_``sig`` <= sig; npulse <= ~sig & last_``sig``; ppulse <= sig & ~last_``sig``; end
+`define     PNED(clk, sig, ppulse, npulse, rst_val)    reg last_``sig``, npulse, ppulse; always @(posedge clk, negedge rst_n)  if(!rst_n)begin last_``sig`` <= rst_val; npulse <= 1'b0; ppulse <= 1'b0; end else begin last_``sig`` <= sig; npulse <= ~sig & last_``sig``; ppulse <= sig & ~last_``sig``; end
+
 
 module i2s_rx (
     input   wire        clk,
@@ -36,11 +37,11 @@ module i2s_rx (
 
     reg ws_dly0, ws_dly;
 
-    `PNED(clk, ws,  ws_ppulse, ws_npulse)
+    `PNED(clk, ws,  ws_ppulse, ws_npulse, 1'b1)
     `PED(clk, sck, sck_pulse)
 
     `NED(clk, sck, sck_npulse)
-    `PNED(clk, ws_dly,  ws_dly_ppulse, ws_dly_npulse)
+    `PNED(clk, ws_dly,  ws_dly_ppulse, ws_dly_npulse, 1'b0)
     
     always @(posedge clk or negedge rst_n)
         if(!rst_n) begin

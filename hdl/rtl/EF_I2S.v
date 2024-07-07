@@ -16,9 +16,9 @@
 
 `default_nettype        none
 
-`define     PED(clk, sig, pulse)    reg last_``sig``; wire pulse; always @(posedge clk) last_``sig`` <= sig; assign pulse = sig & ~last_``sig``;
-`define     NED(clk, sig, pulse)    reg last_n``sig``; wire pulse; always @(posedge clk) last_n``sig`` <= sig; assign pulse = ~sig & last_n``sig``;
-`define     PNED(clk, sig, ppulse, npulse)    reg last_``sig``; wire npulse, ppulse; always @(posedge clk) last_``sig`` <= sig; assign npulse = ~sig & last_``sig``; assign ppulse = sig & ~last_``sig``;
+`define     PED(clk, sig, pulse)    reg last_``sig``; wire pulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_``sig`` <= 1'b0; else last_``sig`` <= sig; assign pulse = sig & ~last_``sig``;
+`define     NED(clk, sig, pulse)    reg last_n``sig``; wire pulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_n``sig`` <= 1'b0; else last_n``sig`` <= sig; assign pulse = ~sig & last_n``sig``;
+`define     PNED(clk, sig, ppulse, npulse)    reg last_``sig``; wire npulse, ppulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_``sig`` <= 1'b0; else last_``sig`` <= sig; assign npulse = ~sig & last_``sig``; assign ppulse = sig & ~last_``sig``;
 
 
 module i2s_rx (

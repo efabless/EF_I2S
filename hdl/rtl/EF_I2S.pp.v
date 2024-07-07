@@ -37,11 +37,11 @@ module i2s_rx (
 
     reg ws_dly0, ws_dly;
 
-    reg last_ws; wire ws_npulse, ws_ppulse; always @(posedge clk) last_ws <= ws; assign ws_npulse = ~ws & last_ws; assign ws_ppulse = ws & ~last_ws;
-    reg last_sck; wire sck_pulse; always @(posedge clk) last_sck <= sck; assign sck_pulse = sck & ~last_sck;
+    reg last_ws; wire ws_npulse, ws_ppulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_ws <= 1'b0; else last_ws <= ws; assign ws_npulse = ~ws & last_ws; assign ws_ppulse = ws & ~last_ws;
+    reg last_sck; wire sck_pulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_sck <= 1'b0; else last_sck <= sck; assign sck_pulse = sck & ~last_sck;
 
-    reg last_nsck; wire sck_npulse; always @(posedge clk) last_nsck <= sck; assign sck_npulse = ~sck & last_nsck;
-    reg last_ws_dly; wire ws_dly_npulse, ws_dly_ppulse; always @(posedge clk) last_ws_dly <= ws_dly; assign ws_dly_npulse = ~ws_dly & last_ws_dly; assign ws_dly_ppulse = ws_dly & ~last_ws_dly;
+    reg last_nsck; wire sck_npulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_nsck <= 1'b0; else last_nsck <= sck; assign sck_npulse = ~sck & last_nsck;
+    reg last_ws_dly; wire ws_dly_npulse, ws_dly_ppulse; always @(posedge clk, negedge rst_n) if(!rst_n) last_ws_dly <= 1'b0; else last_ws_dly <= ws_dly; assign ws_dly_npulse = ~ws_dly & last_ws_dly; assign ws_dly_ppulse = ws_dly & ~last_ws_dly;
     
     always @(posedge clk or negedge rst_n)
         if(!rst_n) begin

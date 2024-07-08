@@ -17,6 +17,10 @@ module top();
         wire [31:0]	PRDATA;
         wire 		PREADY;
         EF_I2S_APB uut(
+            `ifdef USE_POWER_PINS
+            .VPWR(1'b1), 
+            .VGND(1'b0), 
+            `endif
             .ws(ws),
             .sck(sck),
             .sdi(sdi),

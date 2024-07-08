@@ -3,6 +3,11 @@
 
 #include <EF_I2S.h>
 
+void EF_I2S_setGclkEnable (uint32_t i2s_base, int value){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+    i2s->GCLK = value;
+}
+
 void EF_I2S_enable (uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
     int control = i2s->CTRL;

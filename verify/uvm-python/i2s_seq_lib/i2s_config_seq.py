@@ -6,7 +6,7 @@ from EF_UVM.bus_env.bus_seq_lib.bus_seq_base import bus_seq_base
 from cocotb.triggers import Timer
 from uvm.macros.uvm_sequence_defines import uvm_do_with, uvm_do
 import random
-
+from EF_UVM.bus_env.bus_item import bus_item
 
 class i2s_config_seq(bus_seq_base):
     # use this sequence write or read from register by the bus interface
@@ -16,12 +16,19 @@ class i2s_config_seq(bus_seq_base):
         super().__init__(name)
         self.config_reg = config_reg
         self.ctrl_reg = ctrl_reg
+        self.req = bus_item()
 
     async def body(self):
         await super().body()
         # await self.send_req(is_write=True, reg="control", data_condition=lambda data: data > 5)
         # example for writing register by value == 5
         await self.send_reset()
+        # enable gated clock
+        self.req.rand_mode(0)
+        self.req.addr = 0xFF10
+        self.req.data = 1
+        self.req.kind = bus_item.WRITE
+        await uvm_do(self, self.req)
         await self.send_req(is_write=True, reg="PR", data_condition=lambda data: 2 <= data <= 50)
         await self.send_req(is_write=False, reg="PR")
         # config_reg = self.get_config_reg_val(channel="left", sign_extend=False, left_justify=True, sample_size=24)

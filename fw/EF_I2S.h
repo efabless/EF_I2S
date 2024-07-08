@@ -4,6 +4,8 @@
 #include <stdint.h>
 #include <EF_I2S_regs.h>
 
+void EF_I2S_setGclkEnable (uint32_t i2s_base, int value);
+
 void EF_I2S_enable (uint32_t i2s_base);
 
 void EF_I2S_disable (uint32_t i2s_base);

@@ -68,6 +68,7 @@ typedef struct _EF_I2S_TYPE_ {
 	__R 	MIS;
 	__R 	RIS;
 	__W 	IC;
+	__W 	GCLK;
 } EF_I2S_TYPE;
 
 #endif

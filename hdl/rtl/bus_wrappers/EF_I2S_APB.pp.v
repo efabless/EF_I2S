@@ -103,8 +103,8 @@ module EF_I2S_APB #(
 		AW = 4
 ) (
 `ifdef USE_POWER_PINS
-	input wire VPWR,
-	input wire VGND,
+	inout VPWR,
+	inout VGND,
 `endif
 	input wire          PCLK,
                                         input wire          PRESETn,

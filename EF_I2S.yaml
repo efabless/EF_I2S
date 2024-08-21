@@ -17,14 +17,14 @@ info:
   bus:
     - generic
   type: soft
-  status: verified
+  maturity: verified
   cell_count:
     - IP: 2433
     - APB: 2716
     - AHBL: 2799
     - WB: 2941
-  width": "0.0"
-  height": "0.0"
+  width: "0.0"
+  height: "0.0"
   technology: n/a
   clock_freq_mhz:
     - IP: 116

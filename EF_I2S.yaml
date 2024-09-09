@@ -108,6 +108,30 @@ ports:
     width: 1
     direction: input
     description: Enable average feature 
+  - name: avg_sel
+    width: 1
+    direction: input
+    description: 0 - 256 Samples, 1 - 512 Samples
+  - name: zcr_threshold
+    width: 32
+    direction: input
+    description: The samples ZCR threshold
+  - name: zcr_flag
+    width: 1
+    direction: output
+    description: Flag raised when the samples ZCR is above a threshold 
+  - name: zcr_en
+    width: 1
+    direction: input
+    description: Enable average feature 
+  - name: zcr_sel
+    width: 1
+    direction: input
+    description: 0 - 256 Samples, 1 - 512 Samples
+  - name: vad_flag
+    width: 1
+    direction: output
+    description: The VAD flag
   - name: channels
     width: 2
     direction: input
@@ -167,11 +191,19 @@ registers:
     bit_access: no
     write_port: avg_threshold
     description: The Average threshold
-  - name: CTRL
-    size: 3
+  - name: ZCRT
+    size: 32
     mode: w
     fifo: no
     offset: 12
+    bit_access: no
+    write_port: zcr_threshold
+    description: The ZCR threshold
+  - name: CTRL
+    size: 4
+    mode: w
+    fifo: no
+    offset: 16
     bit_access: no
     init: "'h0"
     description: "Control Register; 0:Enable, 1:FIFO Enable."
@@ -191,11 +223,16 @@ registers:
         bit_width: 1
         write_port: avg_en
         description: "Averaging enable"
+      - name: zcr_en
+        bit_offset: 3
+        bit_width: 1
+        write_port: zcr_en
+        description: "ZCR enable"
   - name: CFG
-    size: 10
+    size: 12
     mode: w
     fifo: no
-    offset: 16
+    offset: 20
     bit_access: no
     init: "'h201"
     description: "Configuration Register, 0-1: Channels to read, '01': right, '10': left, '11': Both (stereo) 2: Sign Extend 3: Left Justify 4-8: Sample Size (0-31)"
@@ -220,6 +257,17 @@ registers:
         bit_width: 6
         write_port: sample_size
         description: "Sample size"
+      - name: AVGSEL
+        bit_offset: 10
+        bit_width: 1
+        write_port: avg_sel
+        description: "Select the number of samples to average"
+      - name: ZCRSEL
+        bit_offset: 11
+        bit_width: 1
+        write_port: zcr_sel
+        description: "Select the number of samples to calculate the ZCR"
+
 
 flags:
   - name: FIFOE
@@ -234,6 +282,14 @@ flags:
   - name: AVGF
     port: avg_flag
     description: The avg is above the threshold.
+  - name: ZCRF
+    port: zcr_flag
+    description: The ZCR is above the threshold.
+  - name: VADF
+    port: vad_flag
+    description: The Voice Activity Detector flag; active when both ZCR & AVG flags are active.
+
+
 
 fifos:
   - name: RX_FIFO

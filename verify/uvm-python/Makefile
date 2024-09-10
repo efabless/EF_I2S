@@ -37,7 +37,7 @@ YAML_FILE = $(PWD)/../../EF_I2S.yaml
 MAKEFLAGS += --no-print-directory
 
 # List of tests
-TESTS := i2s_left_channel_test  i2s_right_channel_test  i2s_stereo_test i2s_fifo_interrupts_test i2s_averaging_test WriteReadRegsTest
+TESTS := i2s_left_channel_test  i2s_right_channel_test  i2s_stereo_test i2s_fifo_interrupts_test i2s_averaging_test i2s_zcr_test WriteReadRegsTest
 
 # Variable for tag - set this as required
 SIM_TAG ?= default_tag

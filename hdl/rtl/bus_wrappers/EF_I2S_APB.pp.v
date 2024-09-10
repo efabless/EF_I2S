@@ -103,8 +103,8 @@ module EF_I2S_APB #(
 		AW = 4
 ) (
 `ifdef USE_POWER_PINS
-	inout VPWR,
-	inout VGND,
+	input VPWR,
+	input VGND,
 `endif
 	input wire          PCLK,
                                         input wire          PRESETn,
@@ -125,8 +125,9 @@ module EF_I2S_APB #(
 	localparam	RXDATA_REG_OFFSET = 16'h0000;
 	localparam	PR_REG_OFFSET = 16'h0004;
 	localparam	AVGT_REG_OFFSET = 16'h0008;
-	localparam	CTRL_REG_OFFSET = 16'h000C;
-	localparam	CFG_REG_OFFSET = 16'h0010;
+	localparam	ZCRT_REG_OFFSET = 16'h000C;
+	localparam	CTRL_REG_OFFSET = 16'h0010;
+	localparam	CFG_REG_OFFSET = 16'h0014;
 	localparam	RX_FIFO_LEVEL_REG_OFFSET = 16'hFE00;
 	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = 16'hFE04;
 	localparam	RX_FIFO_FLUSH_REG_OFFSET = 16'hFE08;
@@ -175,6 +176,12 @@ module EF_I2S_APB #(
 	wire [32-1:0]	avg_threshold;
 	wire [1-1:0]	avg_flag;
 	wire [1-1:0]	avg_en;
+	wire [1-1:0]	avg_sel;
+	wire [32-1:0]	zcr_threshold;
+	wire [1-1:0]	zcr_flag;
+	wire [1-1:0]	zcr_en;
+	wire [1-1:0]	zcr_sel;
+	wire [1-1:0]	vad_flag;
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
 
@@ -193,22 +200,31 @@ module EF_I2S_APB #(
                                         else if(apb_we & (PADDR[16-1:0]==AVGT_REG_OFFSET))
                                             AVGT_REG <= PWDATA[32-1:0];
 
-	reg [2:0]	CTRL_REG;
+	reg [31:0]	ZCRT_REG;
+	assign	zcr_threshold = ZCRT_REG;
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) ZCRT_REG <= 0;
+                                        else if(apb_we & (PADDR[16-1:0]==ZCRT_REG_OFFSET))
+                                            ZCRT_REG <= PWDATA[32-1:0];
+
+	reg [3:0]	CTRL_REG;
 	assign	en	=	CTRL_REG[0 : 0];
 	assign	fifo_en	=	CTRL_REG[1 : 1];
 	assign	avg_en	=	CTRL_REG[2 : 2];
+	assign	zcr_en	=	CTRL_REG[3 : 3];
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CTRL_REG <= 'h0;
                                         else if(apb_we & (PADDR[16-1:0]==CTRL_REG_OFFSET))
-                                            CTRL_REG <= PWDATA[3-1:0];
+                                            CTRL_REG <= PWDATA[4-1:0];
 
-	reg [9:0]	CFG_REG;
+	reg [11:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
+	assign	avg_sel	=	CFG_REG[10 : 10];
+	assign	zcr_sel	=	CFG_REG[11 : 11];
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) CFG_REG <= 'h201;
                                         else if(apb_we & (PADDR[16-1:0]==CFG_REG_OFFSET))
-                                            CFG_REG <= PWDATA[10-1:0];
+                                            CFG_REG <= PWDATA[12-1:0];
 
 	wire [AW-1:0]	RX_FIFO_LEVEL_WIRE;
 	assign	RX_FIFO_LEVEL_WIRE[(AW - 1) : 0] = fifo_level;
@@ -232,24 +248,26 @@ module EF_I2S_APB #(
                                         else if(apb_we & (PADDR[16-1:0]==GCLK_REG_OFFSET))
                                             GCLK_REG <= PWDATA[1-1:0];
 
-	reg [3:0] IM_REG;
-	reg [3:0] IC_REG;
-	reg [3:0] RIS_REG;
+	reg [5:0] IM_REG;
+	reg [5:0] IC_REG;
+	reg [5:0] RIS_REG;
 
-	wire[4-1:0]      MIS_REG	= RIS_REG & IM_REG;
+	wire[6-1:0]      MIS_REG	= RIS_REG & IM_REG;
 	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) IM_REG <= 0;
                                         else if(apb_we & (PADDR[16-1:0]==IM_REG_OFFSET))
-                                            IM_REG <= PWDATA[4-1:0];
-	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) IC_REG <= 4'b0;
+                                            IM_REG <= PWDATA[6-1:0];
+	always @(posedge PCLK or negedge PRESETn) if(~PRESETn) IC_REG <= 6'b0;
                                         else if(apb_we & (PADDR[16-1:0]==IC_REG_OFFSET))
-                                            IC_REG <= PWDATA[4-1:0];
+                                            IC_REG <= PWDATA[6-1:0];
                                         else
-                                            IC_REG <= 4'd0;
+                                            IC_REG <= 6'd0;
 
 	wire [0:0] FIFOE = fifo_empty;
 	wire [0:0] FIFOA = fifo_level_above;
 	wire [0:0] FIFOF = fifo_full;
 	wire [0:0] AVGF = avg_flag;
+	wire [0:0] ZCRF = zcr_flag;
+	wire [0:0] VADF = vad_flag;
 
 
 	integer _i_;
@@ -265,6 +283,12 @@ module EF_I2S_APB #(
 		end
 		for(_i_ = 3; _i_ < 4; _i_ = _i_ + 1) begin
 			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(AVGF[_i_ - 3] == 1'b1) RIS_REG[_i_] <= 1'b1;
+		end
+		for(_i_ = 4; _i_ < 5; _i_ = _i_ + 1) begin
+			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(ZCRF[_i_ - 4] == 1'b1) RIS_REG[_i_] <= 1'b1;
+		end
+		for(_i_ = 5; _i_ < 6; _i_ = _i_ + 1) begin
+			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(VADF[_i_ - 5] == 1'b1) RIS_REG[_i_] <= 1'b1;
 		end
 	end
 
@@ -303,6 +327,12 @@ module EF_I2S_APB #(
 		.avg_threshold(avg_threshold),
 		.avg_flag(avg_flag),
 		.avg_en(avg_en),
+		.avg_sel(avg_sel),
+		.zcr_threshold(zcr_threshold),
+		.zcr_flag(zcr_flag),
+		.zcr_en(zcr_en),
+		.zcr_sel(zcr_sel),
+		.vad_flag(vad_flag),
 		.channels(channels),
 		.en(en),
 		.ws(ws),
@@ -314,6 +344,7 @@ module EF_I2S_APB #(
 			(PADDR[16-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
 			(PADDR[16-1:0] == PR_REG_OFFSET)	? PR_REG :
 			(PADDR[16-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
+			(PADDR[16-1:0] == ZCRT_REG_OFFSET)	? ZCRT_REG :
 			(PADDR[16-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
 			(PADDR[16-1:0] == CFG_REG_OFFSET)	? CFG_REG :
 			(PADDR[16-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_WIRE :

@@ -118,6 +118,14 @@ module EF_I2S #(parameter DW=32, AW=4) (
     input   wire [31:0]     avg_threshold,
     output  wire            avg_flag,
     input   wire            avg_en,
+    input   wire            avg_sel,        // 0: 256 samples, 1: 512 samples
+    input   wire [31:0]     zcr_threshold,
+    output  wire            zcr_flag,
+    input   wire            zcr_en,
+    input   wire            zcr_sel,        // 0: 256 samples, 1: 512 samples
+    
+    output  wire            vad_flag,
+    
     input   wire [1:0]      channels,       // 10: left, 01: right, 11: both (stereo)
     input   wire            en         
 ); 
@@ -177,8 +185,8 @@ module EF_I2S #(parameter DW=32, AW=4) (
 
     // Averaging Logic
     reg  [31:0] sum;
-    reg  [4:0]  sum_ctr;
-    wire [31:0] sample_value = (fifo_wdata[31]) ? ~fifo_wdata : fifo_wdata;
+    reg  [8:0]  sum_ctr;
+    wire [31:0] abs_sample_value = (fifo_wdata[31]) ? ~fifo_wdata : fifo_wdata;
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             sum_ctr <= 'b0;
@@ -186,16 +194,52 @@ module EF_I2S #(parameter DW=32, AW=4) (
             if(sample_rdy & |(current_channel & channels))
                 sum_ctr <= sum_ctr + 1'b1;
     
+    wire sum_ctr_zero = avg_sel ? (sum_ctr == 9'b0) : (sum_ctr[7:0] == 8'b0);
+
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
             sum <= 'b0;
         else if(sample_rdy & |(current_channel & channels))
-            if(sum_ctr == 5'b0)
-                sum <= sample_value;
+            if(sum_ctr_zero)
+                sum <= abs_sample_value;
             else
-               if(avg_en) sum <= sum + sample_value;
+               if(avg_en) sum <= sum + abs_sample_value;
 
-    assign avg_flag = avg_en & (sum[31:5] > avg_threshold);
+    wire avg_gt_threshold = avg_sel ? (sum[31:9] > avg_threshold) : (sum[31:8] > avg_threshold);
+    assign avg_flag = avg_en & (avg_gt_threshold);
+
+    // ZCR Logic
+    reg prev_sign;
+    reg  [31:0] zcr;
+    reg  [8:0]  zc_ctr;
+    always @ (posedge clk, negedge rst_n)
+        if(!rst_n)
+            zc_ctr <= 'b0;
+        else
+            if(sample_rdy & |(current_channel & channels))
+                zc_ctr <= zc_ctr + 1'b1;
+    
+    always @(posedge clk, negedge rst_n)
+        if(!rst_n)
+            prev_sign <= 1'b0;
+        else if(sample_rdy & |(current_channel & channels))
+            prev_sign <= fifo_wdata[31];
+
+    wire zc_ctr_zero = zcr_sel ? (zc_ctr == 9'b0) : (zc_ctr[7:0] == 8'b0);
+
+    always @ (posedge clk, negedge rst_n)
+        if(!rst_n)
+            zcr <= 'b0;
+        else if(sample_rdy & |(current_channel & channels))
+            if(zc_ctr_zero)
+                zcr <= 0;
+            else
+                if(zcr_en) zcr <= zcr + (prev_sign ^ fifo_wdata[31]);
+    
+    wire zcr_gt_threshold = zcr > zcr_threshold;
+    assign zcr_flag = zcr_en & (zcr_gt_threshold);
+
+    assign vad_flag = avg_flag & zcr_flag;
 
     i2s_rx RX (
         .clk(clk),

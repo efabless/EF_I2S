@@ -18,6 +18,10 @@ void EF_I2S_enableAVG (uint32_t i2s_base);
 
 void EF_I2S_disableAVG (uint32_t i2s_base);
 
+void EF_I2S_enableZCR(uint32_t i2s_base);
+
+void EF_I2S_disableZCR(uint32_t i2s_base);
+
 void EF_I2S_setConfigReg (uint32_t i2s_base, int config);
 
 int EF_I2S_getConfigReg (uint32_t i2s_base);
@@ -27,6 +31,8 @@ void EF_I2S_setPrescaler(uint32_t i2s_base, int prescaler);
 int EF_I2S_getPrescaler(uint32_t i2s_base);
 
 void EF_I2S_setAVGT(uint32_t i2s_base, int average);
+
+void EF_I2S_setZCRT(uint32_t i2s_base, int average);
 
 int EF_I2S_getRxFifoLevel(uint32_t i2s_base);
 

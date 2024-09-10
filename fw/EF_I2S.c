@@ -43,10 +43,24 @@ void EF_I2S_enableAVG(uint32_t i2s_base){
     i2s->CTRL = control;
 }
 
+void EF_I2S_enableZCR(uint32_t i2s_base){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+    int control = i2s->CTRL;
+    control |= EF_I2S_CTRL_REG_ZCR_EN_MASK;
+    i2s->CTRL = control;
+}
+
 void EF_I2S_disableAVG(uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
     int control = i2s->CTRL;
     control &= ~EF_I2S_CTRL_REG_AVG_EN_MASK;
+    i2s->CTRL = control;
+}
+
+void EF_I2S_disableZCR(uint32_t i2s_base){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+    int control = i2s->CTRL;
+    control &= ~EF_I2S_CTRL_REG_ZCR_EN_MASK;
     i2s->CTRL = control;
 }
 
@@ -87,6 +101,12 @@ void EF_I2S_setAVGT(uint32_t i2s_base, int average){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
     i2s->AVGT = average;
+}
+
+void EF_I2S_setZCRT(uint32_t i2s_base, int average){
+    EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
+
+    i2s->ZCRT = average;
 }
 
 

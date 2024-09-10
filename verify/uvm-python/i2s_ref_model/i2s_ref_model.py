@@ -67,6 +67,8 @@ class i2s_ref_model(ref_model):
             if tr.addr == self.regs.reg_name_to_address["CFG"]:
                 self.channels = self.regs.read_reg_value("CFG") & 0b11
                 self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
+                self.avg_samples_size = 512 if self.regs.read_reg_value("CFG") & 0b1000000000 else 256
+                self.zcr_samples_size = 512 if self.regs.read_reg_value("CFG") & 0b10000000000 else 256
             if tr.addr == self.regs.reg_name_to_address["icr"] and tr.data != 0:
                 self.icr_changed.set()
             if tr.addr == self.regs.reg_name_to_address["RX_FIFO_FLUSH"] and tr.data != 0:
@@ -95,6 +97,8 @@ class i2s_ref_model(ref_model):
         self.left_justified = True
         self.samples_count = 0
         self.samples_sum = 0
+        self.avg_samples_size = 256
+        self.zcr_samples_size = 256
         self.ris_reg = 0b0001            # FIFO is always empty at first so set ris flag 0 = 1
         self.mis_reg = 0
         self.irq = 0
@@ -148,7 +152,8 @@ class i2s_ref_model(ref_model):
         uvm_info(self.tag, f"sample after sign extension = 0x{sample:X}", UVM_LOW)
         sample_absolute = sample if not sign_bit else (~sample  & 0xFFFFFFFF)  #one's complement to get the absolute value of the samples
         uvm_info (self.tag, f"sample after absolute value = 0x{sample_absolute:X}", UVM_MEDIUM)
-        if self.samples_count == 32:   # reset counter and samples sum when 32 samples are read 
+
+        if self.samples_count == self.avg_samples_size:   # reset counter and samples sum when 512 or 256 samples are read 
             self.samples_count = 0
             self.samples_sum = sample_absolute 
         else:
@@ -233,7 +238,7 @@ class i2s_ref_model(ref_model):
             uvm_info (self.tag, f"RX FIFO is full", UVM_MEDIUM)
 
         if avg_enable:
-            samples_average = int (self.samples_sum / 32)
+            samples_average = int (self.samples_sum / self.avg_samples_size)
             uvm_info(self.tag, f"samples average = 0x{samples_average:X}", UVM_LOW)
 
             if samples_average > avg_threshold:

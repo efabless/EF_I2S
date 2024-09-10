@@ -20,6 +20,7 @@ from i2s_seq_lib.i2s_send_left_sample_seq import i2s_send_left_sample_seq
 from i2s_seq_lib.i2s_read_rxdata_seq import i2s_read_rxdata_seq
 from i2s_seq_lib.i2s_write_fifoth_seq import i2s_write_fifoth_seq
 from i2s_seq_lib.i2s_write_avgth_seq import i2s_write_avgth_seq
+from i2s_seq_lib.i2s_write_zcrth_seq import i2s_write_zcrth_seq
 from i2s_seq_lib.i2s_read_ris_seq import i2s_read_ris_seq
 from i2s_seq_lib.i2s_write_im_seq import i2s_write_im_seq
 from i2s_seq_lib.i2s_write_ic_seq import i2s_write_ic_seq
@@ -104,7 +105,7 @@ class i2s_base_test(base_test):
     #         self, f"{self.__class__.__name__} pre_configure_phase phase drop objection"
     #     )
 
-    def get_config_reg_val(self, channel=None, sign_extend= None, left_justify=None, sample_size=None ):
+    def get_config_reg_val(self, channel=None, sign_extend= None, left_justify=None, sample_size=None, avg_samples=None, zcr_samples=None ):
         if channel is None:
             channel_bits = random.choice([0b01, 0b10, 0b11])
         elif channel == "right":
@@ -118,9 +119,12 @@ class i2s_base_test(base_test):
 
         sign_extend_bit = random.choice([0,1]) if sign_extend is None else 0b1 if sign_extend else 0b0
         left_justify_bit = random.choice([0,1]) if left_justify is None else 0b1 if left_justify else 0b0
+        avg_samples_bit = 0 if avg_samples is None else 0b1 if avg_samples==512 else 0b0
+        zcr_samples_bit = 0 if zcr_samples is None else 0b1 if zcr_samples==512 else 0b0
+
         if sample_size is None:
             sample_size = random.randint(1,32)
-        config_reg =  (sample_size & 0b111111) << 4 | (left_justify_bit & 0b1) << 3 | (sign_extend_bit & 0b1) << 2 | (channel_bits & 0b11)
+        config_reg =  (zcr_samples_bit & 0b1) << 11 | (avg_samples_bit & 0b1) << 10 | (sample_size & 0b111111) << 4 | (left_justify_bit & 0b1) << 3 | (sign_extend_bit & 0b1) << 2 | (channel_bits & 0b11)
         return  config_reg
 
     async def delay(self, cycles=None):
@@ -390,13 +394,13 @@ class i2s_averaging_test(i2s_base_test):
         bus_i2s_send_nop_seq = i2s_send_nop_seq("i2s_send_nop_seq")
 
         
-        self.config_reg = self.get_config_reg_val(channel="right", sample_size=24, sign_extend=True) # put sample size to predict average 
+        self.config_reg = self.get_config_reg_val(channel="right", sample_size=24, sign_extend=True, avg_samples=512) # put sample size to predict average 
         bus_i2s_config_seq.set_config_reg(self.config_reg)
         await bus_i2s_config_seq.start(self.bus_sqr)
 
         samples_list = []
         samples_sum = 0
-        for i in range (32):
+        for i in range (512):
             sample = random.randint(0x0, 0xFFFFFFFF)
             samples_list.append(sample)
 
@@ -406,7 +410,7 @@ class i2s_averaging_test(i2s_base_test):
         await bus_i2s_write_avgth_seq.start(self.bus_sqr)      # write the fifo threshold register 
 
         
-        for i in range (32):
+        for i in range (512):
             ip_i2s_send_right_sample_seq.set_sample(samples_list[i])
             await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
         
@@ -429,13 +433,13 @@ class i2s_averaging_test(i2s_base_test):
 
         # ##################################################################################################################
 
-        self.config_reg = self.get_config_reg_val(channel="left", sample_size=16, sign_extend=True) # put sample size to predict average 
+        self.config_reg = self.get_config_reg_val(channel="left", sample_size=16, sign_extend=True, avg_samples=256) # put sample size to predict average 
         bus_i2s_config_seq.set_config_reg(self.config_reg)
         await bus_i2s_config_seq.start(self.bus_sqr)
 
         samples_list = []
         samples_sum = 0
-        for i in range (32):
+        for i in range (256):
             sample = random.randint(0x0, 0xFFFFFFFF)
             samples_list.append(sample)
 
@@ -446,7 +450,7 @@ class i2s_averaging_test(i2s_base_test):
         await bus_i2s_write_avgth_seq.start(self.bus_sqr)      # write the fifo threshold register 
 
         
-        for i in range (32):
+        for i in range (256):
             ip_i2s_send_left_sample_seq.set_sample(samples_list[i])
             await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
         
@@ -467,15 +471,15 @@ class i2s_averaging_test(i2s_base_test):
 
         await Timer(10000 , "ns")
 
-        ######################################################################################################################
+        #####################################################################################################################
 
-        self.config_reg = self.get_config_reg_val(channel="stereo", sample_size=8, sign_extend=True) # put sample size to predict average 
+        self.config_reg = self.get_config_reg_val(channel="stereo", sample_size=8, sign_extend=True, avg_samples=512) # put sample size to predict average 
         bus_i2s_config_seq.set_config_reg(self.config_reg)
         await bus_i2s_config_seq.start(self.bus_sqr)
 
         samples_list = []
         samples_sum = 0
-        for i in range (32):
+        for i in range (512):
             sample = random.randint(0x0, 0xFFFFFFFF)
             samples_list.append(sample)
 
@@ -484,7 +488,7 @@ class i2s_averaging_test(i2s_base_test):
         bus_i2s_write_avgth_seq.set_average_threshold(samples_expected_average-1)
         await bus_i2s_write_avgth_seq.start(self.bus_sqr)      # write the fifo threshold register 
         
-        for i in range (0,32,2):
+        for i in range (0,512,2):
             ip_i2s_send_left_sample_seq.set_sample(samples_list[i])
             await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
             ip_i2s_send_right_sample_seq.set_sample(samples_list[i+1])
@@ -525,12 +529,188 @@ class i2s_averaging_test(i2s_base_test):
             samples_sum += sample_absolute
         
         samples_sum &= 0xFFFFFFFF
-        samples_average = int (samples_sum/32)
+        samples_average = int (samples_sum/len(samples_list))
         uvm_info(self.tag, f"In tests samples sum  = 0x{samples_sum:X} and samples average = 0x{samples_average:X}", UVM_LOW)
         return(samples_average)
 
 
 uvm_component_utils(i2s_averaging_test)
+
+class i2s_zcr_test(i2s_base_test):
+    def __init__(self, name="i2s_zcr_test", parent=None):
+        super().__init__(name, parent=parent)
+        self.tag = name
+
+    def build_phase(self, phase):
+        super().build_phase(phase)
+        
+
+    async def main_phase(self, phase):
+        uvm_info(self.tag, f"Starting test {self.__class__.__name__}", UVM_LOW)
+        phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
+
+        bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
+        bus_i2s_config_seq.set_ctrl_reg(0b1001)          # enable i2s and enable zcr  
+        ip_i2s_send_right_sample_seq = i2s_send_right_sample_seq("i2s_send_right_sample_seq")
+        ip_i2s_send_left_sample_seq = i2s_send_left_sample_seq("i2s_send_left_sample_seq")
+        bus_i2s_read_rxdata_seq = i2s_read_rxdata_seq("i2s_read_rxdata_seq")
+        bus_i2s_write_im_seq = i2s_write_im_seq("i2s_write_im_seq")
+        bus_i2s_write_ic_seq = i2s_write_ic_seq("i2s_write_ic_seq")
+        bus_i2s_read_ris_seq = i2s_read_ris_seq("i2s_read_ris_seq")
+        bus_i2s_read_mis_seq = i2s_read_mis_seq("i2s_read_mis_seq")
+        bus_i2s_write_zcrth_seq = i2s_write_zcrth_seq("i2s_write_zcrth_seq")
+        bus_i2s_send_nop_seq = i2s_send_nop_seq("i2s_send_nop_seq")
+
+        
+        self.config_reg = self.get_config_reg_val(channel="right", sample_size=24, sign_extend=True, zcr_samples=512) # put sample size to predict average 
+        bus_i2s_config_seq.set_config_reg(self.config_reg)
+        await bus_i2s_config_seq.start(self.bus_sqr)
+
+        samples_list = []
+        samples_sum = 0
+        for i in range (512):
+            sample = random.randint(0x0, 0xFFFFFFFF)
+            samples_list.append(sample)
+
+        samples_expected_zcr = self.get_expected_zcr_threshold(samples_list, 24)
+        
+        bus_i2s_write_zcrth_seq.set_zcr_threshold(samples_expected_zcr-1)
+        await bus_i2s_write_zcrth_seq.start(self.bus_sqr)      # write the fifo threshold register 
+
+        
+        for i in range (512):
+            ip_i2s_send_right_sample_seq.set_sample(samples_list[i])
+            await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
+        
+        for _ in range(10):
+            await bus_i2s_send_nop_seq.start(self.bus_sqr)
+
+        await bus_i2s_read_ris_seq.start(self.bus_sqr)  # fifo should be empty at first so irq 1 should be fired
+        bus_i2s_write_im_seq.set_im(0b1000)                # read ris to check that it has the correct value  
+        await bus_i2s_write_im_seq.start(self.bus_sqr)  # mask the interrupt
+        await bus_i2s_read_mis_seq.start(self.bus_sqr)  # read mis to check that it has the correct value
+
+        for _ in range (2):
+            await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
+        
+        bus_i2s_write_ic_seq.set_ic(0b1000)
+        await bus_i2s_write_ic_seq.start(self.bus_sqr)  # clear the interrupt
+        await bus_i2s_read_mis_seq.start(self.bus_sqr)  # reread mis to check that it was cleared 
+
+        await Timer(10000 , "ns")
+
+        # ##################################################################################################################
+
+        # self.config_reg = self.get_config_reg_val(channel="left", sample_size=16, sign_extend=True, avg_samples=256) # put sample size to predict average 
+        # bus_i2s_config_seq.set_config_reg(self.config_reg)
+        # await bus_i2s_config_seq.start(self.bus_sqr)
+
+        # samples_list = []
+        # samples_sum = 0
+        # for i in range (256):
+        #     sample = random.randint(0x0, 0xFFFFFFFF)
+        #     samples_list.append(sample)
+
+        # samples_expected_average = self.get_expected_avg_threshold(samples_list, 16)
+        
+
+        # bus_i2s_write_avgth_seq.set_average_threshold(samples_expected_average-1)
+        # await bus_i2s_write_avgth_seq.start(self.bus_sqr)      # write the fifo threshold register 
+
+        
+        # for i in range (256):
+        #     ip_i2s_send_left_sample_seq.set_sample(samples_list[i])
+        #     await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
+        
+        # for _ in range(10):
+        #     await bus_i2s_send_nop_seq.start(self.bus_sqr)
+
+        # await bus_i2s_read_ris_seq.start(self.bus_sqr)  # fifo should be empty at first so irq 1 should be fired
+        # bus_i2s_write_im_seq.set_im(0b1000)                # read ris to check that it has the correct value  
+        # await bus_i2s_write_im_seq.start(self.bus_sqr)  # mask the interrupt
+        # await bus_i2s_read_mis_seq.start(self.bus_sqr)  # read mis to check that it has the correct value
+
+        # for _ in range (2):
+        #     await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
+        
+        # bus_i2s_write_ic_seq.set_ic(0b1000)
+        # await bus_i2s_write_ic_seq.start(self.bus_sqr)  # clear the interrupt
+        # await bus_i2s_read_mis_seq.start(self.bus_sqr)  # reread mis to check that it was cleared 
+
+        # await Timer(10000 , "ns")
+
+        #####################################################################################################################
+
+        # self.config_reg = self.get_config_reg_val(channel="stereo", sample_size=8, sign_extend=True, avg_samples=512) # put sample size to predict average 
+        # bus_i2s_config_seq.set_config_reg(self.config_reg)
+        # await bus_i2s_config_seq.start(self.bus_sqr)
+
+        # samples_list = []
+        # samples_sum = 0
+        # for i in range (512):
+        #     sample = random.randint(0x0, 0xFFFFFFFF)
+        #     samples_list.append(sample)
+
+        # samples_expected_average = self.get_expected_avg_threshold(samples_list, 8)
+        
+        # bus_i2s_write_avgth_seq.set_average_threshold(samples_expected_average-1)
+        # await bus_i2s_write_avgth_seq.start(self.bus_sqr)      # write the fifo threshold register 
+        
+        # for i in range (0,512,2):
+        #     ip_i2s_send_left_sample_seq.set_sample(samples_list[i])
+        #     await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
+        #     ip_i2s_send_right_sample_seq.set_sample(samples_list[i+1])
+        #     await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
+        
+        # for _ in range(10):
+        #     await bus_i2s_send_nop_seq.start(self.bus_sqr)
+
+        # await bus_i2s_read_ris_seq.start(self.bus_sqr)  # fifo should be empty at first so irq 1 should be fired
+        # bus_i2s_write_im_seq.set_im(0b1000)                # read ris to check that it has the correct value  
+        # await bus_i2s_write_im_seq.start(self.bus_sqr)  # mask the interrupt
+        # await bus_i2s_read_mis_seq.start(self.bus_sqr)  # read mis to check that it has the correct value
+
+        # # for _ in range (2):
+        # await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
+        # await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
+        
+        # bus_i2s_write_ic_seq.set_ic(0b1000)
+        # await bus_i2s_write_ic_seq.start(self.bus_sqr)  # clear the interrupt
+        # await bus_i2s_read_mis_seq.start(self.bus_sqr)  # reread mis to check that it was cleared 
+
+        # await Timer(10000 , "ns")
+
+
+
+        phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
+
+
+    # def get_expected_zcr_threshold(self, samples_list, sample_size):
+    #     samples_sum = 0 
+    #     for sample in samples_list:
+    #         sample = sample >> (32 - sample_size)
+    #         sign_bit = (sample >> (sample_size-1)) & 0b1
+    #         if (sign_bit):
+    #             sign_extension = (0xFFFFFFFF << sample_size) & 0xFFFFFFFF
+    #             sample = sample | sign_extension
+    #         sample_absolute = sample if not sign_bit else (~sample  & 0xFFFFFFFF)  #one's complement to get the absolute value of the sample
+    #         samples_sum += sample_absolute
+        
+    #     samples_sum &= 0xFFFFFFFF
+    #     samples_average = int (samples_sum/len(samples_list))
+    #     uvm_info(self.tag, f"In tests samples sum  = 0x{samples_sum:X} and samples average = 0x{samples_average:X}", UVM_LOW)
+    #     return(samples_average)
+
+    def get_expected_zcr_threshold(self, samples_list, sample_size):
+        zero_crossings = 0
+        for i in range(1, len(samples_list)):
+            sign_bit_1 = (samples_list[i-1] >> (sample_size-1)) & 0b1
+            sign_bit_2 = (samples_list[i] >> (sample_size-1)) & 0b1
+            if (sign_bit_1 ^ sign_bit_2):
+                zero_crossings += 1
+        return zero_crossings
+
+uvm_component_utils(i2s_zcr_test)
 
 
 class WriteReadRegsTest(i2s_base_test):

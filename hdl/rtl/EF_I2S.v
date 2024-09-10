@@ -210,7 +210,7 @@ module EF_I2S #(parameter DW=32, AW=4) (
 
     // ZCR Logic
     reg prev_sign;
-    reg  [31:0] zc;
+    reg  [31:0] zcr;
     reg  [8:0]  zc_ctr;
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
@@ -229,17 +229,17 @@ module EF_I2S #(parameter DW=32, AW=4) (
 
     always @ (posedge clk, negedge rst_n)
         if(!rst_n)
-            zc <= 'b0;
+            zcr <= 'b0;
         else if(sample_rdy & |(current_channel & channels))
             if(zc_ctr_zero)
-                zc <= 0;
+                zcr <= 0;
             else
                 if(zcr_en) zcr <= zcr + (prev_sign ^ fifo_wdata[31]);
     
     wire zcr_gt_threshold = zcr > zcr_threshold;
     assign zcr_flag = zcr_en & (zcr_gt_threshold);
 
-    assign vad_flag = avg_flag | zcr_flag;
+    assign vad_flag = avg_flag & zcr_flag;
 
     i2s_rx RX (
         .clk(clk),

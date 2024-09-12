@@ -7,8 +7,8 @@ info:
   license: APACHE 2.0
   author: Mohamed Shalan
   email: mshalan@efabless.com
-  version: v1.1.11
-  date: 10-09-2024
+  version: v1.1.12
+  date: 12-09-2024
   category: digital
   tags:
     - peripheral
@@ -111,7 +111,7 @@ ports:
   - name: avg_sel
     width: 1
     direction: input
-    description: 0 - 256 Samples, 1 - 512 Samples
+    description: 0 - 32 Samples, 1 - 64 Samples
   - name: zcr_threshold
     width: 32
     direction: input
@@ -127,7 +127,7 @@ ports:
   - name: zcr_sel
     width: 1
     direction: input
-    description: 0 - 256 Samples, 1 - 512 Samples
+    description: 0 - 32 Samples, 1 - 64 Samples
   - name: vad_flag
     width: 1
     direction: output

@@ -207,11 +207,11 @@ The following are the bit definitions for the interrupt registers:
 |avg_threshold|input|32|The samples average threshold|
 |avg_flag|output|1|Flag raised when the samples average is above a threshold|
 |avg_en|input|1|Enable average feature|
-|avg_sel|input|1|0 - 256 Samples, 1 - 512 Samples|
+|avg_sel|input|1|0 - 32 Samples, 1 - 64 Samples|
 |zcr_threshold|input|32|The samples ZCR threshold|
 |zcr_flag|output|1|Flag raised when the samples ZCR is above a threshold|
 |zcr_en|input|1|Enable average feature|
-|zcr_sel|input|1|0 - 256 Samples, 1 - 512 Samples|
+|zcr_sel|input|1|0 - 32 Samples, 1 - 64 Samples|
 |vad_flag|output|1|The VAD flag|
 |channels|input|2|Channels used (left, right, or stereo)|
 |en|input|1|Enable signal|

@@ -67,8 +67,10 @@ class i2s_ref_model(ref_model):
             if tr.addr == self.regs.reg_name_to_address["CFG"]:
                 self.channels = self.regs.read_reg_value("CFG") & 0b11
                 self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
-                self.avg_samples_size = 512 if self.regs.read_reg_value("CFG") & 0b1000000000 else 256
-                self.zcr_samples_size = 512 if self.regs.read_reg_value("CFG") & 0b10000000000 else 256
+                self.avg_samples_size = 512 if (self.regs.read_reg_value("CFG") & 0b10000000000) else 256
+                self.zcr_samples_size = 512 if (self.regs.read_reg_value("CFG") & 0b100000000000) else 256
+                uvm_info(self.tag, f"average samples number = {self.avg_samples_size} zcr samples number = {self.zcr_samples_size}", UVM_LOW)
+
             if tr.addr == self.regs.reg_name_to_address["icr"] and tr.data != 0:
                 self.icr_changed.set()
             if tr.addr == self.regs.reg_name_to_address["RX_FIFO_FLUSH"] and tr.data != 0:

@@ -5,7 +5,7 @@ PDK_FILES ?= /home/nouran/PDK_cheetah_v3/sky130A/libs.ref/sky130_fd_sc_hd/verilo
 AHB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_AHBL.pp.v
 APB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_APB.pp.v
 WB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_WB.pp.v 
-HDL_FILES ?= $(PWD)/IP_Utilities/rtl/aucohl_lib.v $(PWD)/../../hdl/rtl/EF_I2S.v
+HDL_FILES ?= $(PWD)/../../ip/IP_Utilities/rtl/aucohl_lib.v $(PWD)/../../hdl/rtl/EF_I2S.v
 VERILOG_SOURCES ?=  $(PWD)/top.v $(AHB_FILES) $(APB_FILES) $(WB_FILES) $(HDL_FILES) $(PDK_FILES)
 RTL_MACROS += -DUSE_POWER_PINS -DFUNCTIONAL -DUNIT_DELAY=\#1  # Add macros needed
 BUS_TYPE ?= APB
@@ -46,10 +46,6 @@ SIM_TAG ?= default_tag
 SIM_PATH := $(PWD)/sim/$(SIM_TAG)
 
 # Check and clone EF_UVM repository at the beginning of the Makefile execution
-clone_ip_util := $(shell if [ ! -d "IP_Utilities" ]; then \
-	echo "Cloning the IP_Utilities repository..."; \
-	git clone https://github.com/shalan/IP_Utilities.git; \
-fi;)
 
 clone_ef_uvm := $(shell if [ ! -d "EF_UVM" ]; then \
 	echo "Cloning the EF_UVM repository..."; \

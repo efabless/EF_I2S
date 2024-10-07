@@ -1,7 +1,7 @@
 PLUSARGS += "+UVM_VERBOSITY=UVM_MEDUIM"
 TOPLEVEL := top
 MODULE   ?= top_module
-PDK_FILES ?= /home/nouran/PDK_cheetah_v3/sky130A/libs.ref/sky130_fd_sc_hd/verilog/primitives.v /home/nouran/PDK_cheetah_v3/sky130A/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v
+PDK_FILES ?= $(PDK_DIR)/libs.ref/sky130_fd_sc_hd/verilog/primitives.v $(PDK_DIR)/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v
 AHB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_AHBL.pp.v
 APB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_APB.pp.v
 WB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_WB.pp.v 

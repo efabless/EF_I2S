@@ -1,12 +1,11 @@
 PLUSARGS += "+UVM_VERBOSITY=UVM_MEDUIM"
 TOPLEVEL := top
 MODULE   ?= top_module
-PDK_FILES ?= $(PDK_DIR)/libs.ref/sky130_fd_sc_hd/verilog/primitives.v $(PDK_DIR)/libs.ref/sky130_fd_sc_hd/verilog/sky130_fd_sc_hd.v
 AHB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_AHBL.pp.v
 APB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_APB.pp.v
 WB_FILES ?=$(PWD)/../../hdl/rtl/bus_wrappers/EF_I2S_WB.pp.v 
 HDL_FILES ?= $(PWD)/../../ip/IP_Utilities/rtl/aucohl_lib.v $(PWD)/../../hdl/rtl/EF_I2S.v
-VERILOG_SOURCES ?=  $(PWD)/top.v $(AHB_FILES) $(APB_FILES) $(WB_FILES) $(HDL_FILES) $(PDK_FILES)
+VERILOG_SOURCES ?=  $(PWD)/top.v $(AHB_FILES) $(APB_FILES) $(WB_FILES) $(HDL_FILES)
 RTL_MACROS += -DUSE_POWER_PINS -DFUNCTIONAL -DUNIT_DELAY=\#1  # Add macros needed
 BUS_TYPE ?= APB
 ifeq ($(BUS_TYPE),APB)

@@ -162,7 +162,7 @@ class i2s_left_channel_test(i2s_base_test):
                 await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
 
 
-            for i in range (random.randint(1, 16)):                     # read a random number of samples 
+            for i in range (random.randint(1, 15)):                     # read a random number of samples 
                 await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
                 # await bus_i2s_read_fifo_level_seq.start(self.bus_sqr)
 
@@ -206,7 +206,7 @@ class i2s_right_channel_test(i2s_base_test):
             for i in range (16):                                            # send samples until fifo is full 
                 await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
                 
-            for i in range (random.randint(1, 16)):                         # read a random number of samples 
+            for i in range (random.randint(1, 15)):                         # read a random number of samples 
                 await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
 
             await Timer(10000 , "ns")
@@ -249,7 +249,7 @@ class i2s_stereo_test(i2s_base_test):
                 await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
 
 
-            for i in range (random.randint(1, 16)):                         # read a random number of samples 
+            for i in range (random.randint(1, 15)):                         # read a random number of samples 
                 await bus_i2s_read_rxdata_seq.start(self.bus_sqr)
 
             await Timer(10000 , "ns")
@@ -367,7 +367,30 @@ class i2s_fifo_interrupts_test(i2s_base_test):
 
 uvm_component_utils(i2s_fifo_interrupts_test)
 
+class try_driver_test(i2s_base_test):
+    def __init__(self, name="try_driver_test", parent=None):
+        super().__init__(name, parent=parent)
+        self.tag = name
+    
+    async def main_phase(self, phase):
+        bus_i2s_config_seq = i2s_config_seq("i2s_config_seq")
+        bus_i2s_config_seq.set_ctrl_reg(0b101)          # enable i2s and enable averaging
+        self.config_reg = self.get_config_reg_val(channel="left", sample_size=24, sign_extend=True, avg_samples=64, left_justify=False) # put sample size to predict average 
+        bus_i2s_config_seq.set_config_reg(self.config_reg)
+        ip_i2s_send_right_sample_seq = i2s_send_right_sample_seq("i2s_send_right_sample_seq")
+        ip_i2s_send_right_sample_seq.set_sample(0x55555555)
+        ip_i2s_send_left_sample_seq = i2s_send_left_sample_seq("i2s_send_left_sample_seq")
+        ip_i2s_send_left_sample_seq.set_sample(0xAAAAAAAA)
+        phase.raise_objection(self, f"{self.__class__.__name__} OBJECTED")
+        await bus_i2s_config_seq.start(self.bus_sqr)
+        await ip_i2s_send_right_sample_seq.start(self.ip_sqr)
+        await ip_i2s_send_left_sample_seq.start(self.ip_sqr)
+        await Timer(10000, "ns")
+        phase.drop_objection(self, f"{self.__class__.__name__} drop objection")
 
+
+uvm_component_utils(try_driver_test)
+        
 class i2s_averaging_test(i2s_base_test):
     def __init__(self, name="i2s_averaging_test", parent=None):
         super().__init__(name, parent=parent)

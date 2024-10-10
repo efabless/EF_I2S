@@ -31,6 +31,10 @@ module EF_I2S_AHBL #(
 		DW = 32,
 		AW = 4
 ) (
+`ifdef USE_POWER_PINS
+	inout VPWR,
+	inout VGND,
+`endif
 	`AHBL_SLAVE_PORTS,
 	output	wire	[1-1:0]	ws,
 	output	wire	[1-1:0]	sck,
@@ -40,8 +44,9 @@ module EF_I2S_AHBL #(
 	localparam	RXDATA_REG_OFFSET = `AHBL_AW'h0000;
 	localparam	PR_REG_OFFSET = `AHBL_AW'h0004;
 	localparam	AVGT_REG_OFFSET = `AHBL_AW'h0008;
-	localparam	CTRL_REG_OFFSET = `AHBL_AW'h000C;
-	localparam	CFG_REG_OFFSET = `AHBL_AW'h0010;
+	localparam	ZCRT_REG_OFFSET = `AHBL_AW'h000C;
+	localparam	CTRL_REG_OFFSET = `AHBL_AW'h0010;
+	localparam	CFG_REG_OFFSET = `AHBL_AW'h0014;
 	localparam	RX_FIFO_LEVEL_REG_OFFSET = `AHBL_AW'hFE00;
 	localparam	RX_FIFO_THRESHOLD_REG_OFFSET = `AHBL_AW'hFE04;
 	localparam	RX_FIFO_FLUSH_REG_OFFSET = `AHBL_AW'hFE08;
@@ -49,7 +54,21 @@ module EF_I2S_AHBL #(
 	localparam	MIS_REG_OFFSET = `AHBL_AW'hFF04;
 	localparam	RIS_REG_OFFSET = `AHBL_AW'hFF08;
 	localparam	IC_REG_OFFSET = `AHBL_AW'hFF0C;
-	wire		clk = HCLK;
+
+    reg [0:0] GCLK_REG;
+    wire clk_g;
+    wire clk_gated_en = GCLK_REG[0];
+    ef_gating_cell clk_gate_cell(
+        `ifdef USE_POWER_PINS 
+        .vpwr(VPWR),
+        .vgnd(VGND),
+        `endif // USE_POWER_PINS
+        .clk(HCLK),
+        .clk_en(clk_gated_en),
+        .clk_o(clk_g)
+    );
+    
+	wire		clk = clk_g;
 	wire		rst_n = HRESETn;
 
 
@@ -71,6 +90,12 @@ module EF_I2S_AHBL #(
 	wire [32-1:0]	avg_threshold;
 	wire [1-1:0]	avg_flag;
 	wire [1-1:0]	avg_en;
+	wire [1-1:0]	avg_sel;
+	wire [32-1:0]	zcr_threshold;
+	wire [1-1:0]	zcr_flag;
+	wire [1-1:0]	zcr_en;
+	wire [1-1:0]	zcr_sel;
+	wire [1-1:0]	vad_flag;
 	wire [2-1:0]	channels;
 	wire [1-1:0]	en;
 
@@ -85,18 +110,25 @@ module EF_I2S_AHBL #(
 	assign	avg_threshold = AVGT_REG;
 	`AHBL_REG(AVGT_REG, 0, 32)
 
-	reg [2:0]	CTRL_REG;
+	reg [31:0]	ZCRT_REG;
+	assign	zcr_threshold = ZCRT_REG;
+	`AHBL_REG(ZCRT_REG, 0, 32)
+
+	reg [3:0]	CTRL_REG;
 	assign	en	=	CTRL_REG[0 : 0];
 	assign	fifo_en	=	CTRL_REG[1 : 1];
 	assign	avg_en	=	CTRL_REG[2 : 2];
-	`AHBL_REG(CTRL_REG, 'h0, 3)
+	assign	zcr_en	=	CTRL_REG[3 : 3];
+	`AHBL_REG(CTRL_REG, 'h0, 4)
 
-	reg [9:0]	CFG_REG;
+	reg [11:0]	CFG_REG;
 	assign	channels	=	CFG_REG[1 : 0];
 	assign	sign_extend	=	CFG_REG[2 : 2];
 	assign	left_justified	=	CFG_REG[3 : 3];
 	assign	sample_size	=	CFG_REG[9 : 4];
-	`AHBL_REG(CFG_REG, 'h201, 10)
+	assign	avg_sel	=	CFG_REG[10 : 10];
+	assign	zcr_sel	=	CFG_REG[11 : 11];
+	`AHBL_REG(CFG_REG, 'h201, 12)
 
 	wire [AW-1:0]	RX_FIFO_LEVEL_WIRE;
 	assign	RX_FIFO_LEVEL_WIRE[(AW - 1) : 0] = fifo_level;
@@ -109,18 +141,23 @@ module EF_I2S_AHBL #(
 	assign	fifo_flush	=	RX_FIFO_FLUSH_REG[0 : 0];
 	`AHBL_REG_AC(RX_FIFO_FLUSH_REG, 0, 1, 1'h0)
 
-	reg [3:0] IM_REG;
-	reg [3:0] IC_REG;
-	reg [3:0] RIS_REG;
+	localparam	GCLK_REG_OFFSET = `AHBL_AW'hFF10;
+	`AHBL_REG(GCLK_REG, 0, 1)
 
-	`AHBL_MIS_REG(4)
-	`AHBL_REG(IM_REG, 0, 4)
-	`AHBL_IC_REG(4)
+	reg [5:0] IM_REG;
+	reg [5:0] IC_REG;
+	reg [5:0] RIS_REG;
+
+	`AHBL_MIS_REG(6)
+	`AHBL_REG(IM_REG, 0, 6)
+	`AHBL_IC_REG(6)
 
 	wire [0:0] FIFOE = fifo_empty;
 	wire [0:0] FIFOA = fifo_level_above;
 	wire [0:0] FIFOF = fifo_full;
 	wire [0:0] AVGF = avg_flag;
+	wire [0:0] ZCRF = zcr_flag;
+	wire [0:0] VADF = vad_flag;
 
 
 	integer _i_;
@@ -136,6 +173,12 @@ module EF_I2S_AHBL #(
 		end
 		for(_i_ = 3; _i_ < 4; _i_ = _i_ + 1) begin
 			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(AVGF[_i_ - 3] == 1'b1) RIS_REG[_i_] <= 1'b1;
+		end
+		for(_i_ = 4; _i_ < 5; _i_ = _i_ + 1) begin
+			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(ZCRF[_i_ - 4] == 1'b1) RIS_REG[_i_] <= 1'b1;
+		end
+		for(_i_ = 5; _i_ < 6; _i_ = _i_ + 1) begin
+			if(IC_REG[_i_]) RIS_REG[_i_] <= 1'b0; else if(VADF[_i_ - 5] == 1'b1) RIS_REG[_i_] <= 1'b1;
 		end
 	end
 
@@ -174,6 +217,12 @@ module EF_I2S_AHBL #(
 		.avg_threshold(avg_threshold),
 		.avg_flag(avg_flag),
 		.avg_en(avg_en),
+		.avg_sel(avg_sel),
+		.zcr_threshold(zcr_threshold),
+		.zcr_flag(zcr_flag),
+		.zcr_en(zcr_en),
+		.zcr_sel(zcr_sel),
+		.vad_flag(vad_flag),
 		.channels(channels),
 		.en(en),
 		.ws(ws),
@@ -185,6 +234,7 @@ module EF_I2S_AHBL #(
 			(last_HADDR[`AHBL_AW-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
 			(last_HADDR[`AHBL_AW-1:0] == PR_REG_OFFSET)	? PR_REG :
 			(last_HADDR[`AHBL_AW-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
+			(last_HADDR[`AHBL_AW-1:0] == ZCRT_REG_OFFSET)	? ZCRT_REG :
 			(last_HADDR[`AHBL_AW-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
 			(last_HADDR[`AHBL_AW-1:0] == CFG_REG_OFFSET)	? CFG_REG :
 			(last_HADDR[`AHBL_AW-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_WIRE :
@@ -194,6 +244,7 @@ module EF_I2S_AHBL #(
 			(last_HADDR[`AHBL_AW-1:0] == MIS_REG_OFFSET)	? MIS_REG :
 			(last_HADDR[`AHBL_AW-1:0] == RIS_REG_OFFSET)	? RIS_REG :
 			(last_HADDR[`AHBL_AW-1:0] == IC_REG_OFFSET)	? IC_REG :
+			(last_HADDR[`AHBL_AW-1:0] == GCLK_REG_OFFSET)	? GCLK_REG :
 			32'hDEADBEEF;
 
 	assign	HREADYOUT = 1'b1;

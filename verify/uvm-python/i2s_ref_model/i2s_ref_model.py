@@ -67,8 +67,8 @@ class i2s_ref_model(ref_model):
             if tr.addr == self.regs.reg_name_to_address["CFG"]:
                 self.channels = self.regs.read_reg_value("CFG") & 0b11
                 self.left_justified = True if (self.regs.read_reg_value("CFG") >> 3) & 0b1 else False
-                self.avg_samples_size = 512 if (self.regs.read_reg_value("CFG") & 0b10000000000) else 256
-                self.zcr_samples_size = 512 if (self.regs.read_reg_value("CFG") & 0b100000000000) else 256
+                self.avg_samples_size = 64 if (self.regs.read_reg_value("CFG") & 0b10000000000) else 32
+                self.zcr_samples_size = 64 if (self.regs.read_reg_value("CFG") & 0b100000000000) else 32
                 uvm_info(self.tag, f"average samples number = {self.avg_samples_size} zcr samples number = {self.zcr_samples_size}", UVM_LOW)
 
             if tr.addr == self.regs.reg_name_to_address["icr"] and tr.data != 0:
@@ -99,24 +99,14 @@ class i2s_ref_model(ref_model):
         self.left_justified = True
         self.samples_count = 0
         self.samples_sum = 0
-        self.avg_samples_size = 256
-        self.zcr_samples_size = 256
+        self.avg_samples_size = 32
+        self.zcr_samples_size = 32
         self.ris_reg = 0b0001            # FIFO is always empty at first so set ris flag 0 = 1
         self.mis_reg = 0
         self.irq = 0
         while not self.fifo_rx.empty():
             _ = self.fifo_rx.get_nowait()  # Discard the retrieved value
-        
-        self.regs.write_reg_value("RXDATA", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("PR", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("RX_FIFO_LEVEL", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("AVGT", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("CTRL", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("CFG", 0x308, force_write=True)  # clear icr register
-        self.regs.write_reg_value("ris", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("mis", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("icr", 0, force_write=True)  # clear icr register
-        self.regs.write_reg_value("im", 0, force_write=True)  # clear icr register
+        self.regs.init_regs()
 
 
     def update_registers(self, tr):
@@ -155,7 +145,7 @@ class i2s_ref_model(ref_model):
         sample_absolute = sample if not sign_bit else (~sample  & 0xFFFFFFFF)  #one's complement to get the absolute value of the samples
         uvm_info (self.tag, f"sample after absolute value = 0x{sample_absolute:X}", UVM_MEDIUM)
 
-        if self.samples_count == self.avg_samples_size:   # reset counter and samples sum when 512 or 256 samples are read 
+        if self.samples_count == self.avg_samples_size:   # reset counter and samples sum when 64 or 32 samples are read 
             self.samples_count = 0
             self.samples_sum = sample_absolute 
         else:

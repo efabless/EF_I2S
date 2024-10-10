@@ -24,11 +24,7 @@ class i2s_config_seq(bus_seq_base):
         # example for writing register by value == 5
         await self.send_reset()
         # enable gated clock
-        self.req.rand_mode(0)
-        self.req.addr = 0xFF10
-        self.req.data = 1
-        self.req.kind = bus_item.WRITE
-        await uvm_do(self, self.req)
+        await self.send_req(is_write=True, reg="CLKGATE", data_condition=lambda data: data == 1)
         await self.send_req(is_write=True, reg="PR", data_condition=lambda data: 2 <= data <= 50)
         await self.send_req(is_write=False, reg="PR")
         # config_reg = self.get_config_reg_val(channel="left", sign_extend=False, left_justify=True, sample_size=24)

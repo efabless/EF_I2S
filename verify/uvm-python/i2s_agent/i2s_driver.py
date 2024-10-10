@@ -34,7 +34,7 @@ class i2s_driver(ip_driver):
                     # await Timer(1 , "ns") # delay to avoid shifting of bits after reset 
                     for i in range (sample_size-1, -1, -1):             # get MSB first 
                         self.vif.sdi.value = (right_sample >> i ) & 0b1
-                        await FallingEdge(self.vif.sck)
+                        await RisingEdge(self.vif.sck)
                         uvm_info(self.tag, f" right: falling edge sck {i}= {(right_sample >> i ) & 0b1}", UVM_HIGH)
                 
                 if (tr.channel == "left"): 

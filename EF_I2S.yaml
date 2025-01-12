@@ -5,8 +5,8 @@ info:
   repo: github.com/efabless/EF_I2S
   owner: Efabless Corp.
   license: APACHE 2.0
-  author: Mohamed Shalan
-  email: mshalan@efabless.com
+  author: Efabless Corp.
+  email: ip_admin@efabless.com
   version: v1.1.14
   date: 17-09-2024
   category: digital
@@ -161,6 +161,7 @@ external_interface:
 
 clock:
   name: clk
+  gated: 'yes'
 
 reset:
   name: rst_n

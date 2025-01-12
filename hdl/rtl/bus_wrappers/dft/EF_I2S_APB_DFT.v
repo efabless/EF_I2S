@@ -98,8 +98,7 @@
 
 
 
-
-module EF_I2S_AHBL #(
+module EF_I2S_APB #(
     parameter DW = 32,
     AW = 4
 ) (
@@ -107,16 +106,16 @@ module EF_I2S_AHBL #(
 
 
 
-    input  wire         HCLK,
-    input  wire         HRESETn,
-    input  wire         HWRITE,
-    input  wire [ 31:0] HWDATA,
-    input  wire [ 31:0] HADDR,
-    input  wire [  1:0] HTRANS,
-    input  wire         HSEL,
-    input  wire         HREADY,
-    output wire         HREADYOUT,
-    output wire [ 31:0] HRDATA,
+    input  wire         sc_testmode,
+    input  wire         PCLK,
+    input  wire         PRESETn,
+    input  wire         PWRITE,
+    input  wire [ 31:0] PWDATA,
+    input  wire [ 31:0] PADDR,
+    input  wire         PENABLE,
+    input  wire         PSEL,
+    output wire         PREADY,
+    output wire [ 31:0] PRDATA,
     output wire         IRQ,
     output wire [1-1:0] ws,
     output wire [1-1:0] sck,
@@ -140,95 +139,79 @@ module EF_I2S_AHBL #(
   reg [0:0] GCLK_REG;
   wire clk_g;
 
-  wire clk_gated_en = GCLK_REG[0];
+  wire clk_gated_en = sc_testmode ? 1'b1 : GCLK_REG[0];
   ef_util_gating_cell clk_gate_cell (
 
 
 
       // USE_POWER_PINS
-      .clk(HCLK),
+      .clk(PCLK),
       .clk_en(clk_gated_en),
       .clk_o(clk_g)
   );
 
-  wire clk = clk_g;
-  wire rst_n = HRESETn;
+  wire          clk = clk_g;
+  wire          rst_n = PRESETn;
 
 
-  reg last_HSEL, last_HWRITE;
-  reg [31:0] last_HADDR;
-  reg [ 1:0] last_HTRANS;
-  always @(posedge HCLK or negedge HRESETn) begin
-    if (~HRESETn) begin
-      last_HSEL   <= 1'b0;
-      last_HADDR  <= 1'b0;
-      last_HWRITE <= 1'b0;
-      last_HTRANS <= 1'b0;
-    end else if (HREADY) begin
-      last_HSEL   <= HSEL;
-      last_HADDR  <= HADDR;
-      last_HWRITE <= HWRITE;
-      last_HTRANS <= HTRANS;
-    end
-  end
-  wire    ahbl_valid = last_HSEL & last_HTRANS[1];
-  wire ahbl_we = last_HWRITE & ahbl_valid;
-  wire ahbl_re = ~last_HWRITE & ahbl_valid;
+  wire          apb_valid = PSEL & PENABLE;
+  wire          apb_we = PWRITE & apb_valid;
+  wire          apb_re = ~PWRITE & apb_valid;
 
-  wire [1-1:0] fifo_en;
-  wire [1-1:0] fifo_rd;
+  wire [ 1-1:0] fifo_en;
+  wire [ 1-1:0] fifo_rd;
   wire [AW-1:0] fifo_level_threshold;
-  wire [1-1:0] fifo_flush;
-  wire [1-1:0] fifo_full;
-  wire [1-1:0] fifo_empty;
+  wire [ 1-1:0] fifo_flush;
+  wire [ 1-1:0] fifo_full;
+  wire [ 1-1:0] fifo_empty;
   wire [AW-1:0] fifo_level;
-  wire [1-1:0] fifo_level_above;
+  wire [ 1-1:0] fifo_level_above;
   wire [32-1:0] fifo_rdata;
-  wire [1-1:0] sign_extend;
-  wire [1-1:0] left_justified;
-  wire [6-1:0] sample_size;
-  wire [8-1:0] sck_prescaler;
+  wire [ 1-1:0] sign_extend;
+  wire [ 1-1:0] left_justified;
+  wire [ 6-1:0] sample_size;
+  wire [ 8-1:0] sck_prescaler;
   wire [32-1:0] avg_threshold;
-  wire [1-1:0] avg_flag;
-  wire [1-1:0] avg_en;
-  wire [1-1:0] avg_sel;
+  wire [ 1-1:0] avg_flag;
+  wire [ 1-1:0] avg_en;
+  wire [ 1-1:0] avg_sel;
   wire [32-1:0] zcr_threshold;
-  wire [1-1:0] zcr_flag;
-  wire [1-1:0] zcr_en;
-  wire [1-1:0] zcr_sel;
-  wire [1-1:0] vad_flag;
-  wire [2-1:0] channels;
-  wire [1-1:0] en;
+  wire [ 1-1:0] zcr_flag;
+  wire [ 1-1:0] zcr_en;
+  wire [ 1-1:0] zcr_sel;
+  wire [ 1-1:0] vad_flag;
+  wire [ 2-1:0] channels;
+  wire [ 1-1:0] en;
 
   // Register Definitions
   wire [32-1:0] RXDATA_WIRE;
 
-  reg [7:0] PR_REG;
+  reg  [   7:0] PR_REG;
   assign sck_prescaler = PR_REG;
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) PR_REG <= 0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == PR_REG_OFFSET)) PR_REG <= HWDATA[8-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) PR_REG <= 0;
+    else if (apb_we & (PADDR[16-1:0] == PR_REG_OFFSET)) PR_REG <= PWDATA[8-1:0];
 
   reg [31:0] AVGT_REG;
   assign avg_threshold = AVGT_REG;
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) AVGT_REG <= 0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == AVGT_REG_OFFSET)) AVGT_REG <= HWDATA[32-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) AVGT_REG <= 0;
+    else if (apb_we & (PADDR[16-1:0] == AVGT_REG_OFFSET)) AVGT_REG <= PWDATA[32-1:0];
 
   reg [31:0] ZCRT_REG;
   assign zcr_threshold = ZCRT_REG;
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) ZCRT_REG <= 0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == ZCRT_REG_OFFSET)) ZCRT_REG <= HWDATA[32-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) ZCRT_REG <= 0;
+    else if (apb_we & (PADDR[16-1:0] == ZCRT_REG_OFFSET)) ZCRT_REG <= PWDATA[32-1:0];
 
   reg [3:0] CTRL_REG;
   assign en = CTRL_REG[0 : 0];
   assign fifo_en = CTRL_REG[1 : 1];
   assign avg_en = CTRL_REG[2 : 2];
   assign zcr_en = CTRL_REG[3 : 3];
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) CTRL_REG <= 'h0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == CTRL_REG_OFFSET)) CTRL_REG <= HWDATA[4-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) CTRL_REG <= 'h0;
+    else if (apb_we & (PADDR[16-1:0] == CTRL_REG_OFFSET)) CTRL_REG <= PWDATA[4-1:0];
 
   reg [11:0] CFG_REG;
   assign channels = CFG_REG[1 : 0];
@@ -237,44 +220,44 @@ module EF_I2S_AHBL #(
   assign sample_size = CFG_REG[9 : 4];
   assign avg_sel = CFG_REG[10 : 10];
   assign zcr_sel = CFG_REG[11 : 11];
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) CFG_REG <= 'h201;
-    else if (ahbl_we & (last_HADDR[16-1:0] == CFG_REG_OFFSET)) CFG_REG <= HWDATA[12-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) CFG_REG <= 'h201;
+    else if (apb_we & (PADDR[16-1:0] == CFG_REG_OFFSET)) CFG_REG <= PWDATA[12-1:0];
 
   wire [AW-1:0] RX_FIFO_LEVEL_WIRE;
   assign RX_FIFO_LEVEL_WIRE[(AW-1) : 0] = fifo_level;
 
   reg [AW-1:0] RX_FIFO_THRESHOLD_REG;
   assign fifo_level_threshold = RX_FIFO_THRESHOLD_REG[(AW-1) : 0];
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) RX_FIFO_THRESHOLD_REG <= 0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET))
-      RX_FIFO_THRESHOLD_REG <= HWDATA[AW-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) RX_FIFO_THRESHOLD_REG <= 0;
+    else if (apb_we & (PADDR[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET))
+      RX_FIFO_THRESHOLD_REG <= PWDATA[AW-1:0];
 
   reg [0:0] RX_FIFO_FLUSH_REG;
   assign fifo_flush = RX_FIFO_FLUSH_REG[0 : 0];
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) RX_FIFO_FLUSH_REG <= 0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET))
-      RX_FIFO_FLUSH_REG <= HWDATA[1-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) RX_FIFO_FLUSH_REG <= 0;
+    else if (apb_we & (PADDR[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET))
+      RX_FIFO_FLUSH_REG <= PWDATA[1-1:0];
     else RX_FIFO_FLUSH_REG <= 1'h0 & RX_FIFO_FLUSH_REG;
 
   localparam GCLK_REG_OFFSET = 16'hFF10;
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) GCLK_REG <= 0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == GCLK_REG_OFFSET)) GCLK_REG <= HWDATA[1-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) GCLK_REG <= 0;
+    else if (apb_we & (PADDR[16-1:0] == GCLK_REG_OFFSET)) GCLK_REG <= PWDATA[1-1:0];
 
   reg  [  5:0] IM_REG;
   reg  [  5:0] IC_REG;
   reg  [  5:0] RIS_REG;
 
   wire [6-1:0] MIS_REG = RIS_REG & IM_REG;
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) IM_REG <= 0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == IM_REG_OFFSET)) IM_REG <= HWDATA[6-1:0];
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) IC_REG <= 6'b0;
-    else if (ahbl_we & (last_HADDR[16-1:0] == IC_REG_OFFSET)) IC_REG <= HWDATA[6-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) IM_REG <= 0;
+    else if (apb_we & (PADDR[16-1:0] == IM_REG_OFFSET)) IM_REG <= PWDATA[6-1:0];
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) IC_REG <= 6'b0;
+    else if (apb_we & (PADDR[16-1:0] == IC_REG_OFFSET)) IC_REG <= PWDATA[6-1:0];
     else IC_REG <= 6'd0;
 
   wire [0:0] FIFOE = fifo_empty;
@@ -286,8 +269,8 @@ module EF_I2S_AHBL #(
 
 
   integer _i_;
-  always @(posedge HCLK or negedge HRESETn)
-    if (~HRESETn) RIS_REG <= 0;
+  always @(posedge PCLK or negedge PRESETn)
+    if (~PRESETn) RIS_REG <= 0;
     else begin
       for (_i_ = 0; _i_ < 1; _i_ = _i_ + 1) begin
         if (IC_REG[_i_]) RIS_REG[_i_] <= 1'b0;
@@ -319,8 +302,8 @@ module EF_I2S_AHBL #(
 
   reg [0:0] _sdi_reg_[1:0];
   wire _sdi_w_ = _sdi_reg_[1];
-  always @(posedge HCLK or negedge HRESETn)
-    if (HRESETn == 0) begin
+  always @(posedge PCLK or negedge PRESETn)
+    if (PRESETn == 0) begin
       _sdi_reg_[0] <= 'b0;
       _sdi_reg_[1] <= 'b0;
     end else begin
@@ -362,24 +345,24 @@ module EF_I2S_AHBL #(
       .sdi(_sdi_w_)
   );
 
-  assign	HRDATA = 
-			(last_HADDR[16-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
-			(last_HADDR[16-1:0] == PR_REG_OFFSET)	? PR_REG :
-			(last_HADDR[16-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
-			(last_HADDR[16-1:0] == ZCRT_REG_OFFSET)	? ZCRT_REG :
-			(last_HADDR[16-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
-			(last_HADDR[16-1:0] == CFG_REG_OFFSET)	? CFG_REG :
-			(last_HADDR[16-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_WIRE :
-			(last_HADDR[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
-			(last_HADDR[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
-			(last_HADDR[16-1:0] == IM_REG_OFFSET)	? IM_REG :
-			(last_HADDR[16-1:0] == MIS_REG_OFFSET)	? MIS_REG :
-			(last_HADDR[16-1:0] == RIS_REG_OFFSET)	? RIS_REG :
-			(last_HADDR[16-1:0] == GCLK_REG_OFFSET)	? GCLK_REG :
+  assign	PRDATA = 
+			(PADDR[16-1:0] == RXDATA_REG_OFFSET)	? RXDATA_WIRE :
+			(PADDR[16-1:0] == PR_REG_OFFSET)	? PR_REG :
+			(PADDR[16-1:0] == AVGT_REG_OFFSET)	? AVGT_REG :
+			(PADDR[16-1:0] == ZCRT_REG_OFFSET)	? ZCRT_REG :
+			(PADDR[16-1:0] == CTRL_REG_OFFSET)	? CTRL_REG :
+			(PADDR[16-1:0] == CFG_REG_OFFSET)	? CFG_REG :
+			(PADDR[16-1:0] == RX_FIFO_LEVEL_REG_OFFSET)	? RX_FIFO_LEVEL_WIRE :
+			(PADDR[16-1:0] == RX_FIFO_THRESHOLD_REG_OFFSET)	? RX_FIFO_THRESHOLD_REG :
+			(PADDR[16-1:0] == RX_FIFO_FLUSH_REG_OFFSET)	? RX_FIFO_FLUSH_REG :
+			(PADDR[16-1:0] == IM_REG_OFFSET)	? IM_REG :
+			(PADDR[16-1:0] == MIS_REG_OFFSET)	? MIS_REG :
+			(PADDR[16-1:0] == RIS_REG_OFFSET)	? RIS_REG :
+			(PADDR[16-1:0] == GCLK_REG_OFFSET)	? GCLK_REG :
 			32'hDEADBEEF;
 
-  assign HREADYOUT = 1'b1;
+  assign PREADY = 1'b1;
 
   assign RXDATA_WIRE = fifo_rdata;
-  assign fifo_rd = (ahbl_re & (last_HADDR[16-1:0] == RXDATA_REG_OFFSET));
+  assign fifo_rd = (apb_re & (PADDR[16-1:0] == RXDATA_REG_OFFSET));
 endmodule

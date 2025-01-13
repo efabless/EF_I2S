@@ -252,7 +252,7 @@ module EF_I2S #(parameter DW=32, AW=4) (
         .rdy(sample_rdy)
     );
 
-    aucohl_fifo #(.DW(DW), .AW(AW)) I2SFIFO (
+    ef_util_fifo #(.DW(DW), .AW(AW)) I2SFIFO (
         .clk(clk),
         .rst_n(rst_n),
         // .clr(fifo_clr),

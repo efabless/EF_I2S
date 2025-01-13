@@ -21,68 +21,10 @@
 
 `timescale 1ns / 1ps `default_nettype none
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// PRINT_LICENSE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module EF_I2S_WB #(
     parameter DW = 32,
     AW = 4
 ) (
-
-
-
 
     input  wire         clk_i,
     input  wire         rst_i,
@@ -120,8 +62,6 @@ module EF_I2S_WB #(
   wire clk_gated_en = GCLK_REG[0];
   ef_util_gating_cell clk_gate_cell (
 
-
-
       // USE_POWER_PINS
       .clk(clk_i),
       .clk_en(clk_gated_en),
@@ -130,7 +70,6 @@ module EF_I2S_WB #(
 
   wire          clk = clk_g;
   wire          rst_n = (~rst_i);
-
 
   wire          wb_valid = cyc_i & stb_i;
   wire          wb_we = we_i & wb_valid;
@@ -244,7 +183,6 @@ module EF_I2S_WB #(
   wire [0:0] AVGF = avg_flag;
   wire [0:0] ZCRF = zcr_flag;
   wire [0:0] VADF = vad_flag;
-
 
   integer _i_;
   always @(posedge clk_i or posedge rst_i)

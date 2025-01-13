@@ -21,91 +21,10 @@
 
 `timescale 1ns / 1ps `default_nettype none
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// PRINT_LICENSE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module EF_I2S_AHBL #(
     parameter DW = 32,
     AW = 4
 ) (
-
-
-
 
     input  wire         HCLK,
     input  wire         HRESETn,
@@ -143,8 +62,6 @@ module EF_I2S_AHBL #(
   wire clk_gated_en = GCLK_REG[0];
   ef_util_gating_cell clk_gate_cell (
 
-
-
       // USE_POWER_PINS
       .clk(HCLK),
       .clk_en(clk_gated_en),
@@ -153,7 +70,6 @@ module EF_I2S_AHBL #(
 
   wire clk = clk_g;
   wire rst_n = HRESETn;
-
 
   reg last_HSEL, last_HWRITE;
   reg [31:0] last_HADDR;
@@ -283,7 +199,6 @@ module EF_I2S_AHBL #(
   wire [0:0] AVGF = avg_flag;
   wire [0:0] ZCRF = zcr_flag;
   wire [0:0] VADF = vad_flag;
-
 
   integer _i_;
   always @(posedge HCLK or negedge HRESETn)

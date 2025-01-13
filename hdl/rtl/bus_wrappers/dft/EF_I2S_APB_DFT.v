@@ -21,90 +21,10 @@
 
 `timescale 1ns / 1ps `default_nettype none
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// PRINT_LICENSE
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 module EF_I2S_APB #(
     parameter DW = 32,
     AW = 4
 ) (
-
-
-
 
     input  wire         sc_testmode,
     input  wire         PCLK,
@@ -142,8 +62,6 @@ module EF_I2S_APB #(
   wire clk_gated_en = sc_testmode ? 1'b1 : GCLK_REG[0];
   ef_util_gating_cell clk_gate_cell (
 
-
-
       // USE_POWER_PINS
       .clk(PCLK),
       .clk_en(clk_gated_en),
@@ -152,7 +70,6 @@ module EF_I2S_APB #(
 
   wire          clk = clk_g;
   wire          rst_n = PRESETn;
-
 
   wire          apb_valid = PSEL & PENABLE;
   wire          apb_we = PWRITE & apb_valid;
@@ -266,7 +183,6 @@ module EF_I2S_APB #(
   wire [0:0] AVGF = avg_flag;
   wire [0:0] ZCRF = zcr_flag;
   wire [0:0] VADF = vad_flag;
-
 
   integer _i_;
   always @(posedge PCLK or negedge PRESETn)

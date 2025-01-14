@@ -3,70 +3,71 @@
 
 #include <EF_I2S.h>
 
-void EF_I2S_setGclkEnable (uint32_t i2s_base, int value){
+
+void EF_I2S_setGclkEnable (uint32_t i2s_base, uint32_t value){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
     i2s->GCLK = value;
 }
 
 void EF_I2S_enable (uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-    int control = i2s->CTRL;
+    uint32_t control = i2s->CTRL;
     control |= EF_I2S_CTRL_REG_EN_MASK;
     i2s->CTRL = control;
 }
 
 void EF_I2S_disable (uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-    int control = i2s->CTRL;
+    uint32_t control = i2s->CTRL;
     control &= ~EF_I2S_CTRL_REG_EN_MASK;
     i2s->CTRL = control;
 }
 
 void EF_I2S_enableFifo(uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-    int control = i2s->CTRL;
+    uint32_t control = i2s->CTRL;
     control |= EF_I2S_CTRL_REG_FIFO_EN_MASK;
     i2s->CTRL = control;
 }
 
 void EF_I2S_disableFifo(uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-    int control = i2s->CTRL;
+    uint32_t control = i2s->CTRL;
     control &= ~EF_I2S_CTRL_REG_FIFO_EN_MASK;
     i2s->CTRL = control;
 }
 
 void EF_I2S_enableAVG(uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-    int control = i2s->CTRL;
+    uint32_t control = i2s->CTRL;
     control |= EF_I2S_CTRL_REG_AVG_EN_MASK;
     i2s->CTRL = control;
 }
 
 void EF_I2S_enableZCR(uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-    int control = i2s->CTRL;
+    uint32_t control = i2s->CTRL;
     control |= EF_I2S_CTRL_REG_ZCR_EN_MASK;
     i2s->CTRL = control;
 }
 
 void EF_I2S_disableAVG(uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-    int control = i2s->CTRL;
+    uint32_t control = i2s->CTRL;
     control &= ~EF_I2S_CTRL_REG_AVG_EN_MASK;
     i2s->CTRL = control;
 }
 
 void EF_I2S_disableZCR(uint32_t i2s_base){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-    int control = i2s->CTRL;
+    uint32_t control = i2s->CTRL;
     control &= ~EF_I2S_CTRL_REG_ZCR_EN_MASK;
     i2s->CTRL = control;
 }
 
 
 
-void EF_I2S_setConfigReg (uint32_t i2s_base, int config){
+void EF_I2S_setConfigReg (uint32_t i2s_base, uint32_t config){
 
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
     
@@ -74,15 +75,15 @@ void EF_I2S_setConfigReg (uint32_t i2s_base, int config){
 
 }
 
-int EF_I2S_getConfigReg (uint32_t i2s_base){
+void EF_I2S_getConfigReg (uint32_t i2s_base, uint32_t* config){
 
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
     
-    return (i2s->CFG);
+    *config = i2s->CFG;
 
 }
 
-void EF_I2S_setPrescaler(uint32_t i2s_base, int prescaler){
+void EF_I2S_setPrescaler(uint32_t i2s_base, uint32_t prescaler){
 
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
@@ -90,20 +91,20 @@ void EF_I2S_setPrescaler(uint32_t i2s_base, int prescaler){
 }
 
 
-int EF_I2S_getPrescaler(uint32_t i2s_base){
+void EF_I2S_getPrescaler(uint32_t i2s_base, uint32_t* prescaler){
 
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
-    return (i2s->PR);
+    *prescaler = (i2s->PR);
 }
 
-void EF_I2S_setAVGT(uint32_t i2s_base, int average){
+void EF_I2S_setAVGT(uint32_t i2s_base, uint32_t average){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
     i2s->AVGT = average;
 }
 
-void EF_I2S_setZCRT(uint32_t i2s_base, int average){
+void EF_I2S_setZCRT(uint32_t i2s_base, uint32_t average){
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
     i2s->ZCRT = average;
@@ -111,25 +112,25 @@ void EF_I2S_setZCRT(uint32_t i2s_base, int average){
 
 
 
-int EF_I2S_getRxFifoLevel(uint32_t i2s_base){
+void EF_I2S_getRxFifoLevel(uint32_t i2s_base, uint32_t* level){
 
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
-    return (i2s->RX_FIFO_LEVEL);
+    *level = i2s->RX_FIFO_LEVEL;
 }
 
-void EF_I2S_setRxFifoThreshold(uint32_t i2s_base, int threshold){
+void EF_I2S_setRxFifoThreshold(uint32_t i2s_base, uint32_t threshold){
 
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
     i2s->RX_FIFO_THRESHOLD = threshold;
 }
 
-int EF_I2S_getRxFifoThreshold(uint32_t i2s_base){
+void EF_I2S_getRxFifoThreshold(uint32_t i2s_base, uint32_t* threshold){
 
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
-    return (i2s->RX_FIFO_THRESHOLD) ;
+    *threshold = i2s->RX_FIFO_THRESHOLD;
 }
 
 // bit 0: RX FIFO is Empty
@@ -137,30 +138,30 @@ int EF_I2S_getRxFifoThreshold(uint32_t i2s_base){
 // bit 2: RX FIFO is Full
 
 
-int EF_I2S_getRIS(uint32_t i2s_base){
+void EF_I2S_getRIS(uint32_t i2s_base, uint32_t* ris_value){
     
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
     
-    return (i2s->RIS);
+    *ris_value = i2s->RIS;
 }
 
 
 
-int EF_I2S_getMIS(uint32_t i2s_base){
+void EF_I2S_getMIS(uint32_t i2s_base, uint32_t* mis_value){
 
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
-    return (i2s->MIS);
+    *mis_value = i2s->MIS;
 }
 
-void EF_I2S_setIM(uint32_t i2s_base, int mask){
+void EF_I2S_setIM(uint32_t i2s_base, uint32_t mask){
  
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
     i2s->IM = mask;
 }
 
-void EF_I2S_setIC(uint32_t i2s_base, int mask){
+void EF_I2S_setIC(uint32_t i2s_base, uint32_t mask){
  
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
@@ -169,11 +170,11 @@ void EF_I2S_setIC(uint32_t i2s_base, int mask){
 
 
 
-int EF_I2S_getIM(uint32_t i2s_base){
+void EF_I2S_getIM(uint32_t i2s_base, uint32_t* im_value){
     
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
 
-    return (i2s->IM);
+    *im_value = i2s->IM;
 }
 
 
@@ -191,16 +192,20 @@ void EF_I2S_clearIrqRxempty(uint32_t i2s_base){
     i2s->IC = 0x1;
 }
 
-int EF_I2S_readData(uint32_t i2s_base){
+void EF_I2S_readData(uint32_t i2s_base, uint32_t* data){
     
     EF_I2S_TYPE* i2s = (EF_I2S_TYPE*)i2s_base;
-
-    while((EF_I2S_getRIS(i2s_base) & 0x2) == 0x0); // wait over RX fifo is above Flag to unset  
+    uint32_t ris_value;
+    do {
+        // wait until RX FIFO is not empty
+        EF_I2S_getRIS(i2s_base, ris_value);
+    }
+    while((ris_value & 0x2) == 0x0); // wait over RX fifo is above Flag to unset  
     //while (EF_I2S_getRIS(i2s_base) & 0x1);
-    int data = i2s->RXDATA;
+     *data = i2s->RXDATA;
     EF_I2S_clearIrqRxLevel(i2s_base);
     //EF_I2S_clearIrqRxLevel(i2s_base);
-    return data;
+
 }
 
 #endif

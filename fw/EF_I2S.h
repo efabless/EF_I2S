@@ -44,58 +44,69 @@
 ******************************************************************************/
 
 
-EF_DRIVER_STATUS EF_I2S_setGclkEnable (uint32_t i2s_base, uint32_t value);
+EF_DRIVER_STATUS EF_I2S_setGclkEnable (EF_I2S_TYPE_PTR i2s, uint32_t value);
 
-EF_DRIVER_STATUS EF_I2S_enable (uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_enable (EF_I2S_TYPE_PTR i2s);
 
-EF_DRIVER_STATUS EF_I2S_disable (uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_disable (EF_I2S_TYPE_PTR i2s);
 
-EF_DRIVER_STATUS EF_I2S_enableFifo (uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_enableFifo (EF_I2S_TYPE_PTR i2s);
 
-EF_DRIVER_STATUS EF_I2S_disableFifo (uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_disableFifo (EF_I2S_TYPE_PTR i2s);
 
-EF_DRIVER_STATUS EF_I2S_enableAVG (uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_enableAVG (EF_I2S_TYPE_PTR i2s);
 
-EF_DRIVER_STATUS EF_I2S_disableAVG (uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_disableAVG (EF_I2S_TYPE_PTR i2s);
 
-EF_DRIVER_STATUS EF_I2S_enableZCR(uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_enableZCR(EF_I2S_TYPE_PTR i2s);
 
-EF_DRIVER_STATUS EF_I2S_disableZCR(uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_disableZCR(EF_I2S_TYPE_PTR i2s);
 
-EF_DRIVER_STATUS EF_I2S_setConfigReg (uint32_t i2s_base, uint32_t config);
+EF_DRIVER_STATUS EF_I2S_setConfigReg (EF_I2S_TYPE_PTR i2s, uint32_t config);
 
-EF_DRIVER_STATUS EF_I2S_getConfigReg (uint32_t i2s_base, uint32_t* config);
+EF_DRIVER_STATUS EF_I2S_getConfigReg (EF_I2S_TYPE_PTR i2s, uint32_t* config);
 
-EF_DRIVER_STATUS EF_I2S_setPrescaler(uint32_t i2s_base, uint32_t prescaler);
+EF_DRIVER_STATUS EF_I2S_setPrescaler(EF_I2S_TYPE_PTR i2s, uint32_t prescaler);
 
-EF_DRIVER_STATUS EF_I2S_getPrescaler(uint32_t i2s_base, uint32_t* prescaler);
+EF_DRIVER_STATUS EF_I2S_getPrescaler(EF_I2S_TYPE_PTR i2s, uint32_t* prescaler);
 
-EF_DRIVER_STATUS EF_I2S_setAVGT(uint32_t i2s_base, uint32_t average);
+EF_DRIVER_STATUS EF_I2S_setAVGT(EF_I2S_TYPE_PTR i2s, uint32_t average);
 
-EF_DRIVER_STATUS EF_I2S_setZCRT(uint32_t i2s_base, uint32_t average);
+EF_DRIVER_STATUS EF_I2S_setZCRT(EF_I2S_TYPE_PTR i2s, uint32_t average);
 
-EF_DRIVER_STATUS EF_I2S_getRxFifoLevel(uint32_t i2s_base, uint32_t* level);
+EF_DRIVER_STATUS EF_I2S_getRxFifoLevel(EF_I2S_TYPE_PTR i2s, uint32_t* level);
 
-EF_DRIVER_STATUS EF_I2S_setRxFifoThreshold(uint32_t i2s_base, uint32_t threshold);
+EF_DRIVER_STATUS EF_I2S_setRxFifoThreshold(EF_I2S_TYPE_PTR i2s, uint32_t threshold);
 
-EF_DRIVER_STATUS EF_I2S_getRxFifoThreshold(uint32_t i2s_base, uint32_t* threshold);
+EF_DRIVER_STATUS EF_I2S_getRxFifoThreshold(EF_I2S_TYPE_PTR i2s, uint32_t* threshold);
 
-EF_DRIVER_STATUS EF_I2S_getRIS(uint32_t i2s_base, uint32_t* ris_value);
+EF_DRIVER_STATUS EF_I2S_getRIS(EF_I2S_TYPE_PTR i2s, uint32_t* ris_value);
 
-EF_DRIVER_STATUS EF_I2S_getMIS(uint32_t i2s_base, uint32_t* mis_value);
+EF_DRIVER_STATUS EF_I2S_getMIS(EF_I2S_TYPE_PTR i2s, uint32_t* mis_value);
 
-EF_DRIVER_STATUS EF_I2S_setIM(uint32_t i2s_base, uint32_t mask);
+EF_DRIVER_STATUS EF_I2S_setIM(EF_I2S_TYPE_PTR i2s, uint32_t mask);
 
-EF_DRIVER_STATUS EF_I2S_setIC(uint32_t i2s_base, uint32_t mask);
+EF_DRIVER_STATUS EF_I2S_setIC(EF_I2S_TYPE_PTR i2s, uint32_t mask);
 
-EF_DRIVER_STATUS EF_I2S_getIM(uint32_t i2s_base, uint32_t* im_value);
+EF_DRIVER_STATUS EF_I2S_getIM(EF_I2S_TYPE_PTR i2s, uint32_t* im_value);
 
-EF_DRIVER_STATUS EF_I2S_clearIrqRxLevel(uint32_t i2s_base);
+EF_DRIVER_STATUS EF_I2S_readData(EF_I2S_TYPE_PTR i2s, uint32_t* data);
 
-EF_DRIVER_STATUS EF_I2S_clearIrqRxLevel(uint32_t i2s_base);
+// The following functions are not verified yet
+/******************************************************************************************************************************************/
+/******************************************************************************************************************************************/
 
-EF_DRIVER_STATUS EF_I2S_readData(uint32_t i2s_base, uint32_t* data);
+EF_DRIVER_STATUS EF_I2S_clearIrqRxLevel(EF_I2S_TYPE_PTR i2s);
 
+EF_DRIVER_STATUS EF_I2S_clearIrqRxEmpty(EF_I2S_TYPE_PTR i2s);
+
+EF_DRIVER_STATUS EF_I2S_clearIrqRxFull(EF_I2S_TYPE_PTR i2s);
+
+EF_DRIVER_STATUS EF_I2S_clearIrqAVGAboveThreshold(EF_I2S_TYPE_PTR i2s);
+
+EF_DRIVER_STATUS EF_I2S_clearIrqZCR(EF_I2S_TYPE_PTR i2s);
+
+EF_DRIVER_STATUS EF_I2S_clearIrqVAD(EF_I2S_TYPE_PTR i2s);
 
 /******************************************************************************
 * External Variables

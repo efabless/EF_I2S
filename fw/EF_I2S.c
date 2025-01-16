@@ -357,13 +357,16 @@ EF_DRIVER_STATUS EF_I2S_readData(EF_I2S_TYPE_PTR i2s, uint32_t* data){
         uint32_t ris_value;
         do {
             // wait until RX FIFO is not empty
-            EF_I2S_getRIS(i2s, ris_value);
+            status = EF_I2S_getRIS(i2s, &ris_value);
         }
-        while((ris_value & 0x2) == 0x0); // wait over RX fifo is above Flag to unset  
-        //while (EF_I2S_getRIS(i2s) & 0x1);
-        *data = i2s->RXDATA;
-        EF_I2S_clearIrqRxLevel(i2s);
+        while((status == EF_DRIVER_OK)&&((ris_value & EF_I2S_FIFOA_FLAG) == (uint32_t)0x0)); // wait over RX fifo is above Flag to unset  
+
+        if (status==EF_DRIVER_OK){
+            *data = i2s->RXDATA;
+            status = EF_I2S_clearIrqRxLevel(i2s);
+        }else{}
     }
+    return status;
 }
 // The following functions are not verified yet
 /******************************************************************************************************************************************/
@@ -457,8 +460,8 @@ EF_DRIVER_STATUS EF_I2S_RxFIFOAvailable(EF_I2S_TYPE_PTR i2s, bool* isAvailable){
     }else if (isAvailable == NULL){
         status = EF_DRIVER_ERROR_PARAMETER;     // Return EF_DRIVER_ERROR_PARAMETER if isAvailable is NULL
     } else {
-        EF_I2S_getRIS(i2s, ris_value);
-        if((ris_value & EF_I2S_FIFOF_FLAG)){   // check if RX FIFO is full
+        status = EF_I2S_getRIS(i2s, &ris_value);
+        if((ris_value & EF_I2S_FIFOF_FLAG) != (uint32_t)0x0){   // check if RX FIFO is full
             *isAvailable = false;
         }else{
             *isAvailable = true;
@@ -477,8 +480,8 @@ EF_DRIVER_STATUS EF_I2S_RxFIFOEmpty(EF_I2S_TYPE_PTR i2s, bool* isEmpty){
     }else if (isEmpty == NULL){
         status = EF_DRIVER_ERROR_PARAMETER;     // Return EF_DRIVER_ERROR_PARAMETER if isEmpty is NULL
     } else {
-        EF_I2S_getRIS(i2s, ris_value);
-        if((ris_value & EF_I2S_FIFOE_FLAG)){   // check if RX FIFO is empty
+        status = EF_I2S_getRIS(i2s, &ris_value);
+        if((ris_value & EF_I2S_FIFOE_FLAG)!= (uint32_t)0x0){   // check if RX FIFO is empty
             *isEmpty = true;
         }else{
             *isEmpty = false;
@@ -497,8 +500,8 @@ EF_DRIVER_STATUS EF_I2S_RxFIFOFull(EF_I2S_TYPE_PTR i2s, bool* isFull){
     }else if (isFull == NULL){
         status = EF_DRIVER_ERROR_PARAMETER;     // Return EF_DRIVER_ERROR_PARAMETER if isFull is NULL
     } else {
-        EF_I2S_getRIS(i2s, ris_value);
-        if((ris_value & EF_I2S_FIFOF_FLAG)){   // check if RX FIFO is full
+        status = EF_I2S_getRIS(i2s, &ris_value);
+        if((ris_value & EF_I2S_FIFOF_FLAG)!= (uint32_t)0x0){   // check if RX FIFO is full
             *isFull = true;
         }else{
             *isFull = false;
@@ -516,8 +519,8 @@ EF_DRIVER_STATUS EF_I2S_Busy(EF_I2S_TYPE_PTR i2s, bool* isBusy){
     }else if (isBusy == NULL){
         status = EF_DRIVER_ERROR_PARAMETER;     // Return EF_DRIVER_ERROR_PARAMETER if isBusy is NULL
     } else {
-        EF_I2S_getRIS(i2s, ris_value);
-        if((ris_value & EF_I2S_FIFOE_FLAG)){   // check if RX FIFO is full
+        status = EF_I2S_getRIS(i2s, &ris_value);
+        if((ris_value & EF_I2S_FIFOE_FLAG)!= (uint32_t)0x0){   // check if RX FIFO is full
             *isBusy = false;
         }else{
             *isBusy = true;
@@ -535,8 +538,8 @@ EF_DRIVER_STATUS EF_I2S_FIFOOverThreshold(EF_I2S_TYPE_PTR i2s, bool* isOverThres
     }else if (isOverThreshold == NULL){
         status = EF_DRIVER_ERROR_PARAMETER;     // Return EF_DRIVER_ERROR_PARAMETER if isOverThreshold is NULL
     } else {
-        EF_I2S_getRIS(i2s, ris_value);
-        if((ris_value & EF_I2S_FIFOA_FLAG)){   // check if RX FIFO is full
+        status = EF_I2S_getRIS(i2s, &ris_value);
+        if((ris_value & EF_I2S_FIFOA_FLAG)!= (uint32_t)0x0){   // check if RX FIFO is full
             *isOverThreshold = true;
         }else{
             *isOverThreshold = false;
@@ -554,8 +557,8 @@ EF_DRIVER_STATUS EF_I2S_ZCROverThreshold(EF_I2S_TYPE_PTR i2s, bool* isOverThresh
     }else if (isOverThreshold == NULL){
         status = EF_DRIVER_ERROR_PARAMETER;     // Return EF_DRIVER_ERROR_PARAMETER if isOverThreshold is NULL
     } else {
-        EF_I2S_getRIS(i2s, ris_value);
-        if((ris_value & EF_I2S_ZCRF_FLAG)){   // check if RX FIFO is full
+        status = EF_I2S_getRIS(i2s, &ris_value);
+        if((ris_value & EF_I2S_ZCRF_FLAG)!= (uint32_t)0x0){   // check if RX FIFO is full
             *isOverThreshold = true;
         }else{
             *isOverThreshold = false;
@@ -573,8 +576,8 @@ EF_DRIVER_STATUS EF_I2S_VADFlag(EF_I2S_TYPE_PTR i2s, bool* isOverThreshold){
     }else if (isOverThreshold == NULL){
         status = EF_DRIVER_ERROR_PARAMETER;     // Return EF_DRIVER_ERROR_PARAMETER if isOverThreshold is NULL
     } else {
-        EF_I2S_getRIS(i2s, ris_value);
-        if((ris_value & EF_I2S_VADF_FLAG)){     // check if RX FIFO is full
+        status = EF_I2S_getRIS(i2s, &ris_value);
+        if((ris_value & EF_I2S_VADF_FLAG)!= (uint32_t)0x0){     // check if RX FIFO is full
             *isOverThreshold = true;
         }else{
             *isOverThreshold = false;

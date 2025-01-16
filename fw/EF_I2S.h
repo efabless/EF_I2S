@@ -34,13 +34,13 @@
 /******************************************************************************
 * Macros and Constants
 ******************************************************************************/
-#define EF_I2S_CFG_REG_MAX_VALUE    0x00000FFF                      // 12 bits
-#define EF_I2S_PR_REG_MAX_VALUE     0x000000FF                      // 8 bits
-#define EF_I2S_AVGT_REG_MAX_VALUE                   0x0000FFFF                      // 16 bits
-#define EF_I2S_ZCRT_REG_MAX_VALUE                   0x0000FFFF                      // 16 bits
-#define EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE      0x0000000F                      // 4 bits
-#define EF_I2S_RX_FIFO_IM_REG_MAX_VALUE             0x0000003F                      // 6 bits
-#define EF_I2S_RX_FIFO_IC_REG_MAX_VALUE             0x0000003F                      // 6 bits
+#define EF_I2S_CFG_REG_MAX_VALUE                    ((uint32_t)0x00000FFF)                      // 12 bits
+#define EF_I2S_PR_REG_MAX_VALUE                     ((uint32_t)0x000000FF)                      // 8 bits
+#define EF_I2S_AVGT_REG_MAX_VALUE                   ((uint32_t)0x0000FFFF)                      // 16 bits
+#define EF_I2S_ZCRT_REG_MAX_VALUE                   ((uint32_t)0x0000FFFF)                      // 16 bits
+#define EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE      ((uint32_t)0x0000000F)                      // 4 bits
+#define EF_I2S_RX_FIFO_IM_REG_MAX_VALUE             ((uint32_t)0x0000003F)                      // 6 bits
+#define EF_I2S_RX_FIFO_IC_REG_MAX_VALUE             ((uint32_t)0x0000003F)                      // 6 bits
 
 
 

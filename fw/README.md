@@ -144,13 +144,13 @@ _C header file for I2S APIs which contains the function prototypes._
 
 | Type | Name |
 | ---: | :--- |
-| define  | [**EF\_I2S\_AVGT\_REG\_MAX\_VALUE**](#define-ef_i2s_avgt_reg_max_value)  0x0000FFFF<br> |
-| define  | [**EF\_I2S\_CFG\_REG\_MAX\_VALUE**](#define-ef_i2s_cfg_reg_max_value)  0x00000FFF<br> |
-| define  | [**EF\_I2S\_PR\_REG\_MAX\_VALUE**](#define-ef_i2s_pr_reg_max_value)  0x000000FF<br> |
-| define  | [**EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_ic_reg_max_value)  0x0000003F<br> |
-| define  | [**EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_im_reg_max_value)  0x0000003F<br> |
-| define  | [**EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_threshold_reg_max_value)  0x0000000F<br> |
-| define  | [**EF\_I2S\_ZCRT\_REG\_MAX\_VALUE**](#define-ef_i2s_zcrt_reg_max_value)  0x0000FFFF<br> |
+| define  | [**EF\_I2S\_AVGT\_REG\_MAX\_VALUE**](#define-ef_i2s_avgt_reg_max_value)  ((uint32\_t)0x0000FFFF)<br> |
+| define  | [**EF\_I2S\_CFG\_REG\_MAX\_VALUE**](#define-ef_i2s_cfg_reg_max_value)  ((uint32\_t)0x00000FFF)<br> |
+| define  | [**EF\_I2S\_PR\_REG\_MAX\_VALUE**](#define-ef_i2s_pr_reg_max_value)  ((uint32\_t)0x000000FF)<br> |
+| define  | [**EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_ic_reg_max_value)  ((uint32\_t)0x0000003F)<br> |
+| define  | [**EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_im_reg_max_value)  ((uint32\_t)0x0000003F)<br> |
+| define  | [**EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_threshold_reg_max_value)  ((uint32\_t)0x0000000F)<br> |
+| define  | [**EF\_I2S\_ZCRT\_REG\_MAX\_VALUE**](#define-ef_i2s_zcrt_reg_max_value)  ((uint32\_t)0x0000FFFF)<br> |
 
 
 ## Functions Documentation
@@ -1024,43 +1024,43 @@ status A value of type [**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status) : ret
 ### define `EF_I2S_AVGT_REG_MAX_VALUE`
 
 ```c
-#define EF_I2S_AVGT_REG_MAX_VALUE 0x0000FFFF
+#define EF_I2S_AVGT_REG_MAX_VALUE ((uint32_t)0x0000FFFF)
 ```
 
 ### define `EF_I2S_CFG_REG_MAX_VALUE`
 
 ```c
-#define EF_I2S_CFG_REG_MAX_VALUE 0x00000FFF
+#define EF_I2S_CFG_REG_MAX_VALUE ((uint32_t)0x00000FFF)
 ```
 
 ### define `EF_I2S_PR_REG_MAX_VALUE`
 
 ```c
-#define EF_I2S_PR_REG_MAX_VALUE 0x000000FF
+#define EF_I2S_PR_REG_MAX_VALUE ((uint32_t)0x000000FF)
 ```
 
 ### define `EF_I2S_RX_FIFO_IC_REG_MAX_VALUE`
 
 ```c
-#define EF_I2S_RX_FIFO_IC_REG_MAX_VALUE 0x0000003F
+#define EF_I2S_RX_FIFO_IC_REG_MAX_VALUE ((uint32_t)0x0000003F)
 ```
 
 ### define `EF_I2S_RX_FIFO_IM_REG_MAX_VALUE`
 
 ```c
-#define EF_I2S_RX_FIFO_IM_REG_MAX_VALUE 0x0000003F
+#define EF_I2S_RX_FIFO_IM_REG_MAX_VALUE ((uint32_t)0x0000003F)
 ```
 
 ### define `EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE`
 
 ```c
-#define EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE 0x0000000F
+#define EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE ((uint32_t)0x0000000F)
 ```
 
 ### define `EF_I2S_ZCRT_REG_MAX_VALUE`
 
 ```c
-#define EF_I2S_ZCRT_REG_MAX_VALUE 0x0000FFFF
+#define EF_I2S_ZCRT_REG_MAX_VALUE ((uint32_t)0x0000FFFF)
 ```
 
 

@@ -55,7 +55,7 @@
       <sectiondef kind="define">
       <memberdef kind="define" id="_e_f___i2_s_8h_1aa665f2437319304828ab6c47d3a3143c" prot="public" static="no">
         <name>EF_I2S_CFG_REG_MAX_VALUE</name>
-        <initializer>0x00000FFF</initializer>
+        <initializer>((uint32_t)0x00000FFF)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -66,7 +66,7 @@
       </memberdef>
       <memberdef kind="define" id="_e_f___i2_s_8h_1aa0571464e60d1c73166d6674e80988d1" prot="public" static="no">
         <name>EF_I2S_PR_REG_MAX_VALUE</name>
-        <initializer>0x000000FF</initializer>
+        <initializer>((uint32_t)0x000000FF)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -77,7 +77,7 @@
       </memberdef>
       <memberdef kind="define" id="_e_f___i2_s_8h_1a5346305c9521be4e37ae79948a56b56a" prot="public" static="no">
         <name>EF_I2S_AVGT_REG_MAX_VALUE</name>
-        <initializer>0x0000FFFF</initializer>
+        <initializer>((uint32_t)0x0000FFFF)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -88,7 +88,7 @@
       </memberdef>
       <memberdef kind="define" id="_e_f___i2_s_8h_1a46f20acc4b3339159ce41e3ca6435054" prot="public" static="no">
         <name>EF_I2S_ZCRT_REG_MAX_VALUE</name>
-        <initializer>0x0000FFFF</initializer>
+        <initializer>((uint32_t)0x0000FFFF)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -99,7 +99,7 @@
       </memberdef>
       <memberdef kind="define" id="_e_f___i2_s_8h_1a7796b3b2ac1573be88b01ff4ae5694e4" prot="public" static="no">
         <name>EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE</name>
-        <initializer>0x0000000F</initializer>
+        <initializer>((uint32_t)0x0000000F)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -110,7 +110,7 @@
       </memberdef>
       <memberdef kind="define" id="_e_f___i2_s_8h_1a9c5cd2fd6af1c4e7de606986d3a3a535" prot="public" static="no">
         <name>EF_I2S_RX_FIFO_IM_REG_MAX_VALUE</name>
-        <initializer>0x0000003F</initializer>
+        <initializer>((uint32_t)0x0000003F)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -121,7 +121,7 @@
       </memberdef>
       <memberdef kind="define" id="_e_f___i2_s_8h_1a33de3838945b8ac4a1cbcfe54b40da9f" prot="public" static="no">
         <name>EF_I2S_RX_FIFO_IC_REG_MAX_VALUE</name>
-        <initializer>0x0000003F</initializer>
+        <initializer>((uint32_t)0x0000003F)</initializer>
         <briefdescription>
         </briefdescription>
         <detaileddescription>
@@ -983,7 +983,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="369" column="18" bodyfile="EF_I2S.c" bodystart="347" bodyend="367" declfile="EF_I2S.h" declline="369" declcolumn="18"/>
+        <location file="EF_I2S.h" line="369" column="18" bodyfile="EF_I2S.c" bodystart="347" bodyend="370" declfile="EF_I2S.h" declline="369" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1ab5ddd197f14756e1c59fb61046572056" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1013,7 +1013,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="381" column="18" bodyfile="EF_I2S.c" bodystart="373" bodyend="383" declfile="EF_I2S.h" declline="381" declcolumn="18"/>
+        <location file="EF_I2S.h" line="381" column="18" bodyfile="EF_I2S.c" bodystart="376" bodyend="386" declfile="EF_I2S.h" declline="381" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1ab8e5d164c8010d28a8ecbbfe2d4e2225" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1044,7 +1044,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="395" column="18" bodyfile="EF_I2S.c" bodystart="386" bodyend="396" declfile="EF_I2S.h" declline="395" declcolumn="18"/>
+        <location file="EF_I2S.h" line="395" column="18" bodyfile="EF_I2S.c" bodystart="389" bodyend="399" declfile="EF_I2S.h" declline="395" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1aba0bcdf189efb01bb4da0241cf0fff6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1075,7 +1075,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="408" column="18" bodyfile="EF_I2S.c" bodystart="399" bodyend="409" declfile="EF_I2S.h" declline="408" declcolumn="18"/>
+        <location file="EF_I2S.h" line="408" column="18" bodyfile="EF_I2S.c" bodystart="402" bodyend="412" declfile="EF_I2S.h" declline="408" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1a893f62b34da9619b3ff8ff05b1449d5d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1106,7 +1106,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="420" column="18" bodyfile="EF_I2S.c" bodystart="412" bodyend="422" declfile="EF_I2S.h" declline="420" declcolumn="18"/>
+        <location file="EF_I2S.h" line="420" column="18" bodyfile="EF_I2S.c" bodystart="415" bodyend="425" declfile="EF_I2S.h" declline="420" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1ab37aca0b76a291cb4abab5d9b863a59c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1137,7 +1137,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="436" column="18" bodyfile="EF_I2S.c" bodystart="426" bodyend="436" declfile="EF_I2S.h" declline="436" declcolumn="18"/>
+        <location file="EF_I2S.h" line="436" column="18" bodyfile="EF_I2S.c" bodystart="429" bodyend="439" declfile="EF_I2S.h" declline="436" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1a37d38397ddebfe8f2350f18eafb12c4f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1168,7 +1168,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="448" column="18" bodyfile="EF_I2S.c" bodystart="440" bodyend="450" declfile="EF_I2S.h" declline="448" declcolumn="18"/>
+        <location file="EF_I2S.h" line="448" column="18" bodyfile="EF_I2S.c" bodystart="443" bodyend="453" declfile="EF_I2S.h" declline="448" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1a5161a349d8c36dd40549d0b15d506182" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1211,7 +1211,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="464" column="18" bodyfile="EF_I2S.c" bodystart="452" bodyend="468" declfile="EF_I2S.h" declline="464" declcolumn="18"/>
+        <location file="EF_I2S.h" line="464" column="18" bodyfile="EF_I2S.c" bodystart="455" bodyend="471" declfile="EF_I2S.h" declline="464" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1a9be165920fd4797aaee9d431df907b53" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1254,7 +1254,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="478" column="18" bodyfile="EF_I2S.c" bodystart="472" bodyend="488" declfile="EF_I2S.h" declline="478" declcolumn="18"/>
+        <location file="EF_I2S.h" line="478" column="18" bodyfile="EF_I2S.c" bodystart="475" bodyend="491" declfile="EF_I2S.h" declline="478" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1aa1a5a98b7f41654a70fb37dd49a845de" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1297,7 +1297,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="494" column="18" bodyfile="EF_I2S.c" bodystart="492" bodyend="508" declfile="EF_I2S.h" declline="494" declcolumn="18"/>
+        <location file="EF_I2S.h" line="494" column="18" bodyfile="EF_I2S.c" bodystart="495" bodyend="511" declfile="EF_I2S.h" declline="494" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1a1bbc7845bff3df3a186fdc851fe6337d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1340,7 +1340,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="509" column="18" bodyfile="EF_I2S.c" bodystart="511" bodyend="527" declfile="EF_I2S.h" declline="509" declcolumn="18"/>
+        <location file="EF_I2S.h" line="509" column="18" bodyfile="EF_I2S.c" bodystart="514" bodyend="530" declfile="EF_I2S.h" declline="509" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1a458aa2712b7e4bb1880117f2aaf2505b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1383,7 +1383,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="525" column="18" bodyfile="EF_I2S.c" bodystart="530" bodyend="546" declfile="EF_I2S.h" declline="525" declcolumn="18"/>
+        <location file="EF_I2S.h" line="525" column="18" bodyfile="EF_I2S.c" bodystart="533" bodyend="549" declfile="EF_I2S.h" declline="525" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1a2dc446aadcb9a471bdb6da85323105b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1426,7 +1426,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="539" column="18" bodyfile="EF_I2S.c" bodystart="549" bodyend="565" declfile="EF_I2S.h" declline="539" declcolumn="18"/>
+        <location file="EF_I2S.h" line="539" column="18" bodyfile="EF_I2S.c" bodystart="552" bodyend="568" declfile="EF_I2S.h" declline="539" declcolumn="18"/>
       </memberdef>
       <memberdef kind="function" id="_e_f___i2_s_8h_1a2fd0764a05f1ccabe4c00dd122b1ec18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
         <type><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref></type>
@@ -1469,7 +1469,7 @@
         </detaileddescription>
         <inbodydescription>
         </inbodydescription>
-        <location file="EF_I2S.h" line="554" column="18" bodyfile="EF_I2S.c" bodystart="568" bodyend="584" declfile="EF_I2S.h" declline="554" declcolumn="18"/>
+        <location file="EF_I2S.h" line="554" column="18" bodyfile="EF_I2S.c" bodystart="571" bodyend="587" declfile="EF_I2S.h" declline="554" declcolumn="18"/>
       </memberdef>
       </sectiondef>
     <briefdescription>
@@ -1509,13 +1509,13 @@
 <codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">/******************************************************************************</highlight></codeline>
 <codeline lineno="35"><highlight class="comment">*<sp/>Macros<sp/>and<sp/>Constants</highlight></codeline>
 <codeline lineno="36"><highlight class="comment">******************************************************************************/</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="37" refid="_e_f___i2_s_8h_1aa665f2437319304828ab6c47d3a3143c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_MAX_VALUE<sp/><sp/><sp/><sp/>0x00000FFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>12<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="38" refid="_e_f___i2_s_8h_1aa0571464e60d1c73166d6674e80988d1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_PR_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/>0x000000FF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>8<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="39" refid="_e_f___i2_s_8h_1a5346305c9521be4e37ae79948a56b56a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_AVGT_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0000FFFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>16<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="40" refid="_e_f___i2_s_8h_1a46f20acc4b3339159ce41e3ca6435054" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_ZCRT_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0000FFFF<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>16<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="41" refid="_e_f___i2_s_8h_1a7796b3b2ac1573be88b01ff4ae5694e4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/>0x0000000F<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>4<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="42" refid="_e_f___i2_s_8h_1a9c5cd2fd6af1c4e7de606986d3a3a535" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_IM_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0000003F<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>6<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
-<codeline lineno="43" refid="_e_f___i2_s_8h_1a33de3838945b8ac4a1cbcfe54b40da9f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_IC_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x0000003F<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>6<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37" refid="_e_f___i2_s_8h_1aa665f2437319304828ab6c47d3a3143c" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x00000FFF)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>12<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="_e_f___i2_s_8h_1aa0571464e60d1c73166d6674e80988d1" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_PR_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x000000FF)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>8<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39" refid="_e_f___i2_s_8h_1a5346305c9521be4e37ae79948a56b56a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_AVGT_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x0000FFFF)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>16<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="_e_f___i2_s_8h_1a46f20acc4b3339159ce41e3ca6435054" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_ZCRT_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x0000FFFF)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>16<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="_e_f___i2_s_8h_1a7796b3b2ac1573be88b01ff4ae5694e4" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x0000000F)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>4<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="_e_f___i2_s_8h_1a9c5cd2fd6af1c4e7de606986d3a3a535" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_IM_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x0000003F)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>6<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="43" refid="_e_f___i2_s_8h_1a33de3838945b8ac4a1cbcfe54b40da9f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_IC_REG_MAX_VALUE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x0000003F)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>6<sp/>bits</highlight><highlight class="normal"></highlight></codeline>
 <codeline lineno="44"><highlight class="normal"></highlight></codeline>
 <codeline lineno="45"><highlight class="normal"></highlight></codeline>
 <codeline lineno="46"><highlight class="normal"></highlight></codeline>

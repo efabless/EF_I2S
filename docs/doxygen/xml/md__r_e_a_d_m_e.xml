@@ -129,7 +129,7 @@
 </sect1>
 <sect1 id="md__r_e_a_d_m_e_1autotoc_md16">
 <title>Functions</title>
-<para><table rows="39" cols="2"><row>
+<para><table rows="35" cols="2"><row>
 <entry thead="yes" align='right'><para>Type   </para>
 </entry><entry thead="yes" align='left'><para>Name    </para>
 </entry></row>
@@ -172,11 +172,6 @@
 <entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
 </entry><entry thead="no" align='left'><para>**EF\_I2S\_clearIrqAVGAboveThreshold** (**EF\_I2S\_TYPE\_PTR** i2s) <linebreak/>
 <emphasis>Clears the average above threshold interrupt for the I2S peripheral.</emphasis>    </para>
-</entry></row>
-<row>
-<entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
-</entry><entry thead="no" align='left'><para>**EF\_I2S\_clearIrqRxEmpty** (**EF\_I2S\_TYPE\_PTR** i2s) <linebreak/>
-    </para>
 </entry></row>
 <row>
 <entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
@@ -245,11 +240,6 @@
 </entry></row>
 <row>
 <entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
-</entry><entry thead="no" align='left'><para>**EF\_I2S\_getConfigReg** (**EF\_I2S\_TYPE\_PTR** i2s, uint32_t *config) <linebreak/>
-    </para>
-</entry></row>
-<row>
-<entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
 </entry><entry thead="no" align='left'><para>**EF\_I2S\_getIM** (**EF\_I2S\_TYPE\_PTR** i2s, uint32_t *im_value) <linebreak/>
 <emphasis>Reads the Interrupt Mask (IM) register for the I2S peripheral.</emphasis>    </para>
 </entry></row>
@@ -260,11 +250,6 @@
 </entry></row>
 <row>
 <entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
-</entry><entry thead="no" align='left'><para>**EF\_I2S\_getPrescaler** (**EF\_I2S\_TYPE\_PTR** i2s, uint32_t *prescaler) <linebreak/>
-    </para>
-</entry></row>
-<row>
-<entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
 </entry><entry thead="no" align='left'><para>**EF\_I2S\_getRIS** (**EF\_I2S\_TYPE\_PTR** i2s, uint32_t *ris_value) <linebreak/>
 <emphasis>Reads the Raw Interrupt Status (RIS) register for the I2S peripheral.</emphasis>    </para>
 </entry></row>
@@ -272,11 +257,6 @@
 <entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
 </entry><entry thead="no" align='left'><para>**EF\_I2S\_getRxFifoLevel** (**EF\_I2S\_TYPE\_PTR** i2s, uint32_t *level) <linebreak/>
 <emphasis>Gets the RX FIFO level of the I2S peripheral.</emphasis>    </para>
-</entry></row>
-<row>
-<entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
-</entry><entry thead="no" align='left'><para>**EF\_I2S\_getRxFifoThreshold** (**EF\_I2S\_TYPE\_PTR** i2s, uint32_t *threshold) <linebreak/>
-    </para>
 </entry></row>
 <row>
 <entry thead="no" align='right'><para>**EF\_DRIVER\_STATUS**   </para>
@@ -507,13 +487,6 @@
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
 <sect2 id="md__r_e_a_d_m_e_1autotoc_md27">
-<title>function &lt;tt&gt;EF_I2S_clearIrqRxEmpty&lt;/tt&gt;</title>
-<para><programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/>EF_I2S_clearIrqRxEmpty<sp/>(</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
-<codeline><highlight class="normal">)<sp/></highlight></codeline>
-</programlisting></para>
-</sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md28">
 <title>function &lt;tt&gt;EF_I2S_clearIrqRxFull&lt;/tt&gt;</title>
 <para><emphasis>Clears the receive FIFO full interrupt for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1aba0bcdf189efb01bb4da0241cf0fff6c" kindref="member">EF_I2S_clearIrqRxFull</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -528,7 +501,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md29">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md28">
 <title>function &lt;tt&gt;EF_I2S_clearIrqRxLevel&lt;/tt&gt;</title>
 <para><emphasis>Clears the receive FIFO level interrupt for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1ab8e5d164c8010d28a8ecbbfe2d4e2225" kindref="member">EF_I2S_clearIrqRxLevel</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -543,7 +516,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md30">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md29">
 <title>function &lt;tt&gt;EF_I2S_clearIrqRxempty&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1ab5ddd197f14756e1c59fb61046572056" kindref="member">EF_I2S_clearIrqRxempty</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -558,7 +531,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md31">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md30">
 <title>function &lt;tt&gt;EF_I2S_clearIrqVADFlag&lt;/tt&gt;</title>
 <para><emphasis>Clears the Voice Activity Detector (VAD) flag interrupt for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a37d38397ddebfe8f2350f18eafb12c4f" kindref="member">EF_I2S_clearIrqVADFlag</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -573,7 +546,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md32">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md31">
 <title>function &lt;tt&gt;EF_I2S_clearIrqZCRAboveThreshold&lt;/tt&gt;</title>
 <para><emphasis>Clears the zero-crossing rate above threshold interrupt for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1ab37aca0b76a291cb4abab5d9b863a59c" kindref="member">EF_I2S_clearIrqZCRAboveThreshold</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -588,7 +561,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md33">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md32">
 <title>function &lt;tt&gt;EF_I2S_disable&lt;/tt&gt;</title>
 <para><emphasis>Disables the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1ac8d6abd09cea51b42572106f04a573fb" kindref="member">EF_I2S_disable</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -603,7 +576,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md34">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md33">
 <title>function &lt;tt&gt;EF_I2S_disableAVG&lt;/tt&gt;</title>
 <para><emphasis>Disables the AVG feature for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a28908c1a60a497792bfe591ff05cf6f9" kindref="member">EF_I2S_disableAVG</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -618,7 +591,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md35">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md34">
 <title>function &lt;tt&gt;EF_I2S_disableFifo&lt;/tt&gt;</title>
 <para><emphasis>Disables the FIFO feature for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1ad49df56dd20e08c02e5efc661a9a9cc6" kindref="member">EF_I2S_disableFifo</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -633,7 +606,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md36">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md35">
 <title>function &lt;tt&gt;EF_I2S_disableZCR&lt;/tt&gt;</title>
 <para><emphasis>Disables the ZCR feature for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a4abe906ba6d8764231cf2648fd617b83" kindref="member">EF_I2S_disableZCR</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -648,7 +621,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md37">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md36">
 <title>function &lt;tt&gt;EF_I2S_enable&lt;/tt&gt;</title>
 <para><emphasis>Enables the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a8363eb974d75e82be3e789196bb2c95b" kindref="member">EF_I2S_enable</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -663,7 +636,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md38">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md37">
 <title>function &lt;tt&gt;EF_I2S_enableAVG&lt;/tt&gt;</title>
 <para><emphasis>Enables the AVG feature for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a48bb6abdf01dea0f16744039d9fd113a" kindref="member">EF_I2S_enableAVG</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -678,7 +651,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md39">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md38">
 <title>function &lt;tt&gt;EF_I2S_enableFifo&lt;/tt&gt;</title>
 <para><emphasis>Enables the FIFO feature for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a3b769d282e6954df57f14765f4366843" kindref="member">EF_I2S_enableFifo</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -693,7 +666,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md40">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md39">
 <title>function &lt;tt&gt;EF_I2S_enableZCR&lt;/tt&gt;</title>
 <para><emphasis>Enables the ZCR feature for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a3e06025f058eb96a083a0b647b872cbc" kindref="member">EF_I2S_enableZCR</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s</highlight></codeline>
@@ -708,15 +681,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md41">
-<title>function &lt;tt&gt;EF_I2S_getConfigReg&lt;/tt&gt;</title>
-<para><programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/>EF_I2S_getConfigReg<sp/>(</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*config</highlight></codeline>
-<codeline><highlight class="normal">)<sp/></highlight></codeline>
-</programlisting></para>
-</sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md42">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md40">
 <title>function &lt;tt&gt;EF_I2S_getIM&lt;/tt&gt;</title>
 <para><emphasis>Reads the Interrupt Mask (IM) register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1acd181744291db32213010b5450419c59" kindref="member">EF_I2S_getIM</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -743,7 +708,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md43">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md41">
 <title>function &lt;tt&gt;EF_I2S_getMIS&lt;/tt&gt;</title>
 <para><emphasis>Reads the Masked Interrupt Status (MIS) register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a5971ae872cd797d44fbff1b8fbbc790e" kindref="member">EF_I2S_getMIS</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -770,15 +735,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md44">
-<title>function &lt;tt&gt;EF_I2S_getPrescaler&lt;/tt&gt;</title>
-<para><programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/>EF_I2S_getPrescaler<sp/>(</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*prescaler</highlight></codeline>
-<codeline><highlight class="normal">)<sp/></highlight></codeline>
-</programlisting></para>
-</sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md45">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md42">
 <title>function &lt;tt&gt;EF_I2S_getRIS&lt;/tt&gt;</title>
 <para><emphasis>Reads the Raw Interrupt Status (RIS) register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1ac1c6040b6a56703127bd033fcb0fc2ab" kindref="member">EF_I2S_getRIS</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -805,7 +762,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md46">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md43">
 <title>function &lt;tt&gt;EF_I2S_getRxFifoLevel&lt;/tt&gt;</title>
 <para><emphasis>Gets the RX FIFO level of the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1aa01eaa3ec9d57d8008e036d5194a3f11" kindref="member">EF_I2S_getRxFifoLevel</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -822,15 +779,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md47">
-<title>function &lt;tt&gt;EF_I2S_getRxFifoThreshold&lt;/tt&gt;</title>
-<para><programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/>EF_I2S_getRxFifoThreshold<sp/>(</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
-<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*threshold</highlight></codeline>
-<codeline><highlight class="normal">)<sp/></highlight></codeline>
-</programlisting></para>
-</sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md48">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md44">
 <title>function &lt;tt&gt;EF_I2S_readData&lt;/tt&gt;</title>
 <para><emphasis>Reads data from the RX FIFO of the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a50ed21a6e834fc0047cb78941a7c8984" kindref="member">EF_I2S_readData</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -849,7 +798,7 @@
 <para><bold>Note:</bold></para>
 <para>The function uses a busy-wait loop to check the RX FIFO status. Ensure proper system design to avoid potential blocking or infinite loops in case of hardware issues. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md49">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md45">
 <title>function &lt;tt&gt;EF_I2S_setAVGT&lt;/tt&gt;</title>
 <para><emphasis>Sets the AVGT register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1aa49c1860ce4e076d8bb745409561c3c7" kindref="member">EF_I2S_setAVGT</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -866,7 +815,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md50">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md46">
 <title>function &lt;tt&gt;EF_I2S_setConfigReg&lt;/tt&gt;</title>
 <para><emphasis>Sets the configuration register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a4714d92aa38d5b05f1a8bb585e09b324" kindref="member">EF_I2S_setConfigReg</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -883,7 +832,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md51">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md47">
 <title>function &lt;tt&gt;EF_I2S_setGclkEnable&lt;/tt&gt;</title>
 <para><emphasis>Sets the GCLK enable bit in the I2S register to a certain value.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a922081fe31b01334b54a89d5f8e1c2c1" kindref="member">EF_I2S_setGclkEnable</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -899,7 +848,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md52">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md48">
 <title>function &lt;tt&gt;EF_I2S_setIC&lt;/tt&gt;</title>
 <para><emphasis>Writes a value to the Interrupt Clear (IC) register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a95032b4dbc7f70aef922060820631de1" kindref="member">EF_I2S_setIC</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -926,7 +875,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md53">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md49">
 <title>function &lt;tt&gt;EF_I2S_setIM&lt;/tt&gt;</title>
 <para><emphasis>Writes a value to the Interrupt Mask (IM) register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1ab4fbfff01ed548ecdfe0c62e8b49b053" kindref="member">EF_I2S_setIM</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -953,7 +902,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md54">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md50">
 <title>function &lt;tt&gt;EF_I2S_setPrescaler&lt;/tt&gt;</title>
 <para><emphasis>Sets the prescaler register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a261aaf55ebe6faa55a555aa82289376b" kindref="member">EF_I2S_setPrescaler</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -970,7 +919,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md55">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md51">
 <title>function &lt;tt&gt;EF_I2S_setRxFifoThreshold&lt;/tt&gt;</title>
 <para><emphasis>Sets the RX FIFO threshold for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1a19b6f17b3fc354afabcd98dd661a1954" kindref="member">EF_I2S_setRxFifoThreshold</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -987,7 +936,7 @@
 <para><bold>Returns:</bold></para>
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code. </para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md56">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md52">
 <title>function &lt;tt&gt;EF_I2S_setZCRT&lt;/tt&gt;</title>
 <para><emphasis>Sets the ZCRT register for the I2S peripheral.</emphasis> <programlisting filename=".c"><codeline><highlight class="normal"><ref refid="_e_f___driver___common_8h_1ad1c99136d1edfd0a7757f5b81600a351" kindref="member">EF_DRIVER_STATUS</ref><sp/><ref refid="_e_f___i2_s_8c_1ac6e5745e4ce997c1c7d0ac5e188347e2" kindref="member">EF_I2S_setZCRT</ref><sp/>(</highlight></codeline>
 <codeline><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE_PTR</ref><sp/>i2s,</highlight></codeline>
@@ -1005,48 +954,48 @@
 <para>status A value of type **EF\_DRIVER\_STATUS** : returns a success or error code.</para>
 </sect2>
 </sect1>
-<sect1 id="md__r_e_a_d_m_e_1autotoc_md57">
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md53">
 <title>Macros Documentation</title>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md58">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md54">
 <title>define &lt;tt&gt;EF_I2S_AVGT_REG_MAX_VALUE&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_AVGT_REG_MAX_VALUE<sp/>0x0000FFFF</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md59">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md55">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_MAX_VALUE&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_MAX_VALUE<sp/>0x00000FFF</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md60">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md56">
 <title>define &lt;tt&gt;EF_I2S_PR_REG_MAX_VALUE&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_PR_REG_MAX_VALUE<sp/>0x000000FF</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md61">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md57">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_IC_REG_MAX_VALUE&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_IC_REG_MAX_VALUE<sp/>0x0000003F</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md62">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md58">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_IM_REG_MAX_VALUE&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_IM_REG_MAX_VALUE<sp/>0x0000003F</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md63">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md59">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE<sp/>0x0000000F</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md64">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md60">
 <title>define &lt;tt&gt;EF_I2S_ZCRT_REG_MAX_VALUE&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_ZCRT_REG_MAX_VALUE<sp/>0x0000FFFF</highlight></codeline>
 </programlisting></para>
 </sect2>
 </sect1>
-<sect1 id="md__r_e_a_d_m_e_1autotoc_md65">
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md61">
 <title>File EF_I2S_regs.h</title>
 </sect1>
-<sect1 id="md__r_e_a_d_m_e_1autotoc_md66">
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md62">
 <title>Structures and Types</title>
 <para><table rows="4" cols="2"><row>
 <entry thead="yes" align='right'><para>Type   </para>
@@ -1070,7 +1019,7 @@
 </table>
 </para>
 </sect1>
-<sect1 id="md__r_e_a_d_m_e_1autotoc_md67">
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md63">
 <title>Macros</title>
 <para><table rows="37" cols="2"><row>
 <entry thead="yes" align='right'><para>Type   </para>
@@ -1259,19 +1208,19 @@
 </table>
 </para>
 </sect1>
-<sect1 id="md__r_e_a_d_m_e_1autotoc_md68">
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md64">
 <title>Structures and Types Documentation</title>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md69">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md65">
 <title>typedef &lt;tt&gt;EF_I2S_TYPE&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">_EF_I2S_TYPE_</ref><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE</ref>;</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md70">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md66">
 <title>typedef &lt;tt&gt;EF_I2S_TYPE_PTR&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="struct___e_f___i2_s___t_y_p_e__" kindref="compound">EF_I2S_TYPE</ref>*<sp/><ref refid="_e_f___i2_s__regs_8h_1a3b020f0a7eb618a2bd99dca20b454eb0" kindref="member">EF_I2S_TYPE_PTR</ref>;</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md71">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md67">
 <title>struct &lt;tt&gt;_EF_I2S_TYPE_&lt;/tt&gt;</title>
 <para>Variables:</para>
 <para><itemizedlist>
@@ -1311,184 +1260,184 @@
 </para>
 </sect2>
 </sect1>
-<sect1 id="md__r_e_a_d_m_e_1autotoc_md72">
+<sect1 id="md__r_e_a_d_m_e_1autotoc_md68">
 <title>Macros Documentation</title>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md73">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md69">
 <title>define &lt;tt&gt;EF_I2S_AVGF_FLAG&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_AVGF_FLAG<sp/>((uint32_t)0x8)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md74">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md70">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_AVGSEL_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_AVGSEL_BIT<sp/>((uint32_t)10)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md75">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md71">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_AVGSEL_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_AVGSEL_MASK<sp/>((uint32_t)0x400)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md76">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md72">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_CHANNELS_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_CHANNELS_BIT<sp/>((uint32_t)0)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md77">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md73">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_CHANNELS_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_CHANNELS_MASK<sp/>((uint32_t)0x3)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md78">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md74">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_LEFT_JUSTIFIED_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_LEFT_JUSTIFIED_BIT<sp/>((uint32_t)3)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md79">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md75">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_LEFT_JUSTIFIED_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_LEFT_JUSTIFIED_MASK<sp/>((uint32_t)0x8)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md80">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md76">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_SAMPLE_SIZE_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_SAMPLE_SIZE_BIT<sp/>((uint32_t)4)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md81">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md77">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_SAMPLE_SIZE_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_SAMPLE_SIZE_MASK<sp/>((uint32_t)0x3f0)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md82">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md78">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_SIGN_EXTEND_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_SIGN_EXTEND_BIT<sp/>((uint32_t)2)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md83">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md79">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_SIGN_EXTEND_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_SIGN_EXTEND_MASK<sp/>((uint32_t)0x4)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md84">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md80">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_ZCRSEL_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_ZCRSEL_BIT<sp/>((uint32_t)11)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md85">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md81">
 <title>define &lt;tt&gt;EF_I2S_CFG_REG_ZCRSEL_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CFG_REG_ZCRSEL_MASK<sp/>((uint32_t)0x800)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md86">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md82">
 <title>define &lt;tt&gt;EF_I2S_CTRL_REG_AVG_EN_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CTRL_REG_AVG_EN_BIT<sp/>((uint32_t)2)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md87">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md83">
 <title>define &lt;tt&gt;EF_I2S_CTRL_REG_AVG_EN_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CTRL_REG_AVG_EN_MASK<sp/>((uint32_t)0x4)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md88">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md84">
 <title>define &lt;tt&gt;EF_I2S_CTRL_REG_EN_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CTRL_REG_EN_BIT<sp/>((uint32_t)0)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md89">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md85">
 <title>define &lt;tt&gt;EF_I2S_CTRL_REG_EN_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CTRL_REG_EN_MASK<sp/>((uint32_t)0x1)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md90">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md86">
 <title>define &lt;tt&gt;EF_I2S_CTRL_REG_FIFO_EN_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CTRL_REG_FIFO_EN_BIT<sp/>((uint32_t)1)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md91">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md87">
 <title>define &lt;tt&gt;EF_I2S_CTRL_REG_FIFO_EN_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CTRL_REG_FIFO_EN_MASK<sp/>((uint32_t)0x2)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md92">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md88">
 <title>define &lt;tt&gt;EF_I2S_CTRL_REG_ZCR_EN_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CTRL_REG_ZCR_EN_BIT<sp/>((uint32_t)3)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md93">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md89">
 <title>define &lt;tt&gt;EF_I2S_CTRL_REG_ZCR_EN_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_CTRL_REG_ZCR_EN_MASK<sp/>((uint32_t)0x8)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md94">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md90">
 <title>define &lt;tt&gt;EF_I2S_FIFOA_FLAG&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_FIFOA_FLAG<sp/>((uint32_t)0x2)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md95">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md91">
 <title>define &lt;tt&gt;EF_I2S_FIFOE_FLAG&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_FIFOE_FLAG<sp/>((uint32_t)0x1)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md96">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md92">
 <title>define &lt;tt&gt;EF_I2S_FIFOF_FLAG&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_FIFOF_FLAG<sp/>((uint32_t)0x4)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md97">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md93">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_FLUSH_REG_FLUSH_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_FLUSH_REG_FLUSH_BIT<sp/>((uint32_t)0)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md98">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md94">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_FLUSH_REG_FLUSH_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_FLUSH_REG_FLUSH_MASK<sp/>((uint32_t)0x1)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md99">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md95">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_LEVEL_REG_LEVEL_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_LEVEL_REG_LEVEL_BIT<sp/>((uint32_t)0)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md100">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md96">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_LEVEL_REG_LEVEL_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_LEVEL_REG_LEVEL_MASK<sp/>((uint32_t)0xf)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md101">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md97">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_THRESHOLD_REG_THRESHOLD_BIT&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_THRESHOLD_REG_THRESHOLD_BIT<sp/>((uint32_t)0)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md102">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md98">
 <title>define &lt;tt&gt;EF_I2S_RX_FIFO_THRESHOLD_REG_THRESHOLD_MASK&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_RX_FIFO_THRESHOLD_REG_THRESHOLD_MASK<sp/>((uint32_t)0xf)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md103">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md99">
 <title>define &lt;tt&gt;EF_I2S_VADF_FLAG&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_VADF_FLAG<sp/>((uint32_t)0x20)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md104">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md100">
 <title>define &lt;tt&gt;EF_I2S_ZCRF_FLAG&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>EF_I2S_ZCRF_FLAG<sp/>((uint32_t)0x10)</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md105">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md101">
 <title>define &lt;tt&gt;IO_TYPES&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>IO_TYPES<sp/></highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md106">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md102">
 <title>define &lt;tt&gt;__R&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>__R<sp/>volatile<sp/>const<sp/>uint32_t</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md107">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md103">
 <title>define &lt;tt&gt;__RW&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>__RW<sp/>volatile<sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t</highlight></codeline>
 </programlisting></para>
 </sect2>
-<sect2 id="md__r_e_a_d_m_e_1autotoc_md108">
+<sect2 id="md__r_e_a_d_m_e_1autotoc_md104">
 <title>define &lt;tt&gt;__W&lt;/tt&gt;</title>
 <para><programlisting filename=".c"><codeline><highlight class="preprocessor">#define<sp/>__W<sp/>volatile<sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t</highlight></codeline>
 </programlisting> </para>

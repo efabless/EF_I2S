@@ -1,0 +1,324 @@
+\hypertarget{_e_f___i2_s__regs_8h}{}\doxysection{EF\+\_\+\+I2\+S\+\_\+regs.\+h File Reference}
+\label{_e_f___i2_s__regs_8h}\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+{\ttfamily \#include \char`\"{}EF\+\_\+\+Driver\+\_\+\+Common.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{\+\_\+\+EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a470cd5845bed94d8b8b358933e4a3442}{IO\+\_\+\+TYPES}}
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_aef00c279597b188e4cdd14d288ddf77a}{\+\_\+\+\_\+R}}~volatile const uint32\+\_\+t
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_ad8cfe7014044235a4c8d3239c2597f09}{\+\_\+\+\_\+W}}~volatile       uint32\+\_\+t
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a81f369079976a46554fd9798ab035697}{\+\_\+\+\_\+\+RW}}~volatile       uint32\+\_\+t
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3cab26cda541d2dbb1c7903b8c67326f}{EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+EN\+\_\+\+BIT}}~((uint32\+\_\+t)0)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_ae670ecd69fcf404a9e75cb53eda5822e}{EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+EN\+\_\+\+MASK}}~((uint32\+\_\+t)0x1)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_aae311fc11c144938addec85746e7b9b6}{EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+BIT}}~((uint32\+\_\+t)1)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a17e141f7962b9c557812c5403b347bbd}{EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+MASK}}~((uint32\+\_\+t)0x2)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_ab77bb3ace84cec3a47968d05b3f326ba}{EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+AVG\+\_\+\+EN\+\_\+\+BIT}}~((uint32\+\_\+t)2)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_aa8d85053653107f3044a63977ab3c234}{EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+AVG\+\_\+\+EN\+\_\+\+MASK}}~((uint32\+\_\+t)0x4)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_adc85f4046e85d777f7589cbb843b6900}{EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+ZCR\+\_\+\+EN\+\_\+\+BIT}}~((uint32\+\_\+t)3)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a4be66174042befb556f7676763762ad2}{EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+ZCR\+\_\+\+EN\+\_\+\+MASK}}~((uint32\+\_\+t)0x8)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_acc86e499659124322c03cb934be74fd1}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+CHANNELS\+\_\+\+BIT}}~((uint32\+\_\+t)0)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a9bd3cd3a8f62a3ab3eda92b44d48c3bd}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+CHANNELS\+\_\+\+MASK}}~((uint32\+\_\+t)0x3)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a183e491e38f3ab1cbc9e492968e0d469}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SIGN\+\_\+\+EXTEND\+\_\+\+BIT}}~((uint32\+\_\+t)2)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_aab0af1730b663c2245dbc3cf96754370}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SIGN\+\_\+\+EXTEND\+\_\+\+MASK}}~((uint32\+\_\+t)0x4)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a10a7d740bc2992625d53a785c34d6b69}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+LEFT\+\_\+\+JUSTIFIED\+\_\+\+BIT}}~((uint32\+\_\+t)3)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a0d557c81a455a50abfcc8d804e810609}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+LEFT\+\_\+\+JUSTIFIED\+\_\+\+MASK}}~((uint32\+\_\+t)0x8)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a5c4d732f16da4acadebdafe51cd482d1}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SAMPLE\+\_\+\+SIZE\+\_\+\+BIT}}~((uint32\+\_\+t)4)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a9efea3eb18a8aa45ce9a2c37329c0fd3}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SAMPLE\+\_\+\+SIZE\+\_\+\+MASK}}~((uint32\+\_\+t)0x3f0)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a076fd52c6acefa2849085ed973b8de6e}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+AVGSEL\+\_\+\+BIT}}~((uint32\+\_\+t)10)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_ab8bf25e01d6a8e09071f7f892afea311}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+AVGSEL\+\_\+\+MASK}}~((uint32\+\_\+t)0x400)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_af8b05aeb4600b1127ed688bf3d859e73}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+ZCRSEL\+\_\+\+BIT}}~((uint32\+\_\+t)11)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_af4cd021d6327e588f3b6636690f137c8}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+ZCRSEL\+\_\+\+MASK}}~((uint32\+\_\+t)0x800)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_afd0afd055c2d9070a9669a505b8d6ca4}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+LEVEL\+\_\+\+REG\+\_\+\+LEVEL\+\_\+\+BIT}}~((uint32\+\_\+t)0)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a067f3352dde2137ad928c2511fbff22d}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+LEVEL\+\_\+\+REG\+\_\+\+LEVEL\+\_\+\+MASK}}~((uint32\+\_\+t)0xf)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a485af37c22112eef797ac8830ebd313e}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+THRESHOLD\+\_\+\+BIT}}~((uint32\+\_\+t)0)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_afe9010f5c49ae6d32cc433c4de726356}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+THRESHOLD\+\_\+\+MASK}}~((uint32\+\_\+t)0xf)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_aaf078664d7b03a3060e8876b34226ed7}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+FLUSH\+\_\+\+REG\+\_\+\+FLUSH\+\_\+\+BIT}}~((uint32\+\_\+t)0)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a634258b99ab63c8b94aef371d9070bfc}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+FLUSH\+\_\+\+REG\+\_\+\+FLUSH\+\_\+\+MASK}}~((uint32\+\_\+t)0x1)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_ad9cecc560d98cb2c185fb407374bd6c6}{EF\+\_\+\+I2\+S\+\_\+\+FIFOE\+\_\+\+FLAG}}~((uint32\+\_\+t)0x1)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a682ffd9c2e569393fbf176082f19e942}{EF\+\_\+\+I2\+S\+\_\+\+FIFOA\+\_\+\+FLAG}}~((uint32\+\_\+t)0x2)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a9c9420d06e68ddee6d0a97fbe2c772a8}{EF\+\_\+\+I2\+S\+\_\+\+FIFOF\+\_\+\+FLAG}}~((uint32\+\_\+t)0x4)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a6bca5ef688ad8631a93219baf6f87ea7}{EF\+\_\+\+I2\+S\+\_\+\+AVGF\+\_\+\+FLAG}}~((uint32\+\_\+t)0x8)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3e974102afe657010e58323eaf5f681d}{EF\+\_\+\+I2\+S\+\_\+\+ZCRF\+\_\+\+FLAG}}~((uint32\+\_\+t)0x10)
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s__regs_8h_ad0b65eed359330244dfce8c20b9772a9}{EF\+\_\+\+I2\+S\+\_\+\+VADF\+\_\+\+FLAG}}~((uint32\+\_\+t)0x20)
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{\+\_\+\+EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+}} \mbox{\hyperlink{_e_f___i2_s__regs_8h_a71baa92648f7b676d563faa94f5bc528}{EF\+\_\+\+I2\+S\+\_\+\+TYPE}}
+\item 
+typedef \mbox{\hyperlink{_e_f___i2_s__regs_8h_a71baa92648f7b676d563faa94f5bc528}{EF\+\_\+\+I2\+S\+\_\+\+TYPE}} $\ast$ \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_aef00c279597b188e4cdd14d288ddf77a}\label{_e_f___i2_s__regs_8h_aef00c279597b188e4cdd14d288ddf77a}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!\_\_R@{\_\_R}}
+\index{\_\_R@{\_\_R}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{\_\_R}{\_\_R}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+R~volatile const uint32\+\_\+t}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a81f369079976a46554fd9798ab035697}\label{_e_f___i2_s__regs_8h_a81f369079976a46554fd9798ab035697}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!\_\_RW@{\_\_RW}}
+\index{\_\_RW@{\_\_RW}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{\_\_RW}{\_\_RW}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+\+RW~volatile       uint32\+\_\+t}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_ad8cfe7014044235a4c8d3239c2597f09}\label{_e_f___i2_s__regs_8h_ad8cfe7014044235a4c8d3239c2597f09}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!\_\_W@{\_\_W}}
+\index{\_\_W@{\_\_W}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{\_\_W}{\_\_W}}
+{\footnotesize\ttfamily \#define \+\_\+\+\_\+W~volatile       uint32\+\_\+t}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a6bca5ef688ad8631a93219baf6f87ea7}\label{_e_f___i2_s__regs_8h_a6bca5ef688ad8631a93219baf6f87ea7}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_AVGF\_FLAG@{EF\_I2S\_AVGF\_FLAG}}
+\index{EF\_I2S\_AVGF\_FLAG@{EF\_I2S\_AVGF\_FLAG}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_AVGF\_FLAG}{EF\_I2S\_AVGF\_FLAG}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+AVGF\+\_\+\+FLAG~((uint32\+\_\+t)0x8)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a076fd52c6acefa2849085ed973b8de6e}\label{_e_f___i2_s__regs_8h_a076fd52c6acefa2849085ed973b8de6e}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_AVGSEL\_BIT@{EF\_I2S\_CFG\_REG\_AVGSEL\_BIT}}
+\index{EF\_I2S\_CFG\_REG\_AVGSEL\_BIT@{EF\_I2S\_CFG\_REG\_AVGSEL\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_AVGSEL\_BIT}{EF\_I2S\_CFG\_REG\_AVGSEL\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+AVGSEL\+\_\+\+BIT~((uint32\+\_\+t)10)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_ab8bf25e01d6a8e09071f7f892afea311}\label{_e_f___i2_s__regs_8h_ab8bf25e01d6a8e09071f7f892afea311}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_AVGSEL\_MASK@{EF\_I2S\_CFG\_REG\_AVGSEL\_MASK}}
+\index{EF\_I2S\_CFG\_REG\_AVGSEL\_MASK@{EF\_I2S\_CFG\_REG\_AVGSEL\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_AVGSEL\_MASK}{EF\_I2S\_CFG\_REG\_AVGSEL\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+AVGSEL\+\_\+\+MASK~((uint32\+\_\+t)0x400)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_acc86e499659124322c03cb934be74fd1}\label{_e_f___i2_s__regs_8h_acc86e499659124322c03cb934be74fd1}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_CHANNELS\_BIT@{EF\_I2S\_CFG\_REG\_CHANNELS\_BIT}}
+\index{EF\_I2S\_CFG\_REG\_CHANNELS\_BIT@{EF\_I2S\_CFG\_REG\_CHANNELS\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_CHANNELS\_BIT}{EF\_I2S\_CFG\_REG\_CHANNELS\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+CHANNELS\+\_\+\+BIT~((uint32\+\_\+t)0)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a9bd3cd3a8f62a3ab3eda92b44d48c3bd}\label{_e_f___i2_s__regs_8h_a9bd3cd3a8f62a3ab3eda92b44d48c3bd}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_CHANNELS\_MASK@{EF\_I2S\_CFG\_REG\_CHANNELS\_MASK}}
+\index{EF\_I2S\_CFG\_REG\_CHANNELS\_MASK@{EF\_I2S\_CFG\_REG\_CHANNELS\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_CHANNELS\_MASK}{EF\_I2S\_CFG\_REG\_CHANNELS\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+CHANNELS\+\_\+\+MASK~((uint32\+\_\+t)0x3)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a10a7d740bc2992625d53a785c34d6b69}\label{_e_f___i2_s__regs_8h_a10a7d740bc2992625d53a785c34d6b69}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_BIT@{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_BIT}}
+\index{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_BIT@{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_BIT}{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+LEFT\+\_\+\+JUSTIFIED\+\_\+\+BIT~((uint32\+\_\+t)3)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a0d557c81a455a50abfcc8d804e810609}\label{_e_f___i2_s__regs_8h_a0d557c81a455a50abfcc8d804e810609}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_MASK@{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_MASK}}
+\index{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_MASK@{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_MASK}{EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+LEFT\+\_\+\+JUSTIFIED\+\_\+\+MASK~((uint32\+\_\+t)0x8)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a5c4d732f16da4acadebdafe51cd482d1}\label{_e_f___i2_s__regs_8h_a5c4d732f16da4acadebdafe51cd482d1}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_BIT@{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_BIT}}
+\index{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_BIT@{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_BIT}{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SAMPLE\+\_\+\+SIZE\+\_\+\+BIT~((uint32\+\_\+t)4)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a9efea3eb18a8aa45ce9a2c37329c0fd3}\label{_e_f___i2_s__regs_8h_a9efea3eb18a8aa45ce9a2c37329c0fd3}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_MASK@{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_MASK}}
+\index{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_MASK@{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_MASK}{EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SAMPLE\+\_\+\+SIZE\+\_\+\+MASK~((uint32\+\_\+t)0x3f0)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a183e491e38f3ab1cbc9e492968e0d469}\label{_e_f___i2_s__regs_8h_a183e491e38f3ab1cbc9e492968e0d469}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_BIT@{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_BIT}}
+\index{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_BIT@{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_BIT}{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SIGN\+\_\+\+EXTEND\+\_\+\+BIT~((uint32\+\_\+t)2)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_aab0af1730b663c2245dbc3cf96754370}\label{_e_f___i2_s__regs_8h_aab0af1730b663c2245dbc3cf96754370}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_MASK@{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_MASK}}
+\index{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_MASK@{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_MASK}{EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SIGN\+\_\+\+EXTEND\+\_\+\+MASK~((uint32\+\_\+t)0x4)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_af8b05aeb4600b1127ed688bf3d859e73}\label{_e_f___i2_s__regs_8h_af8b05aeb4600b1127ed688bf3d859e73}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_ZCRSEL\_BIT@{EF\_I2S\_CFG\_REG\_ZCRSEL\_BIT}}
+\index{EF\_I2S\_CFG\_REG\_ZCRSEL\_BIT@{EF\_I2S\_CFG\_REG\_ZCRSEL\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_ZCRSEL\_BIT}{EF\_I2S\_CFG\_REG\_ZCRSEL\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+ZCRSEL\+\_\+\+BIT~((uint32\+\_\+t)11)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_af4cd021d6327e588f3b6636690f137c8}\label{_e_f___i2_s__regs_8h_af4cd021d6327e588f3b6636690f137c8}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CFG\_REG\_ZCRSEL\_MASK@{EF\_I2S\_CFG\_REG\_ZCRSEL\_MASK}}
+\index{EF\_I2S\_CFG\_REG\_ZCRSEL\_MASK@{EF\_I2S\_CFG\_REG\_ZCRSEL\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_ZCRSEL\_MASK}{EF\_I2S\_CFG\_REG\_ZCRSEL\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+ZCRSEL\+\_\+\+MASK~((uint32\+\_\+t)0x800)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_ab77bb3ace84cec3a47968d05b3f326ba}\label{_e_f___i2_s__regs_8h_ab77bb3ace84cec3a47968d05b3f326ba}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CTRL\_REG\_AVG\_EN\_BIT@{EF\_I2S\_CTRL\_REG\_AVG\_EN\_BIT}}
+\index{EF\_I2S\_CTRL\_REG\_AVG\_EN\_BIT@{EF\_I2S\_CTRL\_REG\_AVG\_EN\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CTRL\_REG\_AVG\_EN\_BIT}{EF\_I2S\_CTRL\_REG\_AVG\_EN\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+AVG\+\_\+\+EN\+\_\+\+BIT~((uint32\+\_\+t)2)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_aa8d85053653107f3044a63977ab3c234}\label{_e_f___i2_s__regs_8h_aa8d85053653107f3044a63977ab3c234}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CTRL\_REG\_AVG\_EN\_MASK@{EF\_I2S\_CTRL\_REG\_AVG\_EN\_MASK}}
+\index{EF\_I2S\_CTRL\_REG\_AVG\_EN\_MASK@{EF\_I2S\_CTRL\_REG\_AVG\_EN\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CTRL\_REG\_AVG\_EN\_MASK}{EF\_I2S\_CTRL\_REG\_AVG\_EN\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+AVG\+\_\+\+EN\+\_\+\+MASK~((uint32\+\_\+t)0x4)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a3cab26cda541d2dbb1c7903b8c67326f}\label{_e_f___i2_s__regs_8h_a3cab26cda541d2dbb1c7903b8c67326f}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CTRL\_REG\_EN\_BIT@{EF\_I2S\_CTRL\_REG\_EN\_BIT}}
+\index{EF\_I2S\_CTRL\_REG\_EN\_BIT@{EF\_I2S\_CTRL\_REG\_EN\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CTRL\_REG\_EN\_BIT}{EF\_I2S\_CTRL\_REG\_EN\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+EN\+\_\+\+BIT~((uint32\+\_\+t)0)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_ae670ecd69fcf404a9e75cb53eda5822e}\label{_e_f___i2_s__regs_8h_ae670ecd69fcf404a9e75cb53eda5822e}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CTRL\_REG\_EN\_MASK@{EF\_I2S\_CTRL\_REG\_EN\_MASK}}
+\index{EF\_I2S\_CTRL\_REG\_EN\_MASK@{EF\_I2S\_CTRL\_REG\_EN\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CTRL\_REG\_EN\_MASK}{EF\_I2S\_CTRL\_REG\_EN\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+EN\+\_\+\+MASK~((uint32\+\_\+t)0x1)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_aae311fc11c144938addec85746e7b9b6}\label{_e_f___i2_s__regs_8h_aae311fc11c144938addec85746e7b9b6}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CTRL\_REG\_FIFO\_EN\_BIT@{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_BIT}}
+\index{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_BIT@{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_BIT}{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+BIT~((uint32\+\_\+t)1)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a17e141f7962b9c557812c5403b347bbd}\label{_e_f___i2_s__regs_8h_a17e141f7962b9c557812c5403b347bbd}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CTRL\_REG\_FIFO\_EN\_MASK@{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_MASK}}
+\index{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_MASK@{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_MASK}{EF\_I2S\_CTRL\_REG\_FIFO\_EN\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+MASK~((uint32\+\_\+t)0x2)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_adc85f4046e85d777f7589cbb843b6900}\label{_e_f___i2_s__regs_8h_adc85f4046e85d777f7589cbb843b6900}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CTRL\_REG\_ZCR\_EN\_BIT@{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_BIT}}
+\index{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_BIT@{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_BIT}{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+ZCR\+\_\+\+EN\+\_\+\+BIT~((uint32\+\_\+t)3)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a4be66174042befb556f7676763762ad2}\label{_e_f___i2_s__regs_8h_a4be66174042befb556f7676763762ad2}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_CTRL\_REG\_ZCR\_EN\_MASK@{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_MASK}}
+\index{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_MASK@{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_MASK}{EF\_I2S\_CTRL\_REG\_ZCR\_EN\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+ZCR\+\_\+\+EN\+\_\+\+MASK~((uint32\+\_\+t)0x8)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a682ffd9c2e569393fbf176082f19e942}\label{_e_f___i2_s__regs_8h_a682ffd9c2e569393fbf176082f19e942}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_FIFOA\_FLAG@{EF\_I2S\_FIFOA\_FLAG}}
+\index{EF\_I2S\_FIFOA\_FLAG@{EF\_I2S\_FIFOA\_FLAG}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_FIFOA\_FLAG}{EF\_I2S\_FIFOA\_FLAG}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+FIFOA\+\_\+\+FLAG~((uint32\+\_\+t)0x2)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_ad9cecc560d98cb2c185fb407374bd6c6}\label{_e_f___i2_s__regs_8h_ad9cecc560d98cb2c185fb407374bd6c6}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_FIFOE\_FLAG@{EF\_I2S\_FIFOE\_FLAG}}
+\index{EF\_I2S\_FIFOE\_FLAG@{EF\_I2S\_FIFOE\_FLAG}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_FIFOE\_FLAG}{EF\_I2S\_FIFOE\_FLAG}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+FIFOE\+\_\+\+FLAG~((uint32\+\_\+t)0x1)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a9c9420d06e68ddee6d0a97fbe2c772a8}\label{_e_f___i2_s__regs_8h_a9c9420d06e68ddee6d0a97fbe2c772a8}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_FIFOF\_FLAG@{EF\_I2S\_FIFOF\_FLAG}}
+\index{EF\_I2S\_FIFOF\_FLAG@{EF\_I2S\_FIFOF\_FLAG}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_FIFOF\_FLAG}{EF\_I2S\_FIFOF\_FLAG}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+FIFOF\+\_\+\+FLAG~((uint32\+\_\+t)0x4)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_aaf078664d7b03a3060e8876b34226ed7}\label{_e_f___i2_s__regs_8h_aaf078664d7b03a3060e8876b34226ed7}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_BIT@{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_BIT}}
+\index{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_BIT@{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_BIT}{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+FLUSH\+\_\+\+REG\+\_\+\+FLUSH\+\_\+\+BIT~((uint32\+\_\+t)0)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a634258b99ab63c8b94aef371d9070bfc}\label{_e_f___i2_s__regs_8h_a634258b99ab63c8b94aef371d9070bfc}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_MASK@{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_MASK}}
+\index{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_MASK@{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_MASK}{EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+FLUSH\+\_\+\+REG\+\_\+\+FLUSH\+\_\+\+MASK~((uint32\+\_\+t)0x1)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_afd0afd055c2d9070a9669a505b8d6ca4}\label{_e_f___i2_s__regs_8h_afd0afd055c2d9070a9669a505b8d6ca4}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_BIT@{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_BIT}}
+\index{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_BIT@{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_BIT}{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+LEVEL\+\_\+\+REG\+\_\+\+LEVEL\+\_\+\+BIT~((uint32\+\_\+t)0)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a067f3352dde2137ad928c2511fbff22d}\label{_e_f___i2_s__regs_8h_a067f3352dde2137ad928c2511fbff22d}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_MASK@{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_MASK}}
+\index{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_MASK@{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_MASK}{EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+LEVEL\+\_\+\+REG\+\_\+\+LEVEL\+\_\+\+MASK~((uint32\+\_\+t)0xf)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a485af37c22112eef797ac8830ebd313e}\label{_e_f___i2_s__regs_8h_a485af37c22112eef797ac8830ebd313e}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_BIT@{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_BIT}}
+\index{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_BIT@{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_BIT}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_BIT}{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_BIT}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+THRESHOLD\+\_\+\+BIT~((uint32\+\_\+t)0)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_afe9010f5c49ae6d32cc433c4de726356}\label{_e_f___i2_s__regs_8h_afe9010f5c49ae6d32cc433c4de726356}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_MASK@{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_MASK}}
+\index{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_MASK@{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_MASK}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_MASK}{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_MASK}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+THRESHOLD\+\_\+\+MASK~((uint32\+\_\+t)0xf)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_ad0b65eed359330244dfce8c20b9772a9}\label{_e_f___i2_s__regs_8h_ad0b65eed359330244dfce8c20b9772a9}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_VADF\_FLAG@{EF\_I2S\_VADF\_FLAG}}
+\index{EF\_I2S\_VADF\_FLAG@{EF\_I2S\_VADF\_FLAG}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_VADF\_FLAG}{EF\_I2S\_VADF\_FLAG}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+VADF\+\_\+\+FLAG~((uint32\+\_\+t)0x20)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a3e974102afe657010e58323eaf5f681d}\label{_e_f___i2_s__regs_8h_a3e974102afe657010e58323eaf5f681d}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_ZCRF\_FLAG@{EF\_I2S\_ZCRF\_FLAG}}
+\index{EF\_I2S\_ZCRF\_FLAG@{EF\_I2S\_ZCRF\_FLAG}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_ZCRF\_FLAG}{EF\_I2S\_ZCRF\_FLAG}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+ZCRF\+\_\+\+FLAG~((uint32\+\_\+t)0x10)}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a470cd5845bed94d8b8b358933e4a3442}\label{_e_f___i2_s__regs_8h_a470cd5845bed94d8b8b358933e4a3442}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!IO\_TYPES@{IO\_TYPES}}
+\index{IO\_TYPES@{IO\_TYPES}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{IO\_TYPES}{IO\_TYPES}}
+{\footnotesize\ttfamily \#define IO\+\_\+\+TYPES}
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a71baa92648f7b676d563faa94f5bc528}\label{_e_f___i2_s__regs_8h_a71baa92648f7b676d563faa94f5bc528}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_TYPE@{EF\_I2S\_TYPE}}
+\index{EF\_I2S\_TYPE@{EF\_I2S\_TYPE}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_TYPE}{EF\_I2S\_TYPE}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{\+\_\+\+EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+}} \mbox{\hyperlink{_e_f___i2_s__regs_8h_a71baa92648f7b676d563faa94f5bc528}{EF\+\_\+\+I2\+S\+\_\+\+TYPE}}}
+
+\mbox{\Hypertarget{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}\label{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}} 
+\index{EF\_I2S\_regs.h@{EF\_I2S\_regs.h}!EF\_I2S\_TYPE\_PTR@{EF\_I2S\_TYPE\_PTR}}
+\index{EF\_I2S\_TYPE\_PTR@{EF\_I2S\_TYPE\_PTR}!EF\_I2S\_regs.h@{EF\_I2S\_regs.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_TYPE\_PTR}{EF\_I2S\_TYPE\_PTR}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{_e_f___i2_s__regs_8h_a71baa92648f7b676d563faa94f5bc528}{EF\+\_\+\+I2\+S\+\_\+\+TYPE}}$\ast$ \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}
+

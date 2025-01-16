@@ -1,0 +1,256 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="struct___e_f___i2_s___t_y_p_e__" kind="struct" language="C++" prot="public">
+    <compoundname>_EF_I2S_TYPE_</compoundname>
+    <includes refid="_e_f___i2_s__regs_8h" local="no">EF_I2S_regs.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a27fd269d1fcd8147db1680037ed1578f" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1aef00c279597b188e4cdd14d288ddf77a" kindref="member">__R</ref></type>
+        <definition>__R _EF_I2S_TYPE_::RXDATA</definition>
+        <argsstring></argsstring>
+        <name>RXDATA</name>
+        <qualifiedname>_EF_I2S_TYPE_::RXDATA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="76" column="5" bodyfile="EF_I2S_regs.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a687ed5848ff9649b193539f3c13b9997" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::PR</definition>
+        <argsstring></argsstring>
+        <name>PR</name>
+        <qualifiedname>_EF_I2S_TYPE_::PR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="77" column="5" bodyfile="EF_I2S_regs.h" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a3d8df5472c4d100b73b3b7ae1ce900c7" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::AVGT</definition>
+        <argsstring></argsstring>
+        <name>AVGT</name>
+        <qualifiedname>_EF_I2S_TYPE_::AVGT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="78" column="5" bodyfile="EF_I2S_regs.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a12714b0690ac7afc62a79dd2b5322304" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::ZCRT</definition>
+        <argsstring></argsstring>
+        <name>ZCRT</name>
+        <qualifiedname>_EF_I2S_TYPE_::ZCRT</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="79" column="5" bodyfile="EF_I2S_regs.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a7830ae08745515ce7f3ea63da7ac4706" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::CTRL</definition>
+        <argsstring></argsstring>
+        <name>CTRL</name>
+        <qualifiedname>_EF_I2S_TYPE_::CTRL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="80" column="5" bodyfile="EF_I2S_regs.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a67270989afca766e4b61b8932bb6e253" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::CFG</definition>
+        <argsstring></argsstring>
+        <name>CFG</name>
+        <qualifiedname>_EF_I2S_TYPE_::CFG</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="81" column="5" bodyfile="EF_I2S_regs.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a7d57b91bba9ef18beff649563b50228c" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1aef00c279597b188e4cdd14d288ddf77a" kindref="member">__R</ref></type>
+        <definition>__R _EF_I2S_TYPE_::reserved_0[16250]</definition>
+        <argsstring>[16250]</argsstring>
+        <name>reserved_0</name>
+        <qualifiedname>_EF_I2S_TYPE_::reserved_0</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="82" column="5" bodyfile="EF_I2S_regs.h" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1abcc4acac1fce9309d841cb21735e2de0" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1aef00c279597b188e4cdd14d288ddf77a" kindref="member">__R</ref></type>
+        <definition>__R _EF_I2S_TYPE_::RX_FIFO_LEVEL</definition>
+        <argsstring></argsstring>
+        <name>RX_FIFO_LEVEL</name>
+        <qualifiedname>_EF_I2S_TYPE_::RX_FIFO_LEVEL</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="83" column="5" bodyfile="EF_I2S_regs.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a7efcc78b7d3d1fee9c8a0963d20cfcb9" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::RX_FIFO_THRESHOLD</definition>
+        <argsstring></argsstring>
+        <name>RX_FIFO_THRESHOLD</name>
+        <qualifiedname>_EF_I2S_TYPE_::RX_FIFO_THRESHOLD</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="84" column="5" bodyfile="EF_I2S_regs.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a96686332a09107ba9a42f259e32ae819" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::RX_FIFO_FLUSH</definition>
+        <argsstring></argsstring>
+        <name>RX_FIFO_FLUSH</name>
+        <qualifiedname>_EF_I2S_TYPE_::RX_FIFO_FLUSH</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="85" column="5" bodyfile="EF_I2S_regs.h" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1aeb44f14fd617e35afef3c4a1eb62870f" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1aef00c279597b188e4cdd14d288ddf77a" kindref="member">__R</ref></type>
+        <definition>__R _EF_I2S_TYPE_::reserved_1[61]</definition>
+        <argsstring>[61]</argsstring>
+        <name>reserved_1</name>
+        <qualifiedname>_EF_I2S_TYPE_::reserved_1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="86" column="5" bodyfile="EF_I2S_regs.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a83eb67bce3651b016c1ca72a634ee569" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1a81f369079976a46554fd9798ab035697" kindref="member">__RW</ref></type>
+        <definition>__RW _EF_I2S_TYPE_::IM</definition>
+        <argsstring></argsstring>
+        <name>IM</name>
+        <qualifiedname>_EF_I2S_TYPE_::IM</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="87" column="5" bodyfile="EF_I2S_regs.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1ac35196d72c9e6c48e38878072944d3e6" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1aef00c279597b188e4cdd14d288ddf77a" kindref="member">__R</ref></type>
+        <definition>__R _EF_I2S_TYPE_::MIS</definition>
+        <argsstring></argsstring>
+        <name>MIS</name>
+        <qualifiedname>_EF_I2S_TYPE_::MIS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="88" column="5" bodyfile="EF_I2S_regs.h" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a32ee3a5989b41b0dba0d5fb3cba93257" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1aef00c279597b188e4cdd14d288ddf77a" kindref="member">__R</ref></type>
+        <definition>__R _EF_I2S_TYPE_::RIS</definition>
+        <argsstring></argsstring>
+        <name>RIS</name>
+        <qualifiedname>_EF_I2S_TYPE_::RIS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="89" column="5" bodyfile="EF_I2S_regs.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1a6dd52aac6b0e25b635ca54b3339ada60" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::IC</definition>
+        <argsstring></argsstring>
+        <name>IC</name>
+        <qualifiedname>_EF_I2S_TYPE_::IC</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="90" column="5" bodyfile="EF_I2S_regs.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct___e_f___i2_s___t_y_p_e___1ad1559c382cdc28b655dc8cffe108398f" prot="public" static="no" mutable="no">
+        <type><ref refid="_e_f___i2_s__regs_8h_1ad8cfe7014044235a4c8d3239c2597f09" kindref="member">__W</ref></type>
+        <definition>__W _EF_I2S_TYPE_::GCLK</definition>
+        <argsstring></argsstring>
+        <name>GCLK</name>
+        <qualifiedname>_EF_I2S_TYPE_::GCLK</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="EF_I2S_regs.h" line="91" column="5" bodyfile="EF_I2S_regs.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="EF_I2S_regs.h" line="75" column="1" bodyfile="EF_I2S_regs.h" bodystart="75" bodyend="92"/>
+    <listofallmembers>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a3d8df5472c4d100b73b3b7ae1ce900c7" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>AVGT</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a67270989afca766e4b61b8932bb6e253" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>CFG</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a7830ae08745515ce7f3ea63da7ac4706" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>CTRL</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1ad1559c382cdc28b655dc8cffe108398f" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>GCLK</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a6dd52aac6b0e25b635ca54b3339ada60" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>IC</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a83eb67bce3651b016c1ca72a634ee569" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>IM</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1ac35196d72c9e6c48e38878072944d3e6" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>MIS</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a687ed5848ff9649b193539f3c13b9997" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>PR</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a7d57b91bba9ef18beff649563b50228c" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>reserved_0</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1aeb44f14fd617e35afef3c4a1eb62870f" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>reserved_1</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a32ee3a5989b41b0dba0d5fb3cba93257" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>RIS</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a96686332a09107ba9a42f259e32ae819" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>RX_FIFO_FLUSH</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1abcc4acac1fce9309d841cb21735e2de0" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>RX_FIFO_LEVEL</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a7efcc78b7d3d1fee9c8a0963d20cfcb9" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>RX_FIFO_THRESHOLD</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a27fd269d1fcd8147db1680037ed1578f" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>RXDATA</name></member>
+      <member refid="struct___e_f___i2_s___t_y_p_e___1a12714b0690ac7afc62a79dd2b5322304" prot="public" virt="non-virtual"><scope>_EF_I2S_TYPE_</scope><name>ZCRT</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

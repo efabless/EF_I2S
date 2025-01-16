@@ -1,0 +1,238 @@
+\hypertarget{_e_f___i2_s_8h_source}{}\doxysection{EF\+\_\+\+I2\+S.\+h}
+\mbox{\hyperlink{_e_f___i2_s_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ \ Copyright\ 2025\ Efabless\ Corp.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{}}
+\DoxyCodeLine{00004\ \textcolor{comment}{}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ \ Licensed\ under\ the\ Apache\ License,\ Version\ 2.0\ (the\ "{}License"{});}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ \ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the\ License.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ \ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00008\ \textcolor{comment}{}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ \ \ \ \ \ www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00010\ \textcolor{comment}{}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ \ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or\ implied.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ \ See\ the\ License\ for\ the\ specific\ language\ governing\ permissions\ and}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ \ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00016\ \textcolor{comment}{}}
+\DoxyCodeLine{00017\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifndef\ EF\_I2S\_H}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ EF\_I2S\_H}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00029\ \textcolor{comment}{*\ Includes}}
+\DoxyCodeLine{00030\ \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_e_f___i2_s__regs_8h}{EF\_I2S\_regs.h}}"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_e_f___driver___common_8h}{EF\_Driver\_Common.h}}"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00035\ \textcolor{comment}{*\ Macros\ and\ Constants}}
+\DoxyCodeLine{00036\ \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_MAX\_VALUE\ \ \ \ 0x00000FFF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 12\ bits}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ EF\_I2S\_PR\_REG\_MAX\_VALUE\ \ \ \ \ 0x000000FF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 8\ bits}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ EF\_I2S\_AVGT\_REG\_MAX\_VALUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000FFFF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 16\ bits}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ EF\_I2S\_ZCRT\_REG\_MAX\_VALUE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000FFFF\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 16\ bits}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE\ \ \ \ \ \ 0x0000000F\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 4\ bits}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE\ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000003F\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 6\ bits}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE\ \ \ \ \ \ \ \ \ \ \ \ \ 0x0000003F\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ 6\ bits}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00048\ \textcolor{comment}{*\ Typedefs\ and\ Enums}}
+\DoxyCodeLine{00049\ \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00052\ \textcolor{comment}{*\ Function\ Prototypes}}
+\DoxyCodeLine{00053\ \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00061\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a922081fe31b01334b54a89d5f8e1c2c1}{EF\_I2S\_setGclkEnable}}\ (\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t\ value);}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00072\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a8363eb974d75e82be3e789196bb2c95b}{EF\_I2S\_enable}}\ (\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00084\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_ac8d6abd09cea51b42572106f04a573fb}{EF\_I2S\_disable}}\ (\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00095\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a3b769d282e6954df57f14765f4366843}{EF\_I2S\_enableFifo}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00107\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_ad49df56dd20e08c02e5efc661a9a9cc6}{EF\_I2S\_disableFifo}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00118\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a48bb6abdf01dea0f16744039d9fd113a}{EF\_I2S\_enableAVG}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00129\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a28908c1a60a497792bfe591ff05cf6f9}{EF\_I2S\_disableAVG}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00142\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a3e06025f058eb96a083a0b647b872cbc}{EF\_I2S\_enableZCR}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00154\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a4abe906ba6d8764231cf2648fd617b83}{EF\_I2S\_disableZCR}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00168\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a4714d92aa38d5b05f1a8bb585e09b324}{EF\_I2S\_setConfigReg}}\ (\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t\ config);}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00182\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a261aaf55ebe6faa55a555aa82289376b}{EF\_I2S\_setPrescaler}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t\ prescaler);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00196\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_aa49c1860ce4e076d8bb745409561c3c7}{EF\_I2S\_setAVGT}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t\ average);}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00209\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_ac6e5745e4ce997c1c7d0ac5e188347e2}{EF\_I2S\_setZCRT}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t\ average);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00223\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_aa01eaa3ec9d57d8008e036d5194a3f11}{EF\_I2S\_getRxFifoLevel}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t*\ level);}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00237\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a19b6f17b3fc354afabcd98dd661a1954}{EF\_I2S\_setRxFifoThreshold}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t\ threshold);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00262\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_ac1c6040b6a56703127bd033fcb0fc2ab}{EF\_I2S\_getRIS}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t*\ ris\_value);}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00285\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a5971ae872cd797d44fbff1b8fbbc790e}{EF\_I2S\_getMIS}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t*\ mis\_value);}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00308\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_ab4fbfff01ed548ecdfe0c62e8b49b053}{EF\_I2S\_setIM}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t\ mask);}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00330\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a95032b4dbc7f70aef922060820631de1}{EF\_I2S\_setIC}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t\ mask);}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00352\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_acd181744291db32213010b5450419c59}{EF\_I2S\_getIM}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t*\ im\_value);}
+\DoxyCodeLine{00353\ }
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00369\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a50ed21a6e834fc0047cb78941a7c8984}{EF\_I2S\_readData}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ uint32\_t*\ data);}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00381\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_ab5ddd197f14756e1c59fb61046572056}{EF\_I2S\_clearIrqRxempty}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00395\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_ab8e5d164c8010d28a8ecbbfe2d4e2225}{EF\_I2S\_clearIrqRxLevel}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00408\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_aba0bcdf189efb01bb4da0241cf0fff6c}{EF\_I2S\_clearIrqRxFull}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00420\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a893f62b34da9619b3ff8ff05b1449d5d}{EF\_I2S\_clearIrqAVGAboveThreshold}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ }
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00427\ }
+\DoxyCodeLine{00436\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_ab37aca0b76a291cb4abab5d9b863a59c}{EF\_I2S\_clearIrqZCRAboveThreshold}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00448\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a37d38397ddebfe8f2350f18eafb12c4f}{EF\_I2S\_clearIrqVADFlag}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s);}
+\DoxyCodeLine{00449\ }
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00464\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a5161a349d8c36dd40549d0b15d506182}{EF\_I2S\_RxFIFOAvailable}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ \textcolor{keywordtype}{bool}*\ isAvailable);}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00478\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a9be165920fd4797aaee9d431df907b53}{EF\_I2S\_RxFIFOEmpty}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ \textcolor{keywordtype}{bool}*\ isEmpty);}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00494\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_aa1a5a98b7f41654a70fb37dd49a845de}{EF\_I2S\_RxFIFOFull}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ \textcolor{keywordtype}{bool}*\ isFull);}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ }
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00509\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a1bbc7845bff3df3a186fdc851fe6337d}{EF\_I2S\_Busy}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ \textcolor{keywordtype}{bool}*\ isBusy);}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00525\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a458aa2712b7e4bb1880117f2aaf2505b}{EF\_I2S\_FIFOOverThreshold}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ \textcolor{keywordtype}{bool}*\ isOverThreshold);}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00539\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a2dc446aadcb9a471bdb6da85323105b7}{EF\_I2S\_ZCROverThreshold}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ \textcolor{keywordtype}{bool}*\ isOverThreshold);}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00554\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8h_a2fd0764a05f1ccabe4c00dd122b1ec18}{EF\_I2S\_VADFlag}}(\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,\ \textcolor{keywordtype}{bool}*\ isOverThreshold);}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \textcolor{comment}{//\ write\ only}}
+\DoxyCodeLine{00558\ \textcolor{comment}{//EF\_DRIVER\_STATUS\ EF\_I2S\_getConfigReg\ (EF\_I2S\_TYPE\_PTR\ i2s,\ uint32\_t*\ config);}}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \textcolor{comment}{//\ write\ only}}
+\DoxyCodeLine{00563\ \textcolor{comment}{//EF\_DRIVER\_STATUS\ EF\_I2S\_getPrescaler(EF\_I2S\_TYPE\_PTR\ i2s,\ uint32\_t*\ prescaler);}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ }
+\DoxyCodeLine{00566\ \textcolor{comment}{//\ write\ only}}
+\DoxyCodeLine{00567\ \textcolor{comment}{//EF\_DRIVER\_STATUS\ EF\_I2S\_getRxFifoThreshold(EF\_I2S\_TYPE\_PTR\ i2s,\ uint32\_t*\ threshold);}}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00570\ \textcolor{comment}{*\ External\ Variables}}
+\DoxyCodeLine{00571\ \textcolor{comment}{******************************************************************************/}}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ EF\_I2S\_H}}
+\DoxyCodeLine{00575\ }
+\DoxyCodeLine{00576\ \textcolor{comment}{/******************************************************************************}}
+\DoxyCodeLine{00577\ \textcolor{comment}{*\ End\ of\ File}}
+\DoxyCodeLine{00578\ \textcolor{comment}{******************************************************************************/}}
+
+\end{DoxyCode}

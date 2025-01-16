@@ -1,0 +1,912 @@
+\hypertarget{_e_f___i2_s_8h}{}\doxysection{EF\+\_\+\+I2\+S.\+h File Reference}
+\label{_e_f___i2_s_8h}\index{EF\_I2S.h@{EF\_I2S.h}}
+
+
+C header file for I2S APIs which contains the function prototypes.  
+
+
+{\ttfamily \#include \char`\"{}EF\+\_\+\+I2\+S\+\_\+regs.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}EF\+\_\+\+Driver\+\_\+\+Common.\+h\char`\"{}}\newline
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s_8h_aa665f2437319304828ab6c47d3a3143c}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}~0x00000\+FFF
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s_8h_aa0571464e60d1c73166d6674e80988d1}{EF\+\_\+\+I2\+S\+\_\+\+PR\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}~0x000000\+FF
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s_8h_a5346305c9521be4e37ae79948a56b56a}{EF\+\_\+\+I2\+S\+\_\+\+AVGT\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}~0x0000\+FFFF
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s_8h_a46f20acc4b3339159ce41e3ca6435054}{EF\+\_\+\+I2\+S\+\_\+\+ZCRT\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}~0x0000\+FFFF
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s_8h_a7796b3b2ac1573be88b01ff4ae5694e4}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}~0x0000000F
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s_8h_a9c5cd2fd6af1c4e7de606986d3a3a535}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+IM\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}~0x0000003F
+\item 
+\#define \mbox{\hyperlink{_e_f___i2_s_8h_a33de3838945b8ac4a1cbcfe54b40da9f}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+IC\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}~0x0000003F
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a922081fe31b01334b54a89d5f8e1c2c1}{EF\+\_\+\+I2\+S\+\_\+set\+Gclk\+Enable}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t value)
+\begin{DoxyCompactList}\small\item\em Sets the GCLK enable bit in the I2S register to a certain value. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a8363eb974d75e82be3e789196bb2c95b}{EF\+\_\+\+I2\+S\+\_\+enable}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Enables the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_ac8d6abd09cea51b42572106f04a573fb}{EF\+\_\+\+I2\+S\+\_\+disable}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Disables the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a3b769d282e6954df57f14765f4366843}{EF\+\_\+\+I2\+S\+\_\+enable\+Fifo}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Enables the FIFO feature for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_ad49df56dd20e08c02e5efc661a9a9cc6}{EF\+\_\+\+I2\+S\+\_\+disable\+Fifo}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Disables the FIFO feature for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a48bb6abdf01dea0f16744039d9fd113a}{EF\+\_\+\+I2\+S\+\_\+enable\+AVG}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Enables the AVG feature for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a28908c1a60a497792bfe591ff05cf6f9}{EF\+\_\+\+I2\+S\+\_\+disable\+AVG}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Disables the AVG feature for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a3e06025f058eb96a083a0b647b872cbc}{EF\+\_\+\+I2\+S\+\_\+enable\+ZCR}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Enables the ZCR feature for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a4abe906ba6d8764231cf2648fd617b83}{EF\+\_\+\+I2\+S\+\_\+disable\+ZCR}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Disables the ZCR feature for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a4714d92aa38d5b05f1a8bb585e09b324}{EF\+\_\+\+I2\+S\+\_\+set\+Config\+Reg}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t config)
+\begin{DoxyCompactList}\small\item\em Sets the configuration register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a261aaf55ebe6faa55a555aa82289376b}{EF\+\_\+\+I2\+S\+\_\+set\+Prescaler}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t prescaler)
+\begin{DoxyCompactList}\small\item\em Sets the prescaler register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_aa49c1860ce4e076d8bb745409561c3c7}{EF\+\_\+\+I2\+S\+\_\+set\+AVGT}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t average)
+\begin{DoxyCompactList}\small\item\em Sets the AVGT register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_ac6e5745e4ce997c1c7d0ac5e188347e2}{EF\+\_\+\+I2\+S\+\_\+set\+ZCRT}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t average)
+\begin{DoxyCompactList}\small\item\em Sets the ZCRT register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_aa01eaa3ec9d57d8008e036d5194a3f11}{EF\+\_\+\+I2\+S\+\_\+get\+Rx\+Fifo\+Level}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t $\ast$level)
+\begin{DoxyCompactList}\small\item\em Gets the RX FIFO level of the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a19b6f17b3fc354afabcd98dd661a1954}{EF\+\_\+\+I2\+S\+\_\+set\+Rx\+Fifo\+Threshold}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t threshold)
+\begin{DoxyCompactList}\small\item\em Sets the RX FIFO threshold for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_ac1c6040b6a56703127bd033fcb0fc2ab}{EF\+\_\+\+I2\+S\+\_\+get\+RIS}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t $\ast$ris\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Reads the Raw Interrupt Status (RIS) register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a5971ae872cd797d44fbff1b8fbbc790e}{EF\+\_\+\+I2\+S\+\_\+get\+MIS}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t $\ast$mis\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Reads the Masked Interrupt Status (MIS) register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_ab4fbfff01ed548ecdfe0c62e8b49b053}{EF\+\_\+\+I2\+S\+\_\+set\+IM}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t mask)
+\begin{DoxyCompactList}\small\item\em Writes a value to the Interrupt Mask (IM) register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a95032b4dbc7f70aef922060820631de1}{EF\+\_\+\+I2\+S\+\_\+set\+IC}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t mask)
+\begin{DoxyCompactList}\small\item\em Writes a value to the Interrupt Clear (IC) register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_acd181744291db32213010b5450419c59}{EF\+\_\+\+I2\+S\+\_\+get\+IM}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t $\ast$im\+\_\+value)
+\begin{DoxyCompactList}\small\item\em Reads the Interrupt Mask (IM) register for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a50ed21a6e834fc0047cb78941a7c8984}{EF\+\_\+\+I2\+S\+\_\+read\+Data}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, uint32\+\_\+t $\ast$data)
+\begin{DoxyCompactList}\small\item\em Reads data from the RX FIFO of the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_ab5ddd197f14756e1c59fb61046572056}{EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rxempty}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_ab8e5d164c8010d28a8ecbbfe2d4e2225}{EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rx\+Level}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Clears the receive FIFO level interrupt for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_aba0bcdf189efb01bb4da0241cf0fff6c}{EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rx\+Full}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Clears the receive FIFO full interrupt for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a893f62b34da9619b3ff8ff05b1449d5d}{EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+AVGAbove\+Threshold}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Clears the average above threshold interrupt for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_ab37aca0b76a291cb4abab5d9b863a59c}{EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+ZCRAbove\+Threshold}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Clears the zero-\/crossing rate above threshold interrupt for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a37d38397ddebfe8f2350f18eafb12c4f}{EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+VADFlag}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s)
+\begin{DoxyCompactList}\small\item\em Clears the Voice Activity Detector (VAD) flag interrupt for the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a5161a349d8c36dd40549d0b15d506182}{EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOAvailable}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, bool $\ast$is\+Available)
+\begin{DoxyCompactList}\small\item\em Checks if the RX FIFO has available space in the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a9be165920fd4797aaee9d431df907b53}{EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOEmpty}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, bool $\ast$is\+Empty)
+\begin{DoxyCompactList}\small\item\em Checks if the RX FIFO is empty in the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_aa1a5a98b7f41654a70fb37dd49a845de}{EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOFull}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, bool $\ast$is\+Full)
+\begin{DoxyCompactList}\small\item\em Checks if the RX FIFO is full in the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a1bbc7845bff3df3a186fdc851fe6337d}{EF\+\_\+\+I2\+S\+\_\+\+Busy}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, bool $\ast$is\+Busy)
+\begin{DoxyCompactList}\small\item\em Checks if the I2S peripheral is busy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a458aa2712b7e4bb1880117f2aaf2505b}{EF\+\_\+\+I2\+S\+\_\+\+FIFOOver\+Threshold}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, bool $\ast$is\+Over\+Threshold)
+\begin{DoxyCompactList}\small\item\em Checks if the RX FIFO level is over the threshold in the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a2dc446aadcb9a471bdb6da85323105b7}{EF\+\_\+\+I2\+S\+\_\+\+ZCROver\+Threshold}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, bool $\ast$is\+Over\+Threshold)
+\begin{DoxyCompactList}\small\item\em Checks if the zero-\/crossing rate exceeds the threshold in the I2S peripheral. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \mbox{\hyperlink{_e_f___i2_s_8h_a2fd0764a05f1ccabe4c00dd122b1ec18}{EF\+\_\+\+I2\+S\+\_\+\+VADFlag}} (\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} i2s, bool $\ast$is\+Over\+Threshold)
+\begin{DoxyCompactList}\small\item\em Checks if the Voice Activity Detector (VAD) flag is set in the I2S peripheral. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+C header file for I2S APIs which contains the function prototypes. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a5346305c9521be4e37ae79948a56b56a}\label{_e_f___i2_s_8h_a5346305c9521be4e37ae79948a56b56a}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_AVGT\_REG\_MAX\_VALUE@{EF\_I2S\_AVGT\_REG\_MAX\_VALUE}}
+\index{EF\_I2S\_AVGT\_REG\_MAX\_VALUE@{EF\_I2S\_AVGT\_REG\_MAX\_VALUE}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_AVGT\_REG\_MAX\_VALUE}{EF\_I2S\_AVGT\_REG\_MAX\_VALUE}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+AVGT\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE~0x0000\+FFFF}
+
+\mbox{\Hypertarget{_e_f___i2_s_8h_aa665f2437319304828ab6c47d3a3143c}\label{_e_f___i2_s_8h_aa665f2437319304828ab6c47d3a3143c}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_CFG\_REG\_MAX\_VALUE@{EF\_I2S\_CFG\_REG\_MAX\_VALUE}}
+\index{EF\_I2S\_CFG\_REG\_MAX\_VALUE@{EF\_I2S\_CFG\_REG\_MAX\_VALUE}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_CFG\_REG\_MAX\_VALUE}{EF\_I2S\_CFG\_REG\_MAX\_VALUE}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE~0x00000\+FFF}
+
+\mbox{\Hypertarget{_e_f___i2_s_8h_aa0571464e60d1c73166d6674e80988d1}\label{_e_f___i2_s_8h_aa0571464e60d1c73166d6674e80988d1}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_PR\_REG\_MAX\_VALUE@{EF\_I2S\_PR\_REG\_MAX\_VALUE}}
+\index{EF\_I2S\_PR\_REG\_MAX\_VALUE@{EF\_I2S\_PR\_REG\_MAX\_VALUE}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_PR\_REG\_MAX\_VALUE}{EF\_I2S\_PR\_REG\_MAX\_VALUE}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+PR\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE~0x000000\+FF}
+
+\mbox{\Hypertarget{_e_f___i2_s_8h_a33de3838945b8ac4a1cbcfe54b40da9f}\label{_e_f___i2_s_8h_a33de3838945b8ac4a1cbcfe54b40da9f}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE@{EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE}}
+\index{EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE@{EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE}{EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+IC\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE~0x0000003F}
+
+\mbox{\Hypertarget{_e_f___i2_s_8h_a9c5cd2fd6af1c4e7de606986d3a3a535}\label{_e_f___i2_s_8h_a9c5cd2fd6af1c4e7de606986d3a3a535}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE@{EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE}}
+\index{EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE@{EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE}{EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+IM\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE~0x0000003F}
+
+\mbox{\Hypertarget{_e_f___i2_s_8h_a7796b3b2ac1573be88b01ff4ae5694e4}\label{_e_f___i2_s_8h_a7796b3b2ac1573be88b01ff4ae5694e4}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE@{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE}}
+\index{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE@{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE}{EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE~0x0000000F}
+
+\mbox{\Hypertarget{_e_f___i2_s_8h_a46f20acc4b3339159ce41e3ca6435054}\label{_e_f___i2_s_8h_a46f20acc4b3339159ce41e3ca6435054}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_ZCRT\_REG\_MAX\_VALUE@{EF\_I2S\_ZCRT\_REG\_MAX\_VALUE}}
+\index{EF\_I2S\_ZCRT\_REG\_MAX\_VALUE@{EF\_I2S\_ZCRT\_REG\_MAX\_VALUE}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_ZCRT\_REG\_MAX\_VALUE}{EF\_I2S\_ZCRT\_REG\_MAX\_VALUE}}
+{\footnotesize\ttfamily \#define EF\+\_\+\+I2\+S\+\_\+\+ZCRT\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE~0x0000\+FFFF}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a1bbc7845bff3df3a186fdc851fe6337d}\label{_e_f___i2_s_8h_a1bbc7845bff3df3a186fdc851fe6337d}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_Busy@{EF\_I2S\_Busy}}
+\index{EF\_I2S\_Busy@{EF\_I2S\_Busy}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_Busy()}{EF\_I2S\_Busy()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+\+Busy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{bool $\ast$}]{is\+Busy }\end{DoxyParamCaption})}
+
+
+
+Checks if the I2S peripheral is busy. 
+
+This function checks whether the I2S peripheral is currently busy.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em is\+Busy} & Pointer to a boolean variable that will be set to true if the peripheral is busy, or false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a893f62b34da9619b3ff8ff05b1449d5d}\label{_e_f___i2_s_8h_a893f62b34da9619b3ff8ff05b1449d5d}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_clearIrqAVGAboveThreshold@{EF\_I2S\_clearIrqAVGAboveThreshold}}
+\index{EF\_I2S\_clearIrqAVGAboveThreshold@{EF\_I2S\_clearIrqAVGAboveThreshold}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_clearIrqAVGAboveThreshold()}{EF\_I2S\_clearIrqAVGAboveThreshold()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+AVGAbove\+Threshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Clears the average above threshold interrupt for the I2S peripheral. 
+
+This function clears the interrupt corresponding to the average (AVG) being above the threshold in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_ab5ddd197f14756e1c59fb61046572056}\label{_e_f___i2_s_8h_ab5ddd197f14756e1c59fb61046572056}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_clearIrqRxempty@{EF\_I2S\_clearIrqRxempty}}
+\index{EF\_I2S\_clearIrqRxempty@{EF\_I2S\_clearIrqRxempty}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_clearIrqRxempty()}{EF\_I2S\_clearIrqRxempty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rxempty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+This function clears the interrupt corresponding to the receive FIFO empty condition in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_aba0bcdf189efb01bb4da0241cf0fff6c}\label{_e_f___i2_s_8h_aba0bcdf189efb01bb4da0241cf0fff6c}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_clearIrqRxFull@{EF\_I2S\_clearIrqRxFull}}
+\index{EF\_I2S\_clearIrqRxFull@{EF\_I2S\_clearIrqRxFull}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_clearIrqRxFull()}{EF\_I2S\_clearIrqRxFull()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rx\+Full (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Clears the receive FIFO full interrupt for the I2S peripheral. 
+
+This function clears the interrupt corresponding to the receive FIFO full condition in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_ab8e5d164c8010d28a8ecbbfe2d4e2225}\label{_e_f___i2_s_8h_ab8e5d164c8010d28a8ecbbfe2d4e2225}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_clearIrqRxLevel@{EF\_I2S\_clearIrqRxLevel}}
+\index{EF\_I2S\_clearIrqRxLevel@{EF\_I2S\_clearIrqRxLevel}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_clearIrqRxLevel()}{EF\_I2S\_clearIrqRxLevel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rx\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Clears the receive FIFO level interrupt for the I2S peripheral. 
+
+This function clears the interrupt corresponding to the receive FIFO level condition in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a37d38397ddebfe8f2350f18eafb12c4f}\label{_e_f___i2_s_8h_a37d38397ddebfe8f2350f18eafb12c4f}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_clearIrqVADFlag@{EF\_I2S\_clearIrqVADFlag}}
+\index{EF\_I2S\_clearIrqVADFlag@{EF\_I2S\_clearIrqVADFlag}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_clearIrqVADFlag()}{EF\_I2S\_clearIrqVADFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+VADFlag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Clears the Voice Activity Detector (VAD) flag interrupt for the I2S peripheral. 
+
+This function clears the interrupt corresponding to the Voice Activity Detector (VAD) flag in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_ab37aca0b76a291cb4abab5d9b863a59c}\label{_e_f___i2_s_8h_ab37aca0b76a291cb4abab5d9b863a59c}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_clearIrqZCRAboveThreshold@{EF\_I2S\_clearIrqZCRAboveThreshold}}
+\index{EF\_I2S\_clearIrqZCRAboveThreshold@{EF\_I2S\_clearIrqZCRAboveThreshold}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_clearIrqZCRAboveThreshold()}{EF\_I2S\_clearIrqZCRAboveThreshold()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+ZCRAbove\+Threshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Clears the zero-\/crossing rate above threshold interrupt for the I2S peripheral. 
+
+This function clears the interrupt corresponding to the zero-\/crossing rate (ZCR) being above the threshold in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_ac8d6abd09cea51b42572106f04a573fb}\label{_e_f___i2_s_8h_ac8d6abd09cea51b42572106f04a573fb}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_disable@{EF\_I2S\_disable}}
+\index{EF\_I2S\_disable@{EF\_I2S\_disable}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_disable()}{EF\_I2S\_disable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+disable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Disables the I2S peripheral. 
+
+This function disables the I2S peripheral by clearing the enable bit in the control register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a28908c1a60a497792bfe591ff05cf6f9}\label{_e_f___i2_s_8h_a28908c1a60a497792bfe591ff05cf6f9}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_disableAVG@{EF\_I2S\_disableAVG}}
+\index{EF\_I2S\_disableAVG@{EF\_I2S\_disableAVG}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_disableAVG()}{EF\_I2S\_disableAVG()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+disable\+AVG (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Disables the AVG feature for the I2S peripheral. 
+
+This function disables the AVG feature of the I2S peripheral by clearing the AVG enable bit in the control register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_ad49df56dd20e08c02e5efc661a9a9cc6}\label{_e_f___i2_s_8h_ad49df56dd20e08c02e5efc661a9a9cc6}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_disableFifo@{EF\_I2S\_disableFifo}}
+\index{EF\_I2S\_disableFifo@{EF\_I2S\_disableFifo}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_disableFifo()}{EF\_I2S\_disableFifo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+disable\+Fifo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Disables the FIFO feature for the I2S peripheral. 
+
+This function disables the FIFO feature of the I2S peripheral by clearing the FIFO enable bit in the control register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a4abe906ba6d8764231cf2648fd617b83}\label{_e_f___i2_s_8h_a4abe906ba6d8764231cf2648fd617b83}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_disableZCR@{EF\_I2S\_disableZCR}}
+\index{EF\_I2S\_disableZCR@{EF\_I2S\_disableZCR}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_disableZCR()}{EF\_I2S\_disableZCR()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+disable\+ZCR (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Disables the ZCR feature for the I2S peripheral. 
+
+This function disables the ZCR feature of the I2S peripheral by clearing the ZCR enable bit in the control register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a8363eb974d75e82be3e789196bb2c95b}\label{_e_f___i2_s_8h_a8363eb974d75e82be3e789196bb2c95b}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_enable@{EF\_I2S\_enable}}
+\index{EF\_I2S\_enable@{EF\_I2S\_enable}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_enable()}{EF\_I2S\_enable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Enables the I2S peripheral. 
+
+This function enables the I2S peripheral by setting the enable bit in the control register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a48bb6abdf01dea0f16744039d9fd113a}\label{_e_f___i2_s_8h_a48bb6abdf01dea0f16744039d9fd113a}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_enableAVG@{EF\_I2S\_enableAVG}}
+\index{EF\_I2S\_enableAVG@{EF\_I2S\_enableAVG}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_enableAVG()}{EF\_I2S\_enableAVG()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+enable\+AVG (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Enables the AVG feature for the I2S peripheral. 
+
+This function enables the AVG feature of the I2S peripheral by setting the AVG enable bit in the control register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a3b769d282e6954df57f14765f4366843}\label{_e_f___i2_s_8h_a3b769d282e6954df57f14765f4366843}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_enableFifo@{EF\_I2S\_enableFifo}}
+\index{EF\_I2S\_enableFifo@{EF\_I2S\_enableFifo}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_enableFifo()}{EF\_I2S\_enableFifo()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+enable\+Fifo (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Enables the FIFO feature for the I2S peripheral. 
+
+This function enables the FIFO feature of the I2S peripheral by setting the FIFO enable bit in the control register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a3e06025f058eb96a083a0b647b872cbc}\label{_e_f___i2_s_8h_a3e06025f058eb96a083a0b647b872cbc}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_enableZCR@{EF\_I2S\_enableZCR}}
+\index{EF\_I2S\_enableZCR@{EF\_I2S\_enableZCR}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_enableZCR()}{EF\_I2S\_enableZCR()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+enable\+ZCR (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s }\end{DoxyParamCaption})}
+
+
+
+Enables the ZCR feature for the I2S peripheral. 
+
+This function enables the ZCR feature of the I2S peripheral by setting the ZCR enable bit in the control register.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a458aa2712b7e4bb1880117f2aaf2505b}\label{_e_f___i2_s_8h_a458aa2712b7e4bb1880117f2aaf2505b}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_FIFOOverThreshold@{EF\_I2S\_FIFOOverThreshold}}
+\index{EF\_I2S\_FIFOOverThreshold@{EF\_I2S\_FIFOOverThreshold}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_FIFOOverThreshold()}{EF\_I2S\_FIFOOverThreshold()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+\+FIFOOver\+Threshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{bool $\ast$}]{is\+Over\+Threshold }\end{DoxyParamCaption})}
+
+
+
+Checks if the RX FIFO level is over the threshold in the I2S peripheral. 
+
+This function checks whether the RX FIFO level has exceeded the threshold in the I2S peripheral.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em is\+Over\+Threshold} & Pointer to a boolean variable that will be set to true if the RX FIFO level is over the threshold, or false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_acd181744291db32213010b5450419c59}\label{_e_f___i2_s_8h_acd181744291db32213010b5450419c59}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_getIM@{EF\_I2S\_getIM}}
+\index{EF\_I2S\_getIM@{EF\_I2S\_getIM}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_getIM()}{EF\_I2S\_getIM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+get\+IM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t $\ast$}]{im\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Reads the Interrupt Mask (IM) register for the I2S peripheral. 
+
+This function retrieves the value of the Interrupt Mask (IM) register for the I2S peripheral and stores it in the provided variable. The IM register indicates which interrupts are enabled. RIS Register Breakdown$\ast$$\ast$\+:
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em im\+\_\+value} & Pointer to a variable where the IM register value will be stored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a5971ae872cd797d44fbff1b8fbbc790e}\label{_e_f___i2_s_8h_a5971ae872cd797d44fbff1b8fbbc790e}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_getMIS@{EF\_I2S\_getMIS}}
+\index{EF\_I2S\_getMIS@{EF\_I2S\_getMIS}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_getMIS()}{EF\_I2S\_getMIS()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+get\+MIS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t $\ast$}]{mis\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Reads the Masked Interrupt Status (MIS) register for the I2S peripheral. 
+
+This function retrieves the value of the Masked Interrupt Status (MIS) register for the I2S peripheral and stores it in the provided variable. The MIS register indicates the current interrupt status after masking. RIS Register Breakdown$\ast$$\ast$\+:
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em mis\+\_\+value} & Pointer to a variable where the MIS register value will be stored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_ac1c6040b6a56703127bd033fcb0fc2ab}\label{_e_f___i2_s_8h_ac1c6040b6a56703127bd033fcb0fc2ab}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_getRIS@{EF\_I2S\_getRIS}}
+\index{EF\_I2S\_getRIS@{EF\_I2S\_getRIS}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_getRIS()}{EF\_I2S\_getRIS()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+get\+RIS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t $\ast$}]{ris\+\_\+value }\end{DoxyParamCaption})}
+
+
+
+Reads the Raw Interrupt Status (RIS) register for the I2S peripheral. 
+
+This function retrieves the value of the Raw Interrupt Status (RIS) register for the I2S peripheral and stores it in the provided variable. The RIS register contains various status flags that indicate the state of the I2S peripheral. RIS Register Breakdown$\ast$$\ast$\+:
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em ris\+\_\+value} & Pointer to a variable where the RIS register value will be stored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_aa01eaa3ec9d57d8008e036d5194a3f11}\label{_e_f___i2_s_8h_aa01eaa3ec9d57d8008e036d5194a3f11}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_getRxFifoLevel@{EF\_I2S\_getRxFifoLevel}}
+\index{EF\_I2S\_getRxFifoLevel@{EF\_I2S\_getRxFifoLevel}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_getRxFifoLevel()}{EF\_I2S\_getRxFifoLevel()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+get\+Rx\+Fifo\+Level (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t $\ast$}]{level }\end{DoxyParamCaption})}
+
+
+
+Gets the RX FIFO level of the I2S peripheral. 
+
+This function retrieves the current level of the RX FIFO register from the I2S peripheral and stores it in the memory location pointed to by {\ttfamily level}.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em level} & Pointer to a variable where the RX FIFO level will be stored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a50ed21a6e834fc0047cb78941a7c8984}\label{_e_f___i2_s_8h_a50ed21a6e834fc0047cb78941a7c8984}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_readData@{EF\_I2S\_readData}}
+\index{EF\_I2S\_readData@{EF\_I2S\_readData}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_readData()}{EF\_I2S\_readData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+read\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Reads data from the RX FIFO of the I2S peripheral. 
+
+This function retrieves a data word from the RX FIFO of the specified I2S peripheral. It waits until the RX FIFO has data available before performing the read operation. After reading the data, the RX level interrupt is cleared.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em data} & Pointer to a variable where the read data will be stored.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code.
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The function uses a busy-\/wait loop to check the RX FIFO status. Ensure proper system design to avoid potential blocking or infinite loops in case of hardware issues. 
+\end{DoxyNote}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a5161a349d8c36dd40549d0b15d506182}\label{_e_f___i2_s_8h_a5161a349d8c36dd40549d0b15d506182}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_RxFIFOAvailable@{EF\_I2S\_RxFIFOAvailable}}
+\index{EF\_I2S\_RxFIFOAvailable@{EF\_I2S\_RxFIFOAvailable}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RxFIFOAvailable()}{EF\_I2S\_RxFIFOAvailable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOAvailable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{bool $\ast$}]{is\+Available }\end{DoxyParamCaption})}
+
+
+
+Checks if the RX FIFO has available space in the I2S peripheral. 
+
+This function checks whether the RX FIFO of the I2S peripheral has available space.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em is\+Available} & Pointer to a boolean variable that will be set to true if the RX FIFO has available space, or false if it is full.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a9be165920fd4797aaee9d431df907b53}\label{_e_f___i2_s_8h_a9be165920fd4797aaee9d431df907b53}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_RxFIFOEmpty@{EF\_I2S\_RxFIFOEmpty}}
+\index{EF\_I2S\_RxFIFOEmpty@{EF\_I2S\_RxFIFOEmpty}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RxFIFOEmpty()}{EF\_I2S\_RxFIFOEmpty()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOEmpty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{bool $\ast$}]{is\+Empty }\end{DoxyParamCaption})}
+
+
+
+Checks if the RX FIFO is empty in the I2S peripheral. 
+
+This function checks whether the RX FIFO of the I2S peripheral is empty.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em is\+Empty} & Pointer to a boolean variable that will be set to true if the RX FIFO is empty, or false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_aa1a5a98b7f41654a70fb37dd49a845de}\label{_e_f___i2_s_8h_aa1a5a98b7f41654a70fb37dd49a845de}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_RxFIFOFull@{EF\_I2S\_RxFIFOFull}}
+\index{EF\_I2S\_RxFIFOFull@{EF\_I2S\_RxFIFOFull}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_RxFIFOFull()}{EF\_I2S\_RxFIFOFull()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOFull (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{bool $\ast$}]{is\+Full }\end{DoxyParamCaption})}
+
+
+
+Checks if the RX FIFO is full in the I2S peripheral. 
+
+This function checks whether the RX FIFO of the I2S peripheral is full.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em is\+Full} & Pointer to a boolean variable that will be set to true if the RX FIFO is full, or false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_aa49c1860ce4e076d8bb745409561c3c7}\label{_e_f___i2_s_8h_aa49c1860ce4e076d8bb745409561c3c7}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_setAVGT@{EF\_I2S\_setAVGT}}
+\index{EF\_I2S\_setAVGT@{EF\_I2S\_setAVGT}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_setAVGT()}{EF\_I2S\_setAVGT()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+set\+AVGT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t}]{average }\end{DoxyParamCaption})}
+
+
+
+Sets the AVGT register for the I2S peripheral. 
+
+This function sets the average threshold (AVGT) register for the I2S peripheral to the specified value. It ensures that the input pointer and average value are valid.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em average} & The average threshold value to be set. Must be less than or equal to \mbox{\hyperlink{_e_f___i2_s_8h_a5346305c9521be4e37ae79948a56b56a}{EF\+\_\+\+I2\+S\+\_\+\+AVGT\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a4714d92aa38d5b05f1a8bb585e09b324}\label{_e_f___i2_s_8h_a4714d92aa38d5b05f1a8bb585e09b324}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_setConfigReg@{EF\_I2S\_setConfigReg}}
+\index{EF\_I2S\_setConfigReg@{EF\_I2S\_setConfigReg}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_setConfigReg()}{EF\_I2S\_setConfigReg()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+set\+Config\+Reg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t}]{config }\end{DoxyParamCaption})}
+
+
+
+Sets the configuration register for the I2S peripheral. 
+
+This function sets the configuration register of the I2S peripheral to the specified value. It validates the input parameters to ensure the I2S pointer is not NULL and the configuration value is within the allowed range.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em config} & The configuration value to be set. Must be less than or equal to \mbox{\hyperlink{_e_f___i2_s_8h_aa665f2437319304828ab6c47d3a3143c}{EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a922081fe31b01334b54a89d5f8e1c2c1}\label{_e_f___i2_s_8h_a922081fe31b01334b54a89d5f8e1c2c1}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_setGclkEnable@{EF\_I2S\_setGclkEnable}}
+\index{EF\_I2S\_setGclkEnable@{EF\_I2S\_setGclkEnable}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_setGclkEnable()}{EF\_I2S\_setGclkEnable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+set\+Gclk\+Enable (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the GCLK enable bit in the I2S register to a certain value. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & An \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}} , which points to the base memory address of I2S registers. \mbox{\hyperlink{_e_f___i2_s__regs_8h_a71baa92648f7b676d563faa94f5bc528}{EF\+\_\+\+I2\+S\+\_\+\+TYPE}} is a structure that contains the I2S registers. \\
+\hline
+\mbox{\texttt{ in}}  & {\em value} & The value of the GCLK enable bit\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a95032b4dbc7f70aef922060820631de1}\label{_e_f___i2_s_8h_a95032b4dbc7f70aef922060820631de1}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_setIC@{EF\_I2S\_setIC}}
+\index{EF\_I2S\_setIC@{EF\_I2S\_setIC}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_setIC()}{EF\_I2S\_setIC()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+set\+IC (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
+
+
+Writes a value to the Interrupt Clear (IC) register for the I2S peripheral. 
+
+This function clears specific interrupts in the I2S peripheral by writing to the Interrupt Clear (IC) register. RIS Register Breakdown$\ast$$\ast$\+:
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mask} & The value to be written to the IC register. Must be within the valid range \mbox{\hyperlink{_e_f___i2_s_8h_a33de3838945b8ac4a1cbcfe54b40da9f}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+IC\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_ab4fbfff01ed548ecdfe0c62e8b49b053}\label{_e_f___i2_s_8h_ab4fbfff01ed548ecdfe0c62e8b49b053}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_setIM@{EF\_I2S\_setIM}}
+\index{EF\_I2S\_setIM@{EF\_I2S\_setIM}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_setIM()}{EF\_I2S\_setIM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+set\+IM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t}]{mask }\end{DoxyParamCaption})}
+
+
+
+Writes a value to the Interrupt Mask (IM) register for the I2S peripheral. 
+
+This function sets the value of the Interrupt Mask (IM) register for the I2S peripheral. The IM register determines which interrupts are enabled or disabled. RIS Register Breakdown$\ast$$\ast$\+:
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em mask} & The value to be written to the IM register. Must be within the valid range \mbox{\hyperlink{_e_f___i2_s_8h_a9c5cd2fd6af1c4e7de606986d3a3a535}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+IM\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a261aaf55ebe6faa55a555aa82289376b}\label{_e_f___i2_s_8h_a261aaf55ebe6faa55a555aa82289376b}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_setPrescaler@{EF\_I2S\_setPrescaler}}
+\index{EF\_I2S\_setPrescaler@{EF\_I2S\_setPrescaler}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_setPrescaler()}{EF\_I2S\_setPrescaler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+set\+Prescaler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t}]{prescaler }\end{DoxyParamCaption})}
+
+
+
+Sets the prescaler register for the I2S peripheral. 
+
+This function configures the prescaler register of the I2S peripheral with the specified value. It ensures that the I2S pointer is not NULL and that the prescaler value is within the valid range.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em prescaler} & The prescaler value to be set. Must be less than or equal to \mbox{\hyperlink{_e_f___i2_s_8h_aa0571464e60d1c73166d6674e80988d1}{EF\+\_\+\+I2\+S\+\_\+\+PR\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a19b6f17b3fc354afabcd98dd661a1954}\label{_e_f___i2_s_8h_a19b6f17b3fc354afabcd98dd661a1954}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_setRxFifoThreshold@{EF\_I2S\_setRxFifoThreshold}}
+\index{EF\_I2S\_setRxFifoThreshold@{EF\_I2S\_setRxFifoThreshold}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_setRxFifoThreshold()}{EF\_I2S\_setRxFifoThreshold()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+set\+Rx\+Fifo\+Threshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t}]{threshold }\end{DoxyParamCaption})}
+
+
+
+Sets the RX FIFO threshold for the I2S peripheral. 
+
+This function sets the RX FIFO threshold register for the I2S peripheral to the specified value. It ensures that the input pointer and threshold value are valid.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em threshold} & The RX FIFO threshold value to be set. Must be less than or equal to \mbox{\hyperlink{_e_f___i2_s_8h_a7796b3b2ac1573be88b01ff4ae5694e4}{EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_ac6e5745e4ce997c1c7d0ac5e188347e2}\label{_e_f___i2_s_8h_ac6e5745e4ce997c1c7d0ac5e188347e2}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_setZCRT@{EF\_I2S\_setZCRT}}
+\index{EF\_I2S\_setZCRT@{EF\_I2S\_setZCRT}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_setZCRT()}{EF\_I2S\_setZCRT()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+set\+ZCRT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{uint32\+\_\+t}]{average }\end{DoxyParamCaption})}
+
+
+
+Sets the ZCRT register for the I2S peripheral. 
+
+This function sets the zero-\/crossing threshold (ZCRT) register for the I2S peripheral to the specified value. It validates the input pointer and the threshold value.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ in}}  & {\em average} & The zero-\/crossing threshold value to be set. Must be less than or equal to \mbox{\hyperlink{_e_f___i2_s_8h_a46f20acc4b3339159ce41e3ca6435054}{EF\+\_\+\+I2\+S\+\_\+\+ZCRT\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE}}.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a2fd0764a05f1ccabe4c00dd122b1ec18}\label{_e_f___i2_s_8h_a2fd0764a05f1ccabe4c00dd122b1ec18}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_VADFlag@{EF\_I2S\_VADFlag}}
+\index{EF\_I2S\_VADFlag@{EF\_I2S\_VADFlag}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_VADFlag()}{EF\_I2S\_VADFlag()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+\+VADFlag (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{bool $\ast$}]{is\+Over\+Threshold }\end{DoxyParamCaption})}
+
+
+
+Checks if the Voice Activity Detector (VAD) flag is set in the I2S peripheral. 
+
+This function checks whether the Voice Activity Detector (VAD) flag is set in the I2S peripheral.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em is\+Over\+Threshold} & Pointer to a boolean variable that will be set to true if the VAD flag is set, or false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_e_f___i2_s_8h_a2dc446aadcb9a471bdb6da85323105b7}\label{_e_f___i2_s_8h_a2dc446aadcb9a471bdb6da85323105b7}} 
+\index{EF\_I2S.h@{EF\_I2S.h}!EF\_I2S\_ZCROverThreshold@{EF\_I2S\_ZCROverThreshold}}
+\index{EF\_I2S\_ZCROverThreshold@{EF\_I2S\_ZCROverThreshold}!EF\_I2S.h@{EF\_I2S.h}}
+\doxysubsubsection{\texorpdfstring{EF\_I2S\_ZCROverThreshold()}{EF\_I2S\_ZCROverThreshold()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} EF\+\_\+\+I2\+S\+\_\+\+ZCROver\+Threshold (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}}]{i2s,  }\item[{bool $\ast$}]{is\+Over\+Threshold }\end{DoxyParamCaption})}
+
+
+
+Checks if the zero-\/crossing rate exceeds the threshold in the I2S peripheral. 
+
+This function checks whether the zero-\/crossing rate (ZCR) has exceeded the threshold in the I2S peripheral.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\texttt{ in}}  & {\em i2s} & Pointer to the I2S base address structure \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR}}. \\
+\hline
+\mbox{\texttt{ out}}  & {\em is\+Over\+Threshold} & Pointer to a boolean variable that will be set to true if the ZCR exceeds the threshold, or false otherwise.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+status A value of type \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\+\_\+\+DRIVER\+\_\+\+STATUS}} \+: returns a success or error code. 
+\end{DoxyReturn}

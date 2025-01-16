@@ -1,0 +1,1446 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_r_e_a_d_m_e_8md" kind="file" language="Markdown">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline><highlight class="normal">#<sp/>API<sp/>Reference</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Header<sp/>files</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/>[EF_Driver_Common.h](#file-ef_driver_commonh)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[EF_I2S.h](#file-ef_i2sh)</highlight></codeline>
+<codeline><highlight class="normal">-<sp/>[EF_I2S_regs.h](#file-ef_i2s_regsh)</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>File<sp/>EF_Driver_Common.h</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_C<sp/>header<sp/>file<sp/>for<sp/>common<sp/>driver<sp/>definitions<sp/>and<sp/>types._</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Structures<sp/>and<sp/>Types</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Type<sp/>|<sp/>Name<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>---:<sp/>|<sp/>:---<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>typedef<sp/>uint32\_t<sp/>|<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/><sp/>&lt;br&gt;_A<sp/>type<sp/>that<sp/>is<sp/>used<sp/>to<sp/>return<sp/>the<sp/>status<sp/>of<sp/>the<sp/>driver<sp/>functions._<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Macros</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Type<sp/>|<sp/>Name<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>---:<sp/>|<sp/>:---<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_DRIVER\_ERROR**](#define-ef_driver_error)<sp/><sp/>((uint32\_t)1)&lt;br&gt;_Unspecified<sp/>error._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_DRIVER\_ERROR\_BUSY**](#define-ef_driver_error_busy)<sp/><sp/>((uint32\_t)2)&lt;br&gt;_Driver<sp/>is<sp/>busy._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_DRIVER\_ERROR\_PARAMETER**](#define-ef_driver_error_parameter)<sp/><sp/>((uint32\_t)5)&lt;br&gt;_Parameter<sp/>error._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_DRIVER\_ERROR\_SPECIFIC**](#define-ef_driver_error_specific)<sp/><sp/>((uint32\_t)6)&lt;br&gt;_Start<sp/>of<sp/>driver<sp/>specific<sp/>errors._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_DRIVER\_ERROR\_TIMEOUT**](#define-ef_driver_error_timeout)<sp/><sp/>((uint32\_t)3)&lt;br&gt;_Timeout<sp/>occurred._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_DRIVER\_ERROR\_UNSUPPORTED**](#define-ef_driver_error_unsupported)<sp/><sp/>((uint32\_t)4)&lt;br&gt;_Operation<sp/>not<sp/>supported._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_DRIVER\_OK**](#define-ef_driver_ok)<sp/><sp/>((uint32\_t)0)&lt;br&gt;_Operation<sp/>succeeded._<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Structures<sp/>and<sp/>Types<sp/>Documentation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>typedef<sp/>`EF_DRIVER_STATUS`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_A<sp/>type<sp/>that<sp/>is<sp/>used<sp/>to<sp/>return<sp/>the<sp/>status<sp/>of<sp/>the<sp/>driver<sp/>functions._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>uint32_t<sp/>EF_DRIVER_STATUS;</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Macros<sp/>Documentation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_DRIVER_ERROR`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Unspecified<sp/>error._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_DRIVER_ERROR<sp/>((uint32_t)1)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_DRIVER_ERROR_BUSY`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Driver<sp/>is<sp/>busy._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_DRIVER_ERROR_BUSY<sp/>((uint32_t)2)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_DRIVER_ERROR_PARAMETER`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Parameter<sp/>error._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_DRIVER_ERROR_PARAMETER<sp/>((uint32_t)5)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_DRIVER_ERROR_SPECIFIC`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Start<sp/>of<sp/>driver<sp/>specific<sp/>errors._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_DRIVER_ERROR_SPECIFIC<sp/>((uint32_t)6)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_DRIVER_ERROR_TIMEOUT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Timeout<sp/>occurred._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_DRIVER_ERROR_TIMEOUT<sp/>((uint32_t)3)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_DRIVER_ERROR_UNSUPPORTED`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Operation<sp/>not<sp/>supported._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_DRIVER_ERROR_UNSUPPORTED<sp/>((uint32_t)4)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_DRIVER_OK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Operation<sp/>succeeded._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_DRIVER_OK<sp/>((uint32_t)0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>File<sp/>EF_I2S.h</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_C<sp/>header<sp/>file<sp/>for<sp/>I2S<sp/>APIs<sp/>which<sp/>contains<sp/>the<sp/>function<sp/>prototypes._</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Functions</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Type<sp/>|<sp/>Name<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>---:<sp/>|<sp/>:---<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_Busy**](#function-ef_i2s_busy)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>bool<sp/>\*isBusy)<sp/>&lt;br&gt;_Checks<sp/>if<sp/>the<sp/>I2S<sp/>peripheral<sp/>is<sp/>busy._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_FIFOOverThreshold**](#function-ef_i2s_fifooverthreshold)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>bool<sp/>\*isOverThreshold)<sp/>&lt;br&gt;_Checks<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>level<sp/>is<sp/>over<sp/>the<sp/>threshold<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_RxFIFOAvailable**](#function-ef_i2s_rxfifoavailable)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>bool<sp/>\*isAvailable)<sp/>&lt;br&gt;_Checks<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>has<sp/>available<sp/>space<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_RxFIFOEmpty**](#function-ef_i2s_rxfifoempty)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>bool<sp/>\*isEmpty)<sp/>&lt;br&gt;_Checks<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>is<sp/>empty<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_RxFIFOFull**](#function-ef_i2s_rxfifofull)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>bool<sp/>\*isFull)<sp/>&lt;br&gt;_Checks<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>is<sp/>full<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_VADFlag**](#function-ef_i2s_vadflag)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>bool<sp/>\*isOverThreshold)<sp/>&lt;br&gt;_Checks<sp/>if<sp/>the<sp/>Voice<sp/>Activity<sp/>Detector<sp/>(VAD)<sp/>flag<sp/>is<sp/>set<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_ZCROverThreshold**](#function-ef_i2s_zcroverthreshold)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>bool<sp/>\*isOverThreshold)<sp/>&lt;br&gt;_Checks<sp/>if<sp/>the<sp/>zero-crossing<sp/>rate<sp/>exceeds<sp/>the<sp/>threshold<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_clearIrqAVGAboveThreshold**](#function-ef_i2s_clearirqavgabovethreshold)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Clears<sp/>the<sp/>average<sp/>above<sp/>threshold<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_clearIrqRxEmpty**](#function-ef_i2s_clearirqrxempty)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_clearIrqRxFull**](#function-ef_i2s_clearirqrxfull)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Clears<sp/>the<sp/>receive<sp/>FIFO<sp/>full<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_clearIrqRxLevel**](#function-ef_i2s_clearirqrxlevel)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Clears<sp/>the<sp/>receive<sp/>FIFO<sp/>level<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_clearIrqRxempty**](#function-ef_i2s_clearirqrxempty)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_clearIrqVADFlag**](#function-ef_i2s_clearirqvadflag)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Clears<sp/>the<sp/>Voice<sp/>Activity<sp/>Detector<sp/>(VAD)<sp/>flag<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_clearIrqZCRAboveThreshold**](#function-ef_i2s_clearirqzcrabovethreshold)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Clears<sp/>the<sp/>zero-crossing<sp/>rate<sp/>above<sp/>threshold<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_disable**](#function-ef_i2s_disable)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Disables<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_disableAVG**](#function-ef_i2s_disableavg)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Disables<sp/>the<sp/>AVG<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_disableFifo**](#function-ef_i2s_disablefifo)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Disables<sp/>the<sp/>FIFO<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_disableZCR**](#function-ef_i2s_disablezcr)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Disables<sp/>the<sp/>ZCR<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_enable**](#function-ef_i2s_enable)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Enables<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_enableAVG**](#function-ef_i2s_enableavg)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Enables<sp/>the<sp/>AVG<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_enableFifo**](#function-ef_i2s_enablefifo)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Enables<sp/>the<sp/>FIFO<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_enableZCR**](#function-ef_i2s_enablezcr)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s)<sp/>&lt;br&gt;_Enables<sp/>the<sp/>ZCR<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_getConfigReg**](#function-ef_i2s_getconfigreg)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>\*config)<sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_getIM**](#function-ef_i2s_getim)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>\*im\_value)<sp/>&lt;br&gt;_Reads<sp/>the<sp/>Interrupt<sp/>Mask<sp/>(IM)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_getMIS**](#function-ef_i2s_getmis)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>\*mis\_value)<sp/>&lt;br&gt;_Reads<sp/>the<sp/>Masked<sp/>Interrupt<sp/>Status<sp/>(MIS)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_getPrescaler**](#function-ef_i2s_getprescaler)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>\*prescaler)<sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_getRIS**](#function-ef_i2s_getris)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>\*ris\_value)<sp/>&lt;br&gt;_Reads<sp/>the<sp/>Raw<sp/>Interrupt<sp/>Status<sp/>(RIS)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_getRxFifoLevel**](#function-ef_i2s_getrxfifolevel)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>\*level)<sp/>&lt;br&gt;_Gets<sp/>the<sp/>RX<sp/>FIFO<sp/>level<sp/>of<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_getRxFifoThreshold**](#function-ef_i2s_getrxfifothreshold)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>\*threshold)<sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_readData**](#function-ef_i2s_readdata)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>\*data)<sp/>&lt;br&gt;_Reads<sp/>data<sp/>from<sp/>the<sp/>RX<sp/>FIFO<sp/>of<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_setAVGT**](#function-ef_i2s_setavgt)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>average)<sp/>&lt;br&gt;_Sets<sp/>the<sp/>AVGT<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_setConfigReg**](#function-ef_i2s_setconfigreg)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>config)<sp/>&lt;br&gt;_Sets<sp/>the<sp/>configuration<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_setGclkEnable**](#function-ef_i2s_setgclkenable)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>value)<sp/>&lt;br&gt;_Sets<sp/>the<sp/>GCLK<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>I2S<sp/>register<sp/>to<sp/>a<sp/>certain<sp/>value._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_setIC**](#function-ef_i2s_setic)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>mask)<sp/>&lt;br&gt;_Writes<sp/>a<sp/>value<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_setIM**](#function-ef_i2s_setim)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>mask)<sp/>&lt;br&gt;_Writes<sp/>a<sp/>value<sp/>to<sp/>the<sp/>Interrupt<sp/>Mask<sp/>(IM)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_setPrescaler**](#function-ef_i2s_setprescaler)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>prescaler)<sp/>&lt;br&gt;_Sets<sp/>the<sp/>prescaler<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_setRxFifoThreshold**](#function-ef_i2s_setrxfifothreshold)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>threshold)<sp/>&lt;br&gt;_Sets<sp/>the<sp/>RX<sp/>FIFO<sp/>threshold<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/><sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>|<sp/>[**EF\_I2S\_setZCRT**](#function-ef_i2s_setzcrt)<sp/>([**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>i2s,<sp/>uint32\_t<sp/>average)<sp/>&lt;br&gt;_Sets<sp/>the<sp/>ZCRT<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Macros</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Type<sp/>|<sp/>Name<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>---:<sp/>|<sp/>:---<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_AVGT\_REG\_MAX\_VALUE**](#define-ef_i2s_avgt_reg_max_value)<sp/><sp/>0x0000FFFF&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_MAX\_VALUE**](#define-ef_i2s_cfg_reg_max_value)<sp/><sp/>0x00000FFF&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_PR\_REG\_MAX\_VALUE**](#define-ef_i2s_pr_reg_max_value)<sp/><sp/>0x000000FF&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_ic_reg_max_value)<sp/><sp/>0x0000003F&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_im_reg_max_value)<sp/><sp/>0x0000003F&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_threshold_reg_max_value)<sp/><sp/>0x0000000F&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_ZCRT\_REG\_MAX\_VALUE**](#define-ef_i2s_zcrt_reg_max_value)<sp/><sp/>0x0000FFFF&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Functions<sp/>Documentation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_Busy`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Checks<sp/>if<sp/>the<sp/>I2S<sp/>peripheral<sp/>is<sp/>busy._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_Busy<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>*isBusy</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>checks<sp/>whether<sp/>the<sp/>I2S<sp/>peripheral<sp/>is<sp/>currently<sp/>busy.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`isBusy`<sp/>Pointer<sp/>to<sp/>a<sp/>boolean<sp/>variable<sp/>that<sp/>will<sp/>be<sp/>set<sp/>to<sp/>true<sp/>if<sp/>the<sp/>peripheral<sp/>is<sp/>busy,<sp/>or<sp/>false<sp/>otherwise.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_FIFOOverThreshold`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Checks<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>level<sp/>is<sp/>over<sp/>the<sp/>threshold<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_FIFOOverThreshold<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>*isOverThreshold</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>checks<sp/>whether<sp/>the<sp/>RX<sp/>FIFO<sp/>level<sp/>has<sp/>exceeded<sp/>the<sp/>threshold<sp/>in<sp/>the<sp/>I2S<sp/>peripheral.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`isOverThreshold`<sp/>Pointer<sp/>to<sp/>a<sp/>boolean<sp/>variable<sp/>that<sp/>will<sp/>be<sp/>set<sp/>to<sp/>true<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>level<sp/>is<sp/>over<sp/>the<sp/>threshold,<sp/>or<sp/>false<sp/>otherwise.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_RxFIFOAvailable`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Checks<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>has<sp/>available<sp/>space<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_RxFIFOAvailable<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>*isAvailable</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>checks<sp/>whether<sp/>the<sp/>RX<sp/>FIFO<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>has<sp/>available<sp/>space.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`isAvailable`<sp/>Pointer<sp/>to<sp/>a<sp/>boolean<sp/>variable<sp/>that<sp/>will<sp/>be<sp/>set<sp/>to<sp/>true<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>has<sp/>available<sp/>space,<sp/>or<sp/>false<sp/>if<sp/>it<sp/>is<sp/>full.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_RxFIFOEmpty`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Checks<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>is<sp/>empty<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_RxFIFOEmpty<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>*isEmpty</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>checks<sp/>whether<sp/>the<sp/>RX<sp/>FIFO<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>is<sp/>empty.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`isEmpty`<sp/>Pointer<sp/>to<sp/>a<sp/>boolean<sp/>variable<sp/>that<sp/>will<sp/>be<sp/>set<sp/>to<sp/>true<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>is<sp/>empty,<sp/>or<sp/>false<sp/>otherwise.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_RxFIFOFull`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Checks<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>is<sp/>full<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_RxFIFOFull<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>*isFull</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>checks<sp/>whether<sp/>the<sp/>RX<sp/>FIFO<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>is<sp/>full.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`isFull`<sp/>Pointer<sp/>to<sp/>a<sp/>boolean<sp/>variable<sp/>that<sp/>will<sp/>be<sp/>set<sp/>to<sp/>true<sp/>if<sp/>the<sp/>RX<sp/>FIFO<sp/>is<sp/>full,<sp/>or<sp/>false<sp/>otherwise.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_VADFlag`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Checks<sp/>if<sp/>the<sp/>Voice<sp/>Activity<sp/>Detector<sp/>(VAD)<sp/>flag<sp/>is<sp/>set<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_VADFlag<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>*isOverThreshold</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>checks<sp/>whether<sp/>the<sp/>Voice<sp/>Activity<sp/>Detector<sp/>(VAD)<sp/>flag<sp/>is<sp/>set<sp/>in<sp/>the<sp/>I2S<sp/>peripheral.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`isOverThreshold`<sp/>Pointer<sp/>to<sp/>a<sp/>boolean<sp/>variable<sp/>that<sp/>will<sp/>be<sp/>set<sp/>to<sp/>true<sp/>if<sp/>the<sp/>VAD<sp/>flag<sp/>is<sp/>set,<sp/>or<sp/>false<sp/>otherwise.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_ZCROverThreshold`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Checks<sp/>if<sp/>the<sp/>zero-crossing<sp/>rate<sp/>exceeds<sp/>the<sp/>threshold<sp/>in<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_ZCROverThreshold<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>bool<sp/>*isOverThreshold</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>checks<sp/>whether<sp/>the<sp/>zero-crossing<sp/>rate<sp/>(ZCR)<sp/>has<sp/>exceeded<sp/>the<sp/>threshold<sp/>in<sp/>the<sp/>I2S<sp/>peripheral.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`isOverThreshold`<sp/>Pointer<sp/>to<sp/>a<sp/>boolean<sp/>variable<sp/>that<sp/>will<sp/>be<sp/>set<sp/>to<sp/>true<sp/>if<sp/>the<sp/>ZCR<sp/>exceeds<sp/>the<sp/>threshold,<sp/>or<sp/>false<sp/>otherwise.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_clearIrqAVGAboveThreshold`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Clears<sp/>the<sp/>average<sp/>above<sp/>threshold<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_clearIrqAVGAboveThreshold<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>clears<sp/>the<sp/>interrupt<sp/>corresponding<sp/>to<sp/>the<sp/>average<sp/>(AVG)<sp/>being<sp/>above<sp/>the<sp/>threshold<sp/>in<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>writing<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_clearIrqRxEmpty`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_clearIrqRxEmpty<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_clearIrqRxFull`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Clears<sp/>the<sp/>receive<sp/>FIFO<sp/>full<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_clearIrqRxFull<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>clears<sp/>the<sp/>interrupt<sp/>corresponding<sp/>to<sp/>the<sp/>receive<sp/>FIFO<sp/>full<sp/>condition<sp/>in<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>writing<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_clearIrqRxLevel`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Clears<sp/>the<sp/>receive<sp/>FIFO<sp/>level<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_clearIrqRxLevel<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>clears<sp/>the<sp/>interrupt<sp/>corresponding<sp/>to<sp/>the<sp/>receive<sp/>FIFO<sp/>level<sp/>condition<sp/>in<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>writing<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_clearIrqRxempty`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_clearIrqRxempty<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>clears<sp/>the<sp/>interrupt<sp/>corresponding<sp/>to<sp/>the<sp/>receive<sp/>FIFO<sp/>empty<sp/>condition<sp/>in<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>writing<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_clearIrqVADFlag`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Clears<sp/>the<sp/>Voice<sp/>Activity<sp/>Detector<sp/>(VAD)<sp/>flag<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_clearIrqVADFlag<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>clears<sp/>the<sp/>interrupt<sp/>corresponding<sp/>to<sp/>the<sp/>Voice<sp/>Activity<sp/>Detector<sp/>(VAD)<sp/>flag<sp/>in<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>writing<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_clearIrqZCRAboveThreshold`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Clears<sp/>the<sp/>zero-crossing<sp/>rate<sp/>above<sp/>threshold<sp/>interrupt<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_clearIrqZCRAboveThreshold<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>clears<sp/>the<sp/>interrupt<sp/>corresponding<sp/>to<sp/>the<sp/>zero-crossing<sp/>rate<sp/>(ZCR)<sp/>being<sp/>above<sp/>the<sp/>threshold<sp/>in<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>writing<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_disable`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Disables<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_disable<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>disables<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>clearing<sp/>the<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>control<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_disableAVG`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Disables<sp/>the<sp/>AVG<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_disableAVG<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>disables<sp/>the<sp/>AVG<sp/>feature<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>clearing<sp/>the<sp/>AVG<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>control<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_disableFifo`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Disables<sp/>the<sp/>FIFO<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_disableFifo<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>disables<sp/>the<sp/>FIFO<sp/>feature<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>clearing<sp/>the<sp/>FIFO<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>control<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_disableZCR`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Disables<sp/>the<sp/>ZCR<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_disableZCR<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>disables<sp/>the<sp/>ZCR<sp/>feature<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>clearing<sp/>the<sp/>ZCR<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>control<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_enable`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Enables<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_enable<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>enables<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>setting<sp/>the<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>control<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_enableAVG`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Enables<sp/>the<sp/>AVG<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_enableAVG<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>enables<sp/>the<sp/>AVG<sp/>feature<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>setting<sp/>the<sp/>AVG<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>control<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_enableFifo`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Enables<sp/>the<sp/>FIFO<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_enableFifo<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>enables<sp/>the<sp/>FIFO<sp/>feature<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>setting<sp/>the<sp/>FIFO<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>control<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_enableZCR`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Enables<sp/>the<sp/>ZCR<sp/>feature<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_enableZCR<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>enables<sp/>the<sp/>ZCR<sp/>feature<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>setting<sp/>the<sp/>ZCR<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>control<sp/>register.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_getConfigReg`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_getConfigReg<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*config</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_getIM`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Reads<sp/>the<sp/>Interrupt<sp/>Mask<sp/>(IM)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_getIM<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*im_value</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>retrieves<sp/>the<sp/>value<sp/>of<sp/>the<sp/>Interrupt<sp/>Mask<sp/>(IM)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral<sp/>and<sp/>stores<sp/>it<sp/>in<sp/>the<sp/>provided<sp/>variable.<sp/>The<sp/>IM<sp/>register<sp/>indicates<sp/>which<sp/>interrupts<sp/>are<sp/>enabled.<sp/>RIS<sp/>Register<sp/>Breakdown\*\*:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>0:<sp/>FIFOE<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Empty</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>1:<sp/>FIFOA<sp/>-<sp/>FIFO<sp/>level<sp/>is<sp/>above<sp/>the<sp/>set<sp/>level<sp/>threshold</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>2:<sp/>FIFOF<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Full.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>3:<sp/>AVGF<sp/>-<sp/>The<sp/>avg<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>4:<sp/>ZCRF<sp/>-<sp/>The<sp/>ZCR<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>5:<sp/>VADF<sp/>-<sp/>The<sp/>Voice<sp/>Activity<sp/>Detector<sp/>flag;<sp/>active<sp/>when<sp/>both<sp/>ZCR<sp/>&amp;<sp/>AVG<sp/>flags<sp/>are<sp/>active.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bits<sp/>[6-31]:<sp/>Reserved.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`im_value`<sp/>Pointer<sp/>to<sp/>a<sp/>variable<sp/>where<sp/>the<sp/>IM<sp/>register<sp/>value<sp/>will<sp/>be<sp/>stored.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_getMIS`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Reads<sp/>the<sp/>Masked<sp/>Interrupt<sp/>Status<sp/>(MIS)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_getMIS<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*mis_value</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>retrieves<sp/>the<sp/>value<sp/>of<sp/>the<sp/>Masked<sp/>Interrupt<sp/>Status<sp/>(MIS)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral<sp/>and<sp/>stores<sp/>it<sp/>in<sp/>the<sp/>provided<sp/>variable.<sp/>The<sp/>MIS<sp/>register<sp/>indicates<sp/>the<sp/>current<sp/>interrupt<sp/>status<sp/>after<sp/>masking.<sp/>RIS<sp/>Register<sp/>Breakdown\*\*:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>0:<sp/>FIFOE<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Empty</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>1:<sp/>FIFOA<sp/>-<sp/>FIFO<sp/>level<sp/>is<sp/>above<sp/>the<sp/>set<sp/>level<sp/>threshold</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>2:<sp/>FIFOF<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Full.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>3:<sp/>AVGF<sp/>-<sp/>The<sp/>avg<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>4:<sp/>ZCRF<sp/>-<sp/>The<sp/>ZCR<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>5:<sp/>VADF<sp/>-<sp/>The<sp/>Voice<sp/>Activity<sp/>Detector<sp/>flag;<sp/>active<sp/>when<sp/>both<sp/>ZCR<sp/>&amp;<sp/>AVG<sp/>flags<sp/>are<sp/>active.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bits<sp/>[6-31]:<sp/>Reserved.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`mis_value`<sp/>Pointer<sp/>to<sp/>a<sp/>variable<sp/>where<sp/>the<sp/>MIS<sp/>register<sp/>value<sp/>will<sp/>be<sp/>stored.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_getPrescaler`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_getPrescaler<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*prescaler</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_getRIS`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Reads<sp/>the<sp/>Raw<sp/>Interrupt<sp/>Status<sp/>(RIS)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_getRIS<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*ris_value</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>retrieves<sp/>the<sp/>value<sp/>of<sp/>the<sp/>Raw<sp/>Interrupt<sp/>Status<sp/>(RIS)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral<sp/>and<sp/>stores<sp/>it<sp/>in<sp/>the<sp/>provided<sp/>variable.<sp/>The<sp/>RIS<sp/>register<sp/>contains<sp/>various<sp/>status<sp/>flags<sp/>that<sp/>indicate<sp/>the<sp/>state<sp/>of<sp/>the<sp/>I2S<sp/>peripheral.<sp/>RIS<sp/>Register<sp/>Breakdown\*\*:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>0:<sp/>FIFOE<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Empty</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>1:<sp/>FIFOA<sp/>-<sp/>FIFO<sp/>level<sp/>is<sp/>above<sp/>the<sp/>set<sp/>level<sp/>threshold</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>2:<sp/>FIFOF<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Full.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>3:<sp/>AVGF<sp/>-<sp/>The<sp/>avg<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>4:<sp/>ZCRF<sp/>-<sp/>The<sp/>ZCR<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>5:<sp/>VADF<sp/>-<sp/>The<sp/>Voice<sp/>Activity<sp/>Detector<sp/>flag;<sp/>active<sp/>when<sp/>both<sp/>ZCR<sp/>&amp;<sp/>AVG<sp/>flags<sp/>are<sp/>active.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bits<sp/>[6-31]:<sp/>Reserved.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`ris_value`<sp/>Pointer<sp/>to<sp/>a<sp/>variable<sp/>where<sp/>the<sp/>RIS<sp/>register<sp/>value<sp/>will<sp/>be<sp/>stored.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_getRxFifoLevel`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Gets<sp/>the<sp/>RX<sp/>FIFO<sp/>level<sp/>of<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_getRxFifoLevel<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*level</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>retrieves<sp/>the<sp/>current<sp/>level<sp/>of<sp/>the<sp/>RX<sp/>FIFO<sp/>register<sp/>from<sp/>the<sp/>I2S<sp/>peripheral<sp/>and<sp/>stores<sp/>it<sp/>in<sp/>the<sp/>memory<sp/>location<sp/>pointed<sp/>to<sp/>by<sp/>`level`.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`level`<sp/>Pointer<sp/>to<sp/>a<sp/>variable<sp/>where<sp/>the<sp/>RX<sp/>FIFO<sp/>level<sp/>will<sp/>be<sp/>stored.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_getRxFifoThreshold`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_getRxFifoThreshold<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*threshold</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_readData`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Reads<sp/>data<sp/>from<sp/>the<sp/>RX<sp/>FIFO<sp/>of<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_readData<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>*data</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>retrieves<sp/>a<sp/>data<sp/>word<sp/>from<sp/>the<sp/>RX<sp/>FIFO<sp/>of<sp/>the<sp/>specified<sp/>I2S<sp/>peripheral.<sp/>It<sp/>waits<sp/>until<sp/>the<sp/>RX<sp/>FIFO<sp/>has<sp/>data<sp/>available<sp/>before<sp/>performing<sp/>the<sp/>read<sp/>operation.<sp/>After<sp/>reading<sp/>the<sp/>data,<sp/>the<sp/>RX<sp/>level<sp/>interrupt<sp/>is<sp/>cleared.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`data`<sp/>Pointer<sp/>to<sp/>a<sp/>variable<sp/>where<sp/>the<sp/>read<sp/>data<sp/>will<sp/>be<sp/>stored.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Note:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">The<sp/>function<sp/>uses<sp/>a<sp/>busy-wait<sp/>loop<sp/>to<sp/>check<sp/>the<sp/>RX<sp/>FIFO<sp/>status.<sp/>Ensure<sp/>proper<sp/>system<sp/>design<sp/>to<sp/>avoid<sp/>potential<sp/>blocking<sp/>or<sp/>infinite<sp/>loops<sp/>in<sp/>case<sp/>of<sp/>hardware<sp/>issues.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_setAVGT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Sets<sp/>the<sp/>AVGT<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_setAVGT<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>average</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>sets<sp/>the<sp/>average<sp/>threshold<sp/>(AVGT)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral<sp/>to<sp/>the<sp/>specified<sp/>value.<sp/>It<sp/>ensures<sp/>that<sp/>the<sp/>input<sp/>pointer<sp/>and<sp/>average<sp/>value<sp/>are<sp/>valid.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`average`<sp/>The<sp/>average<sp/>threshold<sp/>value<sp/>to<sp/>be<sp/>set.<sp/>Must<sp/>be<sp/>less<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>[**EF\_I2S\_AVGT\_REG\_MAX\_VALUE**](#define-ef_i2s_avgt_reg_max_value).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_setConfigReg`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Sets<sp/>the<sp/>configuration<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_setConfigReg<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>config</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>sets<sp/>the<sp/>configuration<sp/>register<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>to<sp/>the<sp/>specified<sp/>value.<sp/>It<sp/>validates<sp/>the<sp/>input<sp/>parameters<sp/>to<sp/>ensure<sp/>the<sp/>I2S<sp/>pointer<sp/>is<sp/>not<sp/>NULL<sp/>and<sp/>the<sp/>configuration<sp/>value<sp/>is<sp/>within<sp/>the<sp/>allowed<sp/>range.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`config`<sp/>The<sp/>configuration<sp/>value<sp/>to<sp/>be<sp/>set.<sp/>Must<sp/>be<sp/>less<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>[**EF\_I2S\_CFG\_REG\_MAX\_VALUE**](#define-ef_i2s_cfg_reg_max_value).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_setGclkEnable`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Sets<sp/>the<sp/>GCLK<sp/>enable<sp/>bit<sp/>in<sp/>the<sp/>I2S<sp/>register<sp/>to<sp/>a<sp/>certain<sp/>value._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_setGclkEnable<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>value</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>An<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/>,<sp/>which<sp/>points<sp/>to<sp/>the<sp/>base<sp/>memory<sp/>address<sp/>of<sp/>I2S<sp/>registers.[**EF\_I2S\_TYPE**](#typedef-ef_i2s_type)<sp/>is<sp/>a<sp/>structure<sp/>that<sp/>contains<sp/>the<sp/>I2S<sp/>registers.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`value`<sp/>The<sp/>value<sp/>of<sp/>the<sp/>GCLK<sp/>enable<sp/>bit</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_setIC`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Writes<sp/>a<sp/>value<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_setIC<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>mask</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>clears<sp/>specific<sp/>interrupts<sp/>in<sp/>the<sp/>I2S<sp/>peripheral<sp/>by<sp/>writing<sp/>to<sp/>the<sp/>Interrupt<sp/>Clear<sp/>(IC)<sp/>register.<sp/>RIS<sp/>Register<sp/>Breakdown\*\*:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>0:<sp/>FIFOE<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Empty</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>1:<sp/>FIFOA<sp/>-<sp/>FIFO<sp/>level<sp/>is<sp/>above<sp/>the<sp/>set<sp/>level<sp/>threshold</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>2:<sp/>FIFOF<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Full.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>3:<sp/>AVGF<sp/>-<sp/>The<sp/>avg<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>4:<sp/>ZCRF<sp/>-<sp/>The<sp/>ZCR<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>5:<sp/>VADF<sp/>-<sp/>The<sp/>Voice<sp/>Activity<sp/>Detector<sp/>flag;<sp/>active<sp/>when<sp/>both<sp/>ZCR<sp/>&amp;<sp/>AVG<sp/>flags<sp/>are<sp/>active.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bits<sp/>[6-31]:<sp/>Reserved.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`mask`<sp/>The<sp/>value<sp/>to<sp/>be<sp/>written<sp/>to<sp/>the<sp/>IC<sp/>register.<sp/>Must<sp/>be<sp/>within<sp/>the<sp/>valid<sp/>range<sp/>[**EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_ic_reg_max_value).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_setIM`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Writes<sp/>a<sp/>value<sp/>to<sp/>the<sp/>Interrupt<sp/>Mask<sp/>(IM)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_setIM<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>mask</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>sets<sp/>the<sp/>value<sp/>of<sp/>the<sp/>Interrupt<sp/>Mask<sp/>(IM)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral.<sp/>The<sp/>IM<sp/>register<sp/>determines<sp/>which<sp/>interrupts<sp/>are<sp/>enabled<sp/>or<sp/>disabled.<sp/>RIS<sp/>Register<sp/>Breakdown\*\*:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>0:<sp/>FIFOE<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Empty</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>1:<sp/>FIFOA<sp/>-<sp/>FIFO<sp/>level<sp/>is<sp/>above<sp/>the<sp/>set<sp/>level<sp/>threshold</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>2:<sp/>FIFOF<sp/>-<sp/>Receive<sp/>FIFO<sp/>is<sp/>Full.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>3:<sp/>AVGF<sp/>-<sp/>The<sp/>avg<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>4:<sp/>ZCRF<sp/>-<sp/>The<sp/>ZCR<sp/>is<sp/>above<sp/>the<sp/>threshold.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bit<sp/>5:<sp/>VADF<sp/>-<sp/>The<sp/>Voice<sp/>Activity<sp/>Detector<sp/>flag;<sp/>active<sp/>when<sp/>both<sp/>ZCR<sp/>&amp;<sp/>AVG<sp/>flags<sp/>are<sp/>active.</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>Bits<sp/>[6-31]:<sp/>Reserved.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`mask`<sp/>The<sp/>value<sp/>to<sp/>be<sp/>written<sp/>to<sp/>the<sp/>IM<sp/>register.<sp/>Must<sp/>be<sp/>within<sp/>the<sp/>valid<sp/>range<sp/>[**EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_im_reg_max_value).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_setPrescaler`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Sets<sp/>the<sp/>prescaler<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_setPrescaler<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>prescaler</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>configures<sp/>the<sp/>prescaler<sp/>register<sp/>of<sp/>the<sp/>I2S<sp/>peripheral<sp/>with<sp/>the<sp/>specified<sp/>value.<sp/>It<sp/>ensures<sp/>that<sp/>the<sp/>I2S<sp/>pointer<sp/>is<sp/>not<sp/>NULL<sp/>and<sp/>that<sp/>the<sp/>prescaler<sp/>value<sp/>is<sp/>within<sp/>the<sp/>valid<sp/>range.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`prescaler`<sp/>The<sp/>prescaler<sp/>value<sp/>to<sp/>be<sp/>set.<sp/>Must<sp/>be<sp/>less<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>[**EF\_I2S\_PR\_REG\_MAX\_VALUE**](#define-ef_i2s_pr_reg_max_value).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_setRxFifoThreshold`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Sets<sp/>the<sp/>RX<sp/>FIFO<sp/>threshold<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_setRxFifoThreshold<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>threshold</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>sets<sp/>the<sp/>RX<sp/>FIFO<sp/>threshold<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral<sp/>to<sp/>the<sp/>specified<sp/>value.<sp/>It<sp/>ensures<sp/>that<sp/>the<sp/>input<sp/>pointer<sp/>and<sp/>threshold<sp/>value<sp/>are<sp/>valid.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`threshold`<sp/>The<sp/>RX<sp/>FIFO<sp/>threshold<sp/>value<sp/>to<sp/>be<sp/>set.<sp/>Must<sp/>be<sp/>less<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>[**EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE**](#define-ef_i2s_rx_fifo_threshold_reg_max_value).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline><highlight class="normal">###<sp/>function<sp/>`EF_I2S_setZCRT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">_Sets<sp/>the<sp/>ZCRT<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral._</highlight></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">EF_DRIVER_STATUS<sp/>EF_I2S_setZCRT<sp/>(</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>EF_I2S_TYPE_PTR<sp/>i2s,</highlight></codeline>
+<codeline><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>average</highlight></codeline>
+<codeline><highlight class="normal">)<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">This<sp/>function<sp/>sets<sp/>the<sp/>zero-crossing<sp/>threshold<sp/>(ZCRT)<sp/>register<sp/>for<sp/>the<sp/>I2S<sp/>peripheral<sp/>to<sp/>the<sp/>specified<sp/>value.<sp/>It<sp/>validates<sp/>the<sp/>input<sp/>pointer<sp/>and<sp/>the<sp/>threshold<sp/>value.</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Parameters:**</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">*<sp/>`i2s`<sp/>Pointer<sp/>to<sp/>the<sp/>I2S<sp/>base<sp/>address<sp/>structure<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr).</highlight></codeline>
+<codeline><highlight class="normal">*<sp/>`average`<sp/>The<sp/>zero-crossing<sp/>threshold<sp/>value<sp/>to<sp/>be<sp/>set.<sp/>Must<sp/>be<sp/>less<sp/>than<sp/>or<sp/>equal<sp/>to<sp/>[**EF\_I2S\_ZCRT\_REG\_MAX\_VALUE**](#define-ef_i2s_zcrt_reg_max_value).</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">**Returns:**</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">status<sp/>A<sp/>value<sp/>of<sp/>type<sp/>[**EF\_DRIVER\_STATUS**](#typedef-ef_driver_status)<sp/>:<sp/>returns<sp/>a<sp/>success<sp/>or<sp/>error<sp/>code.</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Macros<sp/>Documentation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_AVGT_REG_MAX_VALUE`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_AVGT_REG_MAX_VALUE<sp/>0x0000FFFF</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_MAX_VALUE`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_MAX_VALUE<sp/>0x00000FFF</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_PR_REG_MAX_VALUE`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_PR_REG_MAX_VALUE<sp/>0x000000FF</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_IC_REG_MAX_VALUE`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_IC_REG_MAX_VALUE<sp/>0x0000003F</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_IM_REG_MAX_VALUE`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_IM_REG_MAX_VALUE<sp/>0x0000003F</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_THRESHOLD_REG_MAX_VALUE<sp/>0x0000000F</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_ZCRT_REG_MAX_VALUE`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_ZCRT_REG_MAX_VALUE<sp/>0x0000FFFF</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>File<sp/>EF_I2S_regs.h</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Structures<sp/>and<sp/>Types</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Type<sp/>|<sp/>Name<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>---:<sp/>|<sp/>:---<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>typedef<sp/>struct<sp/>[**\_EF\_I2S\_TYPE\_**](#struct-_ef_i2s_type_)<sp/>|<sp/>[**EF\_I2S\_TYPE**](#typedef-ef_i2s_type)<sp/><sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>typedef<sp/>[**EF\_I2S\_TYPE**](#typedef-ef_i2s_type)<sp/>\*<sp/>|<sp/>[**EF\_I2S\_TYPE\_PTR**](#typedef-ef_i2s_type_ptr)<sp/><sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>struct<sp/>|<sp/>[**\_EF\_I2S\_TYPE\_**](#struct-_ef_i2s_type_)<sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Macros</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">|<sp/>Type<sp/>|<sp/>Name<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>---:<sp/>|<sp/>:---<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_AVGF\_FLAG**](#define-ef_i2s_avgf_flag)<sp/><sp/>((uint32\_t)0x8)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_AVGSEL\_BIT**](#define-ef_i2s_cfg_reg_avgsel_bit)<sp/><sp/>((uint32\_t)10)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_AVGSEL\_MASK**](#define-ef_i2s_cfg_reg_avgsel_mask)<sp/><sp/>((uint32\_t)0x400)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_CHANNELS\_BIT**](#define-ef_i2s_cfg_reg_channels_bit)<sp/><sp/>((uint32\_t)0)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_CHANNELS\_MASK**](#define-ef_i2s_cfg_reg_channels_mask)<sp/><sp/>((uint32\_t)0x3)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_BIT**](#define-ef_i2s_cfg_reg_left_justified_bit)<sp/><sp/>((uint32\_t)3)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_MASK**](#define-ef_i2s_cfg_reg_left_justified_mask)<sp/><sp/>((uint32\_t)0x8)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_BIT**](#define-ef_i2s_cfg_reg_sample_size_bit)<sp/><sp/>((uint32\_t)4)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_MASK**](#define-ef_i2s_cfg_reg_sample_size_mask)<sp/><sp/>((uint32\_t)0x3f0)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_BIT**](#define-ef_i2s_cfg_reg_sign_extend_bit)<sp/><sp/>((uint32\_t)2)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_MASK**](#define-ef_i2s_cfg_reg_sign_extend_mask)<sp/><sp/>((uint32\_t)0x4)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_ZCRSEL\_BIT**](#define-ef_i2s_cfg_reg_zcrsel_bit)<sp/><sp/>((uint32\_t)11)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CFG\_REG\_ZCRSEL\_MASK**](#define-ef_i2s_cfg_reg_zcrsel_mask)<sp/><sp/>((uint32\_t)0x800)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CTRL\_REG\_AVG\_EN\_BIT**](#define-ef_i2s_ctrl_reg_avg_en_bit)<sp/><sp/>((uint32\_t)2)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CTRL\_REG\_AVG\_EN\_MASK**](#define-ef_i2s_ctrl_reg_avg_en_mask)<sp/><sp/>((uint32\_t)0x4)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CTRL\_REG\_EN\_BIT**](#define-ef_i2s_ctrl_reg_en_bit)<sp/><sp/>((uint32\_t)0)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CTRL\_REG\_EN\_MASK**](#define-ef_i2s_ctrl_reg_en_mask)<sp/><sp/>((uint32\_t)0x1)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CTRL\_REG\_FIFO\_EN\_BIT**](#define-ef_i2s_ctrl_reg_fifo_en_bit)<sp/><sp/>((uint32\_t)1)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CTRL\_REG\_FIFO\_EN\_MASK**](#define-ef_i2s_ctrl_reg_fifo_en_mask)<sp/><sp/>((uint32\_t)0x2)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CTRL\_REG\_ZCR\_EN\_BIT**](#define-ef_i2s_ctrl_reg_zcr_en_bit)<sp/><sp/>((uint32\_t)3)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_CTRL\_REG\_ZCR\_EN\_MASK**](#define-ef_i2s_ctrl_reg_zcr_en_mask)<sp/><sp/>((uint32\_t)0x8)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_FIFOA\_FLAG**](#define-ef_i2s_fifoa_flag)<sp/><sp/>((uint32\_t)0x2)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_FIFOE\_FLAG**](#define-ef_i2s_fifoe_flag)<sp/><sp/>((uint32\_t)0x1)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_FIFOF\_FLAG**](#define-ef_i2s_fifof_flag)<sp/><sp/>((uint32\_t)0x4)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_BIT**](#define-ef_i2s_rx_fifo_flush_reg_flush_bit)<sp/><sp/>((uint32\_t)0)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_MASK**](#define-ef_i2s_rx_fifo_flush_reg_flush_mask)<sp/><sp/>((uint32\_t)0x1)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_BIT**](#define-ef_i2s_rx_fifo_level_reg_level_bit)<sp/><sp/>((uint32\_t)0)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_MASK**](#define-ef_i2s_rx_fifo_level_reg_level_mask)<sp/><sp/>((uint32\_t)0xf)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_BIT**](#define-ef_i2s_rx_fifo_threshold_reg_threshold_bit)<sp/><sp/>((uint32\_t)0)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_MASK**](#define-ef_i2s_rx_fifo_threshold_reg_threshold_mask)<sp/><sp/>((uint32\_t)0xf)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_VADF\_FLAG**](#define-ef_i2s_vadf_flag)<sp/><sp/>((uint32\_t)0x20)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**EF\_I2S\_ZCRF\_FLAG**](#define-ef_i2s_zcrf_flag)<sp/><sp/>((uint32\_t)0x10)&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**IO\_TYPES**](#define-io_types)<sp/><sp/>&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**\_\_R**](#define-__r)<sp/><sp/>volatile<sp/>const<sp/>uint32\_t&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**\_\_RW**](#define-__rw)<sp/><sp/>volatile<sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32\_t&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline><highlight class="normal">|<sp/>define<sp/><sp/>|<sp/>[**\_\_W**](#define-__w)<sp/><sp/>volatile<sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32\_t&lt;br&gt;<sp/>|</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Structures<sp/>and<sp/>Types<sp/>Documentation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>typedef<sp/>`EF_I2S_TYPE`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>struct<sp/>_EF_I2S_TYPE_<sp/>EF_I2S_TYPE;</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>typedef<sp/>`EF_I2S_TYPE_PTR`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">typedef<sp/>EF_I2S_TYPE*<sp/>EF_I2S_TYPE_PTR;</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>struct<sp/>`_EF_I2S_TYPE_`</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">Variables:</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>AVGT<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>CFG<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>CTRL<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>GCLK<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>IC<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_RW**](#define-__rw)<sp/>IM<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_R**](#define-__r)<sp/>MIS<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>PR<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_R**](#define-__r)<sp/>RIS<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_R**](#define-__r)<sp/>RXDATA<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>RX_FIFO_FLUSH<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_R**](#define-__r)<sp/>RX_FIFO_LEVEL<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>RX_FIFO_THRESHOLD<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_W**](#define-__w)<sp/>ZCRT<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_R**](#define-__r)<sp/>reserved_0<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">-<sp/><sp/>[**\_\_R**](#define-__r)<sp/>reserved_1<sp/><sp/></highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">##<sp/>Macros<sp/>Documentation</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_AVGF_FLAG`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_AVGF_FLAG<sp/>((uint32_t)0x8)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_AVGSEL_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_AVGSEL_BIT<sp/>((uint32_t)10)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_AVGSEL_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_AVGSEL_MASK<sp/>((uint32_t)0x400)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_CHANNELS_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_CHANNELS_BIT<sp/>((uint32_t)0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_CHANNELS_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_CHANNELS_MASK<sp/>((uint32_t)0x3)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_LEFT_JUSTIFIED_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_LEFT_JUSTIFIED_BIT<sp/>((uint32_t)3)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_LEFT_JUSTIFIED_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_LEFT_JUSTIFIED_MASK<sp/>((uint32_t)0x8)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_SAMPLE_SIZE_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_SAMPLE_SIZE_BIT<sp/>((uint32_t)4)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_SAMPLE_SIZE_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_SAMPLE_SIZE_MASK<sp/>((uint32_t)0x3f0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_SIGN_EXTEND_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_SIGN_EXTEND_BIT<sp/>((uint32_t)2)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_SIGN_EXTEND_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_SIGN_EXTEND_MASK<sp/>((uint32_t)0x4)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_ZCRSEL_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_ZCRSEL_BIT<sp/>((uint32_t)11)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CFG_REG_ZCRSEL_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CFG_REG_ZCRSEL_MASK<sp/>((uint32_t)0x800)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CTRL_REG_AVG_EN_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CTRL_REG_AVG_EN_BIT<sp/>((uint32_t)2)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CTRL_REG_AVG_EN_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CTRL_REG_AVG_EN_MASK<sp/>((uint32_t)0x4)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CTRL_REG_EN_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CTRL_REG_EN_BIT<sp/>((uint32_t)0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CTRL_REG_EN_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CTRL_REG_EN_MASK<sp/>((uint32_t)0x1)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CTRL_REG_FIFO_EN_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CTRL_REG_FIFO_EN_BIT<sp/>((uint32_t)1)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CTRL_REG_FIFO_EN_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CTRL_REG_FIFO_EN_MASK<sp/>((uint32_t)0x2)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CTRL_REG_ZCR_EN_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CTRL_REG_ZCR_EN_BIT<sp/>((uint32_t)3)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_CTRL_REG_ZCR_EN_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_CTRL_REG_ZCR_EN_MASK<sp/>((uint32_t)0x8)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_FIFOA_FLAG`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_FIFOA_FLAG<sp/>((uint32_t)0x2)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_FIFOE_FLAG`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_FIFOE_FLAG<sp/>((uint32_t)0x1)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_FIFOF_FLAG`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_FIFOF_FLAG<sp/>((uint32_t)0x4)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_FLUSH_REG_FLUSH_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_FLUSH_REG_FLUSH_BIT<sp/>((uint32_t)0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_FLUSH_REG_FLUSH_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_FLUSH_REG_FLUSH_MASK<sp/>((uint32_t)0x1)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_LEVEL_REG_LEVEL_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_LEVEL_REG_LEVEL_BIT<sp/>((uint32_t)0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_LEVEL_REG_LEVEL_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_LEVEL_REG_LEVEL_MASK<sp/>((uint32_t)0xf)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_THRESHOLD_REG_THRESHOLD_BIT`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_THRESHOLD_REG_THRESHOLD_BIT<sp/>((uint32_t)0)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_RX_FIFO_THRESHOLD_REG_THRESHOLD_MASK`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_RX_FIFO_THRESHOLD_REG_THRESHOLD_MASK<sp/>((uint32_t)0xf)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_VADF_FLAG`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_VADF_FLAG<sp/>((uint32_t)0x20)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`EF_I2S_ZCRF_FLAG`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>EF_I2S_ZCRF_FLAG<sp/>((uint32_t)0x10)</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`IO_TYPES`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>IO_TYPES<sp/></highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`__R`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__R<sp/>volatile<sp/>const<sp/>uint32_t</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`__RW`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__RW<sp/>volatile<sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">###<sp/>define<sp/>`__W`</highlight></codeline>
+<codeline></codeline>
+<codeline><highlight class="normal">```c</highlight></codeline>
+<codeline><highlight class="normal">#define<sp/>__W<sp/>volatile<sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint32_t</highlight></codeline>
+<codeline><highlight class="normal">```</highlight></codeline>
+<codeline></codeline>
+<codeline></codeline>
+    </programlisting>
+    <location file="README.md"/>
+  </compounddef>
+</doxygen>

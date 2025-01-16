@@ -1,0 +1,1473 @@
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{Header files}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item EF\+\_\+\+Driver\+\_\+\+Common.h
+\item EF\+\_\+\+I2S.h
+\item EF\+\_\+\+I2\+S\+\_\+regs.h
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{File EF\+\_\+\+Driver\+\_\+\+Common.\+h}\label{md__r_e_a_d_m_e_autotoc_md2}
+{\itshape C header file for common driver definitions and types.}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{Structures and Types}\label{md__r_e_a_d_m_e_autotoc_md3}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endhead
+\PBS\raggedleft typedef uint32\+\_\+t   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ ~\newline
+{\itshape A type that is used to return the status of the driver functions.}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysection{Macros}\label{md__r_e_a_d_m_e_autotoc_md4}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endhead
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+ERROR$\ast$$\ast$ ((uint32\+\_\+t)1)~\newline
+{\itshape Unspecified error.}    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+ERROR\textbackslash{}\+\_\+\+BUSY$\ast$$\ast$ ((uint32\+\_\+t)2)~\newline
+{\itshape Driver is busy.}    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+ERROR\textbackslash{}\+\_\+\+PARAMETER$\ast$$\ast$ ((uint32\+\_\+t)5)~\newline
+{\itshape Parameter error.}    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+ERROR\textbackslash{}\+\_\+\+SPECIFIC$\ast$$\ast$ ((uint32\+\_\+t)6)~\newline
+{\itshape Start of driver specific errors.}    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+ERROR\textbackslash{}\+\_\+\+TIMEOUT$\ast$$\ast$ ((uint32\+\_\+t)3)~\newline
+{\itshape Timeout occurred.}    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+ERROR\textbackslash{}\+\_\+\+UNSUPPORTED$\ast$$\ast$ ((uint32\+\_\+t)4)~\newline
+{\itshape Operation not supported.}    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+OK$\ast$$\ast$ ((uint32\+\_\+t)0)~\newline
+{\itshape Operation succeeded.}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysection{Structures and Types Documentation}\label{md__r_e_a_d_m_e_autotoc_md5}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{typedef $<$tt$>$\+EF\+\_\+\+DRIVER\+\_\+\+STATUS$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md6}
+{\itshape A type that is used to return the status of the driver functions.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ uint32\_t\ \mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}};}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysection{Macros Documentation}\label{md__r_e_a_d_m_e_autotoc_md7}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+DRIVER\+\_\+\+ERROR$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md8}
+{\itshape Unspecified error.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_DRIVER\_ERROR\ ((uint32\_t)1)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md9}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+DRIVER\+\_\+\+ERROR\+\_\+\+BUSY$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md9}
+{\itshape Driver is busy.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_DRIVER\_ERROR\_BUSY\ ((uint32\_t)2)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md10}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+DRIVER\+\_\+\+ERROR\+\_\+\+PARAMETER$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md10}
+{\itshape Parameter error.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_DRIVER\_ERROR\_PARAMETER\ ((uint32\_t)5)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md11}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+DRIVER\+\_\+\+ERROR\+\_\+\+SPECIFIC$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md11}
+{\itshape Start of driver specific errors.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_DRIVER\_ERROR\_SPECIFIC\ ((uint32\_t)6)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md12}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+DRIVER\+\_\+\+ERROR\+\_\+\+TIMEOUT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md12}
+{\itshape Timeout occurred.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_DRIVER\_ERROR\_TIMEOUT\ ((uint32\_t)3)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md13}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+DRIVER\+\_\+\+ERROR\+\_\+\+UNSUPPORTED$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md13}
+{\itshape Operation not supported.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_DRIVER\_ERROR\_UNSUPPORTED\ ((uint32\_t)4)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md14}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+DRIVER\+\_\+\+OK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md14}
+{\itshape Operation succeeded.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_DRIVER\_OK\ ((uint32\_t)0)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md15}{}\doxysection{File EF\+\_\+\+I2\+S.\+h}\label{md__r_e_a_d_m_e_autotoc_md15}
+{\itshape C header file for I2S APIs which contains the function prototypes.}\hypertarget{md__r_e_a_d_m_e_autotoc_md16}{}\doxysection{Functions}\label{md__r_e_a_d_m_e_autotoc_md16}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endhead
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+Busy$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, bool $\ast$is\+Busy) ~\newline
+{\itshape Checks if the I2S peripheral is busy.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+FIFOOver\+Threshold$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, bool $\ast$is\+Over\+Threshold) ~\newline
+{\itshape Checks if the RX FIFO level is over the threshold in the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+Rx\+FIFOAvailable$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, bool $\ast$is\+Available) ~\newline
+{\itshape Checks if the RX FIFO has available space in the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+Rx\+FIFOEmpty$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, bool $\ast$is\+Empty) ~\newline
+{\itshape Checks if the RX FIFO is empty in the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+Rx\+FIFOFull$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, bool $\ast$is\+Full) ~\newline
+{\itshape Checks if the RX FIFO is full in the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+VADFlag$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, bool $\ast$is\+Over\+Threshold) ~\newline
+{\itshape Checks if the Voice Activity Detector (VAD) flag is set in the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+ZCROver\+Threshold$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, bool $\ast$is\+Over\+Threshold) ~\newline
+{\itshape Checks if the zero-\/crossing rate exceeds the threshold in the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+clear\+Irq\+AVGAbove\+Threshold$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Clears the average above threshold interrupt for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+clear\+Irq\+Rx\+Empty$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+clear\+Irq\+Rx\+Full$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Clears the receive FIFO full interrupt for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+clear\+Irq\+Rx\+Level$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Clears the receive FIFO level interrupt for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+clear\+Irq\+Rxempty$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+clear\+Irq\+VADFlag$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Clears the Voice Activity Detector (VAD) flag interrupt for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+clear\+Irq\+ZCRAbove\+Threshold$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Clears the zero-\/crossing rate above threshold interrupt for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+disable$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Disables the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+disable\+AVG$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Disables the AVG feature for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+disable\+Fifo$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Disables the FIFO feature for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+disable\+ZCR$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Disables the ZCR feature for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+enable$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Enables the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+enable\+AVG$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Enables the AVG feature for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+enable\+Fifo$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Enables the FIFO feature for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+enable\+ZCR$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s) ~\newline
+{\itshape Enables the ZCR feature for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+get\+Config\+Reg$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t $\ast$config) ~\newline
+    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+get\+IM$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t $\ast$im\+\_\+value) ~\newline
+{\itshape Reads the Interrupt Mask (IM) register for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+get\+MIS$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t $\ast$mis\+\_\+value) ~\newline
+{\itshape Reads the Masked Interrupt Status (MIS) register for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+get\+Prescaler$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t $\ast$prescaler) ~\newline
+    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+get\+RIS$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t $\ast$ris\+\_\+value) ~\newline
+{\itshape Reads the Raw Interrupt Status (RIS) register for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+get\+Rx\+Fifo\+Level$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t $\ast$level) ~\newline
+{\itshape Gets the RX FIFO level of the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+get\+Rx\+Fifo\+Threshold$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t $\ast$threshold) ~\newline
+    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+read\+Data$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t $\ast$data) ~\newline
+{\itshape Reads data from the RX FIFO of the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+set\+AVGT$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t average) ~\newline
+{\itshape Sets the AVGT register for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+set\+Config\+Reg$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t config) ~\newline
+{\itshape Sets the configuration register for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+set\+Gclk\+Enable$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t value) ~\newline
+{\itshape Sets the GCLK enable bit in the I2S register to a certain value.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+set\+IC$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t mask) ~\newline
+{\itshape Writes a value to the Interrupt Clear (IC) register for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+set\+IM$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t mask) ~\newline
+{\itshape Writes a value to the Interrupt Mask (IM) register for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+set\+Prescaler$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t prescaler) ~\newline
+{\itshape Sets the prescaler register for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+set\+Rx\+Fifo\+Threshold$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t threshold) ~\newline
+{\itshape Sets the RX FIFO threshold for the I2S peripheral.}    \\\cline{1-2}
+\PBS\raggedleft $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+set\+ZCRT$\ast$$\ast$ ($\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ i2s, uint32\+\_\+t average) ~\newline
+{\itshape Sets the ZCRT register for the I2S peripheral.}   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md17}{}\doxysection{Macros}\label{md__r_e_a_d_m_e_autotoc_md17}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endhead
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+AVGT\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$ 0x0000\+FFFF~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$ 0x00000\+FFF~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+PR\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$ 0x000000\+FF~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+IC\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$ 0x0000003F~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+IM\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$ 0x0000003F~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+THRESHOLD\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$ 0x0000000F~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+ZCRT\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$ 0x0000\+FFFF~\newline
+   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md18}{}\doxysection{Functions Documentation}\label{md__r_e_a_d_m_e_autotoc_md18}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md19}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+Busy$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md19}
+{\itshape Checks if the I2S peripheral is busy.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a1bbc7845bff3df3a186fdc851fe6337d}{EF\_I2S\_Busy}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ *isBusy}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function checks whether the I2S peripheral is currently busy.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily is\+Busy} Pointer to a boolean variable that will be set to true if the peripheral is busy, or false otherwise.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md20}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+FIFOOver\+Threshold$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md20}
+{\itshape Checks if the RX FIFO level is over the threshold in the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a458aa2712b7e4bb1880117f2aaf2505b}{EF\_I2S\_FIFOOverThreshold}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ *isOverThreshold}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function checks whether the RX FIFO level has exceeded the threshold in the I2S peripheral.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily is\+Over\+Threshold} Pointer to a boolean variable that will be set to true if the RX FIFO level is over the threshold, or false otherwise.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md21}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOAvailable$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md21}
+{\itshape Checks if the RX FIFO has available space in the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a5161a349d8c36dd40549d0b15d506182}{EF\_I2S\_RxFIFOAvailable}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ *isAvailable}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function checks whether the RX FIFO of the I2S peripheral has available space.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily is\+Available} Pointer to a boolean variable that will be set to true if the RX FIFO has available space, or false if it is full.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md22}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOEmpty$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md22}
+{\itshape Checks if the RX FIFO is empty in the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a9be165920fd4797aaee9d431df907b53}{EF\_I2S\_RxFIFOEmpty}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ *isEmpty}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function checks whether the RX FIFO of the I2S peripheral is empty.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily is\+Empty} Pointer to a boolean variable that will be set to true if the RX FIFO is empty, or false otherwise.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md23}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+Rx\+FIFOFull$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md23}
+{\itshape Checks if the RX FIFO is full in the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_aa1a5a98b7f41654a70fb37dd49a845de}{EF\_I2S\_RxFIFOFull}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ *isFull}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function checks whether the RX FIFO of the I2S peripheral is full.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily is\+Full} Pointer to a boolean variable that will be set to true if the RX FIFO is full, or false otherwise.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md24}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+VADFlag$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md24}
+{\itshape Checks if the Voice Activity Detector (VAD) flag is set in the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a2fd0764a05f1ccabe4c00dd122b1ec18}{EF\_I2S\_VADFlag}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ *isOverThreshold}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function checks whether the Voice Activity Detector (VAD) flag is set in the I2S peripheral.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily is\+Over\+Threshold} Pointer to a boolean variable that will be set to true if the VAD flag is set, or false otherwise.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md25}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+ZCROver\+Threshold$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md25}
+{\itshape Checks if the zero-\/crossing rate exceeds the threshold in the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a2dc446aadcb9a471bdb6da85323105b7}{EF\_I2S\_ZCROverThreshold}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{bool}\ *isOverThreshold}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function checks whether the zero-\/crossing rate (ZCR) has exceeded the threshold in the I2S peripheral.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily is\+Over\+Threshold} Pointer to a boolean variable that will be set to true if the ZCR exceeds the threshold, or false otherwise.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md26}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+AVGAbove\+Threshold$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md26}
+{\itshape Clears the average above threshold interrupt for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a893f62b34da9619b3ff8ff05b1449d5d}{EF\_I2S\_clearIrqAVGAboveThreshold}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function clears the interrupt corresponding to the average (AVG) being above the threshold in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md27}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rx\+Empty$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md27}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ EF\_I2S\_clearIrqRxEmpty\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md28}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rx\+Full$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md28}
+{\itshape Clears the receive FIFO full interrupt for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_aba0bcdf189efb01bb4da0241cf0fff6c}{EF\_I2S\_clearIrqRxFull}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function clears the interrupt corresponding to the receive FIFO full condition in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md29}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rx\+Level$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md29}
+{\itshape Clears the receive FIFO level interrupt for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_ab8e5d164c8010d28a8ecbbfe2d4e2225}{EF\_I2S\_clearIrqRxLevel}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function clears the interrupt corresponding to the receive FIFO level condition in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md30}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+Rxempty$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md30}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_ab5ddd197f14756e1c59fb61046572056}{EF\_I2S\_clearIrqRxempty}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function clears the interrupt corresponding to the receive FIFO empty condition in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md31}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+VADFlag$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md31}
+{\itshape Clears the Voice Activity Detector (VAD) flag interrupt for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a37d38397ddebfe8f2350f18eafb12c4f}{EF\_I2S\_clearIrqVADFlag}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function clears the interrupt corresponding to the Voice Activity Detector (VAD) flag in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md32}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+clear\+Irq\+ZCRAbove\+Threshold$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md32}
+{\itshape Clears the zero-\/crossing rate above threshold interrupt for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_ab37aca0b76a291cb4abab5d9b863a59c}{EF\_I2S\_clearIrqZCRAboveThreshold}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function clears the interrupt corresponding to the zero-\/crossing rate (ZCR) being above the threshold in the I2S peripheral by writing to the Interrupt Clear (IC) register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md33}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+disable$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md33}
+{\itshape Disables the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_ac8d6abd09cea51b42572106f04a573fb}{EF\_I2S\_disable}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function disables the I2S peripheral by clearing the enable bit in the control register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md34}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+disable\+AVG$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md34}
+{\itshape Disables the AVG feature for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a28908c1a60a497792bfe591ff05cf6f9}{EF\_I2S\_disableAVG}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function disables the AVG feature of the I2S peripheral by clearing the AVG enable bit in the control register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md35}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+disable\+Fifo$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md35}
+{\itshape Disables the FIFO feature for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_ad49df56dd20e08c02e5efc661a9a9cc6}{EF\_I2S\_disableFifo}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function disables the FIFO feature of the I2S peripheral by clearing the FIFO enable bit in the control register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md36}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+disable\+ZCR$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md36}
+{\itshape Disables the ZCR feature for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a4abe906ba6d8764231cf2648fd617b83}{EF\_I2S\_disableZCR}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function disables the ZCR feature of the I2S peripheral by clearing the ZCR enable bit in the control register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md37}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+enable$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md37}
+{\itshape Enables the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a8363eb974d75e82be3e789196bb2c95b}{EF\_I2S\_enable}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function enables the I2S peripheral by setting the enable bit in the control register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md38}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+enable\+AVG$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md38}
+{\itshape Enables the AVG feature for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a48bb6abdf01dea0f16744039d9fd113a}{EF\_I2S\_enableAVG}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function enables the AVG feature of the I2S peripheral by setting the AVG enable bit in the control register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md39}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+enable\+Fifo$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md39}
+{\itshape Enables the FIFO feature for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a3b769d282e6954df57f14765f4366843}{EF\_I2S\_enableFifo}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function enables the FIFO feature of the I2S peripheral by setting the FIFO enable bit in the control register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md40}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+enable\+ZCR$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md40}
+{\itshape Enables the ZCR feature for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a3e06025f058eb96a083a0b647b872cbc}{EF\_I2S\_enableZCR}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function enables the ZCR feature of the I2S peripheral by setting the ZCR enable bit in the control register.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md41}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+get\+Config\+Reg$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md41}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ EF\_I2S\_getConfigReg\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ *config}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md42}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+get\+IM$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md42}
+{\itshape Reads the Interrupt Mask (IM) register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_acd181744291db32213010b5450419c59}{EF\_I2S\_getIM}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ *im\_value}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function retrieves the value of the Interrupt Mask (IM) register for the I2S peripheral and stores it in the provided variable. The IM register indicates which interrupts are enabled. RIS Register Breakdown$\ast$$\ast$\+:
+
+
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily im\+\_\+value} Pointer to a variable where the IM register value will be stored.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md43}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+get\+MIS$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md43}
+{\itshape Reads the Masked Interrupt Status (MIS) register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a5971ae872cd797d44fbff1b8fbbc790e}{EF\_I2S\_getMIS}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ *mis\_value}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function retrieves the value of the Masked Interrupt Status (MIS) register for the I2S peripheral and stores it in the provided variable. The MIS register indicates the current interrupt status after masking. RIS Register Breakdown$\ast$$\ast$\+:
+
+
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily mis\+\_\+value} Pointer to a variable where the MIS register value will be stored.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md44}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+get\+Prescaler$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md44}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ EF\_I2S\_getPrescaler\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ *prescaler}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md45}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+get\+RIS$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md45}
+{\itshape Reads the Raw Interrupt Status (RIS) register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_ac1c6040b6a56703127bd033fcb0fc2ab}{EF\_I2S\_getRIS}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ *ris\_value}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function retrieves the value of the Raw Interrupt Status (RIS) register for the I2S peripheral and stores it in the provided variable. The RIS register contains various status flags that indicate the state of the I2S peripheral. RIS Register Breakdown$\ast$$\ast$\+:
+
+
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily ris\+\_\+value} Pointer to a variable where the RIS register value will be stored.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md46}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+get\+Rx\+Fifo\+Level$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md46}
+{\itshape Gets the RX FIFO level of the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_aa01eaa3ec9d57d8008e036d5194a3f11}{EF\_I2S\_getRxFifoLevel}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ *level}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function retrieves the current level of the RX FIFO register from the I2S peripheral and stores it in the memory location pointed to by {\ttfamily level}.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily level} Pointer to a variable where the RX FIFO level will be stored.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md47}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+get\+Rx\+Fifo\+Threshold$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md47}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ EF\_I2S\_getRxFifoThreshold\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ *threshold}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md48}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+read\+Data$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md48}
+{\itshape Reads data from the RX FIFO of the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a50ed21a6e834fc0047cb78941a7c8984}{EF\_I2S\_readData}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ *data}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function retrieves a data word from the RX FIFO of the specified I2S peripheral. It waits until the RX FIFO has data available before performing the read operation. After reading the data, the RX level interrupt is cleared.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily data} Pointer to a variable where the read data will be stored.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code.
+
+{\bfseries{Note\+:}}
+
+The function uses a busy-\/wait loop to check the RX FIFO status. Ensure proper system design to avoid potential blocking or infinite loops in case of hardware issues. \hypertarget{md__r_e_a_d_m_e_autotoc_md49}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+set\+AVGT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md49}
+{\itshape Sets the AVGT register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_aa49c1860ce4e076d8bb745409561c3c7}{EF\_I2S\_setAVGT}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ average}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function sets the average threshold (AVGT) register for the I2S peripheral to the specified value. It ensures that the input pointer and average value are valid.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily average} The average threshold value to be set. Must be less than or equal to $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+AVGT\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md50}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+set\+Config\+Reg$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md50}
+{\itshape Sets the configuration register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a4714d92aa38d5b05f1a8bb585e09b324}{EF\_I2S\_setConfigReg}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ config}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function sets the configuration register of the I2S peripheral to the specified value. It validates the input parameters to ensure the I2S pointer is not NULL and the configuration value is within the allowed range.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily config} The configuration value to be set. Must be less than or equal to $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md51}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+set\+Gclk\+Enable$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md51}
+{\itshape Sets the GCLK enable bit in the I2S register to a certain value.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a922081fe31b01334b54a89d5f8e1c2c1}{EF\_I2S\_setGclkEnable}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ value}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} An $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ , which points to the base memory address of I2S registers.$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE$\ast$$\ast$ is a structure that contains the I2S registers.
+\item {\ttfamily value} The value of the GCLK enable bit
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code \hypertarget{md__r_e_a_d_m_e_autotoc_md52}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+set\+IC$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md52}
+{\itshape Writes a value to the Interrupt Clear (IC) register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a95032b4dbc7f70aef922060820631de1}{EF\_I2S\_setIC}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ mask}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function clears specific interrupts in the I2S peripheral by writing to the Interrupt Clear (IC) register. RIS Register Breakdown$\ast$$\ast$\+:
+
+
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily mask} The value to be written to the IC register. Must be within the valid range $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+IC\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md53}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+set\+IM$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md53}
+{\itshape Writes a value to the Interrupt Mask (IM) register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_ab4fbfff01ed548ecdfe0c62e8b49b053}{EF\_I2S\_setIM}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ mask}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function sets the value of the Interrupt Mask (IM) register for the I2S peripheral. The IM register determines which interrupts are enabled or disabled. RIS Register Breakdown$\ast$$\ast$\+:
+
+
+\begin{DoxyItemize}
+\item Bit 0\+: FIFOE -\/ Receive FIFO is Empty
+\item Bit 1\+: FIFOA -\/ FIFO level is above the set level threshold
+\item Bit 2\+: FIFOF -\/ Receive FIFO is Full.
+\item Bit 3\+: AVGF -\/ The avg is above the threshold.
+\item Bit 4\+: ZCRF -\/ The ZCR is above the threshold.
+\item Bit 5\+: VADF -\/ The Voice Activity Detector flag; active when both ZCR \& AVG flags are active.
+\item Bits \mbox{[}6-\/31\mbox{]}\+: Reserved.
+\end{DoxyItemize}
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily mask} The value to be written to the IM register. Must be within the valid range $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+IM\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md54}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+set\+Prescaler$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md54}
+{\itshape Sets the prescaler register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a261aaf55ebe6faa55a555aa82289376b}{EF\_I2S\_setPrescaler}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ prescaler}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function configures the prescaler register of the I2S peripheral with the specified value. It ensures that the I2S pointer is not NULL and that the prescaler value is within the valid range.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily prescaler} The prescaler value to be set. Must be less than or equal to $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+PR\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md55}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+set\+Rx\+Fifo\+Threshold$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md55}
+{\itshape Sets the RX FIFO threshold for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_a19b6f17b3fc354afabcd98dd661a1954}{EF\_I2S\_setRxFifoThreshold}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ threshold}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function sets the RX FIFO threshold register for the I2S peripheral to the specified value. It ensures that the input pointer and threshold value are valid.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily threshold} The RX FIFO threshold value to be set. Must be less than or equal to $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+THRESHOLD\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code. \hypertarget{md__r_e_a_d_m_e_autotoc_md56}{}\doxysubsection{function $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+set\+ZCRT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md56}
+{\itshape Sets the ZCRT register for the I2S peripheral.} 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{_e_f___driver___common_8h_ad1c99136d1edfd0a7757f5b81600a351}{EF\_DRIVER\_STATUS}}\ \mbox{\hyperlink{_e_f___i2_s_8c_ac6e5745e4ce997c1c7d0ac5e188347e2}{EF\_I2S\_setZCRT}}\ (}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE\_PTR}}\ i2s,}
+\DoxyCodeLine{\ \ \ \ uint32\_t\ average}
+\DoxyCodeLine{)\ }
+
+\end{DoxyCode}
+
+
+This function sets the zero-\/crossing threshold (ZCRT) register for the I2S peripheral to the specified value. It validates the input pointer and the threshold value.
+
+{\bfseries{Parameters\+:}}
+
+
+\begin{DoxyItemize}
+\item {\ttfamily i2s} Pointer to the I2S base address structure $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$.
+\item {\ttfamily average} The zero-\/crossing threshold value to be set. Must be less than or equal to $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+ZCRT\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+MAX\textbackslash{}\+\_\+\+VALUE$\ast$$\ast$.
+\end{DoxyItemize}
+
+{\bfseries{Returns\+:}}
+
+status A value of type $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+DRIVER\textbackslash{}\+\_\+\+STATUS$\ast$$\ast$ \+: returns a success or error code.\hypertarget{md__r_e_a_d_m_e_autotoc_md57}{}\doxysection{Macros Documentation}\label{md__r_e_a_d_m_e_autotoc_md57}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md58}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+AVGT\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md58}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_AVGT\_REG\_MAX\_VALUE\ 0x0000FFFF}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md59}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md59}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_MAX\_VALUE\ 0x00000FFF}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md60}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+PR\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md60}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_PR\_REG\_MAX\_VALUE\ 0x000000FF}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md61}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+IC\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md61}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_IC\_REG\_MAX\_VALUE\ 0x0000003F}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md62}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+IM\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md62}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_IM\_REG\_MAX\_VALUE\ 0x0000003F}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md63}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md63}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_MAX\_VALUE\ 0x0000000F}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md64}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+ZCRT\+\_\+\+REG\+\_\+\+MAX\+\_\+\+VALUE$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md64}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_ZCRT\_REG\_MAX\_VALUE\ 0x0000FFFF}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md65}{}\doxysection{File EF\+\_\+\+I2\+S\+\_\+regs.\+h}\label{md__r_e_a_d_m_e_autotoc_md65}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md66}{}\doxysection{Structures and Types}\label{md__r_e_a_d_m_e_autotoc_md66}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endhead
+\PBS\raggedleft typedef struct $\ast$$\ast$\textbackslash{}\+\_\+\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+$\ast$$\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE$\ast$$\ast$ ~\newline
+    \\\cline{1-2}
+\PBS\raggedleft typedef $\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE$\ast$$\ast$ $\ast$   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+\+PTR$\ast$$\ast$ ~\newline
+    \\\cline{1-2}
+\PBS\raggedleft struct   &$\ast$$\ast$\textbackslash{}\+\_\+\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+TYPE\textbackslash{}\+\_\+$\ast$$\ast$ ~\newline
+   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md67}{}\doxysection{Macros}\label{md__r_e_a_d_m_e_autotoc_md67}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\raggedleft \cellcolor{\tableheadbgcolor}\textbf{ Type   }&\cellcolor{\tableheadbgcolor}\textbf{ Name    }\\\cline{1-2}
+\endhead
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+AVGF\textbackslash{}\+\_\+\+FLAG$\ast$$\ast$ ((uint32\+\_\+t)0x8)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+AVGSEL\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)10)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+AVGSEL\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x400)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+CHANNELS\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)0)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+CHANNELS\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x3)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+LEFT\textbackslash{}\+\_\+\+JUSTIFIED\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)3)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+LEFT\textbackslash{}\+\_\+\+JUSTIFIED\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x8)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+SAMPLE\textbackslash{}\+\_\+\+SIZE\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)4)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+SAMPLE\textbackslash{}\+\_\+\+SIZE\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x3f0)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+SIGN\textbackslash{}\+\_\+\+EXTEND\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)2)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+SIGN\textbackslash{}\+\_\+\+EXTEND\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x4)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+ZCRSEL\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)11)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CFG\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+ZCRSEL\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x800)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CTRL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+AVG\textbackslash{}\+\_\+\+EN\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)2)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CTRL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+AVG\textbackslash{}\+\_\+\+EN\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x4)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CTRL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+EN\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)0)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CTRL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+EN\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x1)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CTRL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+EN\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)1)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CTRL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+EN\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x2)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CTRL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+ZCR\textbackslash{}\+\_\+\+EN\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)3)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+CTRL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+ZCR\textbackslash{}\+\_\+\+EN\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x8)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+FIFOA\textbackslash{}\+\_\+\+FLAG$\ast$$\ast$ ((uint32\+\_\+t)0x2)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+FIFOE\textbackslash{}\+\_\+\+FLAG$\ast$$\ast$ ((uint32\+\_\+t)0x1)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+FIFOF\textbackslash{}\+\_\+\+FLAG$\ast$$\ast$ ((uint32\+\_\+t)0x4)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+FLUSH\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+FLUSH\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)0)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+FLUSH\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+FLUSH\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0x1)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+LEVEL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+LEVEL\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)0)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+LEVEL\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+LEVEL\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0xf)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+THRESHOLD\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+THRESHOLD\textbackslash{}\+\_\+\+BIT$\ast$$\ast$ ((uint32\+\_\+t)0)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+RX\textbackslash{}\+\_\+\+FIFO\textbackslash{}\+\_\+\+THRESHOLD\textbackslash{}\+\_\+\+REG\textbackslash{}\+\_\+\+THRESHOLD\textbackslash{}\+\_\+\+MASK$\ast$$\ast$ ((uint32\+\_\+t)0xf)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+VADF\textbackslash{}\+\_\+\+FLAG$\ast$$\ast$ ((uint32\+\_\+t)0x20)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+EF\textbackslash{}\+\_\+\+I2S\textbackslash{}\+\_\+\+ZCRF\textbackslash{}\+\_\+\+FLAG$\ast$$\ast$ ((uint32\+\_\+t)0x10)~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\+IO\textbackslash{}\+\_\+\+TYPES$\ast$$\ast$ ~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+R$\ast$$\ast$ volatile const uint32\+\_\+t~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+\+RW$\ast$$\ast$ volatile uint32\+\_\+t~\newline
+    \\\cline{1-2}
+\PBS\raggedleft define   &$\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ volatile uint32\+\_\+t~\newline
+   \\\cline{1-2}
+\end{longtabu}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md68}{}\doxysection{Structures and Types Documentation}\label{md__r_e_a_d_m_e_autotoc_md68}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md69}{}\doxysubsection{typedef $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+TYPE$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md69}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{\_EF\_I2S\_TYPE\_}}\ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE}};}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md70}{}\doxysubsection{typedef $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+\+PTR$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md70}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{typedef}\ \mbox{\hyperlink{struct___e_f___i2_s___t_y_p_e__}{EF\_I2S\_TYPE}}*\ \mbox{\hyperlink{_e_f___i2_s__regs_8h_a3b020f0a7eb618a2bd99dca20b454eb0}{EF\_I2S\_TYPE\_PTR}};}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md71}{}\doxysubsection{struct $<$tt$>$\+\_\+\+EF\+\_\+\+I2\+S\+\_\+\+TYPE\+\_\+$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md71}
+Variables\+:
+
+
+\begin{DoxyItemize}
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ AVGT ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ CFG ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ CTRL ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ GCLK ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ IC ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+\+RW$\ast$$\ast$ IM ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+R$\ast$$\ast$ MIS ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ PR ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+R$\ast$$\ast$ RIS ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+R$\ast$$\ast$ RXDATA ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ RX\+\_\+\+FIFO\+\_\+\+FLUSH ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+R$\ast$$\ast$ RX\+\_\+\+FIFO\+\_\+\+LEVEL ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ RX\+\_\+\+FIFO\+\_\+\+THRESHOLD ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+W$\ast$$\ast$ ZCRT ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+R$\ast$$\ast$ reserved\+\_\+0 ~\newline
+
+\item $\ast$$\ast$\textbackslash{}\+\_\+\textbackslash{}\+\_\+R$\ast$$\ast$ reserved\+\_\+1 ~\newline
+
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md72}{}\doxysection{Macros Documentation}\label{md__r_e_a_d_m_e_autotoc_md72}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md73}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+AVGF\+\_\+\+FLAG$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md73}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_AVGF\_FLAG\ ((uint32\_t)0x8)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md74}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+AVGSEL\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md74}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_AVGSEL\_BIT\ ((uint32\_t)10)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md75}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+AVGSEL\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md75}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_AVGSEL\_MASK\ ((uint32\_t)0x400)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md76}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+CHANNELS\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md76}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_CHANNELS\_BIT\ ((uint32\_t)0)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md77}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+CHANNELS\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md77}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_CHANNELS\_MASK\ ((uint32\_t)0x3)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md78}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+LEFT\+\_\+\+JUSTIFIED\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md78}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_BIT\ ((uint32\_t)3)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md79}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+LEFT\+\_\+\+JUSTIFIED\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md79}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_LEFT\_JUSTIFIED\_MASK\ ((uint32\_t)0x8)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md80}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SAMPLE\+\_\+\+SIZE\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md80}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_BIT\ ((uint32\_t)4)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md81}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SAMPLE\+\_\+\+SIZE\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md81}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_SAMPLE\_SIZE\_MASK\ ((uint32\_t)0x3f0)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md82}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SIGN\+\_\+\+EXTEND\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md82}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_BIT\ ((uint32\_t)2)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md83}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+SIGN\+\_\+\+EXTEND\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md83}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_SIGN\_EXTEND\_MASK\ ((uint32\_t)0x4)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md84}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+ZCRSEL\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md84}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_ZCRSEL\_BIT\ ((uint32\_t)11)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md85}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CFG\+\_\+\+REG\+\_\+\+ZCRSEL\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md85}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CFG\_REG\_ZCRSEL\_MASK\ ((uint32\_t)0x800)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md86}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+AVG\+\_\+\+EN\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md86}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CTRL\_REG\_AVG\_EN\_BIT\ ((uint32\_t)2)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md87}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+AVG\+\_\+\+EN\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md87}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CTRL\_REG\_AVG\_EN\_MASK\ ((uint32\_t)0x4)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md88}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+EN\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md88}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CTRL\_REG\_EN\_BIT\ ((uint32\_t)0)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md89}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+EN\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md89}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CTRL\_REG\_EN\_MASK\ ((uint32\_t)0x1)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md90}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md90}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CTRL\_REG\_FIFO\_EN\_BIT\ ((uint32\_t)1)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md91}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+FIFO\+\_\+\+EN\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md91}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CTRL\_REG\_FIFO\_EN\_MASK\ ((uint32\_t)0x2)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md92}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+ZCR\+\_\+\+EN\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md92}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CTRL\_REG\_ZCR\_EN\_BIT\ ((uint32\_t)3)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md93}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+CTRL\+\_\+\+REG\+\_\+\+ZCR\+\_\+\+EN\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md93}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_CTRL\_REG\_ZCR\_EN\_MASK\ ((uint32\_t)0x8)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md94}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+FIFOA\+\_\+\+FLAG$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md94}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_FIFOA\_FLAG\ ((uint32\_t)0x2)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md95}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+FIFOE\+\_\+\+FLAG$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md95}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_FIFOE\_FLAG\ ((uint32\_t)0x1)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md96}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+FIFOF\+\_\+\+FLAG$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md96}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_FIFOF\_FLAG\ ((uint32\_t)0x4)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md97}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+FLUSH\+\_\+\+REG\+\_\+\+FLUSH\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md97}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_BIT\ ((uint32\_t)0)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md98}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+FLUSH\+\_\+\+REG\+\_\+\+FLUSH\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md98}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_FLUSH\_REG\_FLUSH\_MASK\ ((uint32\_t)0x1)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md99}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+LEVEL\+\_\+\+REG\+\_\+\+LEVEL\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md99}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_BIT\ ((uint32\_t)0)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md100}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+LEVEL\+\_\+\+REG\+\_\+\+LEVEL\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md100}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_LEVEL\_REG\_LEVEL\_MASK\ ((uint32\_t)0xf)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md101}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+THRESHOLD\+\_\+\+BIT$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md101}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_BIT\ ((uint32\_t)0)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md102}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+RX\+\_\+\+FIFO\+\_\+\+THRESHOLD\+\_\+\+REG\+\_\+\+THRESHOLD\+\_\+\+MASK$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md102}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_RX\_FIFO\_THRESHOLD\_REG\_THRESHOLD\_MASK\ ((uint32\_t)0xf)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md103}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+VADF\+\_\+\+FLAG$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md103}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_VADF\_FLAG\ ((uint32\_t)0x20)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md104}{}\doxysubsection{define $<$tt$>$\+EF\+\_\+\+I2\+S\+\_\+\+ZCRF\+\_\+\+FLAG$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md104}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ EF\_I2S\_ZCRF\_FLAG\ ((uint32\_t)0x10)}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md105}{}\doxysubsection{define $<$tt$>$\+IO\+\_\+\+TYPES$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md105}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ IO\_TYPES\ }}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md106}{}\doxysubsection{define $<$tt$>$\+\_\+\+\_\+\+R$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md106}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ \_\_R\ volatile\ const\ uint32\_t}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md107}{}\doxysubsection{define $<$tt$>$\+\_\+\+\_\+\+RW$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md107}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ \_\_RW\ volatile\ \ \ \ \ \ \ uint32\_t}}
+
+\end{DoxyCode}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md108}{}\doxysubsection{define $<$tt$>$\+\_\+\+\_\+\+W$<$/tt$>$}\label{md__r_e_a_d_m_e_autotoc_md108}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#define\ \_\_W\ volatile\ \ \ \ \ \ \ uint32\_t}}
+
+\end{DoxyCode}
+ 

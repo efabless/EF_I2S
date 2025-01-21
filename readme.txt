@@ -23,9 +23,6 @@ Directory Structure:
 
     - fw 
         - **EF_I2S_regs.h**: Header file containing the register definitions for the EF_I2S interface.
-        - **EF_I2S.c**: C source file implementing the low-level driver functions for the EF_I2S.
-        - **EF_I2S.h**: Header file declaring the API functions and data structures for the EF_I2S driver.
-        - **DEVICE_DRIVER.pdf**: Documentation for users to understand how to use the EF_I2S driver and interface with the IP.
 
     - hdl 
         - rtl 

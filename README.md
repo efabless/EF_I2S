@@ -6,7 +6,7 @@ Two-wire I2S synchronous serial interface, compatible with I2S specification.
 
  APB, AHBL, and Wishbone wrappers are provided. All wrappers provide the same programmer's interface as outlined in the following sections.
 
-#### Wrapped IP System Integration
+### Wrapped IP System Integration
 
 Based on your use case, use one of the provided wrappers or create a wrapper for your system bus type. For an example of how to integrate the wishbone wrapper:
 ```verilog
@@ -27,12 +27,20 @@ EF_I2S_WB INST (
 	.sdi(sdi)
 );
 ```
-#### Wrappers with DFT support
+### Wrappers with DFT support
 Wrappers in the directory ``/hdl/rtl/bus_wrappers/DFT`` have an extra input port ``sc_testmode`` to disable the clock gate whenever the scan chain testmode is enabled.
+### External IO interfaces
+|IO name|Direction|Width|Description|
+|---|---|---|---|
+|ws|output|1|Word Select; this signal indicates the boundary between left and right audio channels|
+|sck|output|1|Serial Clock; this provides the timing for data transfer, synchronizing the transmission of bits.|
+|sdi|input|1|Serial Data Input; this line carries the audio data being sent to the device.|
+### Interrupt Request Line (irq)
+This IP generates interrupts on specific events, which are described in the [Interrupt Flags](#interrupt-flags) section bellow. The IRQ port should be connected to the system interrupt controller.
 
 ## Implementation example  
 
-The following table is the result for implementing the EF_I2S IP with different wrappers using Sky130 PDK and [OpenLane2](https://github.com/efabless/openlane2) flow.
+The following table is the result for implementing the EF_I2S IP with different wrappers using Sky130 HD library and [OpenLane2](https://github.com/efabless/openlane2) flow.
 |Module | Number of cells | Max. freq |
 |---|---|---|
 |EF_I2S|2433| 116 |
@@ -149,13 +157,13 @@ RX_FIFO Flush Register
 The wrapped IP provides four registers to deal with interrupts: IM, RIS, MIS and IC. These registers exist for all wrapper types.
 
 Each register has a group of bits for the interrupt sources/flags.
-- `IM` [offset: 0xff00]: is used to enable/disable interrupt sources.
+- `IM` [offset: ``0xff00``]: is used to enable/disable interrupt sources.
 
-- `RIS` [offset: 0xff08]: has the current interrupt status (interrupt flags) whether they are enabled or disabled.
+- `RIS` [offset: ``0xff08``]: has the current interrupt status (interrupt flags) whether they are enabled or disabled.
 
-- `MIS` [offset: 0xff04]: is the result of masking (ANDing) RIS by IM.
+- `MIS` [offset: ``0xff04``]: is the result of masking (ANDing) RIS by IM.
 
-- `IC` [offset: 0xff0c]: is used to clear an interrupt flag.
+- `IC` [offset: ``0xff0c``]: is used to clear an interrupt flag.
 
 
 The following are the bit definitions for the interrupt registers:
@@ -176,8 +184,24 @@ The IP includes a clock gating feature that allows selective activation and deac
 VERILOG_DEFINES:
 - CLKG_SKY130_HD
 ```
+## Firmware Drivers:
+Firmware drivers for EF_I2S can be found in the [EF_I2S](https://github.com/efabless/EF_APIs_HUB/tree/main/EF_I2S) directory in the [EF_APIs_HUB](https://github.com/efabless/EF_APIs_HUB) repo. EF_I2S driver documentation  is available [here](https://github.com/efabless/EF_APIs_HUB/tree/main/EF_I2S/README.md).
+You can also find an example C application using the EF_I2S drivers [here](https://github.com/efabless/EF_APIs_HUB/tree/main/EF_I2S/EF_I2S_example.c).
+## Installation:
+You can install the IP either by cloning this repository or by using [IPM](https://github.com/efabless/IPM).
+### 1. Using [IPM](https://github.com/efabless/IPM):
+- [Optional] If you do not have IPM installed, follow the installation guide [here](https://github.com/efabless/IPM/blob/main/README.md)
+- After installing IPM, execute the following command ```ipm install EF_I2S```.
+> **Note:** This method is recommended as it automatically installs [EF_IP_UTIL](https://github.com/efabless/EF_IP_UTIL.git) as a dependency.
+### 2. Cloning this repo: 
+- Clone [EF_IP_UTIL](https://github.com/efabless/EF_IP_UTIL.git) repository, which includes the required modules from the common modules library, [ef_util_lib.v](https://github.com/efabless/EF_IP_UTIL/blob/main/hdl/ef_util_lib.v).
+```git clone https://github.com/efabless/EF_IP_UTIL.git```
+- Clone the IP repository
+```git clone github.com/efabless/EF_I2S```
 
-### The Interface 
+### The Wrapped IP Interface 
+
+>**_NOTE:_** This section is intended for advanced users who wish to gain more information about the interface of the wrapped IP, in case they want to create their own wrappers.
 
 <img src="docs/_static/EF_I2S.svg" width="600"/>
 
@@ -192,9 +216,9 @@ VERILOG_DEFINES:
 
 |Port|Direction|Width|Description|
 |---|---|---|---|
-|ws|output|1|Word select (logic high on WS indicates right-channel audio)|
-|sck|output|1|The data clock|
-|sdi|input|1|The input serial data|
+|ws|output|1|Word Select; this signal indicates the boundary between left and right audio channels|
+|sck|output|1|Serial Clock; this provides the timing for data transfer, synchronizing the transmission of bits.|
+|sdi|input|1|Serial Data Input; this line carries the audio data being sent to the device.|
 |fifo_en|input|1|FIFO enable|
 |fifo_rd|input|1|Read from FIFO signal|
 |fifo_level_threshold|input|AW|FIFO Threshold|
@@ -219,17 +243,3 @@ VERILOG_DEFINES:
 |vad_flag|output|1|The VAD flag|
 |channels|input|2|Channels used (left, right, or stereo)|
 |en|input|1|Enable signal|
-## Firmware Drivers:
-Firmware drivers for EF_I2S can be found in the [fw](https://github.com/efabless/EF_I2S/tree/main/fw) directory. EF_I2S driver documentation  is available [here](https://github.com/efabless/EF_I2S/blob/main/fw/README.md).
-You can also find an example C application using the EF_I2S drivers [here]().
-## Installation:
-You can install the IP either by cloning this repository or by using [IPM](https://github.com/efabless/IPM).
-##### 1. Using [IPM](https://github.com/efabless/IPM):
-- [Optional] If you do not have IPM installed, follow the installation guide [here](https://github.com/efabless/IPM/blob/main/README.md)
-- After installing IPM, execute the following command ```ipm install EF_I2S```.
-> **Note:** This method is recommended as it automatically installs [EF_IP_UTIL](https://github.com/efabless/EF_IP_UTIL.git) as a dependency.
-##### 2. Cloning this repo: 
-- Clone [EF_IP_UTIL](https://github.com/efabless/EF_IP_UTIL.git) repository, which includes the required modules from the common modules library, [ef_util_lib.v](https://github.com/efabless/EF_IP_UTIL/blob/main/hdl/ef_util_lib.v).
-```git clone https://github.com/efabless/EF_IP_UTIL.git```
-- Clone the IP repository
-```git clone github.com/efabless/EF_I2S```

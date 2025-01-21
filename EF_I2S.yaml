@@ -145,19 +145,19 @@ external_interface:
   - name: ws
     port: ws
     direction: output
-    description: Word select (logic high on WS indicates right-channel audio)
+    description: Word Select; this signal indicates the boundary between left and right audio channels
     width: 1
   - name: sck
     port: sck
     direction: output
     width: 1
-    description: The data clock 
+    description: Serial Clock; this provides the timing for data transfer, synchronizing the transmission of bits.
   - name: sdi
     port: sdi
     direction: input
     sync: True
     width: 1
-    description: The input serial data 
+    description: Serial Data Input; this line carries the audio data being sent to the device.
 
 clock:
   name: clk

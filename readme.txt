@@ -26,7 +26,7 @@ Directory Structure:
 
     - hdl 
         - rtl 
-            - **EF_I2S.v**: Verilog source code for the EF_I2S design, including the core logic of the UART module.
+            - **EF_I2S.v**: Verilog source code for the EF_I2S design
             - **bus_wrappers**
                 - **EF_I2S_AHBL.v**: Verilog wrapper to interface the EF_I2S with the AMBA High-performance Bus (AHB-Lite) protocol.
                 - **EF_I2S_APB.v**: Verilog wrapper to interface the EF_I2S with the Advanced Peripheral Bus (APB) protocol.

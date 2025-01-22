@@ -185,8 +185,8 @@ VERILOG_DEFINES:
 - CLKG_SKY130_HD
 ```
 ## Firmware Drivers:
-Firmware drivers for EF_I2S can be found in the [EF_I2S](https://github.com/efabless/EF_APIs_HUB/tree/main/EF_I2S) directory in the [EF_APIs_HUB](https://github.com/efabless/EF_APIs_HUB) repo. EF_I2S driver documentation  is available [here](https://github.com/efabless/EF_APIs_HUB/tree/main/EF_I2S/README.md).
-You can also find an example C application using the EF_I2S drivers [here](https://github.com/efabless/EF_APIs_HUB/tree/main/EF_I2S/EF_I2S_example.c).
+Firmware drivers for EF_I2S can be found in the [EF_I2S](https://github.com/efabless/EFIS/tree/main/EF_I2S) directory in the [EFIS](https://github.com/efabless/EFIS) repo. EF_I2S driver documentation  is available [here](https://github.com/efabless/EFIS/tree/main/EF_I2S/README.md).
+You can also find an example C application using the EF_I2S drivers [here](https://github.com/efabless/EFIS/tree/main/EF_I2S/EF_I2S_example.c).
 ## Installation:
 You can install the IP either by cloning this repository or by using [IPM](https://github.com/efabless/IPM).
 ### 1. Using [IPM](https://github.com/efabless/IPM):
